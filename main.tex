@@ -1,0 +1,313 @@
+\documentclass[12pt]{report}
+
+% restore original \underline and silence ulem warnings:
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+
+
+%—— Step 1: T1 + Latin Modern so small-caps exist ——  
+\usepackage[T1]{fontenc}  
+\usepackage{lmodern}  
+ 
+\makeatletter
+  \DeclareFontShape{T1}{cmr}{m}{scit}{<-> ssub * cmr/m/sc}{}
+  \DeclareFontShape{T1}{cmr}{bx}{sc}{<-> ssub * cmr/m/sc}{}
+\makeatother
+
+\usepackage{textcomp}
+\let\micro\textmu
+\let\perthousand\textperthousand
+
+\usepackage{silence}
+\WarningsOff[gensymb]
+\usepackage{gensymb}
+
+
+
+%------------------- declaring packages---------------------------------
+
+% styling and graphics-based
+\usepackage{graphicx} 
+\usepackage{emptypage}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{pgf}
+\usepackage{pgffor}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{algorithmic}
+\usepackage[utf8]{inputenc}
+\usepackage{algorithm}
+\usepackage{epsfig}
+\usepackage{colortbl}
+\usepackage{arydshln}
+\usepackage{blkarray, bigstrut}
+\usepackage[nottoc]{tocbibind}
+\usepackage{changepage}
+\usepackage{tcolorbox}
+\usepackage{xcolor} 
+
+\doublespacing
+
+% figures and tables
+\usepackage{subfigure}  
+\usepackage{adjustbox}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{tabularx,ragged2e,booktabs,caption}
+\usepackage{multicol,tabularx,capt-of}
+\usepackage{hhline}
+\usepackage{multirow}
+\usepackage{array} % <-- Only keep one instance
+\usepackage{ragged2e}
+\usepackage{makecell}
+\usepackage{listings}
+\usepackage{gensymb}
+\usepackage{stfloats}
+\usepackage{enumerate}
+\usepackage{tensor}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{verbatim}
+\usepackage{amsmath} 
+\usepackage{amsthm}   
+\usepackage{mathtools}
+\usepackage{bm}
+
+\definecolor{darkblue}{HTML}{004C93} 
+\tcbset{
+    center title,
+		top=1cm,
+		right=0cm,
+		left=0cm,
+    colback=darkblue,
+    colframe=white,
+    width=15.85cm,
+		height=5.62cm,
+		halign=right,
+		valign=top,
+		flush right,
+		sharp corners=all
+    }
+
+\setlength{\headheight}{14.49998pt}
+
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\lstset{escapeinside=||}
+
+
+% For chemical equations, specify the version
+\usepackage[version=4]{mhchem}
+
+
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            filecolor = magenta,      
+            urlcolor  = cyan,
+            citecolor = black,
+            anchorcolor = black]{hyperref} % <-- Keep only one instance
+
+% for math equations
+
+% for acronyms and glossaries
+\usepackage{acronym}
+\usepackage{glossaries}
+
+% for hyperlinks
+\usepackage[numbers]{natbib} % For numerical citations
+\usepackage{sectsty}
+\allsectionsfont{\bfseries}
+\chapterfont{\centering\Large}
+\sectionfont{\normalsize}
+\subsectionfont{\normalsize}
+
+\usepackage [english]{babel}
+\usepackage [autostyle, english = american]{csquotes}
+
+% header formatting
+\usepackage{layout}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\textbf{\nouppercase{\rightmark}}}
+\fancyfoot[L]{}
+
+\fancypagestyle{custompagestyle}{%
+    \fancyhf{}
+    \fancyhead[R]{\thepage}
+}
+
+\fancypagestyle{noheaderfooter}{%
+    \fancyhf{} % Clear header and footer
+    \renewcommand{\headrulewidth}{0pt} % Remove header line
+}
+
+\interfootnotelinepenalty=10000 
+
+\usepackage{epstopdf}
+\usepackage{pdflscape}
+\usepackage{titlesec}
+
+% Define new depth level
+\setcounter{secnumdepth}{4} % how deep to number
+\setcounter{tocdepth}{4}    % how deep to show in ToC
+
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+
+\graphicspath{{Figure/}}
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+  {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\newcommand*\l@subsubsubsection{\@dottedtocline{4}{7.0em}{4.1em}}
+\newcommand{\customlabel}[2]{%
+   \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{#2}{#1}{}} }%
+   \hypertarget{#1}{}
+}
+\makeatother
+
+%----------------------------begin document-------------------------------
+
+\graphicspath{{Figures/}} 
+\begin{document}
+
+\setcounter{page}{0}
+\thispagestyle{empty}
+
+\noindent
+\includegraphics[width=10cm,keepaspectratio]{Logo ULB + EPB fond blanc.png} 
+
+\begin{tcolorbox}[right=4mm]
+\color[rgb]{1,1,1}
+\Huge{\textbf{Self-organizing Nervous System for Robot Swarms}} \
+\\
+\Large{Subtitle}
+\end{tcolorbox} 
+
+\begin{tcolorbox}[colback=white, halign=left, code={\singlespacing}]
+\color{darkblue}
+\large{\textbf{Thesis presented by Weixu ZHU}} \\
+\color{black}
+\large{in the fulfillment of the requirements of the\\ Ph.D. Degree in Engineering Sciences and Technology \\ (``Docteur en Sciences de l’Ingénieur et Technologie'')\\
+Academic year 2024-2025}
+ 
+\vspace{2cm}
+
+\begin{flushright}
+\color{darkblue} 
+Supervisor: Professor Marco DORIGO \\
+\color{black}
+IRIDIA - Institut de Recherches Interdisciplinaires
+et de Développements en Intelligence Artificielle\\
+\end{flushright}
+\end{tcolorbox}
+\vspace{4cm}
+
+
+\newpage
+
+
+\chapter*{
+\Large  Self-organizing Nervous System for Robot Swarms\\
+\normalsize subtitle\\ [8em]
+Weixu ZHU\\ 
+2025
+}
+
+\thispagestyle{empty} % Removes page numbering on this page
+
+\mbox{} % Adds an invisible box to keep the page empty below the title
+
+
+
+\newpage
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+\chapter*{Statement of Originality}
+
+\vspace{10pt}
+
+\begin{FlushRight}
+Weixu ZHU \\
+2025
+\end{FlushRight}
+
+%\newpage
+%\thispagestyle{empty}
+%\mbox{}
+%\newpage
+
+\chapter*{Thesis Committee}
+...
+
+
+%\newpage
+%\thispagestyle{empty}
+%\mbox{}
+%\newpage
+
+\chapter*{Abstract}
+...
+
+\addcontentsline{toc}{chapter}{Abstract}
+
+%\newpage
+%\thispagestyle{empty}
+%\mbox{}
+%\newpage
+
+\chapter*{Acknowledgements}\
+
+...
+
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+%\newpage
+%\thispagestyle{empty}
+%\mbox{}
+%\newpage
+
+\tableofcontents{}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+
+%\listoftables{}
+
+%\listoffigures{}
+
+
+\thispagestyle{noheaderfooter}
+
+\pagenumbering{arabic}
+
+\include{Introduction}
+
+\include{Chapters/Ch1}
+\include{Chapters/Ch2}
+\include{Chapters/Ch3}
+\include{Chapters/Ch4}
+\include{Chapters/Ch5}
+\include{Chapters/Ch6}
+\include{Chapters/Ch7}
+
+\bibliographystyle{IEEEtran}
+\bibliography{References}
+
+
+\end{document}

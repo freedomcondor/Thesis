@@ -1,0 +1,109 @@
+\chapter{Conclusions and Discussions}
+\label{ch6}
+
+% History: 
+% Version 1
+%  limitations:
+%      1. hierarchy establishment,
+%           in hierarchy, error accumulates 
+%           brain decides everything
+
+%      2. Task assignment formation
+%           fully optimization can not be achieved
+%           there are some cases unsolved
+
+%      3. Behavior tree management, and DBT to autonomous
+%           cannot invent code on their own
+
+% future direction:
+%       1. solve time-delay and error accumulation
+%       2. more robots to be brain collectively
+%       3. task assignment
+%       4. invent code
+%       
+
+%-------------------------------------------------------
+%
+%1. Key Contributions Summary
+%    1.1 Proposed the SoNS to address the "decentralized vs. centralization" contradiction in swarm robotics; enables autonomous dynamic hierarchical architecture (Sci-Ro paper).
+%    1.2 Applied the SoNS to 1,000 UAVs; verified the feasibility of large-scale high-velocity formation under non-central control (1000 drone paper).
+%    1.3 Integrated DBTs into the SoNS; achieved the first runtime reprogrammable swarm (supporting runtime code transfer and reprogramming); enhanced swarm autonomy and human-swarm interaction (builderbot paper).
+%    1.4 Significance: Bypasses the micro-macro problem to facilitate swarm behavior design; enables human-swarm interaction/reprogramming in large-scale scenarios; improves swarm autonomy.
+
+%2. Current Limitations
+%    2.1 Communication dependence: The SoNS relies heavily on communication. In case of communication failure (even if recovered after communication is restored), the SoNS fails to operate.
+%    2.2 Error accumulation and time latency: Error accumulation was demonstrated in the Sci-Ro paper; the 1000 drone paper adopted a truss mechanism to reduce error accumulation, but further investigation is still required.
+%    2.3 Human-Swarm Interaction: Code transfer needs verification—risks exist if invalid code is transferred by operators.
+
+%3. Future Research Directions
+%    3.1 Operation under weak communication conditions: Develop strategies to enable SoNS function under limited or unstable communication.
+%    3.2 Mitigation of error accumulation and time latency: Conduct in-depth research to further reduce error accumulation and optimize time latency.
+%    3.3 Integration of LLM and code transfer: Combine large language models (LLMs) with code transfer to enable direct LLM-based swarm reprogramming.
+%    3.4 Cross-Domain Use: Test the SoNS in cross-medium swarms (e.g., air-ground-water robot collaboration) and emergency response scenarios.
+
+
+\section{Summary of Contributions}
+
+% P1 Sci-ro paper
+% s1, this thesis proposed SoNS
+This thesis proposed Self-organizing Nervous System (SoNS), a dynamic hierarchical architecture for robot swarms.
+% s2, propsed how to manupulate SoNS
+The thesis described algorithm to enable autonomous establishment, maintenance, and reconfiguration of SoNS.
+% it solves centralized - decentralized paradox.
+This design resolves the tension between decentralized scalability/fault tolerance and centralized coordination efficiency, laying the groundwork for practical swarm applications.
+
+% P2 1000 drone paper
+% expand sons to 1000 drones
+By applying SoNS to a swarm of 1,000 UAVs, SoNS is proved to be able to demonstrate feasible large-scale, high-velocity formation control under non-centralized management.
+% it shows large scale without ground control, real field application.
+It lays fundamental proof for next generation of real field applications such as drone light shows, with large scale and without centralized ground control.
+
+% P3 Builderbot paper
+% SoNS use DBT to enable code transfer
+By integrating Dynamic Behavior Trees (DBTs), SoNS firstly enable runtime code transfer and reprogramming to swarm robotics.
+% it makes autonomy and HSI
+This advancement enhances both swarm autonomy, adapting to unforeseen environments, and human-swarm interaction, for safety or on-demand adjustments.
+
+% P4 significance
+Collectively, SoNS ease the design of the swarm behavior despite the micro-macro problem (simplifying behavior design by unifying individual programming and group behavior), enable reliable human-swarm interaction in large swarms, and improve swarm autonomy—filling critical gaps in existing research.
+
+
+\section{Limitations}
+
+% P1 However...
+While the SoNS advances swarm robotics, it faces practical limitations that constrain broader deployment.
+
+% P2 Communication reliability
+First, the SoNS relies heavily on stable inter-robot communication.
+Temporary communication failures disrupt SoNS operation.
+Although SoNS demonstrates great power to quickly recover after communication failure, it still exposes vulnerabilities in low-connectivity environments.
+
+% P3 error accumulation
+Second, errors caused by sensor noise and time latency accumulates along the communication chain across the swarm.
+Chapter 3 documented error accumulation as formation grow larger and larger.
+Although Chapter 4 introduces a truss mechanism to reduce this issue, residual errors and associated latency are still observable and requiring further investigation.
+
+% P4 code transfer, what if bad code?
+Third, code transfer feature Chapter 5 lacks validation for invalid code risks.
+If operators transfer flawed or malicious code, the entire swarm’s functionality could be compromised, as current designs lack integrity checks or error-handling for such scenarios.
+
+\section{Future Directions}
+
+% P1 future mainly aim to solve above mentioned limitations.
+Future work would mainly target the identified limitations to expand SoNS’ capabilities and real-world applicability.
+
+% P2 weak communication
+To ease communication reliability, one possible direction is to lower frame rate.
+That would pose challenge for velocity-based control.
+Robots would need to predict other robots movement and constructs reaction, that may be need game theory.
+\textcolor{red}{other options}
+
+% P3
+For error accumulation and latency, advanced solutions—such as machine learning-based predictive error compensation or optimized hierarchical update logic—could be a possible direction to further improve formation precision and mission reliability for large or long-duration swarms.
+
+% P4
+Integrating large language models (LLMs) with SoNS’ code transfer would simplify human-swarm interaction: operators can issue natural language commands (e.g., "Form a search grid"), which the LLM converts into executable code, eliminating manual coding and making SoNS accessible to non-experts.
+
+% P5
+Chapter 3 demonstrates a cross-domain scenario with drones and ground robots.
+Further testing would validate SoNS in heterogeneous cross-medium swarms (air-ground-water robots) and high-stakes emergency scenarios (post-earthquake rescue, wildfire monitoring), accelerating its transition from lab demonstrations to practical deployment.
