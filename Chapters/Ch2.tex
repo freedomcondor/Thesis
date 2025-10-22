@@ -1,14 +1,14 @@
 \chapter{Related Work}
 \label{ch2}
 
-% 1 Hybrid, hierarchical, and leadership approaches in the literature
+% 1 Hybrid, hierarchical, and leadership approaches in the literature   TODO from Sci-Ro paper, yuwei paper
 % 2 Swarm vs. centralized approaches for different tasks (explain what is possible to do with both, for those tasks -- current limitations are implied)
 %   1.1 formation control
-%   1.2 exploration, search and rescue
+%   1.2 exploration, search and rescue    TODO from Sci-Ro paper
 %   1.3 drone entertainment shows...
 %   1.4 (more?)
 % 3 The process of swarm programming / re-programming (mostly about how this is done offline, don't worry about the limitations when trying to do this online)
-% 4 Swarm autonomy
+% 4 Swarm autonomy    TODO from Builderbot paper and zotero
 
 \section{Swarm vs. centralized approaches for different tasks}
 
@@ -73,6 +73,49 @@ UAV motion planning
 \cite{agarwal2018simultaneous} presents an algorithm that simultaneously optimizes robot assignments and variable goal formation parameters by transforming the problem into a linear sum assignment problem, enabling collision-free trajectories with O(n³) computational complexity.
 
 \cite{ravichandar2020strata} introduces STRATA, a unified framework for task assignment in large heterogeneous agent teams that accounts for continuous traits, species- and agent-level variability, and ensures tasks' trait requirements are met efficiently.
+
+\section{programming / re-programming}
+
+\subsection {offline examples}
+
+mostly offline :
+
+usually, long trial and error: 
+\cite{hamann2018swarm} a book
+\cite{brambilla2013swarm} a review
+
+automatic design:
+\cite{francesca2014automode} AutoMoDe
+\cite{francesca2016automatic}
+\cite{birattari2019automatic} offline automatic design
+
+examples of pre-design
+\cite{rubenstein2014programmable} self-assembly
+\cite{valentini2016collective} decision making
+\cite{werfel2014designing} construction
+\cite{dorigo2013swarmanoid} multi task mission
+
+\subsection {online but centralized}
+\cite{zyrianoff2024over} over the air
+\cite{abadie2024robotap}
+
+\subsection {light show: too big, only simple commands}
+\cite{waibel2017drone} light show
+\cite{ang2018high} light show
+
+\subsection {online, decentralized}
+\cite{xie2011design} wireless sensor network
+\cite{wang2006reprogramming} wireless sensor network
+but slow : consensus
+\cite{de2009energy}
+\cite{varadharajan2018over} 
+
+
+
+\cite{venkata2023kt} introduces the KT-BT framework, using behavior trees and stringBT grammar, enabling multirobot knowledge transfer, with simulations showing improved group performance.
+
+
+
 
 
 %-------------------------------------------------------------
