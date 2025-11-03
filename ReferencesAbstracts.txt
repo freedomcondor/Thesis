@@ -1,0 +1,496 @@
+reynolds1987flocks
+Flocks, herds and schools: A distributed behavioral model
+
+The aggregate motion of a flock of birds, a herd of land animals, or a school of fish is a beautiful and familiar part of the natural world. But this type of complex motion is rarely seen in computer animation. This paper explores an approach based on simulation as an alternative to scripting the paths of each bird individually. The simulated flock is an elaboration of a particle systems, with the simulated birds being the particles. The aggregate motion of the simulated flock is created by a distributed behavioral model much like that at work in a natural flock; the birds choose their own course. Each simulated bird is implemented as an independent actor that navigates according to its local perception of the dynamic environment, the laws of simulated physics that rule its motion, and a set of behaviors programmed into it by the "animator." The aggregate motion of the simulated flock is the result of the dense interaction of the relatively simple behaviors of the individual simulated birds.
+
+鸟群、陆地动物群或鱼群的整体运动，是自然界中美丽且熟悉的景象。但这种复杂的运动很少出现在计算机动画中。本文探索了一种基于模拟的方法，用来替代为每只鸟分别编写运动路径。模拟的鸟群源自粒子系统模型的扩展，其中模拟的鸟就是粒子。模拟鸟群的整体运动由一种分布式行为模型产生，这与自然鸟群中的机制非常相似：鸟会自行选择飞行路线。每只模拟鸟都作为一个独立的“行为体”实现，它根据对动态环境的局部感知、支配其运动的模拟物理规律，以及由“动画师”预设的一组行为进行导航。模拟鸟群的整体运动，是个体模拟鸟那些相对简单的行为之间密集交互的结果。
+
+----------------------------------------------------------------
+
+dorigo2021swarm,
+Swarm robotics: Past, present, and future [point of view]
+
+Swarm robotics deals with the design, construction, and deployment of large groups of robots that coordinate and cooperatively solve a problem or perform a task. It takes inspiration from natural self-organizing systems, such as social insects, fish schools, or bird flocks, characterized by emergent collective behavior based on simple local interaction rules [1], [2]. Typically, swarm robotics extracts engineering principles from the study of those natural systems in order to provide multirobot systems with comparable abilities. This way, it aims to build systems that are more robust, fault-tolerant, and flexible than single robots and that can better adapt their behavior to changes in the environment.
+
+群体机器人学研究大规模机器人集群的设计、构建与部署，这些机器人通过协同配合解决问题或执行任务。该领域从社会性昆虫、鱼群、鸟群等自然自组织系统中汲取灵感，这类系统的核心特征是基于简单局部交互规则产生涌现性集体行为 [1][2]。通常，群体机器人学通过研究这些自然系统提炼工程原理，为多机器人系统赋予类似能力。其目标是构建出比单个机器人更稳健、容错性更强、灵活性更高的系统，且这类系统能更好地根据环境变化调整自身行为。
+
+----------------------------------------------------------------
+
+talamali2021less,
+When less is more: Robot swarms adapt better to changes with constrained communication
+
+To effectively perform collective monitoring of dynamic environments, a robot swarm needs to adapt to changes by processing the latest information and discarding outdated beliefs. We show that in a swarm composed of robots relying on local sensing, adaptation is better achieved if the robots have a shorter rather than longer communication range. This result is in contrast with the widespread belief that more communication links always improve the information exchange on a network. We tasked robots with reaching agreement on the best option currently available in their operating environment. We propose a variety of behaviors composed of reactive rules to process environmental and social information. Our study focuses on simple behaviors based on the voter model—a well-known minimal protocol to regulate social interactions—that can be implemented in minimalistic machines. Although different from each other, all behaviors confirm the general result: The ability of the swarm to adapt improves when robots have fewer communication links. The average number of links per robot reduces when the individual communication range or the robot density decreases. The analysis of the swarm dynamics via mean-field models suggests that our results generalize to other systems based on the voter model. Model predictions are confirmed by results of multiagent simulations and experiments with 50 Kilobot robots. Limiting the communication to a local neighborhood is a cheap decentralized solution to allow robot swarms to adapt to previously unknown information that is locally observed by a minority of the robots.
+
+为有效对动态环境开展集体监测，机器人群体需通过处理最新信息、摒弃过时认知来适应环境变化。研究表明，在由依赖局部感知的机器人组成的群体中，机器人通信范围越短，适应性表现越优。这一结果与 “更多通信链路总能提升网络信息交换效率” 的普遍认知相悖。
+我们为机器人设定的任务是，就其运行环境中当前可用的最优选项达成共识。我们提出了多种由反应式规则构成的行为模式，用于处理环境与社交信息。本研究聚焦于基于投票者模型的简单行为 —— 投票者模型是一种知名的极简社交交互调控协议，可在简易设备中实现。尽管这些行为模式各有不同，但均印证了核心结论：机器人通信链路越少，群体的适应能力越强。
+单个机器人的平均通信链路数会随个体通信范围缩小或机器人密度降低而减少。通过平均场模型对群体动态的分析表明，我们的结论可推广至其他基于投票者模型的系统。多智能体仿真结果及 50 个 Kilobot 机器人的实验数据，均验证了模型预测的有效性。将通信限制在局部邻域内，是一种低成本的分布式解决方案，能使机器人群体对少数机器人局部观测到的未知信息做出适应性调整。
+
+----------------------------------------------------------------
+
+dorigo2013swarmanoid,
+Swarmanoid: a novel concept for the study of heterogeneous robotic swarms
+
+Swarm robotics systems are characterized by decentralized control, limited communication between robots, use of local information, and emergence of global behavior. Such systems have shown their potential for flexibility and robustness [1]-[3]. However, existing swarm robotics systems are by and large still limited to displaying simple proof-of-concept behaviors under laboratory conditions. It is our contention that one of the factors holding back swarm robotics research is the almost universal insistence on homogeneous system components. We believe that swarm robotics designers must embrace heterogeneity if they ever want swarm robotics systems to approach the complexity required of real-world systems.
+
+群体机器人系统的特征包括分布式控制、机器人间有限通信、局部信息利用以及全局行为涌现。这类系统已展现出灵活性与稳健性的潜力 [1]-[3]。
+然而，现有群体机器人系统大体上仍局限于在实验室条件下展示简单的概念验证行为。我们认为，阻碍群体机器人学研究发展的因素之一，是对系统组件同质性的近乎普遍的执着。若想让群体机器人系统达到实际应用场景所需的复杂程度，设计者必须接纳组件异质性这一理念。
+
+
+----------------------------------------------------------------
+
+rubenstein2014programmable
+Programmable self-assembly in a thousand-robot swarm
+
+Self-assembly enables nature to build complex forms, from multicellular organisms to complex animal structures such as flocks of birds, through the interaction of vast numbers of limited and unreliable individuals. Creating this ability in engineered systems poses challenges in the design of both algorithms and physical systems that can operate at such scales. We report a system that demonstrates programmable self-assembly of complex two-dimensional shapes with a thousand-robot swarm. This was enabled by creating autonomous robots designed to operate in large groups and to cooperate through local interactions and by developing a collective algorithm for shape formation that is highly robust to the variability and error characteristic of large-scale decentralized systems. This work advances the aim of creating artificial swarms with the capabilities of natural ones.
+
+自组装让自然界能够通过大量功能有限且可靠性不高的个体间的相互作用，构建出复杂结构 —— 从多细胞生物到鸟群等复杂的动物集群结构皆如此。
+在工程系统中实现这种能力，面临着算法设计和物理系统设计的双重挑战，这些系统需能在如此大规模下运行。我们报道了一个系统，该系统可实现千机器人集群对复杂二维形状的可编程自组装。
+这一成果的实现，一方面得益于设计出能在大规模群体中运行、并通过局部交互协同工作的自主机器人；另一方面则是开发了一套形状形成的群体算法，该算法对大规模分布式系统特有的变异性和误差具有高度稳健性。这项研究推动了构建具备自然群体能力的人工集群这一目标的实现。
+
+----------------------------------------------------------------
+
+team2012designing,
+Designing collective behavior in a termite-inspired robot
+
+Complex systems are characterized by many independent components whose low-level actions produce collective high-level results. Predicting high-level results given low-level rules is a key open challenge; the inverse problem, finding low-level rules that give specific outcomes, is in general still less understood. We present a multi-agent construction system inspired by mound-building termites, solving such an inverse problem. A user specifies a desired structure, and the system automatically generates low-level rules for independent climbing robots that guarantee production of that structure. Robots use only local sensing and coordinate their activity via the shared environment. We demonstrate the approach via a physical realization with three autonomous climbing robots limited to onboard sensing. This work advances the aim of engineering complex systems that achieve specific human-designed goals.
+
+复杂系统的特征是存在大量独立组件，这些组件的低层级行为会产生集体性的高层级结果。已知低层级规则时预测高层级结果，是一项关键的开放性挑战；而反向问题 —— 即寻找能产生特定结果的低层级规则，总体上仍未被充分理解。
+我们提出了一个受堆丘白蚁启发的多智能体构建系统，用于解决这一反向问题。用户指定所需结构后，该系统会自动为自主攀爬机器人生成低层级规则，确保生成目标结构。机器人仅依靠局部感知，并通过共享环境协调自身活动。
+我们通过三台自主攀爬机器人的物理实物验证了该方法，这些机器人仅依赖机载传感设备。这项研究推动了 “设计能实现人类特定目标的复杂工程系统” 这一目标的进展。
+
+----------------------------------------------------------------
+
+petersen2019review
+A review of collective robotic construction
+
+The increasing need for safe, inexpensive, and sustainable construction, combined with novel technological enablers, has made large-scale construction by robot teams an active research area. Collective robotic construction (CRC) specifically concerns embodied, autonomous, multirobot systems that modify a shared environment according to high-level user-specified goals. CRC tightly integrates architectural design, the construction process, mechanisms, and control to achieve scalability and adaptability. This review gives a comprehensive overview of research trends, open questions, and performance metrics.
+
+对安全、廉价且可持续的建筑需求日益增长，加之新型技术赋能，使得机器人团队大规模施工成为活跃的研究领域。
+集体机器人建造（CRC）特指实体化、自主化的多机器人系统，这类系统能根据用户指定的高层级目标改造共享环境。CRC 紧密融合建筑设计、施工流程、机械装置与控制技术，以实现系统的可扩展性与适应性。
+本综述全面概述了该领域的研究趋势、开放性问题及性能指标。
+
+----------------------------------------------------------------
+
+wahby2018autonomously
+Autonomously shaping natural climbing plants: a bio-hybrid approach
+
+Plant growth is a self-organized process incorporating distributed sensing, internal communication and morphology dynamics. We develop a distributed mechatronic system that autonomously interacts with natural climbing plants, steering their behaviours to grow user-defined shapes and patterns. Investigating this bio-hybrid system paves the way towards the development of living adaptive structures and grown building components. In this new application domain, challenges include sensing, actuation and the combination of engineering methods and natural plants in the experimental set-up. By triggering behavioural responses in the plants through light spectra stimuli, we use static mechatronic nodes to grow climbing plants in a user-defined pattern at a two-dimensional plane. The experiments show successful growth over periods up to eight weeks. Results of the stimuli-guided experiments are substantially different from the control experiments. Key limitations are the number of repetitions performed and the scale of the systems tested. Recommended future research would investigate the use of similar bio-hybrids to connect construction elements and grow shapes of larger size.
+
+植物生长是一个融合分布式感知、内部信号传递与形态动态变化的自组织过程。我们开发了一套分布式机电系统，可自主与自然攀爬植物交互，引导其生长出用户自定义的形状和图案。
+研究这种生物混合系统，为开发活体自适应结构和生长型建筑构件奠定了基础。在这一新应用领域，面临的挑战包括传感、驱动技术的研发，以及实验装置中工程方法与自然植物的融合应用。
+通过光谱刺激触发植物的行为响应，我们利用静态机电节点，引导攀爬植物在二维平面上按用户设定的图案生长。实验显示，植物可成功生长长达八周。刺激引导组的实验结果与对照组存在显著差异。
+该研究的主要局限性在于实验重复次数较少以及测试系统的规模有限。未来建议研究方向包括利用类似生物混合系统连接建筑构件，以及培育更大尺寸的生长形态。
+
+----------------------------------------------------------------
+
+halloy2007social
+Social integration of robots into groups of cockroaches to control self-organized choices
+
+Collective behavior based on self-organization has been shown in group-living animals from insects to vertebrates. These findings have stimulated engineers to investigate approaches for the coordination of autonomous multirobot systems based on self-organization. In this experimental study, we show collective decision-making by mixed groups of cockroaches and socially integrated autonomous robots, leading to shared shelter selection. Individuals, natural or artificial, are perceived as equivalent, and the collective decision emerges from nonlinear feedbacks based on local interactions. Even when in the minority, robots can modulate the collective decision-making process and produce a global pattern not observed in their absence. These results demonstrate the possibility of using intelligent autonomous devices to study and control self-organized behavioral patterns in group-living animals.
+
+从昆虫到脊椎动物，群居动物中已发现基于自组织的集体行为。这些发现启发工程师研究基于自组织的自主多机器人系统协调方法。
+在这项实验研究中，我们展示了蟑螂与社会化融合自主机器人组成的混合群体的集体决策过程，最终实现共享庇护所选择。无论是自然个体还是人工个体，都被视为等价主体，集体决策源于基于局部交互的非线性反馈。
+即便机器人占少数，仍能调节集体决策过程，产生无机器人时未观察到的全局模式。这些结果表明，可利用智能自主设备研究并控制群居动物的自组织行为模式。
+
+--------------------------------------------------------------
+
+hamann2008framework
+A framework of space--time continuous models for algorithm design in swarm robotics
+
+Designing and analyzing self-organizing systems such as robotic swarms is a challenging task even though we have complete knowledge about the robot’s interior. It is difficult to determine the individual robot’s behavior based on the swarm behavior and vice versa due to the high number of agent–agent interactions. A step towards a solution of this problem is the development of appropriate models which accurately predict the swarm behavior based on a specified control algorithm. Such models would reduce the necessary number of time-consuming simulations and experiments during the design process of an algorithm. In this paper we propose a model with focus on an explicit representation of space because the effectiveness of many swarm robotic scenarios depends on spatial inhomogeneity. We use methods of statistical physics to address spatiality. Starting from a description of a single robot we derive an abstract model of swarm motion. The model is then extended to a generic model framework of communicating robots. In two examples we validate models against simulation results. Our experience shows that qualitative correctness is easily achieved, while quantitative correctness is disproportionately more difficult but still possible.
+
+即便完全了解机器人的内部构造，设计和分析机器人群体等自组织系统仍是一项艰巨任务。由于智能体间存在大量交互，很难根据群体行为确定单个机器人的行为，反之亦然。
+解决这一问题的关键一步是开发合适的模型，这些模型能基于特定控制算法准确预测群体行为。此类模型可减少算法设计过程中耗时的仿真和实验次数。本文提出一种模型，重点在于对空间的显式表征 —— 因为许多群体机器人场景的有效性依赖于空间非均质性。
+我们采用统计物理方法处理空间特性，从单个机器人的描述出发，推导出群体运动的抽象模型。随后，该模型被扩展为适用于通信机器人的通用模型框架。通过两个实例，我们将模型与仿真结果进行验证。经验表明，实现定性准确性较为容易，而定量准确性虽难度显著更高，但仍可实现。
+
+----------------------------------------------------------------
+
+hamann2013towards
+Towards swarm calculus: Urn models of collective decisions and universal properties of swarm performance
+
+Methods of general applicability are searched for in swarm intelligence with the aim of gaining new insights about natural swarms and to develop design methodologies for artificial swarms. An ideal solution could be a ‘swarm calculus’ that allows to calculate key features of swarms such as expected swarm performance and robustness based on only a few parameters. To work towards this ideal, one needs to find methods and models with high degrees of generality. In this paper, we report two models that might be examples of exceptional generality. First, an abstract model is presented that describes swarm performance depending on swarm density based on the dichotomy between cooperation and interference. Typical swarm experiments are given as examples to show how the model fits to several different results. Second, we give an abstract model of collective decision making that is inspired by urn models. The effects of positive-feedback probability, that is increasing over time in a decision making system, are understood by the help of a parameter that controls the feedback based on the swarm’s current consensus. Several applicable methods, such as the description as Markov process, calculation of splitting probabilities, mean first passage times, and measurements of positive feedback, are discussed and applications to artificial and natural swarms are reported.
+
+群体智能领域正寻求具有普适性的方法，旨在深入理解自然群体的特性，并为人工群体开发设计方法。理想的解决方案可能是一种 “群体演算”，仅通过少数参数就能计算出群体的关键特征，如预期性能和稳健性。
+为实现这一理想目标，需探索具有高度普适性的方法与模型。本文提出两个可能具备极高普适性的模型。其一为抽象模型，基于 “协作与干扰” 的二分法，描述群体性能随群体密度的变化规律，并通过典型群体实验实例验证该模型对多种不同结果的适配性。其二为受 urn 模型（ urn models，即瓮模型）启发的集体决策抽象模型。该模型通过一个基于群体当前共识调控反馈的参数，阐释决策系统中随时间递增的正反馈概率所产生的影响。
+文中还讨论了多种适用方法，如马尔可夫过程描述、分裂概率计算、平均首达时间分析及正反馈度量，并报道了这些方法在人工群体与自然群体中的应用。
+
+-----------------------------------------------------------------
+
+valentini2015efficient
+Efficient decision-making in a self-organizing robot swarm: On the speed versus accuracy trade-off
+
+We study a self-organized collective decision-making strategy to solve the best-of-n decision problem in a swarm of robots. We define a distributed and iterative decision-making strategy. Using this strategy, robots explore the available options, determine the options' qualities, decide autonomously which option to take, and communicate their decision to neighboring robots. We study the effectiveness and robustness of the proposed strategy using a swarm of 100 Kilobots. We study the well-known speed versus accuracy trade-off analytically by developing a mean-field model. Compared to a previously published simpler method, our decision-making strategy shows a considerable speed-up but has lower accuracy. We analyze our decision-making strategy with particular focus on how the spatial density of robots impacts the dynamics of decisions. The number of neighboring robots is found to influence the speed and accuracy of the decision-making process. Larger neighborhoods speed up the decision but lower its accuracy. We observe that the parity of the neighborhood cardinality determines whether the system will over- or under-perform.
+
+我们研究了一种自组织集体决策策略，用于解决机器人群体中的 “n 选优” 决策问题。我们定义了一种分布式迭代决策策略，机器人通过该策略探索可用选项、评估选项质量、自主决定选择方案，并向相邻机器人传递决策信息。
+我们利用 100 个 Kilobot 机器人组成的群体，验证了所提策略的有效性与稳健性。通过建立平均场模型进行解析分析，研究了经典的 “速度 - 精度” 权衡关系。与已发表的简化方法相比，我们的决策策略在速度上有显著提升，但精度相对较低。
+我们重点分析了机器人空间密度对决策动态的影响，发现相邻机器人数量会左右决策过程的速度与精度：更大的邻域范围能加快决策速度，但会降低决策精度。此外，邻域基数的奇偶性会决定系统表现是优于还是劣于预期水平。
+
+-----------------------------------------------------------------
+
+dorigo2004evolving
+Evolving self-organizing behaviors for a swarm-bot
+
+In this paper, we introduce a self-assembling and self-organizing artifact, called a swarm-bot, composed of a swarm of s-bots, mobile robots with the ability to connect to and to disconnect from each other. We discuss the challenges involved in controlling a swarm-bot and address the problem of synthesizing controllers for the swarm-bot using artificial evolution. Specifically, we study aggregation and coordinated motion of the swarm-bot using a physics-based simulation of the system. Experiments, using a simplified simulation model of the s-bots, show that evolution can discover simple but effective controllers for both the aggregation and the coordinated motion of the swarm-bot. Analysis of the evolved controllers shows that they have properties of scalability, that is, they continue to be effective for larger group sizes, and of generality, that is, they produce similar behaviors for configurations different from those they were originally evolved for. The portability of the evolved controllers to real s-bots is tested using a detailed simulation model which has been validated against the real s-bots in a companion paper in this same special issue.
+
+本文介绍了一种自组装、自组织的人工装置，称为 “群体机器人集群（swarm-bot）”，它由一群 “单体机器人（s-bots）” 组成。这些单体机器人是具备相互连接与断开能力的移动机器人。
+我们探讨了控制群体机器人集群所面临的挑战，并提出采用人工进化方法为其设计控制器的解决方案。具体而言，我们通过基于物理的系统仿真，研究了群体机器人集群的聚集行为与协调运动。利用单体机器人的简化仿真模型进行的实验表明，进化算法能够发现简单且高效的控制器，分别实现群体机器人集群的聚集与协调运动。
+对进化所得控制器的分析显示，它们具备可扩展性 —— 即对更大规模的群体仍保持有效性，同时具备通用性 —— 即针对与进化时不同的配置，仍能产生相似行为。我们通过一个详细仿真模型测试了这些进化控制器在真实单体机器人上的可移植性，该详细模型已在本期特刊的另一篇配套论文中通过真实单体机器人验证。
+
+-----------------------------------------------------------------
+
+nouyan2009teamwork
+Teamwork in self-organized robot colonies
+
+Swarm robotics draws inspiration from decentralized self-organizing biological systems in general and from the collective behavior of social insects in particular. In social insect colonies, many tasks are performed by higher order group or team entities, whose task-solving capacities transcend those of the individual participants. In this paper, we investigate the emergence of such higher order entities. We report on an experimental study in which a team of physical robots performs a foraging task. The robots are "identical" in hardware and control. They make little use of memory and take actions purely on the basis of local information. Our study advances the current state of the art in swarm robotics with respect to the number of real-world robots engaging in teamwork (up to 12 robots in the most challenging experiment). To the best of our knowledge, in this paper we present the first self-organized system of robots that displays a dynamical hierarchy of teamwork (with cooperation also occurring among higher order entities). Our study shows that teamwork requires neither individual recognition nor differences between individuals. This result might also contribute to the ongoing debate on the role of these characteristics in the division of labor in social insects.
+
+群体机器人学普遍从分布式自组织生物系统中汲取灵感，尤其聚焦社会性昆虫的集体行为。在社会性昆虫群体中，许多任务由更高层级的群体或团队单元完成，这些单元的任务解决能力超越了单个个体的能力范畴。
+本文研究了这类更高层级单元的涌现机制，并报道了一项实验研究 —— 由实体机器人组成的团队执行觅食任务。这些机器人在硬件和控制层面完全 “相同”，几乎不依赖记忆，仅基于局部信息采取行动。
+本研究推进了群体机器人学的现有水平，主要体现在参与团队协作的真实机器人数量上（最具挑战性的实验中多达 12 个机器人）。据我们所知，本文首次提出了一个自组织机器人系统，该系统展现出动态的团队协作层级（更高层级单元之间也存在协作）。研究表明，团队协作既不需要个体识别，也不需要个体间存在差异。这一结果或许也能为当前关于这些特征在社会性昆虫分工中作用的争论提供参考。
+
+-----------------------------------------------------------------
+
+li2019decentralized,
+Decentralized progressive shape formation with robot swarms
+
+We address the problem of progressively deploying a set of robots to a formation defined as a point cloud, in a decentralized manner. To achieve this, we present an algorithm that transforms a given point cloud into an acyclic directed graph. This graph is used by the control law to allow a swarm of robots to progressively form the target shape based only on local decisions. This means that free robots (i.e., not yet part of the formation) find their location based on the perceived location of the robots already in the formation. We prove that for a 2D shape it is sufficient for a free robot to compute its distance from two robots in the formation to achieve this objective. We validate our method using physics-based simulations and robotic experiments, showing consistent convergence and minimal formation placement error.
+
+我们针对机器人集群以分布式方式逐步部署至点云定义阵型的问题展开研究。为此，我们提出一种算法，可将给定的点云转换为无环有向图。该图被用于控制律中，使机器人群体仅通过局部决策逐步形成目标形状。
+这意味着自由机器人（即尚未加入阵型的机器人）会根据已在阵型中的机器人的感知位置，确定自身所处位置。我们证明，对于二维形状，自由机器人只需计算自身与阵型中两个机器人的距离，即可实现这一目标。
+通过基于物理的仿真和机器人实验，我们验证了该方法的有效性，结果显示其收敛性稳定，且阵型部署误差极小。
+
+-----------------------------------------------------------------
+
+eberhardinger2018approach
+An approach for isolated testing of self-organization algorithms
+
+We provide a systematic approach for testing self-organization (SO) algorithms. The main challenges for such a testing domain are the strongly ramified state space, the possible error masking, the interleaving of mechanisms, and the oracle problem resulting from the main characteristics of SO algorithms: their inherent non-deterministic behavior on the one hand, and their dynamic environment on the other. A key to success for our SO algorithm testing framework is automation, since it is rarely possible to cope with the ramified state space manually. The test automation is based on a model-based testing approach where probabilistic environment profiles are used to derive test cases that are performed and evaluated on isolated SO algorithms. Besides isolation, we are able to achieve representative test results with respect to a specific application. For illustration purposes, we apply the concepts of our framework to partitioning-based SO algorithms and provide an evaluation in the context of an existing smart-grid application.
+
+我们提出了一种测试自组织（SO）算法的系统化方法。该测试领域面临的主要挑战包括状态空间高度分支化、可能存在的错误掩盖现象、机制的交织叠加，以及由自组织算法核心特征引发的 “预言机问题”—— 一方面是算法固有的非确定性行为，另一方面是动态变化的运行环境。
+我们的自组织算法测试框架成功的关键在于自动化，因为手动处理高度分支化的状态空间几乎不现实。测试自动化基于模型驱动测试方法，通过概率环境配置文件生成测试用例，这些用例将在孤立的自组织算法上执行并评估。
+除了算法隔离，我们还能针对特定应用场景获得具有代表性的测试结果。为便于说明，我们将该框架的理念应用于基于分区的自组织算法，并结合现有智能电网应用场景进行评估。
+
+-----------------------------------------------------------------
+
+eberhardinger2018measuring
+Measuring and evaluating the performance of self-organization mechanisms within collective adaptive systems
+
+By restructuring and reconfiguring itself at run-time, a collective adaptive system (CAS) is able to fulfill its requirements under uncertain, ever-changing environmental conditions. Indeed, this process of self-organization (SO) is of utmost importance for the ability of the CAS to perform. However, it is hard to design high-performing SO mechanisms, because the environmental conditions are partially unpredictable at design time. Thus, a crucial aid for the development of SO mechanisms is a tool set enabling performance evaluations at design time in order to select the best-fitting mechanism and parametrize it. We present a metric for measuring the performance of an SO mechanism as well as a framework that enables evaluation of this metric. The proposed metric is evaluated for different kinds of SO mechanisms in two case studies: a smart energy management system and a self-organizing production cell.
+
+集体自适应系统（CAS）能够通过运行时的自我重构与重配置，在不确定、持续变化的环境条件下满足自身需求。事实上，这种自组织（SO）过程对集体自适应系统的运行能力至关重要。
+然而，设计高性能的自组织机制并非易事，因为设计阶段难以完全预测环境条件。因此，开发自组织机制的关键辅助工具是一套性能评估工具集，能够在设计阶段开展评估，从而筛选最合适的机制并进行参数优化。
+我们提出了一种用于衡量自组织机制性能的指标，以及一套实现该指标评估的框架。在两个案例研究（智能能源管理系统和自组织生产单元）中，我们针对不同类型的自组织机制对该指标进行了验证。
+
+-----------------------------------------------------------------
+
+kaddoum2010criteria
+Criteria for the evaluation of self-* systems
+
+In the last years, the growing complexity of the current applications has led to the design of self-adapting systems presenting self-* properties. These systems are composed of several autonomous interactive entities. They behave autonomously and present enhanced characteristics allowing them to handle dynamics coming from exogenous and endogenous changes.
+In this paper, we propose a set of criteria for the description and evaluation of the adaptive properties of such systems. They aim to provide a concrete mechanism to analyze the quality of the design of adaptive systems, to evaluate the effect of self-* properties on the performances and to compare the adaptive features of different systems. The criteria are grouped into different categories: methodological, architectural, intrinsic, and runtime evaluation. They have been identified and specified by analyzing several case studies, which address self-adaptivity issues through different approaches with different objectives in various application contexts.
+
+近年来，当前应用的复杂度不断提升，推动了具备 “自特性”（self- properties）的自适应系统的设计与开发。这类系统由多个自主交互的实体组成，能够自主运行并具备增强特性，可应对来自外部和内部变化的动态影响。
+本文提出了一套用于描述和评估此类系统自适应特性的标准。这些标准旨在提供一种具体机制，用于分析自适应系统的设计质量、评估 “自 * 特性” 对性能的影响，以及比较不同系统的自适应特征。标准被划分为不同类别：方法学类、架构类、内在特性类和运行时评估类。
+这些标准是通过分析多个案例研究确定并明确的，这些案例研究在不同应用场景下，采用不同方法、围绕不同目标解决自适应相关问题。
+
+-----------------------------------------------------------------
+
+nedic2018network
+Network topology and communication-computation tradeoffs in decentralized optimization
+
+In decentralized optimization, nodes cooperate to minimize an overall objective function that is the sum (or average) of per-node private objective functions. Algorithms interleave local computations with communication among all or a subset of the nodes. Motivated by a variety of applications..decentralized estimation in sensor networks, fitting models to massive data sets, and decentralized control of multirobot systems, to name a few..significant advances have been made toward the development of robust, practical algorithms with theoretical performance guarantees. This paper presents an overview of recent work in this area. In general, rates of convergence depend not only on the number of nodes involved and the desired level of accuracy, but also on the structure and nature of the network over which nodes communicate (e.g., whether links are directed or undirected, static or time varying). We survey the state-of-theart algorithms and their analyses tailored to these different scenarios, highlighting the role of the network topology.
+
+分布式优化中，节点通过协作最小化一个整体目标函数，该函数是各节点私有目标函数的总和（或平均值）。算法会交替进行局部计算，以及所有节点或部分节点间的通信。
+受多种应用场景的推动 —— 例如传感器网络中的分布式估计、大规模数据集的模型拟合、多机器人系统的分布式控制等 —— 该领域在开发具有理论性能保证的稳健实用算法方面取得了显著进展。本文概述了该领域的近期研究成果。
+一般而言，收敛速度不仅取决于参与节点的数量和期望的精度水平，还取决于节点通信网络的结构与特性（例如链路是有向还是无向、静态还是时变）。我们综述了针对这些不同场景的最先进算法及其分析，重点强调了网络拓扑结构的作用。
+
+-----------------------------------------------------------------
+
+jovanovic2016controller
+Controller architectures: Tradeoffs between performance and structure
+
+This review article describes the design of static controllers that achieve an optimal tradeoff between closed-loop performance and controller structure. Our methodology consists of two steps. First, we identify controller structure by incorporating regularization functions into the optimal control problem and, second, we optimize the controller over the identified structure. For large-scale networks of dynamical systems, the desired structural property is captured by limited information exchange between physical and controller layers and the regularization term penalizes the number of communication links. Although structured optimal control problems are, in general, nonconvex, we identify classes of convex problems that arise in the design of symmetric systems, undirected consensus and synchronization networks, optimal selection of sensors and actuators, and decentralized control of positive systems. Examples of consensus networks, drug therapy design, sensor selection in flexible wing aircrafts, and optimal wide-area control of power systems are provided to demonstrate the effectiveness of the framework.
+
+本文综述了静态控制器的设计方法，这类控制器能在闭环性能与控制器结构之间实现最优权衡。我们的方法分为两步：第一步通过在最优控制问题中融入正则化函数确定控制器结构；第二步在已确定的结构上对控制器进行优化。
+对于大规模动态系统网络，期望的结构特性通过物理层与控制层之间有限的信息交换实现，正则化项则会对通信链路数量进行惩罚。尽管结构化最优控制问题通常是非凸的，但我们发现了几类凸问题，它们出现在对称系统设计、无向一致性与同步网络设计、传感器与执行器最优选择，以及正系统分布式控制中。
+文中通过一致性网络、药物治疗方案设计、柔性翼飞行器传感器选择，以及电力系统最优广域控制等实例，验证了该框架的有效性。
+
+-----------------------------------------------------------------
+
+francesca2016automatic
+Automatic design of robot swarms: achievements and challenges
+
+Automatic design is a promising approach to the design of control software for robot swarms. In an automatic design method, the design problem is cast into an optimization problem and is addressed using an optimization algorithm. In this article, we review studies in which automatic design methods are successfully applied. In particular, we focus our attention on how automatic methods are empirically assessed. An apparent issue that emerges from our review is that a solid, well-established, and consistently applied empirical practice is still missing. For example, studies that propose new methods and ideas do not typically provide any comparison with existing ones. We maintain that the lack of a proper empirical practice hinders the progress of the domain. In this article, we pursue two goals: we highlight the notable achievements in the automatic design of control software for robot swarms and we discuss the challenges to be overcome to establish a proper empirical practice for the domain.
+
+自动设计是机器人群体控制软件设计的一种极具潜力的方法。在自动设计方法中，设计问题会被转化为优化问题，并通过优化算法加以解决。
+本文综述了成功应用自动设计方法的相关研究，重点关注这些自动方法的实证评估方式。综述发现一个明显问题：该领域尚未形成一套完善、成熟且统一应用的实证规范。例如，提出新方法和新思路的研究通常不会与现有方法进行对比。我们认为，缺乏规范的实证流程阻碍了该领域的发展。
+本文旨在实现两个目标：一是总结机器人群体控制软件自动设计领域的显著成果；二是探讨该领域建立规范实证流程所需克服的挑战。
+
+-----------------------------------------------------------------
+
+birattari2019automatic
+Automatic off-line design of robot swarms: a manifesto
+
+Designing collective behaviors for robot swarms is a difficult endeavor due to their fully distributed, highly redundant, and ever-changing nature. To overcome the challenge, a few approaches have been proposed, which can be classified as manual, semi-automatic, or automatic design. This paper is intended to be the manifesto of the automatic off-line design for robot swarms. We define the off-line design problem and illustrate it via a possible practical realization, highlight the core research questions, raise a number of issues regarding the existing literature that is relevant to the automatic off-line design, and provide guidelines that we deem necessary for a healthy development of the domain and for ensuring its relevance to potential real-world applications.
+
+机器人群体的集体行为设计极具挑战性，这源于其完全分布式、高度冗余且动态变化的特性。为应对这一挑战，学界已提出多种方法，可分为手动设计、半自动设计和自动设计三类。
+本文旨在成为机器人群体离线自动设计的宣言性文献。我们明确了离线设计问题，并通过一种可行的实际实现方案进行阐释；重点指出了核心研究问题；针对与离线自动设计相关的现有文献，提出了若干待解决的问题；同时给出了我们认为对该领域健康发展、确保其与潜在实际应用相关性所必需的指导原则。
+
+-----------------------------------------------------------------
+
+salman2024automatic
+Automatic design of stigmergy-based behaviours for robot swarms
+
+Stigmergy is a form of indirect communication and coordination in which individuals influence their peers by modifying the environment in various ways, including rearranging objects in space and releasing chemicals. For example, some ant species lay pheromone trails to efficiently navigate between food sources and nests. Besides being used by social animals, stigmergy has also inspired the development of algorithms for combinatorial optimisation and multi-robot systems. In swarm robotics, collective behaviours based on stigmergy have always been designed manually, which is time consuming, costly, hardly repeatable, and depends on the expertise of the designer. Here, we show that stigmergy-based behaviours can be produced via automatic design: an optimisation process based on simulations generates collective behaviours for a group of robots that can lay and sense artificial pheromones. The results of our experiments indicate that the collective behaviours designed automatically are as good as—and in some cases better than—those produced manually. By taking advantage of pheromone-based stigmergy, the automatic design process generated collective behaviours that exhibit spatial organisation, memory, and communication.
+
+stigmergy（信息素介导协作）是一种间接通信与协调方式，个体通过多种环境改造手段影响同伴，包括调整空间中的物体布局和释放化学物质。例如，某些蚂蚁种类会留下信息素轨迹，以高效往返于食物源和巢穴之间。
+除了被群居动物采用，stigmergy 还启发了组合优化算法和多机器人系统的开发。在群体机器人学中，基于 stigmergy 的集体行为一直依赖人工设计 —— 这种方式耗时耗力、难以复现，且取决于设计者的专业经验。
+本文提出，基于 stigmergy 的行为可通过自动设计生成：一个基于仿真的优化过程能为一组可释放和感知人工信息素的机器人，生成集体行为。实验结果表明，自动设计的集体行为与人工设计的效果相当，部分情况下甚至更优。借助基于信息素的 stigmergy，自动设计过程生成的集体行为具备空间组织性、记忆能力和通信功能。
+
+-----------------------------------------------------------------
+
+kengyel2015potential
+Potential of heterogeneity in collective behaviors: A case study on heterogeneous swarms
+
+Research in swarm robotics and collective behaviors is often focused on homogeneous swarms. However, heterogeneity in behaviors can be advantageous as we know, for example, from studies on social insects. Our objective is to study the hypothesis that there are potential advantages of heterogeneous swarms over homogeneous swarms in an aggregation scenario inspired by behaviors of juvenile honeybees. Even without task switching – that is, with predefined, static roles for certain swarm fractions – we find in our case study that heterogeneous swarms can outperform homogeneous swarms for a predetermined set of basic behaviors. We use methods of evolutionary computation to define behaviors imitating those found in honeybees (random walkers, wall followers, goal finders, immobile agents) and also to find well-adapted swarm fractions of different predetermined behaviors. Our results show that non-trivial distributions of behaviors give better aggregation performance.
+
+群体机器人学和集体行为的研究通常聚焦于同质性群体。但正如我们从社会性昆虫研究中所知，行为异质性可能具备优势。
+本文旨在验证一个假设：在受幼蜂行为启发的聚集场景中，异质性群体相比同质性群体可能存在潜在优势。研究发现，即便不进行任务切换 —— 即群体中特定比例的个体承担预先设定的固定角色 —— 在本案例研究的一组预设基础行为中，异质性群体的表现仍优于同质性群体。
+我们采用进化计算方法，定义了模仿蜜蜂行为的多种行为模式（随机游走者、沿壁追随者、目标寻找者、静止个体），并通过该方法找到不同预设行为的最优群体比例分配。结果表明，非平凡的行为分布能带来更优的聚集性能。
+
+-----------------------------------------------------------------
+
+viragh2014flocking
+Flocking algorithm for autonomous flying robots
+
+Animal swarms displaying a variety of typical flocking patterns would not exist without the underlying safe, optimal and stable dynamics of the individuals. The emergence of these universal patterns can be efficiently reconstructed with agent-based models. If we want to reproduce these patterns with artificial systems, such as autonomous aerial robots, agent-based models can also be used in their control algorithms. However, finding the proper algorithms and thus understanding the essential characteristics of the emergent collective behaviour requires thorough and realistic modeling of the robot and also the environment. In this paper, we first present an abstract mathematical model of an autonomous flying robot. The model takes into account several realistic features, such as time delay and locality of communication, inaccuracy of the on-board sensors and inertial effects. We present two decentralized control algorithms. One is based on a simple self-propelled flocking model of animal collective motion, the other is a collective target tracking algorithm. Both algorithms contain a viscous friction-like term, which aligns the velocities of neighbouring agents parallel to each other. We show that this term can be essential for reducing the inherent instabilities of such a noisy and delayed realistic system. We discuss simulation results on the stability of the control algorithms, and perform real experiments to show the applicability of the algorithms on a group of autonomous quadcopters. In our case, bio-inspiration works in two ways. On the one hand, the whole idea of trying to build and control a swarm of robots comes from the observation that birds tend to flock to optimize their behaviour as a group. On the other hand, by using a realistic simulation framework and studying the group behaviour of autonomous robots we can learn about the major factors influencing the flight of bird flocks.
+
+若没有个体层面安全、最优且稳定的动态特性，动物群体便无法呈现出多种典型的集群模式。这些通用模式的涌现可通过智能体模型高效重构。若想利用自主空中机器人等人工系统复现这些模式，智能体模型也可应用于其控制算法中。
+然而，要找到合适的算法并理解涌现出的集体行为的核心特征，就需要对机器人及环境进行全面且贴合实际的建模。本文首先提出一种自主飞行机器人的抽象数学模型，该模型考虑了多种现实特性，包括通信时延与局部性、机载传感器的不准确性以及惯性效应。
+我们设计了两种分布式控制算法：一种基于简单的动物集体运动自驱动集群模型，另一种是集体目标跟踪算法。两种算法均包含类粘性摩擦项，可使相邻智能体的速度相互平行对齐。研究表明，在这类存在噪声和时延的现实系统中，该术语对降低内在不稳定性至关重要。
+我们讨论了控制算法稳定性的仿真结果，并通过真实实验验证了算法在一组自主四旋翼飞行器上的适用性。本研究中，生物启发体现在两个方面：一方面，构建和控制机器人群体的灵感源于观察到鸟类通过集群优化群体行为；另一方面，借助贴合实际的仿真框架并研究自主机器人的群体行为，我们能够了解影响鸟群飞行的主要因素。
+
+-----------------------------------------------------------------
+
+vasarhelyi2018optimized
+Optimized flocking of autonomous drones in confined environments
+
+We address a fundamental issue of collective motion of aerial robots: how to ensure that large flocks of autonomous drones seamlessly navigate in confined spaces. The numerous existing flocking models are rarely tested on actual hardware because they typically neglect some crucial aspects of multirobot systems. Constrained motion and communication capabilities, delays, perturbations, or the presence of barriers should be modeled and treated explicitly because they have large effects on collective behavior during the cooperation of real agents. Handling these issues properly results in additional model complexity and a natural increase in the number of tunable parameters, which calls for appropriate optimization methods to be coupled tightly to model development. In this paper, we propose such a flocking model for real drones incorporating an evolutionary optimization framework with carefully chosen order parameters and fitness functions. We numerically demonstrated that the induced swarm behavior remained stable under realistic conditions for large flock sizes and notably for large velocities. We showed that coherent and realistic collective motion patterns persisted even around perturbing obstacles. Furthermore, we validated our model on real hardware, carrying out field experiments with a self-organized swarm of 30 drones. This is the largest of such aerial outdoor systems without central control reported to date exhibiting flocking with collective collision and object avoidance. The results confirmed the adequacy of our approach. Successfully controlling dozens of quadcopters will enable substantially more efficient task management in various contexts involving drones.
+
+我们针对空中机器人集体运动的一个核心问题展开研究：如何确保大规模自主无人机集群在受限空间内无缝导航。现有众多集群模型很少在实际硬件上测试，因为它们通常忽略了多机器人系统的一些关键特性。
+受约束的运动与通信能力、时延、扰动以及障碍物的存在，都需要明确建模和处理 —— 因为这些因素会对真实智能体协作时的集体行为产生重大影响。妥善处理这些问题会增加模型复杂度，且自然导致可调参数数量增多，这就需要将合适的优化方法与模型开发紧密结合。
+本文提出一种适用于真实无人机的集群模型，该模型融入了进化优化框架，并精心选择了序参量和适应度函数。数值仿真表明，在真实环境条件下，该模型诱导的群体行为对大规模集群和高速度场景均保持稳定；即便在障碍物扰动环境中，连贯且贴合实际的集体运动模式依然存在。
+此外，我们通过真实硬件验证了该模型，利用 30 架无人机组成的自组织集群开展了户外实验。这是目前已报道的最大规模无中心控制户外空中集群系统，能够实现集群飞行，并具备集体避撞和避障能力。实验结果证实了我们方法的有效性。成功控制数十架四旋翼飞行器，将能在各类无人机应用场景中显著提升任务管理效率。
+
+--------------------------------------------------------------------
+
+beni1988concept
+The concept of cellular robotic system
+
+The author discusses the conceptual basis for the theory and engineering of a new type of robotic system. The system is composed of autonomous robotic units which accomplish tasks in cooperation. After describing the relevance of this system and contrasting it with cellular automata and neural networks, the author establishes the fundamental properties of the system and their consequences for the structure of the robotic units, the space on which they operate, and the algorithms by which they accomplish the global tasks. The significance of the concept of cellular robotic systems for distributed computing, molecular computing, self-organization, and reliability is explained
+
+作者探讨了一种新型机器人系统的理论与工程概念基础。该系统由自主机器人单元组成，通过协作完成任务。
+在阐述该系统的相关性，并将其与元胞自动机和神经网络进行对比后，作者明确了系统的基本特性，以及这些特性对机器人单元结构、运行空间和完成全局任务的算法所产生的影响。
+文中还解释了元胞机器人系统这一概念在分布式计算、分子计算、自组织和可靠性领域的重要意义。
+
+--------------------------------------------------------------------
+
+csahin2004swarm
+Swarm robotics: From sources of inspiration to domains of application
+
+Swarm robotics is a novel approach to the coordination of large numbers of relatively simple robots which takes its inspiration from social insects. This paper proposes a definition to this newly emerging approach by 1) describing the desirable properties of swarm robotic systems, as observed in the system-level functioning of social insects, 2) proposing a definition for the term swarm robotics, and putting forward a set of criteria that can be used to distinguish swarm robotics research from other multi-robot studies, 3) providing a review of some studies which can act as sources of inspiration, and a list of promising domains for the utilization of swarm robotic systems.
+
+群体机器人学是一种协调大量相对简单机器人的新颖方法，其灵感来源于社会性昆虫。本文通过以下三方面为这一新兴方法下定义：1）描述群体机器人系统的理想特性，这些特性源于社会性昆虫的系统级功能表现；2）提出 “群体机器人学” 的术语定义，并给出一套判断标准，用于区分群体机器人学研究与其他多机器人研究；3）综述部分可作为灵感来源的研究，并列出群体机器人系统的潜在应用领域。
+
+--------------------------------------------------------------------
+
+buhl2006disorder
+From disorder to order in marching locusts
+
+Recent models from theoretical physics have predicted that mass-migrating animal groups may share group-level properties, irrespective of the type of animals in the group. One key prediction is that as the density of animals in the group increases, a rapid transition occurs from disordered movement of individuals within the group to highly aligned collective motion. Understanding such a transition is crucial to the control of mobile swarming insect pests such as the desert locust. We confirmed the prediction of a rapid transition from disordered to ordered movement and identified a critical density for the onset of coordinated marching in locust nymphs. We also demonstrated a dynamic instability in motion at densities typical of locusts in the field, in which groups can switch direction without external perturbation, potentially facilitating the rapid transfer of directional information.
+
+理论物理学的近期模型预测，大规模迁徙的动物群体可能具备群体层面的共性特征，与群体中动物的种类无关。其中一个核心预测是：随着群体内动物密度的增加，个体的无序运动将快速转变为高度同步的集体运动。
+理解这种转变对于控制沙漠蝗等迁飞性害虫群体至关重要。我们通过实验验证了 “无序运动向有序运动快速转变” 的预测，并确定了蝗蝻开始协同行进的临界密度。同时，我们还发现在野外蝗群典型密度下，其运动存在动态不稳定性 —— 群体可在无外部扰动的情况下改变行进方向，这可能有助于方向信息的快速传递。
+
+--------------------------------------------------------------------
+
+detrain2008collective
+Collective decision-making and foraging patterns in ants and honeybees
+
+This chapter compares collective decisions in hives and in ant nests by relating the properties of recruiting signals to the foraging strategies displayed by these two insect societies. It describes the main positive and negative feedbacks that help foragers self-regulate their activities according to environmental constraints and opportunities. Even though honeybees and ants share a similar recruitment scenario, the nature of their recruiting signals, as well as the ways information about food patches is conveyed to nestmates, differ greatly. In honeybees, tactile signals rule many aspects of recruitment, whereas chemical communication is the backbone of collective foraging in ants. The chapter emphasizes the intimate link that relates the mode of locomotion of one species to the media chosen to communicate information about food resources. In particular, it demonstrates that the distinct properties of chemical and tactile signals match the environmental constraints faced either by ant individuals on the ground or by honeybees in the air. By referring to other group-living arthropods, the chapter addresses generic issues about information processing, its dissemination among conspecifics and the emergence of cooperative behavior.
+
+本章通过将招募信号的特性与两种昆虫社群（蜂群和蚁巢）展现的觅食策略相关联，对比了它们的集体决策过程。文中描述了主要的正反馈和负反馈机制，这些机制帮助觅食者根据环境限制和机会自主调节自身活动。
+尽管蜜蜂和蚂蚁的招募场景相似，但它们招募信号的本质以及向同伴传递食物源信息的方式存在显著差异。在蜜蜂中，触觉信号主导招募的多个方面；而化学通讯是蚂蚁集体觅食的核心。本章强调了物种的运动方式与其选择的食物资源信息传递媒介之间的密切联系。
+具体而言，研究表明化学信号和触觉信号的独特特性，分别适配了地面活动的蚂蚁个体和空中活动的蜜蜂所面临的环境限制。通过参考其他群居节肢动物，本章探讨了信息处理、种内信息传播以及合作行为涌现等通用性问题。
+
+--------------------------------------------------------------------
+
+theraulaz1998origin
+The origin of nest complexity in social insects
+
+an article
+
+SOCIAL INSECTS: IMPRESSIVE ARCHITECTS AND BUILDERS
+Among the great variety of collective activities performed by social insect societies
+(all ants and termites, and some species of bees and wasps are social), building is
+certainly the most spectacular, owing to the difference that exists between the
+individual and collective levels [1-4]. This ability to build nests, some of which may be
+extremely complex, remains a fascinating issue for naturalists and scientists. The origin of nest complexity remains an unsolved mystery. Few works exist that deal with the
+analysis of the behavioral mechanisms involved in building and its regulation. Figure 1
+shows some examples of nest architectures built by tropical wasps and African termites. Some species of wasps such as Chartergus (Figure 1a) or Epipona (Figure 1b)
+build nests made of several stacked combs of cells, and the external walls of the most
+peripheral cells are part of the external envelope of the nest. There is a central or peripheral communication opening that goes through the successive combs, allowing
+the wasps to move from one floor to another. Some paper nests built by Polybia wasps
+can be one meter high. In termites, some nests are literally cathedrals of clay that can
+reach six or seven meters high in Macrotermes, that is, 600 times the size of a worker
+
+社会性昆虫：令人赞叹的建筑师与建造者
+在社会性昆虫群体（所有蚂蚁和白蚁，以及部分蜜蜂和黄蜂种类为社会性昆虫）所进行的各类集体活动中，建造行为无疑是最引人瞩目的。这源于其个体行为与集体成果之间存在巨大差异 [1-4]。这种建造巢穴的能力 —— 部分巢穴结构极为复杂 —— 一直是博物学家和科学家们痴迷的研究课题。巢穴复杂性的起源仍是未解之谜，目前针对建造行为涉及的行为机制及其调控方式的分析研究较少。
+图 1 展示了热带黄蜂和非洲白蚁建造的部分巢穴结构实例。诸如 Chartergus 属（图 1a）或 Epipona 属（图 1b）的黄蜂种类，会建造由多层堆叠巢脾组成的巢穴，最外层巢室的外壁构成巢穴的外壳。巢穴设有贯穿各层巢脾的中央或周边通道开口，供黄蜂在不同 “楼层” 间移动。部分由 Polybia 属黄蜂建造的纸质巢穴高度可达一米。
+而白蚁的部分巢穴堪称 “黏土大教堂”：Macrotermes 属白蚁的巢穴高度能达到六七米，相当于工蚁体长的 600 倍。
+
+--------------------------------------------------------------------
+
+firat2020self
+On self-organised aggregation dynamics in swarms of robots with informed robots
+
+Aggregation is a process observed in natural systems whereby individuals gather together to form large cluster. Recent studies with cockroaches and robots have shown that relatively simple individual mechanisms can account for how individuals manage to gather on a single shelter when two or more are available in the environment. In this paper, we use simulated swarms of robots to further explore the aggregation dynamics generated by these simple individual mechanisms. Our objective is to study the introduction of “informed robots”, and to study how many of these are needed to direct the aggregation process towards a pre-defined site among those available in the environment. Informed robots are members of a group that selectively avoid the site/s where no aggregate should emerge and stop only on the experimenter pre-defined site/s for aggregation. We study the aggregation process with informed robots in three different scenarios: two that are morphologically symmetric, whereby the different types of aggregation site are equally represented in the environment; and an asymmetric scenario, whereby the target site has an area that is half the area of the sites that should be avoided. We first show what happens when no robot in the swarm is informed: in symmetric environments, the swarm is able to break the symmetry and aggregates on one of the two types of site at random, not necessarily on the target site, while in the asymmetric environment, the swarm tends to aggregate on the sites that are most represented in terms of area. The original contribution of this study is to demonstrate the effect of the introduction of a small proportion of informed robots in both environments: In symmetric environments, they selectively direct the aggregation process towards the experimenter chosen site; in the asymmetric environment, informed robots can invert the spontaneous preference for the most represented site and induce the swarm to aggregate on the least represented type of site. Moreover, for each scenario, we analyse how the dynamics of the aggregation process depends on the proportion of informed robots. As a further valuable contribution of this study, we provide analytical results by studying a system of ordinary differential equations that is an extension of a well-known model. Using this model, we show how, for certain values of the parameters, the model can predict the dynamics observed with simulated robots in one of the two symmetric scenarios.
+
+聚集是自然系统中观察到的一种现象，即个体聚集形成大型集群。近期针对蟑螂和机器人的研究表明，相对简单的个体机制就能解释：当环境中存在两个或多个庇护所时，个体如何聚集到同一个庇护所。
+本文通过仿真机器人群体，进一步探究这些简单个体机制产生的聚集动态。研究目标是引入 “知情机器人”，并探究需要多少此类机器人，才能将聚集过程引导至环境中多个可选位置中的预设目标位置。知情机器人是群体中的特殊成员，它们会选择性避开不应形成聚集的位置，仅在研究者预设的聚集位置停留。
+我们在三种场景下研究含知情机器人的聚集过程：两种是形态对称场景，环境中不同类型的聚集位置数量均等；一种是不对称场景，目标位置的面积仅为应避开位置面积的一半。研究首先发现，当群体中无知情机器人时：对称环境下，群体能打破对称性，随机聚集到两种位置中的一种，不一定是目标位置；不对称环境下，群体倾向于聚集在面积占比更大的位置。
+本研究的创新贡献在于，证实了在两种环境中引入少量知情机器人的效果：对称环境下，它们能选择性地将聚集过程引导至研究者选定的位置；不对称环境下，知情机器人可逆转群体对面积占比更大位置的自发偏好，促使群体聚集到面积占比更小的位置。此外，针对每个场景，我们分析了聚集动态如何依赖于知情机器人的比例。
+本研究的另一重要贡献是，通过研究一个扩展自知名模型的常微分方程组，得出了解析结果。利用该模型，我们证明在特定参数值下，模型能预测其中一种对称场景中仿真机器人观察到的动态。
+
+--------------------------------------------------------------------
+
+valentini2016collective
+Collective decision with 100 Kilobots: Speed versus accuracy in binary discrimination problems
+
+Achieving fast and accurate collective decisions with a large number of simple agents without relying on a central planning unit or on global communication is essential for developing complex collective behaviors. In this paper, we investigate the speed versus accuracy trade-off in collective decision-making in the context of a binary discrimination problem—i.e., how a swarm can collectively determine the best of two options. We describe a novel, fully distributed collective decision-making strategy that only requires agents with minimal capabilities and is faster than previous approaches. We evaluate our strategy experimentally, using a swarm of 100 Kilobots, and we study it theoretically, using both continuum and finite-size models. We find that the main factor affecting the speed versus accuracy trade-off of our strategy is the agents’ neighborhood size—i.e., the number of agents with whom the current opinion of each agent is shared. The proposed strategy and the associated theoretical framework can be used to design swarms that take collective decisions at a given level of speed and/or accuracy.
+
+在不依赖中央规划单元或全局通信的情况下，让大量简单智能体快速且准确地做出集体决策，对于开发复杂集体行为至关重要。本文在二元判别问题背景下，探究集体决策中的速度与准确性权衡 —— 即群体如何集体判定两个选项中的最优项。
+我们提出一种全新的完全分布式集体决策策略，该策略仅需具备最低能力的智能体，且比现有方法速度更快。通过 100 个 Kilobot 机器人组成的群体进行实验评估，并借助连续体模型和有限尺寸模型开展理论研究。
+研究发现，影响该策略速度与准确性权衡的主要因素是智能体的邻域大小 —— 即每个智能体分享自身当前观点的对象数量。所提策略及相关理论框架可用于设计能在特定速度和 / 或准确性水平下做出集体决策的群体。
+
+--------------------------------------------------------------------
+
+balazs2020adaptive
+Adaptive leadership overcomes persistence--responsivity trade-off in flocking
+
+The living world is full of cohesive collectives that have evolved to move together with high efficiency. Schools of fish or flocks of birds maintain their global direction despite significant noise perturbing the individuals, yet they are capable of performing abrupt collective turns when relevant agitation alters the state of a few members. Ruling local fluctuations out of global movement leads to persistence and requires overdamped interaction dynamics, while propagating swift turns throughout the group leads to responsivity and requires underdamped interaction dynamics. In this paper we show a way to avoid this conflict by introducing a time-dependent leadership hierarchy that adapts locally to will: agents’ intention of changing direction. Integrating our new concept of will-based inter-agent behaviour highly enhances the responsivity of standard collective motion models, thus enables breaking out of their former limit, the persistence-responsivity trade-off. We also show that the increased responsivity to environmental cues scales well with growing flock size. Our solution relies on active communication or advanced cognition for the perception of will. The incorporation of these into collective motion is a plausible hypothesis in higher order species, while it is a realizable feature for artificial robots, as demonstrated by our swarm of 52 drones.
+
+生物界中存在大量紧密协作的群体，它们经进化具备高效协同移动的能力。鱼群或鸟群即便个体受到显著噪声干扰，仍能维持整体行进方向；而当少数成员因相关刺激改变状态时，群体又能迅速完成集体转向。
+要排除局部波动对全局运动的影响以保持行进持续性，需要过阻尼相互作用动力学；而要让快速转向信号在群体中传播以实现响应性，则需要欠阻尼相互作用动力学。本文提出一种解决这一矛盾的方法：引入随时间变化的领导力层级，该层级可根据智能体的转向意图进行局部自适应调整。
+将这种基于 “意图” 的智能体间交互新机制融入标准集体运动模型，能显著提升模型的响应性，从而突破此前存在的 “持续性 - 响应性权衡” 限制。研究还表明，群体对环境信号的响应性提升能力随群体规模扩大仍能良好适配。
+我们的方案依赖主动通信或高级认知能力来感知 “意图”。对于高等生物而言，将这些能力融入集体运动是合理假设；而对于人工机器人，这一特性已可实现 —— 我们通过 52 架无人机组成的群体进行了验证。
+
+--------------------------------------------------------------------
+
+gu2009leader
+Leader--follower flocking: algorithms and experiments
+
+In this paper, we investigate a leader-follower flocking system where few members are group leaders who have global knowledge (a desired trajectory), while majority of the members are group followers who can communicate with neighbors but do not have global knowledge. The followers do not even know who the leaders are in the group. The flocking group is able to track a specific trajectory led by group leaders. In this system, all group members estimate the position of flocking center by using a consensus algorithm via local communication in order to keep the flocking group connected. Based on the estimated position of flocking center, a leader-follower flocking algorithm is proposed, and its stability is proved. A group of real robots ldquowifibotsrdquo are used to test the feasibility of the algorithm. Experiments show that this leader-follower flocking system can track the desired trajectory led by group leaders.
+
+本文研究一种 leader-follower（领航 - 跟随）集群系统：少数成员为具备全局知识（已知期望轨迹）的领航者，多数成员为仅能与邻居通信、无全局知识的跟随者，且跟随者无需知晓群体中领航者的身份。该集群能在领航者引导下跟踪特定轨迹。
+在该系统中，所有成员通过局部通信的一致性算法估计集群中心位置，以维持集群的连通性。基于估计的集群中心位置，本文提出一种领航 - 跟随集群算法，并证明了其稳定性。通过一组真实的 “wifi 机器人” 验证了该算法的可行性，实验结果表明，该领航 - 跟随集群系统能够在领航者引导下跟踪期望轨迹。
+
+--------------------------------------------------------------------
+
+amraii2014explicit
+Explicit vs. tacit leadership in influencing the behavior of swarms
+
+Many researchers have employed some form of teleoperated leader to influence a robotic swarm; however, the way in which this influence is conveyed has not been well studied. Some researchers employ designated leaders that are known to be leaders by other members of the swarm and hence followed. Others do not impose a leader/follower distinction on the swarm's algorithms and instead choose to influence the swarm indirectly through controlling one or more of its members. Because the robustness of swarm behavior arises from its many distributed interactions, influence through designated leaders might render it susceptible to noise or disrupt its coherence by overriding these mechanisms. Conversely, limiting human influence to indirect control through the local effects of a leader might prove too sluggish to allow effective human control. This paper compares leader-based methods of each type, designated as Tacit leadership via consensus (no explicit leader/follower distinction) and Explicit leadership via flooding (influence propagating from leader takes precedence). These methods were compared in simulation and in human experiments finding that explicit leadership led to faster convergence in simulation and better performance in the experiments. Effects of noise were slightly more pronounced for Explicit leaders and cohesion slightly poorer.
+
+许多研究者采用某种形式的遥控领航者来影响机器人群体，但这种影响的传递方式尚未得到充分研究。部分研究者采用 “指定领航者” 模式，群体其他成员明确知晓其领航者身份并予以跟随；另一些研究者则不在群体算法中划分领航者与跟随者，而是通过控制群体中一个或多个成员，间接对群体施加影响。
+由于群体行为的稳健性源于大量分布式交互，通过指定领航者施加影响可能会因覆盖这些固有机制，导致群体易受噪声干扰或破坏其连贯性；反之，仅通过领航者的局部作用进行间接人工控制，又可能因响应过于迟缓而无法实现有效的人工操控。
+本文对比了两种基于领航者的控制方法：一种是 “基于一致性的隐性领航”（无明确领航者 / 跟随者划分），另一种是 “基于扩散的显性领航”（领航者的影响传播具有优先性）。通过仿真和人体实验对两种方法进行对比，结果表明：显性领航在仿真中收敛速度更快，在实验中表现更优；但显性领航受噪声影响略为显著，且群体凝聚力稍差。
+
+--------------------------------------------------------------------
+
+zheng2020adversarial
+An adversarial approach to private flocking in mobile robot teams
+
+Privacy is an important facet of defence against adversaries. In this letter, we introduce the problem of private flocking. We consider a team of mobile robots flocking in the presence of an adversary, who is able to observe all robots' trajectories, and who is interested in identifying the leader. We present a method that generates private flocking controllers that hide the identity of the leader robot. Our approach towards privacy leverages a data-driven adversarial co-optimization scheme. We design a mechanism that optimizes flocking control parameters, such that leader inference is hindered. As the flocking performance improves, we successively train an adversarial discriminator that tries to infer the identity of the leader robot. To evaluate the performance of our co-optimization scheme, we investigate different classes of reference trajectories. Although it is reasonable to assume that there is an inherent trade-off between flocking performance and privacy, our results demonstrate that we are able to achieve high flocking performance and simultaneously reduce the risk of revealing the leader.
+
+隐私是抵御攻击者的重要保障。本文提出 “隐私集群” 问题：考虑一队移动机器人在存在攻击者的环境中集群移动，攻击者能够观测所有机器人的轨迹，并意图识别出领航者。
+我们提出一种生成隐私集群控制器的方法，该控制器可隐藏领航机器人的身份。隐私保护方案基于数据驱动的对抗性协同优化框架，通过设计机制优化集群控制参数，阻碍对领航者的推断。随着集群性能的提升，我们持续训练一个对抗性判别器，该判别器试图推断领航机器人的身份。
+为评估协同优化框架的性能，我们研究了不同类型的参考轨迹。尽管集群性能与隐私保护之间存在固有的权衡是合理假设，但实验结果表明，我们能够在实现高集群性能的同时，降低领航者身份泄露的风险。
+
+--------------------------------------------------------------------
+
+shan2020collective
+Collective decision making in swarm robotics with distributed Bayesian hypothesis testing
+
+In this paper, we propose Distributed Bayesian Hypothesis Testing (DBHT) as a novel collective decision-making strategy to solve the collective perception problem. We experimented with different sampling and dissemination intervals for DBHT and concluded that the selection of both intervals presents a trade-off between speed and accuracy. After that, we compare the performance of DBHT in simulation with that of 3 other commonly used collective decision-making strategies, DVMD, DMMD and DC. We tested them on collective perception problems with different difficulties and feature patterns. We have concluded that DBHT outperforms considered existing algorithms significantly in collective perception tasks with high difficulty, namely close proportion of features and clustered feature distribution.
+
+本文提出分布式贝叶斯假设检验（DBHT）作为一种新型集体决策策略，用于解决集体感知问题。我们针对 DBHT 的不同采样间隔和传播间隔进行实验，得出结论：这两种间隔的选择需在速度与准确性之间进行权衡。
+之后，我们在仿真环境中将 DBHT 与另外三种常用集体决策策略（DVMD、DMMD 和 DC）的性能进行对比，并在不同难度和特征模式的集体感知问题上展开测试。结果表明，在高难度集体感知任务中 —— 即特征占比接近且特征呈聚集分布的场景 ——DBHT 的性能显著优于所对比的现有算法。
+
+--------------------------------------------------------------------
+
+kaiser2022innate
+Innate motivation for robot swarms by minimizing surprise: From simple simulations to real-world experiments
+
+Applications of large-scale mobile multirobot systems can be beneficial over monolithic robots because of higher potential for robustness and scalability. Developing controllers for multirobot systems is challenging because the multitude of interactions is hard to anticipate and difficult to model. Automatic design using machine learning or evolutionary robotics seem to be options to avoid that challenge, but bring the challenge of designing reward or fitness functions. Generic reward and fitness functions seem unlikely to exist and task-specific rewards often have undesired side effects. Approaches of so-called innate motivation try to avoid the specific formulation of rewards and work instead with different drivers, such as curiosity. Our approach to innate motivation is to minimize surprise, which we implement by maximizing the accuracy of the swarm robot’s sensor predictions using neuroevolution. A unique advantage of the swarm robot case is that swarm members populate the robot’s environment and can trigger more active behaviors in a self-referential loop. In this article, we summarize our previous simulation-based results concerning behavioral diversity, robustness, scalability, and engineered self-organization, and put them into context. In several new studies, we analyze the influence of the optimizer’s hyperparameters, the scalability of evolved behaviors, and the impact of realistic robot simulations. Finally, we present results using real robots that show how the reality gap can be bridged.
+
+大规模移动多机器人系统的应用相比单体机器人更具优势，因其在稳健性和可扩展性方面潜力更高。为多机器人系统开发控制器极具挑战性，原因是大量交互难以预测且建模困难。
+借助机器学习或进化机器人学的自动设计方法似乎能规避这一挑战，但会带来设计奖励函数或适应度函数的新难题。通用奖励函数和适应度函数几乎不存在，而任务特定奖励函数往往会产生不良副作用。所谓的内在动机方法试图避免奖励的特定表述，转而利用好奇心等不同驱动因素。我们的内在动机方法旨在最小化意外性，具体通过神经进化最大化群体机器人传感器预测的准确性来实现。群体机器人场景的独特优势在于，群体成员本身构成机器人的环境，能通过自指循环触发更主动的行为。
+本文总结了我们此前基于仿真的研究结果，涉及行为多样性、稳健性、可扩展性和工程化自组织，并阐述其相关背景。在多项新研究中，我们分析了优化器超参数的影响、进化行为的可扩展性，以及真实机器人仿真的作用。最后，我们展示了基于真实机器人的实验结果，验证了如何弥合仿真与现实之间的差距。
+
+--------------------------------------------------------------------
+
+dalmao2011cucker
+Cucker--Smale flocking under hierarchical leadership and random interactions
+
+Consider a flock of birds that fly interacting between them. This flock is a hierarchical system in which each bird, at each time step, adjusts its own velocity according to its past velocity and a linear combination of the relative velocities of its superiors in the hierarchy. This linear combination has nonnegative random coefficients, including the case in which each of the birds can fail to see any of its superiors with certain probability. For this model with random interactions we prove that the flocking results, obtained for similar deterministic models, hold true.
+
+试想一群相互作用、协同飞行的鸟群。该鸟群是一个层级系统，每只鸟在每个时间步长内，都会根据自身过往速度，以及层级中上级个体相对速度的线性组合来调整自身速度。
+这种线性组合具有非负随机系数，包括每只鸟都有可能以特定概率无法观测到任何上级个体的情况。针对这一随机交互模型，我们证明：在类似确定性模型中得出的集群结论，同样适用于该随机模型。
+
+---------------------------------------------------------------------
+
+pignotti2018flocking
+Flocking estimates for the Cucker--Smale model with time lag and hierarchical leadership
+
+We analyze the Cucker–Smale model under hierarchical leadership in presence of a time delay. By using a Lyapunov functional approach and some induction arguments we will prove convergence to consensus for every positive delay τ. We also prove a flocking estimate in the case of a free-will leader. These results seem to point out the advantage of a hierarchical structure in order to contrast time delay effects that frequently appear in real situations.
+
+我们分析了存在时滞的层级领航下的卡克 - 斯梅尔（Cucker–Smale）模型。通过李雅普诺夫泛函方法和归纳法论证，我们证明了对于任意正延迟 τ，系统均能收敛至一致性状态。
+我们还针对自主领航者场景，得出了集群估计结果。这些结果表明，层级结构在抵消实际场景中频繁出现的时滞效应方面具有显著优势。
+
+---------------------------------------------------------------------
+
+jia2019modelling
+Modelling hierarchical flocking
+
+We present a general framework for modeling a wide selection of flocking scenarios under free boundary conditions. Several variants have been considered—including examples for the widely observed behavior of hierarchically interacting units. The models we have simulated correspond to classes of various realistic situations. Our primary goal was to investigate the stability of a flock in the presence of noise. Some of our findings are counter-intuitive in the first approximation, e.g. if the hierarchy is based purely on dominance (an uneven contribution of the neighbors to the decision about the direction of flight of a given individual) the flock is more prone to loose coherence due to perturbations even when a comparison with the standard egalitarian flock is made. Thus, we concentrated on building models based on leader-follower relationships. And, indeed, our findings support the concept that hierarchical organization can be very efficient in important practical cases, especially if the leader-follower interactions (corresponding to an underlying directed network of interactions) have several levels. Efficiency here is associated with remaining stable (coherent and cohesive) even in cases when collective motion is destroyed by random perturbations. The framework we present allows allows the study of several further complex interactions among the members of flocking agents.
+
+我们提出一种通用框架，用于建模自由边界条件下的多种集群场景。该框架涵盖了多种变体，包括广泛观察到的层级交互单元行为实例。我们仿真的模型对应各类贴合实际的场景，核心目标是探究噪声环境下集群的稳定性。
+部分研究结果初看与直觉相悖：例如，若层级仅基于优势地位（邻居对个体飞行方向决策的贡献不均等），即便与标准平等型集群相比，该集群在受到扰动时也更易丧失连贯性。因此，我们重点构建了基于领航 - 跟随关系的模型。
+研究结果确实支持以下观点：在重要实际场景中，层级结构可具备极高效率，尤其是当领航 - 跟随交互（对应底层有向交互网络）存在多个层级时。这里的效率体现为，即便集体运动受到随机扰动破坏，集群仍能保持稳定（连贯且凝聚）。我们提出的框架还可用于研究集群智能体成员间更多复杂的交互关系。
+
+---------------------------------------------------------------------
+
+divband2019photomorphogenesis
+Photomorphogenesis for robot self-assembly: adaptivity, collective decision-making, and self-repair
+
+Self-assembly in biology is an inspiration for engineered large-scale multi-modular systems with desirable characteristics, such as robustness, scalability, and adaptivity. Previous works have shown that simple mobile robots can be used to emulate and study self-assembly behaviors. However, many of these studies were restricted to rather static and inflexible aggregations in predefined shapes, and were limited in adaptivity compared to that observed in nature. We propose a photomorphogenesis approach for robots using our vascular morphogenesis model—a light-stimuli directed method for multi-robot self-assembly inspired by the tissue growth of trees. Robots in the role of ‘leaves’ collect a virtual resource that is proportional to a real, sensed environmental feature. This is then used to build a virtual underlying network that shares a common resource throughout the whole robot aggregate and determines where it grows or shrinks as a reaction to the dynamic environment. In our approach the robots use supplemental bioinspired models to collectively select a leading robot to decide who starts to self-assemble (and where), or to assemble static aggregations. The robots then use our vascular morphogenesis model to aggregate in a directed way preferring bright areas, hence resembling natural phototropism (growth towards light). Our main result is that the assembled robots are adaptive and able to react to dynamic environments by collectively and autonomously rearranging the aggregate, discarding outdated parts, and growing new ones. In representative experiments, the self-assembling robots collectively make rational decisions on where to grow. Cutting off parts of the aggregate triggers a self-organizing repair process in the robots, and the parts regrow. All these capabilities of adaptivity, collective decision-making, and self-repair in our robot self-assembly originate directly from self-organized behavior of the vascular morphogenesis model. Our approach opens up opportunities for self-assembly with reconfiguration on short time-scales with high adaptivity of dynamic forms and structures.
+
+生物学中的自组装现象，为设计具备稳健性、可扩展性和适应性等优良特性的工程化大规模多模块系统提供了灵感。此前研究表明，简单移动机器人可用于模拟和研究自组装行为，但这些研究大多局限于在预定义形状下形成相对静态、缺乏灵活性的聚集结构，且与自然界观察到的自组装相比，适应性较弱。
+我们提出一种机器人光形态发生方法，该方法基于血管形态发生模型 —— 这是一种受树木组织生长启发、由光刺激引导的多机器人自组装方式。扮演 “叶片” 角色的机器人收集虚拟资源，该资源与感知到的真实环境特征成比例。这些虚拟资源会用于构建虚拟底层网络，该网络在整个机器人聚集结构中共享公共资源，并根据动态环境的变化，决定聚集结构的生长或收缩位置。
+在我们的方法中，机器人借助补充的生物启发模型，集体选择一个领航机器人，由其决定自组装的启动者（及启动位置），或完成静态聚集。随后，机器人利用血管形态发生模型进行定向聚集，优先向明亮区域聚集，这与自然界的向光性（向光生长）相似。
+核心研究结果显示，组装后的机器人具备适应性，能够通过集体自主重新排列聚集结构、舍弃过时部分并生长新部分，来响应动态环境。在代表性实验中，自组装机器人能集体理性决策生长位置；切断聚集结构的部分区域后，机器人会启动自组织修复过程，实现受损部分的再生。
+我们的机器人自组装所具备的适应性、集体决策和自我修复能力，均直接源于血管形态发生模型的自组织行为。该方法为实现短时间尺度内的自组装重构提供了可能，有望获得具备高适应性的动态形态和结构。
+
+---------------------------------------------------------------------
+
+zhou2022swarm
+Swarm of micro flying robots in the wild
+
+Aerial robots are widely deployed, but highly cluttered environments such as dense forests remain inaccessible to drones and even more so to swarms of drones. In these scenarios, previously unknown surroundings and narrow corridors combined with requirements of swarm coordination can create challenges. To enable swarm navigation in the wild, we develop miniature but fully autonomous drones with a trajectory planner that can function in a timely and accurate manner based on limited information from onboard sensors. The planning problem satisfies various task requirements including flight efficiency, obstacle avoidance, and inter-robot collision avoidance, dynamical feasibility, swarm coordination, and so on, thus realizing an extensible planner. Furthermore, the proposed planner deforms trajectory shapes and adjusts time allocation synchronously based on spatial-temporal joint optimization. A high-quality trajectory thus can be obtained after exhaustively exploiting the solution space within only a few milliseconds, even in the most constrained environment. The planner is finally integrated into the developed palm-sized swarm platform with onboard perception, localization, and control. Benchmark comparisons validate the superior performance of the planner in trajectory quality and computing time. Various real-world field experiments demonstrate the extensibility of our system. Our approach evolves aerial robotics in three aspects: capability of cluttered environment navigation, extensibility to diverse task requirements, and coordination as a swarm without external facilities.
+
+空中机器人应用广泛，但茂密森林等高度复杂环境仍难以被无人机（尤其是无人机集群）触及。这类场景中，未知环境、狭窄通道与集群协同需求相结合，会带来诸多挑战。
+为实现野外集群导航，我们研发了微型全自主无人机，并设计了轨迹规划器。该规划器仅依赖机载传感器的有限信息，就能及时、准确地工作。规划问题需满足飞行效率、避障、机器人间防撞、动态可行性、集群协同等多种任务需求，由此实现了一种可扩展的规划器。
+此外，所提规划器基于时空联合优化，同步调整轨迹形状和时间分配。即便在最受限的环境中，也能在数毫秒内充分探索解空间，得到高质量轨迹。最终，该规划器被集成到自主研发的掌心大小集群平台中，具备机载感知、定位和控制能力。
+基准测试对比验证了该规划器在轨迹质量和计算时间上的优越性能，多项真实野外实验证明了系统的可扩展性。我们的方法从三个方面推动了空中机器人技术的发展：复杂环境导航能力、对多样化任务需求的可扩展性，以及无需外部设施的集群协同能力。
+
+---------------------------------------------------------------------
