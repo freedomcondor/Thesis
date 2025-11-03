@@ -494,3 +494,583 @@ Aerial robots are widely deployed, but highly cluttered environments such as den
 基准测试对比验证了该规划器在轨迹质量和计算时间上的优越性能，多项真实野外实验证明了系统的可扩展性。我们的方法从三个方面推动了空中机器人技术的发展：复杂环境导航能力、对多样化任务需求的可扩展性，以及无需外部设施的集群协同能力。
 
 ---------------------------------------------------------------------
+
+MNS related skipped
+
+---------------------------------------------------------------------
+
+liu2018survey
+A survey of formation control and motion planning of multiple unmanned vehicles
+
+The increasing deployment of multiple unmanned vehicles systems has generated large research interest in recent decades. This paper therefore provides a detailed survey to review a range of techniques related to the operation of multi-vehicle systems in different environmental domains, including land based, aerospace and marine with the specific focuses placed on formation control and cooperative motion planning. Differing from other related papers, this paper pays a special attention to the collision avoidance problem and specifically discusses and reviews those methods that adopt flexible formation shape to achieve collision avoidance for multi-vehicle systems. In the conclusions, some open research areas with suggested technologies have been proposed to facilitate the future research development.
+
+近几十年来，多无人载具系统的应用日益广泛，引发了广泛的研究兴趣。因此，本文通过详细综述，梳理了多载具系统在不同环境领域（包括陆地、航空航天和海洋）运行的一系列相关技术，重点关注编队控制和协同运动规划。
+与其他相关文献不同，本文特别关注避撞问题，并专门探讨和综述了采用灵活编队形状实现多载具系统避撞的方法。在结论部分，本文提出了一些开放研究方向及推荐技术，为未来研究发展提供参考。
+
+---------------------------------------------------------------------
+
+oh2015survey
+A survey of multi-agent formation control
+
+We present a survey of formation control of multi-agent systems. Focusing on the sensing capability and the interaction topology of agents, we categorize the existing results into position-, displacement-, and distance-based control. We then summarize problem formulations, discuss distinctions, and review recent results of the formation control schemes. Further we review some other results that do not fit into the categorization.
+
+我们对多智能体系统的编队控制进行综述。基于智能体的感知能力和交互拓扑结构，我们将现有研究成果分为基于位置、基于位移和基于距离的控制三类。
+随后，我们总结各类控制方法的问题描述、分析其差异，并综述编队控制方案的最新研究进展。此外，我们还梳理了一些不纳入上述分类的其他相关研究成果。
+
+---------------------------------------------------------------------
+
+walter2018fast
+Fast mutual relative localization of uavs using ultraviolet led markers
+
+This paper proposes a new methodology for outdoor mutual relative localization of UAVs equipped with active ultraviolet markers and a suitable camera with specialized bandpass filters. Mutual relative localization is a crucial tool for formation preservation, swarming and cooperative task completion in scenarios in which UAVs share working space in small relative distances. In most current systems of compact UAV swarms the localization of particular UAVs is based on the data obtained from motion capture systems for indoor experiments or on precise RTK-GNSS data outdoor. Such an external infrastructure is unavailable in most of real multi-UAV applications and often cannot be pre-installed. To account for such situations, as well as to make the system more autonomous, reliance on onboard sensors only is desirable. In the proposed approach, we rely on ultraviolet LED markers, that emit light in frequencies that are less common in nature than the visible light or infrared radiation, especially in high intensities. Additionally, common camera sensors are sensitive to ultraviolet light, making the addition of a filter the only necessary modification, keeping the platform low-cost, which is one of the key requirements on swarm systems. This also allows for a smaller size of the markers to be sufficient, without burdening the processing resources. Thus the proposed system aspires to be an enabling technology for deployment of large swarms of possibly micro-scale aerial vehicles in real world conditions and without any dependency on an external infrastructure.
+
+本文提出一种新方法，用于搭载主动紫外标记和配备专用带通滤波器相机的无人机（UAV）室外互相对位。互相对位是无人机在近距离共享工作空间场景下，维持编队、集群运动及完成协同任务的关键技术。
+目前多数紧凑型无人机集群系统中，单架无人机的定位室内依赖运动捕捉系统数据，室外依赖精密 RTK-GNSS 数据。而多数实际多无人机应用场景中，此类外部基础设施不可用且往往无法预先安装。为应对这类情况并提升系统自主性，仅依靠机载传感器的定位方案更为理想。
+所提方法采用紫外 LED 标记，其发射的光频率（尤其是高强度光）在自然界中比可见光或红外辐射更为罕见。此外，普通相机传感器对紫外光敏感，仅需添加滤波器即可适配，无需额外复杂改装，保持了平台的低成本特性 —— 这是集群系统的核心要求之一。这也使得标记尺寸可进一步缩小且能满足使用需求，同时不占用过多处理资源。
+因此，该系统有望成为一项关键支撑技术，助力大规模（甚至微型）无人机集群在真实环境中部署，且无需依赖任何外部基础设施。
+
+---------------------------------------------------------------------
+
+ulrich2022towards
+Towards fast fiducial marker with full 6 dof pose estimation
+
+This paper proposes a new method for the full 6 degrees of freedom pose estimation of a circular fiducial marker. This circular black-and-white planar marker provides a unique and versatile identification of individual markers while maintaining a real-time detection. Such a marker and the vision localisation system based on it is suitable for both external and self-localisation. Together with an off-the-shelf camera, the marker aims to provide a sufficient pose estimation accuracy to substitute the current high-end localisation systems. In order to assess the performance of our proposed marker system, we evaluate its capabilities against the current state-of-the-art methods in terms of their ability to estimate the 2D and 3D positions. For such purpose, a real-world dataset, inspired by typical applications in mobile and swarm robotics, was collected as the performance under the real conditions provides better insights into the method's potential than an artificially simulated environment. The experiments performed show that the method presented here achieved three times the accuracy of the marker it was derived from.
+
+本文提出一种新方法，用于圆形基准标记的全 6 自由度位姿估计。这种黑白平面圆形标记能为单个标记提供唯一且通用的识别功能，同时保持实时检测性能。该标记及其基于视觉的定位系统既适用于外部定位，也适用于自定位。
+结合现成相机，该标记旨在提供足够的位姿估计精度，以替代当前的高端定位系统。为评估所提标记系统的性能，我们将其与现有最先进方法在 2D 和 3D 位置估计能力方面进行对比。
+为此，我们采集了一个真实世界数据集，该数据集灵感来源于移动机器人和群体机器人的典型应用场景 —— 因为真实环境下的性能表现，比人工模拟环境更能反映方法的实际潜力。实验结果表明，本文提出的方法，其精度达到了所衍生基准标记的三倍。
+
+---------------------------------------------------------------------
+
+stacey2015passivity
+A passivity-based approach to formation control using partial measurements of relative position
+
+In this technical note, we present a framework for the formation control of dynamic vehicles in R3, using partial measurements of relative position. The proposed control scheme implements virtual mechanical couplings on the available sensor measurements, and is developed using a passivity-based design approach with considerable insight from the bondgraph modelling formalism. In particular, we present a novel passive adaptive compensation technique to estimate the unknown state information required for the key cases of range and bearing measurements. We show that the proposed architecture is locally asymptotically stable to a desired formation. The performance of the proposed controller is verified by a simulation study.
+
+本文提出一种框架，用于三维空间（R³）内动态载具的编队控制，该框架仅需相对位置的部分测量信息。所提控制方案在可用传感器测量数据上实现虚拟机械耦合，采用基于无源性的设计方法开发，并充分借鉴键图建模形式主义的核心思想。
+具体而言，针对距离和方位测量这两种关键场景，我们提出一种新型无源自适应补偿技术，用于估计所需的未知状态信息。研究表明，该控制架构对期望编队具有局部渐近稳定性。通过仿真研究，验证了所提控制器的性能。
+
+---------------------------------------------------------------------
+
+desai1999control
+Control of changes in formation for a team of mobile robots
+
+Addresses the control of a team of robots navigating in a terrain with obstacles while maintaining a desired formation and changing formations when required. We model the team as a triple consisting of a group element that describes the gross motion of the team, a set of shape variables that describe the relative positions of robots, and a control graph that describes the behaviors of the robots in the formation. We assume that a lead robot is equipped with the appropriate sensors and plans the gross motion (path) for the team. This path is derived from optimal control theory. All other robots are coordinated by continuous controllers that are prescribed by the control graph. Our framework allows us to enumerate the number of control graphs and the possible transitions between them. Further, we describe an algorithm that allows the team of robots to move between any two formations, while avoiding obstacles. We illustrate the methodology with examples involving teams of 5 and 6 robots in the presence of obstacles.
+
+本文研究机器人团队在含障碍物地形中导航的控制问题，要求团队维持期望编队，并在需要时完成编队切换。我们将机器人团队建模为三元组，包括描述团队整体运动的群元素、描述机器人相对位置的形状变量，以及描述编队中机器人行为的控制图。
+假设领航机器人配备合适的传感器，负责规划团队的整体运动（路径），该路径基于最优控制理论推导得出。其他所有机器人通过控制图规定的连续控制器实现协同。我们的框架能够枚举控制图的数量以及它们之间的可能转换关系。
+此外，我们提出一种算法，使机器人团队能在任意两个编队之间切换，同时避开障碍物。通过含障碍物场景下 5 个和 6 个机器人团队的实例，对该方法进行了说明。
+
+---------------------------------------------------------------------
+
+spanogianopoulos2017fast
+Fast formation of swarm of UAVs in congested urban environment
+
+As Unmanned Aerial Vehicles (UAVs) become more readily available and reduce in cost, using multiple UAVs simultaneously to accomplish a task becomes increasingly attractive. Once swarms of UAVs share the same workspace (operational environment) it is necessary to have a means to rapidly adopt an optimal collision-free formation in the workspace. A popular approach for formation of an optimal swarm is to use Particle Swarm Optimization (PSO) techniques. A variant of PSO was recently introduced called nPSO which claims to exhibit more rapid convergence than other variants. In this paper nPSO is applied to the problem of finding optimal positions of UAVs forming a swarm in presence of large obstacles such as buildings in an urban environment. The experiments show that no more than 1000 iterations are required to obtain near optimal formation of swarm of UAVs for different maps, including maps relating to congested environments.
+
+随着无人机（UAV）的普及度提升且成本降低，同时使用多架无人机完成任务的方式愈发具有吸引力。当无人机集群共享同一工作空间（作业环境）时，需要一种能在该空间内快速形成最优无碰撞编队的方法。
+粒子群优化（PSO）技术是实现集群最优编队的常用方法。近期提出的一种 PSO 变体 ——nPSO，据称比其他变体收敛速度更快。本文将 nPSO 应用于城市环境中存在建筑物等大型障碍物的场景，求解无人机集群的最优编队位置问题。
+实验结果表明，针对不同地图（包括拥挤环境相关地图），无人机集群获得近最优编队所需迭代次数均不超过 1000 次。
+
+---------------------------------------------------------------------
+
+desai2002modeling
+Modeling and control of formations of nonholonomic mobile robots
+
+This paper addresses the control of a team of nonholonomic mobile robots navigating in a terrain with obstacles while maintaining a desired formation and changing formations when required, using graph theory. We model the team as a triple, (g, r, H), consisting of a group element g that describes the gross position of the lead robot, a set of shape variables r that describe the relative positions of robots, and a control graph H that describes the behaviors of the robots in the formation. Our framework enables the representation and enumeration of possible control graphs and the coordination of transitions between any two formations.
+
+本文基于图论，研究非完整移动机器人团队在含障碍物地形中导航的控制问题，要求团队维持期望编队，并在需要时完成编队切换。我们将机器人团队建模为三元组（g, r, H）：群元素 g 描述领航机器人的整体位置，形状变量集 r 描述机器人之间的相对位置，控制图 H 描述编队中机器人的行为。
+该框架能够表示和枚举可能的控制图，并实现任意两个编队之间切换的协同控制。
+
+---------------------------------------------------------------------
+
+kushleyev2013towards
+Towards a swarm of agile micro quadrotors
+
+We describe a prototype 75 g micro quadrotor with onboard attitude estimation and control that operates autonomously with an external localization system. The motivation for designing quadrotors at this scale comes from two observations. First, the agility of the robot increases with a reduction in size, a fact that is supported by experimental results in this paper. Second, smaller robots are able to operate in tight formations in constrained, indoor environments. We describe the hardware and software used to operate the vehicle as well our dynamic model. We also discuss the aerodynamics of vertical flight and the contribution of ground effect to the vehicle performance. Finally, we discuss architecture and algorithms to coordinate a team of these quadrotors, and provide experimental results for a team of 20 micro quadrotors.
+
+我们介绍了一款 75 克微型四旋翼无人机原型机，该机搭载机载姿态估计与控制系统，可借助外部定位系统实现自主运行。设计该尺寸四旋翼无人机的动机源于两点观察：一是机器人的灵活性随尺寸减小而提升，这一结论得到了本文实验结果的支持；二是更小尺寸的机器人能够在受限的室内环境中以紧密编队运行。
+我们详细描述了无人机的硬件、控制软件及动力学模型，同时探讨了垂直飞行的空气动力学特性，以及地面效应对无人机性能的影响。最后，我们阐述了协调该类四旋翼无人机团队的架构与算法，并提供了 20 架微型四旋翼无人机团队的实验结果。
+
+---------------------------------------------------------------------
+
+yang2018growing
+Growing super stable tensegrity frameworks
+
+This paper discusses methods for growing tensegrity frameworks akin to what are now known as Henneberg constructions (HCs), which apply to bar-joint frameworks. In particular, this paper presents tensegrity framework versions of the three key HCs of vertex addition, edge splitting, and framework merging (where separate frameworks are combined into a larger framework). This is done for super stable tensegrity frameworks in an ambient 2-D or 3-D space. We start with the operation of adding a new vertex to an original super stable tensegrity framework, named vertex addition. We prove that the new tensegrity framework can be super stable as well if the new vertex is attached to the original framework by an appropriate number of members, which include struts or cables, with suitably assigned stresses. Edge splitting can be secured in R2 (R3) by adding a vertex joined to three (four) existing vertices, two of which are connected by a member, and then removing that member. This procedure, with appropriate selection of struts or cables, preserves super-stability. In d-dimensional ambient space, merging two super stable frameworks sharing at least d+1 vertices that are in general positions, we show that the resulting tensegrity framework is still super stable. Based on these results, we further investigate the strategies of merging two super stable tensegrity frameworks in Rd, (d ∈ {2, 3}) that share fewer than d+1 vertices, and show how they may be merged through the insertion of struts or cables as appropriate between the two structures, with a super stable structure resulting from the merge.
+
+本文探讨类亨内贝格构造（HCs）的张拉整体结构生成方法，这类构造原本适用于杆 - 节点结构。具体而言，本文提出张拉整体结构版本的三种核心亨内贝格构造：顶点添加、边拆分和结构合并（即将多个独立结构组合为更大结构），研究对象为二维或三维空间中的超稳定张拉整体结构。
+顶点添加操作
+从原始超稳定张拉整体结构中添加新顶点的操作为顶点添加。研究证明，若新顶点通过适量杆件（包括压杆或拉索）与原始结构连接，并分配合适的预应力，生成的新张拉整体结构仍可保持超稳定性。
+边拆分操作
+在二维（三维）空间中，边拆分可通过以下方式实现：添加一个新顶点，使其与三个（四个）现有顶点相连（其中两个顶点间原有一根杆件），随后移除该原有杆件。通过合理选择压杆或拉索，该操作可保持结构的超稳定性。
+结构合并操作
+在 d 维空间中，若两个超稳定结构共享至少 d+1 个处于一般位置的顶点，合并后的张拉整体结构仍具有超稳定性。基于这一结果，本文进一步研究二维和三维空间中共享顶点数少于 d+1 的两个超稳定张拉整体结构的合并策略，提出通过在两个结构间适当插入压杆或拉索，可使合并后的结构保持超稳定性。
+
+---------------------------------------------------------------------
+
+mehdifar2018finite
+Finite-time rigidity-based formation maneuvering of multiagent systems using distributed finite-time velocity estimators
+
+In this paper, finite time rigidity-based formation maneuvering control of single integrator multiagent systems is considered. The target formation graph is assumed to be minimally and infinitesimally rigid, and the desired group velocity is considered to be available only to a subset of the agents. A distributed nonsmooth velocity estimator is used for each agent to estimate the desired group velocity in finite time. Using Lyapunov and input to state stability notions, a finite time distance-based formation maneuvering controller is presented and it is proved that by using the controller, agents converge to the target formation and track the desired group velocity in finite time. Furthermore, it is demonstrated that the designed controller is implementable in local coordinate frames of the agents. Simulation results are provided to show the effectiveness of the proposed control scheme.
+
+本文研究单积分器多智能体系统的基于有限时间刚性的编队机动控制问题。假设目标编队图为最小无穷小刚性图，且期望群体速度仅对部分智能体可知。
+分布式速度估计
+每个智能体采用分布式非光滑速度估计器，在有限时间内估计期望群体速度。
+编队机动控制器设计
+基于李雅普诺夫理论和输入到状态稳定性概念，提出一种有限时间基于距离的编队机动控制器。研究证明，通过该控制器，智能体可在有限时间内收敛到目标编队，并跟踪期望群体速度。
+控制器可实现性
+验证了所设计的控制器可在智能体的局部坐标系下实现。仿真结果表明，该控制方案具有有效性。
+
+---------------------------------------------------------------------
+
+schiano2016rigidity
+A rigidity-based decentralized bearing formation controller for groups of quadrotor UAVs
+
+This paper considers the problem of controlling a formation of quadrotor UAVs equipped with onboard cameras able to measure relative bearings in their local body frames w.r.t. neighboring UAVs. The control goal is twofold: (i) steering the agent group towards a formation defined in terms of desired bearings, and (ii) actuating the group motions in the ‘null-space’ of the current bearing formation. The proposed control strategy relies on an extension of the rigidity theory to the case of directed bearing frameworks in ℝ3×S1. This extension allows to devise a decentralized bearing controller which, unlike most of the present literature, does not need presence of a common reference frame or of reciprocal bearing measurements for the agents. Simulation and experimental results are then presented for illustrating and validating the approach.
+
+本文研究搭载机载相机的四旋翼无人机集群编队控制问题，相机可在无人机局部机体坐标系下测量与相邻无人机的相对方位角。控制目标分为两部分：一是引导智能体集群收敛到由期望方位角定义的编队；二是驱动集群在当前方位角编队的 “零空间” 内运动。
+控制策略核心
+所提控制策略基于刚性理论的扩展，将其应用于三维空间 × 单位圆（ℝ³×S¹）中的有向方位角结构。该扩展使得能够设计分散式方位角控制器，与现有多数文献不同，该控制器无需智能体具备公共参考坐标系，也无需 reciprocal 方位角测量。
+验证结果
+通过仿真和实验结果，对该方法进行了说明和验证。
+
+---------------------------------------------------------------------
+
+zhao2015translational
+Translational and scaling formation maneuver control via a bearing-based approach
+
+This paper studies distributed maneuver control of multiagent formations in arbitrary dimensions. The objective is to control the translation and scale of the formation while maintaining the desired formation pattern. Unlike conventional approaches where the target formation is defined by relative positions or distances, we propose a novel bearing-based approach where the target formation is defined by inter-neighbor bearings. Since the bearings are invariant to the translation and scale of the formation, the bearing-based approach provides a simple solution to the problem of translational and scaling formation maneuver control. Linear formation control laws for double-integrator dynamics are proposed and the global formation stability is analyzed. This paper also studies bearing-based formation control in the presence of practical problems, including input disturbances, acceleration saturation, and collision avoidance. The theoretical results are illustrated with numerical simulations.
+
+本文研究任意维度下多智能体编队的分布式机动控制问题，目标是在维持期望编队模式的同时，控制编队的平移和缩放。与传统基于相对位置或距离定义目标编队的方法不同，本文提出一种新型基于方位角的方法，通过相邻智能体间的方位角定义目标编队。
+方法核心优势
+由于方位角对编队的平移和缩放具有不变性，这种基于方位角的方法为编队平移和缩放机动控制问题提供了简洁的解决方案。
+控制律设计与稳定性分析
+针对双积分器动力学模型，提出线性编队控制律，并分析了全局编队稳定性。
+实际问题考量
+本文还研究了存在输入扰动、加速度饱和和避撞等实际问题时的基于方位角编队控制，通过数值仿真验证了理论结果的有效性。
+
+---------------------------------------------------------------------
+
+zhao2015bearing
+Bearing rigidity and almost global bearing-only formation stabilization
+
+A fundamental problem that the bearing rigidity theory studies is to determine when a framework can be uniquely determined up to a translation and a scaling factor by its inter-neighbor bearings. While many previous works focused on the bearing rigidity of two-dimensional frameworks, a first contribution of this paper is to extend these results to arbitrary dimensions. It is shown that a framework in an arbitrary dimension can be uniquely determined up to a translation and a scaling factor by the bearings if and only if the framework is infinitesimally bearing rigid. In this paper, the proposed bearing rigidity theory is further applied to the bearing-only formation stabilization problem where the target formation is defined by inter-neighbor bearings and the feedback control uses only bearing measurements. Nonlinear distributed bearing-only formation control laws are proposed for the cases with and without a global orientation. It is proved that the control laws can almost globally stabilize infinitesimally bearing rigid formations. Numerical simulations are provided to support the analysis.
+
+方位刚性理论研究的核心问题是：确定一个结构何时能通过相邻节点间的方位角，唯一确定到仅相差平移和缩放因子的程度。尽管以往多数研究聚焦于二维结构的方位刚性，本文的首要贡献是将这些结果扩展到任意维度。研究表明，任意维度下的结构，当且仅当它是无穷小方位刚性时，才能通过方位角唯一确定到仅相差平移和缩放因子的程度。
+方位刚性理论的应用
+本文进一步将所提出的方位刚性理论应用于纯方位编队镇定问题。该问题中，目标编队由相邻智能体间的方位角定义，反馈控制仅使用方位角测量信息。
+控制律设计与稳定性证明
+针对有无全局朝向的两种情况，提出非线性分布式纯方位编队控制律。研究证明，该控制律能几乎全局镇定无穷小方位刚性编队。通过数值仿真验证了分析结果的有效性。
+
+---------------------------------------------------------------------
+
+li2020adaptive
+Adaptive formation control of networked robotic systems with bearing-only measurements
+
+In this article, we address the bearing-only formation control problem of 3-D networked robotic systems with parametric uncertainties. The contributions of this article are two-fold: 1) the bearing-rigid theory is extended to solve the nonlinear robotic systems with the Euler–Lagrange-like model and 2) a novel almost global stable distributed bearing-only formation control law is proposed for the nonlinear robotic systems. Specifically, the robotic systems subject to nonholonomic constraints and dynamics are first transformed into a Euler–Lagrange-like model. By exploring the bearing-rigid graph theory, a backstepping approach is used to design the distributed formation controller. Simulations for 3-D robotics are given to demonstrate the effectiveness of the proposed control law. Compared to the distance-rigid formation control approach, the bearing-rigid approach guarantees almost global stability while naturally excluding flip ambiguities.
+
+本文研究含参数不确定性的三维网络化机器人系统纯方位编队控制问题，主要贡献有两点：一是将方位刚性理论扩展至类欧拉 - 拉格朗日模型的非线性机器人系统；二是为该非线性机器人系统提出一种新型几乎全局稳定的分布式纯方位编队控制律。
+系统建模转换
+首先，将受非完整约束和动力学特性影响的机器人系统，转换为类欧拉 - 拉格朗日模型。
+控制器设计
+借助方位刚性图理论，采用反步设计方法构建分布式编队控制器。通过三维机器人系统的仿真实验，验证了所提控制律的有效性。
+方法优势对比
+与基于距离刚性的编队控制方法相比，基于方位刚性的方法能保证几乎全局稳定性，同时自然排除翻转模糊性问题。
+
+---------------------------------------------------------------------
+
+li2021adaptive
+Adaptive bearing-only formation tracking control for nonholonomic multiagent systems
+
+In this article, we consider the formation tracking problem of nonholonomic multiagent systems only using relative bearing measurements between the agents. Such a practical and important yet challenging issue has been taken into limited consideration by existing approaches, which usually requires additional measurements such as relative positions. The contributions of this article are two-fold. First, a fully distributed reference velocity estimator is proposed. Under the proposed adaptive estimator, each agent can estimate the time-varying reference velocity asymptotically. Second, an input-to-state stable controller is designed according to the bearing rigid theory. Under the proposed controller, the formation with bearing-only constraints can be achieved. Finally, the proposed scheme is demonstrated and its effectiveness is verified by presenting some simulation and experimental tests.
+
+本文研究仅利用智能体间相对方位角测量的非完整多智能体系统编队跟踪问题。这一实际且重要但极具挑战性的问题，现有方法关注较少，这些方法通常需要相对位置等额外测量信息。本文的贡献分为两部分：一是提出一种完全分布式参考速度估计器，通过该自适应估计器，每个智能体能渐近估计时变参考速度；二是基于方位刚性理论设计输入到状态稳定的控制器，通过该控制器可实现仅含方位角约束的编队。最后，通过仿真和实验测试，验证了所提方案的有效性。
+
+---------------------------------------------------------------------
+
+li2020bearing
+Bearing-only formation control with prespecified convergence time
+
+This article considers the bearing-only formation control problem, where the control of each agent only relies on relative bearings of their neighbors. A new control law is proposed to achieve target formations in finite time. Different from the existing results, the control law is based on a time-varying scaling gain. Hence, the convergence time can be arbitrarily chosen by users, and the derivative of the control input is continuous. Furthermore, sufficient conditions are given to guarantee almost global convergence and interagent collision avoidance. Then, a leader–follower control structure is proposed to achieve global convergence. By exploring the properties of the bearing Laplacian matrix, the collision avoidance and smooth control input are preserved. A multirobot hardware platform is designed to validate the theoretical results. Both simulation and experimental results demonstrate the effectiveness of our design.
+
+本文研究纯方位编队控制问题，每个智能体的控制仅依赖邻居的相对方位角。提出一种新的控制律，可在有限时间内实现目标编队。与现有结果不同，该控制律基于时变缩放增益，因此用户可任意选择收敛时间，且控制输入的导数连续。
+收敛性与避撞保障
+给出保证几乎全局收敛和智能体间避撞的充分条件，随后提出领航 - 跟随控制结构以实现全局收敛。
+控制特性保持
+借助方位拉普拉斯矩阵的性质，确保避撞能力和控制输入的平滑性。设计多机器人硬件平台验证理论结果，仿真和实验结果均证明了设计的有效性。
+
+---------------------------------------------------------------------
+
+zhao2021finite
+Finite-time cooperative control for bearing-defined leader-following formation of multiple double-integrators
+
+In this article, the finite-time cooperative control problem for leader-following bearing-defined formation tracking of multiagent systems with double-integrator dynamics is investigated. Different from the existing works on finite-time containment control, our objective is to make followers track leaders’ trajectories and form a shape-preserving formation rather than a convex hull. The target formation is defined by both leaders’ motions and bearing constraints among neighboring agents, which enables the formation not only to form and preserve a geometric pattern but also to have the ability to achieve both translational and scaling formation maneuver. To satisfy the bearing constraints, a matrix-weighted estimator/controller is developed. The finite-time stabilization of the target formation is achieved, though the matrix-weighted design makes the stability analysis complicated. Finally, an illustrative example is presented to demonstrate the effectiveness.
+
+本文研究带双积分器动力学的多智能体系统，在领航 - 跟随模式下基于方位角定义的编队跟踪有限时间协同控制问题。与现有有限时间包含控制研究不同，本文目标是让跟随者跟踪领航者轨迹并保持队形不变，而非形成凸包。
+目标编队定义
+目标编队由领航者运动和相邻智能体间的方位角约束共同定义，这使得编队不仅能形成并保持几何构型，还具备平移和缩放机动能力。
+估计器 / 控制器设计与稳定性
+为满足方位角约束，设计矩阵加权估计器 / 控制器。尽管矩阵加权设计使稳定性分析更复杂，但最终实现了目标编队的有限时间镇定。通过示例验证了方法的有效性。
+
+---------------------------------------------------------------------
+
+zhang2022distributed
+Distributed bearing-based formation control of unmanned aerial vehicle swarm via global orientation estimation
+
+Most existing formation control approaches for Unmanned Aerial Vehicle (UAV) swarm assume that global position and global coordinate frame are directly available for each agent. To extend the application domain, this paper proposes a distributed bearing-based formation control scheme, without any reliance on global position or global coordinate frame. The interactions among UAVs are described by a directed topology with two-leader structure. To address the issue of unavailable global coordinate frame, we first present a distributed orientation estimation law for each UAV to determine its orientation under the coordinate frame of the first leader. Based on the orientation estimation, we then design a bearing-based formation control law to globally asymptotically track target moving formations. Finally, simulation results are provided to validate the proposed method, which show that the translation, scale and orientation of the formation can be flexibly controlled via two leaders.
+
+现有多数无人机集群编队控制方法假设每个智能体可直接获取全局位置和全局坐标系。为拓展应用场景，本文提出一种分布式基于方位角的编队控制方案，无需依赖任何全局位置或全局坐标系。无人机间的交互通过含双领航者结构的有向拓扑描述。
+方位估计律设计
+针对全局坐标系不可用的问题，首先为每个无人机设计分布式方位估计律，使其能在第一个领航者的坐标系下确定自身方位。
+编队控制律设计
+基于方位估计结果，设计基于方位角的编队控制律，实现对移动目标编队的全局渐近跟踪。
+仿真验证
+仿真结果验证了所提方法的有效性，表明通过两个领航者可灵活控制编队的平移、缩放和方位。
+
+---------------------------------------------------------------------
+
+zhang2023bearing
+Bearing-based formation control for multiple underactuated autonomous surface vehicles with flexible size scaling
+
+Most existing formation control approaches for Autonomous surface vehicles (ASVs) focused on achieving rigid patterns with invariant inter-vehicle distance in open ocean environment. However, these methods cannot be applied to the cooperative missions on irregular inland waterway with changing width (such as rivers, canals and fjords), wherein the inter-vehicle distance should be continuously adjustable to respond to the environment dynamically. This paper proposes a bearing-based formation scaling control scheme for underactuated ASVs to achieve the desired patterns but with a flexible size scaling. By assuming that the fleet satisfies a leader–first-follower structure, the formation scaling parameters are accessible only to leaders, while each follower needs to maintain the bearing constraints to its neighboring ASVs without any knowledge of scale information. We respectively design distributed control laws for leaders and follower, and adaptive neural networks (NNs) are incorporated to approximate the dynamic uncertainties induced by parameter perturbations, external disturbances and input saturations. To improve the tracking performance, an auxiliary adaptive law is resorted to compensate the non-zero estimation error of NNs. Theoretical analysis demonstrates that the closed-loop scaling maneuver tracking and formation tracking errors converge to zero asymptotically. The comparative simulation results are presented to substantiate the effectiveness of the designed control method.
+
+现有多数自主水面航行器（ASVs）编队控制方法聚焦于在开阔海洋环境中实现舰间距离固定的刚性构型。但这些方法无法应用于宽度变化的不规则内陆水道（如河流、运河和峡湾）协同任务，这类场景中舰间距离需动态调整以适应环境变化。本文提出一种基于方位角的欠驱动自主水面航行器编队缩放控制方案，可实现期望构型且尺寸缩放灵活。
+系统结构假设
+假设航行器编队采用领航 - 首跟随者结构，编队缩放参数仅对领航者可知，每个跟随者无需了解缩放信息，只需维持与相邻航行器的方位角约束。
+控制律设计与不确定性补偿
+分别为领航者和跟随者设计分布式控制律，融入自适应神经网络（NNs）逼近参数摄动、外部扰动和输入饱和引发的动态不确定性。为提升跟踪性能，采用辅助自适应律补偿神经网络的非零估计误差。
+理论分析与验证
+理论分析表明，闭环系统的缩放机动跟踪误差和编队跟踪误差渐近收敛至零。对比仿真结果验证了所设计控制方法的有效性。
+
+---------------------------------------------------------------------
+
+arrigoni2018bearing
+Bearing-based network localizability: A unifying view
+
+This paper provides a unifying view and offers new insights on bearing-based network localizability, that is the problem of establishing whether a set of directions between pairs of nodes uniquely determines (up to translation and scale) the position of the nodes in d-space. If nodes represent cameras then we are in the context of global structure from motion. The contribution of the paper is theoretical: first, we rewrite and link in a coherent structure several results that have been presented in different communities using disparate formalisms; second, we derive some new localizability results within the edge-based formulation.
+
+本文对基于方位角的网络可定位性提供了统一视角并给出新见解，核心是判断节点对之间的一组方向能否在 d 维空间中唯一确定节点位置（仅相差平移和缩放）。若节点代表相机，该问题则属于全局运动恢复结构的研究范畴。
+理论贡献
+重新梳理并整合了不同领域用各异形式化方法呈现的多项研究成果，形成连贯的理论体系。
+在基于边的表述框架下，推导得出若干新的可定位性结论。
+
+---------------------------------------------------------------------
+
+zhao2019bearing
+Bearing rigidity theory and its applications for control and estimation of network systems: Life beyond distance rigidity
+
+Distributed control and location estimation of multiagent systems have received tremendous research attention in recent years because of their potential across many application domains [1], [2]. The term agent can represent a sensor, autonomous vehicle, or any general dynamical system. Multiagent systems are attractive because of their robustness against system failure, ability to adapt to dynamic and uncertain environments, and economic advantages compared to the implementation of more expensive monolithic systems.
+
+近年来，多智能体系统的分布式控制与定位估计因其在众多应用领域的潜力而受到广泛研究关注 [1, 2]。“智能体” 可指代传感器、自主航行器或任何通用动力学系统。多智能体系统具有显著优势：对系统故障的鲁棒性强、能适应动态不确定环境，且相较于昂贵的单体系统，具有经济成本优势。
+
+---------------------------------------------------------------------
+
+trinh2018bearing
+Bearing-based formation control of a group of agents with leader-first follower structure
+
+This paper studies bearing-based formation control of a group of autonomous agents with the leader-first follower (LFF) structure in an arbitrary dimensional space. First, the bearing-based Henneberg construction and some properties of the LFF formation are introduced. Then, we propose and analyze bearing-only control laws that almost globally stabilize LFF formations to a desired formation. Further strategies to rotate and rescale the target formation are also discussed. Finally, simulation results are provided to support the analysis.
+
+本文研究任意维度空间中，含领航 - 首跟随者（LFF）结构的自主智能体集群基于方位角的编队控制问题。
+基础理论与特性
+首先介绍基于方位角的亨内贝格构造，以及领航 - 首跟随者（LFF）编队的若干特性。
+控制律设计与分析
+提出并分析纯方位控制律，该控制律能几乎全局镇定领航 - 首跟随者（LFF）编队至期望构型。
+编队调整策略与验证
+进一步探讨目标编队的旋转和缩放策略，通过仿真结果验证了分析的有效性。
+
+---------------------------------------------------------------------
+
+trinh2021finite
+Finite-time bearing-based maneuver of acyclic leader-follower formations
+
+This letter proposes two finite-time bearing-based control laws for acyclic leader-follower formations. The leaders in formation move with a bounded continuous reference velocity and each follower controls its position with regard to three agents in the formation. The first control law uses only bearing vectors, and finite-time convergence is achieved by properly selecting two state-dependent control gains. The second control law requires both bearing vectors and communications between agents. Each agent simultaneously localizes and follows a virtual target. Finite-time convergence of the desired formation under both control laws is proved by mathematical induction and supported by numerical simulations.
+
+本文提出两种适用于无环领航 - 跟随编队的有限时间基于方位角的控制律。编队中的领航者以有界连续参考速度运动，每个跟随者通过编队中的三个智能体控制自身位置。
+两种控制律设计
+第一种控制律仅使用方位向量，通过合理选择两个状态依赖控制增益实现有限时间收敛。
+第二种控制律既需要方位向量，也需要智能体间的通信，每个智能体同时定位并跟踪虚拟目标。
+收敛性证明与验证
+通过数学归纳法证明两种控制律下期望编队的有限时间收敛性，数值仿真结果进一步支撑了该分析结论。
+
+---------------------------------------------------------------------
+
+eren2012formation
+Formation shape control based on bearing rigidity
+
+Distance measurements are not the only geometric quantities that can be used for multi-agent formation shape control. Bearing measurements can be used in conjunction with distances. This article employs bearing rigidity for mobile formations, which was developed for robot and sensor network localisation, so that bearings can be used for shape control in mobile formations. The first part of this article examines graph theoretical models for formation network analysis and control law design that are needed to maintain the shape of a formation in two-dimensional space, while the formation moves as a cohesive whole. Bearing-based shape control for a formation of mobile agents involves the design of distributed control laws that ensure the formation moves, so that bearing constraints maintain some desired values. The second part of this article focuses on the design of a distributed control scheme for nonholonomic agents to solve the bearing-based formation shape control problem. In particular, a control law using feedback linearisation is proposed based on shape variables. We simulate the shape control behaviour on differential drive agents for an exemplary bearing rigid formation using the results obtained in the first and second parts of this article.
+
+距离测量并非多智能体编队构型控制唯一可用的几何量，方位角测量可与距离测量结合使用。本文将原本用于机器人和传感器网络定位的方位刚性理论应用于移动编队，使方位角能用于移动编队的构型控制。
+编队网络分析与控制基础
+文章第一部分研究二维空间中编队整体协同运动时，维持构型所需的图论模型，用于编队网络分析和控制律设计。移动智能体编队的基于方位角构型控制，需要设计分布式控制律，确保编队运动时方位角约束保持在期望数值。
+非完整智能体控制方案设计
+第二部分聚焦非完整智能体的分布式控制方案设计，以解决基于方位角的编队构型控制问题。具体基于构型变量，提出一种采用反馈线性化的控制律。利用前两部分的研究结果，在差动驱动智能体上对典型方位刚性编队的构型控制行为进行仿真验证。
+
+---------------------------------------------------------------------
+
+trinh2019minimal
+Minimal and redundant bearing rigidity: Conditions and applications
+
+This article studies the notions of minimal and 1-redundant bearing rigidity. A necessary and sufficient condition for the numbers of edges in a graph of n (n ≥ 3) vertices to be minimally bearing rigid (MBR) in Rd (d ≥ 2) is proposed. If 3 ≤ n ≤ d + 1, a graph is MBR if and only if it is the cycle graph. In case n > d + 1, a generically bearing rigid graph is minimal if it has precisely 1 + [n-2/d-1] × d + mod(n - 2, d - 1) + sgn(mod(n - 2, d - 1)) edges. Then, several conditions for 1-redundant bearing rigidity are derived. Based on the mathematical conditions, some algorithms for generating generically, minimally, and 1-redundantly bearing rigid graphs are given. Furthermore, two applications of the new notions to optimal network design and formation merging are also reported.
+
+本文研究最小方位刚性和 1 - 冗余方位刚性的概念。提出 n（n≥3）个顶点的图在 d 维空间（d≥2）中成为最小方位刚性（MBR）图的边数充要条件：当 3≤n≤d+1 时，一个图是最小方位刚性图当且仅当它是环图；当 n>d+1 时，一个一般方位刚性图是最小方位刚性图的充要条件是其边数恰好为 1 + [(n-2)/(d-1)]×d + mod (n-2, d-1) + sgn (mod (n-2, d-1))（其中 [(n-2)/(d-1)] 表示向下取整，mod 为取余运算，sgn 为符号函数）。
+1 - 冗余方位刚性条件
+推导得出 1 - 冗余方位刚性的若干条件，基于这些数学条件，给出生成一般方位刚性图、最小方位刚性图和 1 - 冗余方位刚性图的若干算法。
+概念应用
+报告了这两个新概念在最优网络设计和编队合并中的两项应用。
+
+---------------------------------------------------------------------
+
+karimian2017theory
+Theory and methods for bearing rigidity recovery
+
+In the bearing-based localization and formation control problem, we can uniquely determine or control the relative positions of all the agents up to a common scale if and only if the problem is rigid. The notion of rigidity therefore plays a central role. In some situations (for instance, restoring rigidity after an agent leaves a formation), it is necessary to solve the rigidity recovery problem: find a way to turn a non-rigid problem into a rigid one by adding new bearing measurements. In this paper, we first provide new theoretical insights on rigidity, and on the minimum number of additional bearing measurements necessary to ensure this property in a non-rigid problem. We then provide algorithms to select which edges to add.
+
+在基于方位角的定位与编队控制问题中，当且仅当问题具有刚性时，才能唯一确定或控制所有智能体的相对位置（仅相差一个公共缩放因子）。因此，刚性概念起着核心作用。在某些场景下（例如智能体脱离编队后恢复刚性），需要解决刚性恢复问题：通过添加新的方位角测量，将非刚性问题转化为刚性问题。
+理论洞察
+首先，对刚性以及非刚性问题中确保刚性所需的最小额外方位角测量数，提出新的理论见解。
+算法设计
+随后，给出选择待添加边（即方位角测量关系）的算法。
+
+---------------------------------------------------------------------
+
+hou2016elementary
+Elementary operations for rigidity restoration and persistence analysis of multi-agent system
+
+This work focuses on the construction of rigid formation from non-rigid ones in the two-dimensional space. Analogously to operations of Henneberg sequence aiming to guarantee the minimal rigidity of formation, two new operations are introduced, allowing one to sequentially build any rigid graph by connecting non-rigid ones. A systematic construction sequence is developed based on proposed operations, and is shown to be able to restore rigidity by introducing minimum number of new edges during the construction process. Further applications of the proposed operations are also presented, one of which is successfully employed in the problem of persistence analysis of directed graphs, and can verify the persistence of a given graph with a speed two times faster comparing with existing solution.
+
+本文聚焦二维空间中由非刚性编队构建刚性编队的问题。借鉴亨内贝格序列操作（用于保证编队最小刚性），提出两种新操作，可通过连接非刚性图逐步构建任意刚性图。
+构建序列设计
+基于所提操作开发系统化构建序列，该序列在构建过程中仅需添加最少数量的新边即可恢复刚性。
+操作应用拓展
+展示所提操作的进一步应用，其中一项成功用于有向图的持久性分析，验证给定图持久性的速度较现有方法快两倍。
+
+---------------------------------------------------------------------
+
+carboni2014rigidity
+Rigidity-preserving team partitions in multiagent networks
+
+Motivated by the strong influence network rigidity has on collaborative systems, in this paper, we consider the problem of partitioning a multiagent network into two sub-teams, a bipartition, such that the resulting sub-teams are topologically rigid. In this direction, we determine the existence conditions for rigidity-preserving bipartitions, and provide an iterative algorithm that identifies such partitions in polynomial time. In particular, the relationship between rigid graph partitions and the previously identified Z-link edge structure is given, yielding a feasible direction for graph search. Adapting a supergraph search mechanism, we then detail a methodology for discerning graphs cuts that represent valid rigid bipartitions. Next, we extend our methods to a decentralized context by exploiting leader election and an improved graph search to evaluate feasible cuts using only local agent-to-agent communication. Finally, full algorithm details and pseudocode are provided, together with simulation results that verify correctness and demonstrate complexity.
+
+受网络刚性对协同系统的显著影响启发，本文研究多智能体网络的二划分问题，即划分为两个子团队，使划分后的子团队具有拓扑刚性。
+刚性保持二划分存在条件
+确定刚性保持二划分的存在条件，提出一种迭代算法，能在多项式时间内识别此类划分。
+图划分与 Z - 链边结构关联
+明确刚性图划分与此前提出的 Z - 链边结构之间的关系，为图搜索提供可行方向。
+刚性二划分切割识别方法
+借鉴超图搜索机制，详细阐述识别有效刚性二划分对应的图切割的方法。
+分布式场景扩展
+利用领导者选举和改进的图搜索方法，将上述方法扩展到分布式场景，仅通过智能体间的局部通信评估可行切割。
+算法细节与验证
+提供完整的算法细节和伪代码，通过仿真结果验证算法正确性并展示其复杂度。
+
+---------------------------------------------------------------------
+
+rm2020review
+Review on state-of-the-art dynamic task allocation strategies for multiple-robot systems
+
+Purpose
+This paper aims to present a concise review on the variant state-of-the-art dynamic task allocation strategies. It presents a thorough discussion about the existing dynamic task allocation strategies mainly with respect to the problem application, constraints, objective functions and uncertainty handling methods.
+
+Design/methodology/approach
+This paper briefs the introduction of multi-robot dynamic task allocation problem and discloses the challenges that exist in real-world dynamic task allocation problems. Numerous task allocation strategies are discussed in this paper, and it establishes the characteristics features between them in a qualitative manner. This paper also exhibits the existing research gaps and conducive future research directions in dynamic task allocation for multiple mobile robot systems.
+
+Findings
+This paper concerns the objective functions, robustness, task allocation time, completion time, and task reallocation feature for performance analysis of different task allocation strategies. It prescribes suitable real-world applications for variant task allocation strategies and identifies the challenges to be resolved in multi-robot task allocation strategies.
+
+Originality/value
+This paper provides a comprehensive review of dynamic task allocation strategies and incites the salient research directions to the researchers in multi-robot dynamic task allocation problems. This paper aims to summarize the latest approaches in the application of exploration problems.
+
+研究目的
+本文旨在简要综述当前主流的动态任务分配策略，围绕问题应用场景、约束条件、目标函数及不确定性处理方法，对现有动态任务分配策略展开深入探讨。
+研究方法
+简述多机器人动态任务分配问题的背景，揭示实际场景中动态任务分配问题存在的挑战。本文讨论了多种任务分配策略，并从定性角度明确它们之间的特征差异。同时，指出多移动机器人系统动态任务分配领域现存的研究空白，提出有益的未来研究方向。
+研究结果
+本文以目标函数、鲁棒性、任务分配时间、完成时间和任务重分配特性为指标，对不同任务分配策略进行性能分析。明确各类任务分配策略适用的实际应用场景，识别多机器人任务分配策略中有待解决的挑战。
+原创价值
+本文全面综述动态任务分配策略，为多机器人动态任务分配问题的研究者指明关键研究方向，旨在总结探索类问题应用中的最新方法。
+
+---------------------------------------------------------------------
+
+burger2012distributed
+A distributed simplex algorithm for degenerate linear programs and multi-agent assignments
+
+In this paper we propose a novel distributed algorithm to solve degenerate linear programs on asynchronous peer-to-peer networks with distributed information structures. We propose a distributed version of the well-known simplex algorithm for general degenerate linear programs. A network of agents, running our algorithm, will agree on a common optimal solution, even if the optimal solution is not unique, or will determine infeasibility or unboundedness of the problem. We establish how the multi-agent assignment problem can be efficiently solved by means of our distributed simplex algorithm. We provide simulations supporting the conjecture that the completion time scales linearly with the diameter of the communication graph.
+
+本文提出一种新型分布式算法，用于解决异步对等网络中带分布式信息结构的退化线性规划问题。设计了经典单纯形算法的分布式版本，适用于一般退化线性规划问题。
+算法特性与功能
+运行该算法的智能体网络，即使最优解不唯一，也能达成一致的最优解；同时可判定问题的不可行性或无界性。
+应用场景与仿真验证
+阐明如何通过该分布式单纯形算法高效求解多智能体分配问题。仿真结果支持以下猜想：算法完成时间与通信图的直径呈线性比例关系。
+
+---------------------------------------------------------------------
+
+chopra2017distributed
+A distributed version of the hungarian method for multirobot assignment
+
+In this paper, we propose a distributed version of the Hungarian method to solve the well-known assignment problem. In the context of multirobot applications, all robots cooperatively compute a common assignment that optimizes a given global criterion (e.g., the total distance traveled) within a finite set of local computations and communications over a peer-to-peer network. As a motivating application, we consider a class of multirobot routing problems with “spatiotemporal” constraints, i.e., spatial targets that require servicing at particular time instants. As a means of demonstrating the theory developed in this paper, the robots cooperatively find online suboptimal routes by applying an iterative version of the proposed algorithm in a distributed and dynamic setting. As a concrete experimental test bed, we provide an interactive “multirobot orchestral” framework, in which a team of robots cooperatively plays a piece of music on a so-called orchestral floor.
+
+本文提出匈牙利算法的分布式版本，用于求解经典的分配问题。在多机器人应用场景中，所有机器人通过对等网络进行有限次局部计算和通信，协同求解满足给定全局准则（如总行驶距离最优）的统一分配方案。
+激励性应用场景
+以一类带 “时空” 约束的多机器人路径规划问题为激励性应用，这类问题中的空间目标需在特定时刻进行服务。
+理论验证与实验平台
+为验证本文提出的理论，机器人在分布式动态环境中应用该算法的迭代版本，在线协同找到次优路径。搭建交互式 “多机器人管弦乐” 实验平台，机器人团队在所谓的 “管弦乐地板” 上协同演奏一段音乐，以此作为具体实验验证场景。
+
+---------------------------------------------------------------------
+
+akella2020assignment
+Assignment algorithms for variable robot formations
+
+This paper describes algorithms to perform optimal assignment of teams of robots translating in the plane from an initial formation to a variable goal formation. We consider the case when each robot is to be assigned a goal position, the individual robots are interchangeable, and the goal formation can be scaled or translated.We compute the costs for all candidate pairs of initial, goal robot assignments as functions of the parameters of the goal formation, and partition the parameter space into equivalence classes invariant to the cost order using computational geometry techniques. We compute a minimum completion time assignment for an equivalence class by formulating it as a linear bottleneck assignment problem (LBAP). To improve efficiency, we solve the LBAP problem for each equivalence class by incrementally updating the solution as the formation parameters are varied. This work is motivated by applications that include the motion of droplet formations in digital microfluidic lab-on-a-chip devices, and of robot and drone formations in the plane.
+
+本文提出算法，用于求解平面内机器人团队从初始编队到可变目标编队的最优分配问题。考虑以下场景：每个机器人需分配一个目标位置，机器人个体可互换，目标编队可缩放或平移。
+成本计算与参数空间划分
+将所有初始 - 目标机器人候选分配对的成本，计算为目标编队参数的函数。利用计算几何技术，将参数空间划分为成本顺序不变的等价类。
+最优分配求解与效率优化
+通过将等价类的最小完成时间分配问题转化为线性瓶颈分配问题（LBAP），求解该等价类的最优分配。为提升效率，当编队参数变化时，通过增量更新解的方式求解每个等价类的线性瓶颈分配问题（LBAP）。
+应用背景
+该研究的应用背景包括数字微流控芯片实验室设备中液滴编队的运动，以及平面内机器人和无人机编队的运动。
+
+---------------------------------------------------------------------
+
+zavlanos2007distributed
+Distributed formation control with permutation symmetries
+
+In distributed control applications such as coverage or consensus by multiple mobile agents, a great new challenge is the development of motion algorithms that dynamically determine the positions of the agents in the formation using only local information. In this paper, we address this challenge using two novel ideas. First, we represent a formation as a rotational and translational invariant configuration in the free space and employ distributed consensus algorithms to guarantee that all agents agree on the rotation and translation of the final formation configuration. Second, local market-based coordination protocols dynamically determine a permutation of the agents in the formation, while artificial potential fields are used to drive the group of agents to the desired formation. Integration of the overall system results in a distributed, multi- agent, hybrid system which, under a connectivity assumption on the underlying communication network, is shown to always converge to the desired formation. Furthermore, the number of explored permutations is at most polynomial with the number of agents, while scalability of our approach is illustrated by nontrivial computer simulations.
+
+在多移动智能体覆盖或一致性等分布式控制应用中，一大新挑战是开发仅利用局部信息就能动态确定编队中智能体位置的运动算法。本文通过两个创新思路应对这一挑战：一是将编队表示为自由空间中旋转和平移不变的构型，采用分布式一致性算法确保所有智能体就最终编队构型的旋转和平移达成一致；二是基于局部市场的协调协议动态确定编队中智能体的排列顺序，同时利用人工势场驱动智能体群体到达期望编队。
+系统整合与收敛性分析
+将上述部分整合为分布式多智能体混合系统，在底层通信网络满足连通性假设的情况下，该系统被证明总能收敛到期望编队。
+算法性能与扩展性
+探索的排列顺序数量最多与智能体数量呈多项式关系，通过非平凡的计算机仿真验证了该方法的可扩展性。
+
+---------------------------------------------------------------------
+
+alonso2016distributed
+Distributed multi-robot formation control among obstacles: A geometric and optimization approach with consensus
+
+This paper presents a distributed method for navigating a team of robots in formation in 2D and 3D environments with static and dynamic obstacles. The robots are assumed to have a reduced communication and visibility radius and share information with their neighbors. Via distributed consensus the robots compute (a) the convex hull of the robot positions and (b) the largest convex region within free space. The robots then compute, via sequential convex programming, the locally optimal parameters for the formation within this convex neighborhood of the robots. Reconfiguration is allowed, when required, by considering a set of target formations. The robots navigate towards the target collision-free formation with individual local planners that account for their dynamics. The approach is efficient and scalable with the number of robots and performs well in simulations with up to sixteen quadrotors.
+
+本文提出一种分布式方法，用于在含静态和动态障碍物的二维及三维环境中，引导机器人团队编队导航。假设机器人的通信和视野半径有限，仅能与邻居共享信息。
+分布式共识计算
+机器人通过分布式共识算法计算两项内容：一是机器人位置的凸包，二是自由空间内最大的凸区域。
+编队参数优化与重构
+随后通过序列凸规划，在机器人的凸邻域内计算编队的局部最优参数。必要时考虑一组目标编队，允许进行编队重构。
+导航实现与性能验证
+机器人通过考虑自身动力学特性的个体局部规划器，朝无碰撞的目标编队导航。该方法效率高，且随机器人数量具有可扩展性，在多达十六架四旋翼无人机的仿真实验中表现良好。
+
+(distributed simplex 方法分配)
+
+---------------------------------------------------------------------
+
+michael2008distributed
+Distributed multi-robot task assignment and formation control
+
+Distributed task assignment for multiple agents raises fundamental and novel problems in control theory and robotics. A new challenge is the development of distributed algorithms that dynamically assign tasks to multiple agents, not relying on a priori assignment information. We address this challenge using market-based coordination protocols where the agents are able to bid for task assignment with the assumption that every agent has knowledge of the maximum number of agents that any given task can accommodate. We show that our approach always achieves the desired assignment of agents to tasks after exploring at most a polynomial number of assignments, dramatically reducing the combinatorial nature of discrete assignment problems. We verify our algorithm through both simulation and experimentation on a team of non-holonomic robots performing distributed formation stabilization and group splitting and merging.
+
+多智能体分布式任务分配为控制理论和机器人学领域带来了基础性且创新性的问题。一大新挑战是开发无需依赖先验分配信息、能动态为多智能体分配任务的分布式算法。
+基于市场的协调协议设计
+本文通过基于市场的协调协议应对这一挑战，假设每个智能体知晓每个任务可容纳的最大智能体数量，智能体可通过竞标获得任务分配权。
+算法性能与验证
+研究表明，该方法最多探索多项式数量的分配方案后，总能实现期望的智能体 - 任务分配，大幅降低离散分配问题的组合复杂性。通过非完整约束机器人团队执行分布式编队镇定、分组拆分与合并任务的仿真和实验，验证了该算法的有效性。
+
+---------------------------------------------------------------------
+
+kambayashi2018distributed
+Distributed Swarm Formation Using Mobile Agents
+
+In this paper, we propose an algorithm for controlling a fleet of swarm robots that construct three-dimensional forms. The swarm robots coordinate with each other through network communication, and compose formations such as polyhedrons presented as spherical coordinates. Our control algorithm achieves communication through mobile software agents, which introduce control programs to robots that initially have no information about the formation. Mobile software agents are autonomous objects that can migrate from one robot to other robots through a communication network and can deliver control programs as they are needed. We have made our swarm robot system to mimic the behaviors of the leafcutter ants. A leafcutter ant is a typical social insect and uses pheromone for communication. In our robot control system, we have implemented ants and pheromones as mobile software agents. We call the mobile software agents that drive the mobile robots as ant agents, and call the other agents that provide communication as pheromone agents. The ant agents drive the swarm robots to locations identified by the pheromone agents. Each ant agent has only partial information. There is no need for either a central control or an agent that has the entire design of the formation. In order to diffuse the partial information among the neighboring robots, each ant agent generates pheromone agents and dispatches them to the surrounding robots. Dispatched pheromone agent looks for a proper ant agent to influence towards a desired relative location. It is the ant agent that actually drives the robot by following the guidance of the pheromone agent, and the collective actions of ant agents and pheromone agents achieve the composition of the objective formation. We have implemented a simulator based on our algorithm and conducted numerical experiments. The results demonstrate that our mobile robot control system is feasible and efficient in practice in practical situations.
+
+本文提出一种控制集群机器人构建三维形态的算法。集群机器人通过网络通信相互协调，组成以球坐标表示的多面体等编队。
+控制算法与通信机制
+控制算法通过移动软件智能体实现通信，这些智能体向初始无编队信息的机器人推送控制程序。移动软件智能体是可自主通过通信网络在机器人间迁移的对象，能按需传递控制程序。
+仿生设计理念
+该集群机器人系统模仿切叶蚁的行为模式。切叶蚁是典型的社会性昆虫，通过信息素进行通信。在机器人控制系统中，将蚂蚁和信息素实现为移动软件智能体：驱动移动机器人的智能体称为 “蚂蚁智能体”，负责通信的智能体称为 “信息素智能体”。
+协作机制与信息传递
+蚂蚁智能体根据信息素智能体标记的位置驱动集群机器人移动，每个蚂蚁智能体仅掌握部分信息，无需中央控制器或知晓完整编队设计的智能体。为在相邻机器人间传播局部信息，每个蚂蚁智能体生成信息素智能体并发送给周边机器人；被发送的信息素智能体寻找合适的蚂蚁智能体，引导其前往期望的相对位置。蚂蚁智能体遵循信息素智能体的指引实际驱动机器人，两者的协同动作最终完成目标编队的构建。
+仿真验证
+基于该算法开发仿真器并开展数值实验，结果表明该移动机器人控制系统在实际场景中具有可行性和高效性。
+
+---------------------------------------------------------------------
+
+montijano2014efficient
+Efficient multi-robot formations using distributed optimization
+
+This paper studies the problem of multi-robot formations by means of distributed optimization. In order to reach a desired configuration, robots can adjust two elements, the set of desired positions and the particular role of each robot within the formation. Although the two problems, positions and assignment, have been deeply studied separately, there are few solutions that consider both of them together. The main contribution of this paper is a distributed algorithm that computes the optimal solution for both parameters simultaneously, accompanied by proof that the set of optimal positions is independent of the assignment of the team of robots to those positions. This demonstration also allows us to compute the optimal positions by means of a standard distributed averaging method. In order to solve the assignment problem, we consider an existing distributed simplex algorithm and propose a modification that takes into account the variations in costs generated by the averaging algorithm. The whole method is provably correct to achieve the optimal solution.
+
+本文通过分布式优化研究多机器人编队问题。为达到期望构型，机器人可调整两个要素：一是期望位置集合，二是每个机器人在编队中的特定角色。尽管位置优化和任务分配这两个问题已分别得到深入研究，但同时考虑两者的解决方案较少。
+核心贡献与算法设计
+本文的主要贡献是提出一种分布式算法，能同时求解这两个参数的最优解，并证明最优位置集合与机器人团队到这些位置的分配方案相互独立。这一证明还使得可通过标准分布式平均法计算最优位置。为解决分配问题，本文借鉴现有分布式单纯形算法，提出一种改进方案，以考虑平均算法产生的成本变化。
+算法正确性
+整个方法被证明能可靠地获得最优解。
+
+---------------------------------------------------------------------
+
+mosteo2017optimal
+Optimal role and position assignment in multi-robot freely reachable formations
+
+Many multi-robot problems require the achievement of formations as part of the overall mission. This work considers a scenario in which unlabeled homogeneous robots must adopt a given formation pattern buildable anywhere in the environment. This involves finding the relative pose of the formation in regard to the initial robot positions, understood as a translation and a rotation; and the optimal assignment of the role of each robot within the formation. This paper provides an optimal solution for the combined parameters of translation, rotation and assignment that minimizes total displacement. To achieve this objective we first formally prove that the three decision variables are separable. Since computing the optimal assignment without accounting for the rotation is a computationally expensive problem, we propose an algorithm that efficiently computes the optimal roles together with the rotation. The algorithm is provably correct and finds the optimal solution in finite time. A distributed implementation is also discussed. Simulation results characterize the complexity of our solution and demonstrate its effectiveness.
+
+许多多机器人任务需将编队达成作为整体任务的一部分。本文考虑如下场景：无标记的同构机器人需在环境中任意位置构建给定的编队模式，这涉及两个核心问题：一是确定编队相对于机器人初始位置的相对位姿（包括平移和旋转），二是优化分配每个机器人在编队中的角色。
+最优解设计与可分离性证明
+本文针对平移、旋转和分配组合参数，提出使总位移最小化的最优解决方案。为实现这一目标，首先从理论上证明这三个决策变量具有可分离性。
+高效算法设计与特性
+由于不考虑旋转时计算最优分配的计算成本较高，提出一种高效算法，可同时求解最优角色分配和旋转参数。该算法被证明具有正确性，能在有限时间内找到最优解，并讨论了其分布式实现方案。
+仿真验证
+仿真结果分析了该解决方案的复杂度，并验证了其有效性。
+
+---------------------------------------------------------------------
+
+macalpine2015scram
+SCRAM: Scalable collision-avoiding role assignment with minimal-makespan for formational positioning
+
+Teams of mobile robots often need to divide up subtasks efficiently. In spatial domains, a key criterion for doing so may depend on distances between robots and the subtasks' locations. This paper considers a specific such criterion, namely how to assign interchangeable robots, represented as point masses, to a set of target goal locations within an open two dimensional space such that the makespan (time for all robots to reach their target locations) is minimized while also preventing collisions among robots. We present scaleable (computable in polynomial time) role assignment algorithms that we classify as being SCRAM (Scalable Collision-avoiding Role Assignment with Minimal-makespan). SCRAM role assignment algorithms use a graph theoretic approach to map agents to target goal locations such that our objectives for both minimizing the makespan and avoiding agent collisions are met. A system using SCRAM role assignment was originally designed to allow for decentralized coordination among physically realistic simulated humanoid soccer playing robots in the partially observable, non-deterministic, noisy, dynamic, and limited communication setting of the RoboCup 3D simulation league. In its current form, SCRAM role assignment generalizes well to many realistic and real-world multiagent systems, and scales to thousands of agents.
+
+移动机器人团队通常需要高效分配子任务。在空间领域，分配的关键准则可能取决于机器人与子任务位置之间的距离。本文考虑一种特定准则：在开放二维空间中，如何将可互换的机器人（建模为质点）分配到一组目标位置，以最小化完工时间（所有机器人到达目标位置的时间），同时避免机器人之间发生碰撞。
+SCRAM 角色分配算法设计
+提出可扩展（多项式时间内可计算）的角色分配算法，将其归类为 SCRAM（最小完工时间的可扩展避碰角色分配算法）。该算法采用图论方法将智能体映射到目标位置，同时满足最小化完工时间和避免智能体碰撞的目标。
+算法应用与扩展性
+基于 SCRAM 角色分配的系统最初设计用于 RoboCup 3D 仿真联赛场景，支持物理逼真的仿人足球机器人在部分可观测、非确定性、有噪声、动态且通信受限的环境中实现分布式协调。当前版本的 SCRAM 角色分配算法可很好地推广到多种实际多智能体系统，且能扩展至数千个智能体。
+
+---------------------------------------------------------------------
+
+wang2020shape
+Shape formation in homogeneous swarms using local task swapping
+
+The task of shape formation in robot swarms can often be reduced to two tasks—assigning goal locations to each robot and creating a collision-free path to that goal. In this article, we present a distributed algorithm that solves these tasks concurrently, enabling a swarm of robots to move and form a shape quickly and without collision. A user can specify a desired shape as an image, send that to a swarm of identically programmed robots, and the swarm will move all robots to goal locations within the desired shape. This algorithm was executed on a swarm of up to 1024 simulated robots and a swarm of 100 real robots, showing that it reliably converges to all robots forming the shape.
+
+机器人集群的形态构建任务通常可拆解为两项子任务：为每个机器人分配目标位置，以及规划通往该目标的无碰撞路径。本文提出一种分布式算法，可同时解决这两项任务，使机器人集群快速且无碰撞地移动并形成目标形态。
+算法功能与应用方式
+用户可将期望形态以图像形式指定，发送给一组程序完全相同的机器人集群，集群会自动将所有机器人移动到期望形态内的目标位置。
+实验验证与性能
+该算法在多达 1024 个仿真机器人集群和 100 个实体机器人集群上进行测试，结果表明其能稳定收敛，使所有机器人准确形成目标形态。
+
+---------------------------------------------------------------------
+
+agarwal2018simultaneous
+Simultaneous optimization of assignments and goal formations for multiple robots
+
+This paper presents algorithms to simultaneously compute the optimal assignments and formation parameters for a team of robots from a given initial formation to a variable goal formation (where the shape of the goal formation is given, and its scale and location parameters must be optimized). We assume the n robots are identical spheres. We use the sum of squared travel distances as the objective function to be minimized, which also ensures that the trajectories are collision free. We show that this assignment with variable goal formation problem can be transformed to a linear sum assignment problem (LSAP) with pseudo costs that we establish are independent of the formation parameters. The transformed problem can then be solved using the Hungarian algorithm in O (n3) time. Thus the assignment problem with variable goal formations using this new approach has the same O (n3) time complexity as the standard assignment problem with fixed goal formations. Results from simulations on 200 and 600 robots are presented to show the algorithm is sufficiently fast for practical applications.
+
+本文提出算法，用于同时求解机器人团队从给定初始编队到可变目标编队的最优分配方案和编队参数（目标编队形状已知，需优化其缩放和位置参数）。假设 n 个机器人为相同的球体，以行驶距离的平方和作为需最小化的目标函数，该函数同时能确保运动轨迹无碰撞。
+问题转化与求解
+研究表明，这种带可变目标编队的分配问题可转化为线性和分配问题（LSAP），其中构建的伪成本与编队参数无关。转化后的问题可通过匈牙利算法在 O (n³) 时间内求解，因此该新方法求解带可变目标编队的分配问题，与求解固定目标编队的标准分配问题具有相同的 O (n³) 时间复杂度。
+仿真验证
+通过 200 个和 600 个机器人的仿真实验验证，结果表明该算法速度足以满足实际应用需求。
+
+---------------------------------------------------------------------
+
+ravichandar2020strata
+STRATA: unified framework for task assignments in large teams of heterogeneous agents
+
+Large teams of heterogeneous agents have the potential to solve complex multi-task problems that are intractable for a single agent working independently. However, solving complex multi-task problems requires leveraging the relative strengths of the different kinds of agents in the team. We present Stochastic TRAit-based Task Assignment (STRATA), a unified framework that models large teams of heterogeneous agents and performs effective task assignments. Specifically, given information on which traits (capabilities) are required for various tasks, STRATA computes the assignments of agents to tasks such that the trait requirements are achieved. Inspired by prior work in robot swarms and biodiversity, we categorize agents into different species (groups) based on their traits. We model each trait as a continuous variable and differentiate between traits that can and cannot be aggregated from different agents. STRATA is capable of reasoning about both species-level and agent-level variability in traits. Further, we define measures of diversity for any given team based on the team’s continuous-space trait model. We illustrate the necessity and effectiveness of STRATA using detailed experiments based in simulation and in a capture-the-flag game environment.
+
+大规模异构智能体团队有望解决单个智能体独立工作难以处理的复杂多任务问题。但解决复杂多任务问题需要充分利用团队中不同类型智能体的相对优势。本文提出基于随机特质的任务分配（STRATA）统一框架，用于建模大规模异构智能体团队并执行高效的任务分配。
+框架核心设计
+给定各类任务所需特质（能力）的信息，STRATA 计算智能体到任务的分配方案，以满足任务的特质需求。受机器人集群和生物多样性相关研究启发，根据智能体的特质将其划分为不同 “物种”（群组）。将每种特质建模为连续变量，区分可由不同智能体聚合的特质和不可聚合的特质。
+框架特性与多样性度量
+STRATA 能够对特质在物种层面和智能体层面的变异性进行推理。基于团队的连续空间特质模型，定义任意给定团队的多样性度量指标。
+实验验证
+通过仿真环境和夺旗游戏环境中的详细实验，验证了 STRATA 框架的必要性和有效性。
+
+---------------------------------------------------------------------
