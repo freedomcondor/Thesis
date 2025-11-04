@@ -2208,3 +2208,360 @@ interaction when designing swarm systems, in addition to choosing appropriate sw
 
 --------------------------------------------------------------------------
 
+brambilla2013swarm
+Swarm robotics: a review from the swarm engineering perspective
+
+Swarm robotics is an approach to collective robotics that takes inspiration from the self-organized behaviors of social animals. Through simple rules and local interactions, swarm robotics aims at designing robust, scalable, and flexible collective behaviors for the coordination of large numbers of robots. In this paper, we analyze the literature from the point of view of swarm engineering: we focus mainly on ideas and concepts that contribute to the advancement of swarm robotics as an engineering field and that could be relevant to tackle real-world applications. Swarm engineering is an emerging discipline that aims at defining systematic and well founded procedures for modeling, designing, realizing, verifying, validating, operating, and maintaining a swarm robotics system. We propose two taxonomies: in the first taxonomy, we classify works that deal with design and analysis methods; in the second taxonomy, we classify works according to the collective behavior studied. We conclude with a discussion of the current limits of swarm robotics as an engineering discipline and with suggestions for future research directions.
+
+集群机器人学是集体机器人学的一种研究方法，灵感源自群居动物的自组织行为。通过简单规则和局部交互，集群机器人学旨在为大量机器人的协调设计鲁棒、可扩展且灵活的集体行为。本文从集群工程视角分析相关文献，重点关注推动集群机器人学发展为工程领域、且可能适用于解决实际应用问题的理念与概念。
+集群工程是一门新兴学科，旨在定义系统化、有坚实基础的流程，用于集群机器人系统的建模、设计、实现、验证、确认、运行和维护。
+两类分类体系构建
+设计与分析方法分类：对涉及集群机器人系统设计与分析方法的研究成果进行分类。
+集体行为研究分类：根据所研究的集体行为类型，对相关研究成果进行分类。
+局限与未来方向
+最后，讨论了集群机器人学作为工程学科目前存在的局限，并提出未来的研究方向建议。
+
+--------------------------------------------------------------------------
+
+francesca2014automode
+AutoMoDe: A novel approach to the automatic design of control software for robot swarms
+
+We introduce AutoMoDe: a novel approach to the automatic design of control software for robot swarms. The core idea in AutoMoDe recalls the approach commonly adopted in machine learning for dealing with the bias–variance tradedoff: to obtain suitably general solutions with low variance, an appropriate design bias is injected. AutoMoDe produces robot control software by selecting, instantiating, and combining preexisting parametric modules—the injected bias. The resulting control software is a probabilistic finite state machine in which the topology, the transition rules and the values of the parameters are obtained automatically via an optimization process that maximizes a task-specific objective function. As a proof of concept, we define AutoMoDe-Vanilla, which is a specialization of AutoMoDe for the e-puck robot. We use AutoMoDe-Vanilla to design the robot control software for two different tasks: aggregation and foraging. The results show that the control software produced by AutoMoDe-Vanilla (i) yields good results, (ii) appears to be robust to the so called reality gap, and (iii) is naturally human-readable.
+
+本文提出 AutoMoDe 方法，这是一种新型机器人集群控制软件自动设计方案。其核心思路借鉴机器学习中处理偏差 - 方差权衡的常用方法：通过注入合适的设计偏差，获得通用性良好、方差较低的解决方案。
+AutoMoDe 核心设计
+AutoMoDe 通过选择、实例化和组合预先存在的参数化模块（即注入的偏差）生成机器人控制软件。
+最终生成的控制软件是一种概率有限状态机，其拓扑结构、转移规则和参数值通过优化过程自动获取，该优化过程以最大化任务特定目标函数为目的。
+概念验证与结果
+定义 AutoMoDe-Vanilla 作为概念验证，它是针对 e-puck 机器人的 AutoMoDe 专用版本。
+利用 AutoMoDe-Vanilla 为聚集和觅食两项不同任务设计机器人控制软件，结果显示：生成的控制软件性能良好，对 “现实差距” 具有鲁棒性，且天然具备人类可读性。
+
+--------------------------------------------------------------------------
+
+francesca2016automatic
+Automatic design of robot swarms: achievements and challenges
+
+Automatic design is a promising approach to the design of control software for robot swarms. In an automatic design method, the design problem is cast into an optimization problem and is addressed using an optimization algorithm. In this article, we review studies in which automatic design methods are successfully applied. In particular, we focus our attention on how automatic methods are empirically assessed. An apparent issue that emerges from our review is that a solid, well-established, and consistently applied empirical practice is still missing. For example, studies that propose new methods and ideas do not typically provide any comparison with existing ones. We maintain that the lack of a proper empirical practice hinders the progress of the domain. In this article, we pursue two goals: we highlight the notable achievements in the automatic design of control software for robot swarms and we discuss the challenges to be overcome to establish a proper empirical practice for the domain.
+
+自动设计是机器人集群控制软件设计的一种极具前景的方法。在自动设计方法中，设计问题被转化为优化问题，并通过优化算法求解。本文综述了成功应用自动设计方法的相关研究，重点关注自动方法的实证评估方式。
+综述核心发现
+从综述结果来看，一个明显的问题是该领域仍缺乏完善、成熟且统一应用的实证实践。例如，提出新方法和理念的研究通常不会与现有方法进行对比。这种缺乏规范实证实践的现状，阻碍了该领域的发展。
+研究目标与内容
+本文旨在实现两个目标：一是梳理机器人集群控制软件自动设计领域的显著成果；二是探讨该领域建立规范实证实践所需克服的挑战。
+
+--------------------------------------------------------------------------
+
+birattari2019automatic
+Automatic off-line design of robot swarms: a manifesto
+
+Designing collective behaviors for robot swarms is a difficult endeavor due to their fully distributed, highly redundant, and ever-changing nature. To overcome the challenge, a few approaches have been proposed, which can be classified as manual, semi-automatic, or automatic design. This paper is intended to be the manifesto of the automatic off-line design for robot swarms. We define the off-line design problem and illustrate it via a possible practical realization, highlight the core research questions, raise a number of issues regarding the existing literature that is relevant to the automatic off-line design, and provide guidelines that we deem necessary for a healthy development of the domain and for ensuring its relevance to potential real-world applications.
+
+机器人集群具有完全分布式、高度冗余且动态变化的特性，因此设计其集体行为极具挑战性。为应对这一挑战，已有多种方法被提出，可分为手动设计、半自动设计和自动设计三类。本文旨在成为机器人集群自动离线设计的宣言性文献，明确离线设计问题并通过一种可行的实际实现方式进行阐释，突出核心研究问题，指出与自动离线设计相关的现有文献存在的若干问题，并提供我们认为对该领域健康发展、确保其与潜在实际应用相关性所必需的指导原则。
+核心内容梳理
+离线设计问题定义与阐释：清晰界定机器人集群自动离线设计的问题边界，结合具体可行的实现案例，让问题更易理解。
+核心研究问题提炼：聚焦该领域亟待解决的关键研究方向，为后续研究明确重点。
+现有文献问题分析：指出当前相关文献在自动离线设计研究中存在的不足与争议点。
+领域发展指导原则：提出保障领域健康发展、贴合实际应用需求的具体指导建议。
+
+--------------------------------------------------------------------------
+
+rubenstein2014programmable
+Programmable self-assembly in a thousand-robot swarm
+
+Self-assembly enables nature to build complex forms, from multicellular organisms to complex animal structures such as flocks of birds, through the interaction of vast numbers of limited and unreliable individuals. Creating this ability in engineered systems poses challenges in the design of both algorithms and physical systems that can operate at such scales. We report a system that demonstrates programmable self-assembly of complex two-dimensional shapes with a thousand-robot swarm. This was enabled by creating autonomous robots designed to operate in large groups and to cooperate through local interactions and by developing a collective algorithm for shape formation that is highly robust to the variability and error characteristic of large-scale decentralized systems. This work advances the aim of creating artificial swarms with the capabilities of natural ones.
+
+自组装让自然界能通过大量功能有限且存在不确定性的个体间交互，构建出复杂形态 —— 从多细胞生物到鸟群等复杂动物群体结构。在工程系统中实现这种能力，面临着算法设计和物理系统设计的双重挑战，二者需适配如此庞大的规模。本文报道了一套系统，可实现千台机器人集群的可编程二维复杂形状自组装。
+系统实现核心支撑
+机器人设计：打造适用于大规模群体运作的自主机器人，机器人通过局部交互实现协作。
+集体成形算法：开发鲁棒性极强的形状形成集体算法，能应对大规模分布式系统固有的变异性和误差问题。
+研究意义
+该研究推动了 “打造具备自然群体能力的人工集群” 这一目标的实现。
+
+---------------------------------------------------------------------------
+
+werfel2014designing
+Designing collective behavior in a termite-inspired robot construction team
+
+Complex systems are characterized by many independent components whose low-level actions produce
+collective high-level results. Predicting high-level results given low-level rules is a key open challenge;
+the inverse problem, finding low-level rules that give specific outcomes, is in general still less
+understood. We present a multi-agent construction system inspired by mound-building termites, solving
+such an inverse problem. A user specifies a desired structure, and the system automatically generates
+low-level rules for independent climbing robots that guarantee production of that structure. Robots
+use only local sensing and coordinate their activity via the shared environment. We demonstrate the
+approach via a physical realization with three autonomous climbing robots limited to onboard sensing.
+This work advances the aim of engineering complex systems that achieve specific human-designed goals.
+
+复杂系统的特征是存在大量独立组件，这些组件的底层行为会产生集体性的高层结果。已知底层规则预测高层结果是一项关键的开放性挑战；而反向问题，即寻找能产生特定结果的底层规则，总体上仍未被充分理解。本文提出一种受堆丘白蚁启发的多智能体建造系统，用于解决这一反向问题。用户指定期望的结构后，系统会自动为自主攀爬机器人生成底层规则，确保生成该结构。机器人仅依靠局部感知，通过共享环境协调自身活动。
+系统验证与研究意义
+通过三台仅依赖机载感知的自主攀爬机器人进行实物实现，验证了该方法的有效性。
+该研究推动了 “设计能实现人类特定目标的复杂工程系统” 这一目标的进展。
+
+---------------------------------------------------------------------------
+
+zyrianoff2024over
+An Over the Air Software Update System for IoT Microcontrollers based on WebAssembly
+
+In recent years, the proliferation of Internet of Things (IoT) applications has been remarkable, characterized by integrating tasks across multiple devices, forming the so-called edge-cloud continuum. The ability to reconfigure the software behavior over all nodes of the continuum has become crucial to support applications with varying demands. However, located at the extreme edge of IoT deployments, IoT microcontrollers often have static behaviors. Although Over the Air (OTA) methodologies are widely supported by most devices, the reconfiguration process may involve potentially inefficient and hazardous updates of the entire firmware. In response, this paper proposes an OTA software update system for IoT microcontrollers leveraging portable WebAssembly (WASM) code. By separating the application logic from the rest of the firmware, our system ensures heterogeneity, safety, efficiency, and reliability. Furthermore, we propose an update procedure based on different network protocols (MQTT and HTTP) to facilitate dealing with groups of IoT microcontrollers in a single action. We implemented a Configuration and Administration Toolkit (CAT) to evaluate our proposal and conducted a comprehensive performance analysis using a small-scale IoT testbed. Our findings demonstrate that while the WASM logic updates notably outperform those of the entire firmware, achieving a 30x delay reduction, they incur a performance overhead that is lower than MicroPython when compared to native C++ development.
+
+近年来，物联网（IoT）应用激增，其特点是跨多个设备整合任务，形成所谓的边缘 - 云连续体。在连续体所有节点上重新配置软件行为的能力，已成为支持需求多变应用的关键。然而，位于物联网部署极端边缘的物联网微控制器，其行为通常是静态的。尽管大多数设备广泛支持空中下载（OTA）方法，但重新配置过程可能需要对整个固件进行低效且存在风险的更新。对此，本文提出一种基于可移植 WebAssembly（WASM）代码的物联网微控制器 OTA 软件更新系统。
+系统核心设计
+该系统将应用逻辑与固件其他部分分离，确保了异构性、安全性、高效性和可靠性。
+提出基于不同网络协议（MQTT 和 HTTP）的更新流程，以便通过单一操作处理多组物联网微控制器。
+实现与性能分析
+开发配置与管理工具包（CAT）对方案进行评估，并通过小型物联网测试平台开展全面性能分析。
+研究结果表明，WASM 逻辑更新显著优于全固件更新，延迟降低 30 倍；与原生 C++ 开发相比，其性能开销低于 MicroPython。
+
+---------------------------------------------------------------------------
+
+abadie2024robotap
+RobOTAP: Over-the-Air Programming of Robotic Swarms
+
+Over-the-Air Programming (OTAP) is an essential capability when operating a large low-power wireless deployment such as wireless sensors or swarm robots. OTAP needs to be carefully crafted for these use cases to take into account the limited communication bandwidth, the unreliability and the large latency associated with the low-power wireless nature of the network, as well as the constrained nature of the microcontrollers that are being updated. This paper introduces RobOTAP, an OTAP solution specifically targeted at robotic swarms, available as an open-source implementation. RobOTAP is designed to be minimalistic, with the OTAP module and bootloader having flash footprints below 1 kB / 4 kB, respectively. It is designed to be fast: we show a full update for an 18 kB image in less than 2.3 s. Finally, RobOTAP is secure: we compare on both the nRF52840 and the nRF5340 the performance when using ARM CryptoCell-310 hardware acceleration, a software implementation of the same security routines, or no security at all.
+
+空中编程（OTAP）是运行大规模低功耗无线部署（如无线传感器或集群机器人）的核心能力。针对这类场景设计 OTAP 时，需充分考虑低功耗无线网络固有的通信带宽有限、可靠性低、延迟大等问题，以及待更新微控制器的资源受限特性。本文提出 RobOTAP 方案，这是一款专为机器人集群设计的 OTAP 解决方案，提供开源实现。
+RobOTAP 核心特性
+极简设计：OTAP 模块和引导程序的闪存占用量分别低于 1 kB 和 4 kB。
+高速更新：实测 18 kB 镜像的完整更新耗时不到 2.3 秒。
+安全保障：在 nRF52840 和 nRF5340 两款芯片上，对比了 ARM CryptoCell-310 硬件加速、相同安全例程的软件实现以及无安全防护三种情况下的性能表现。
+
+---------------------------------------------------------------------------
+
+waibel2017drone
+Drone shows: Creative potential and best practices
+
+Drone show systems are advanced show automation systems designed for live performances that enable the control of one to potentially thousands of autonomous multirotors or other small flying machines. These novel systems enable the use of drones to extend the traditional palette of light, sound, stage effects, and human performers by choreographing the simultaneous movements of a multitude of flying objects in 3D space. This gives this technology the potential to fundamentally transform the live events experience. Emergent use cases for this technology include animation of flying characters, flying lighting displays, movement of stage props and scenographic elements, and the creation of flying robot actors and synthetic swarms. The key challenges for this new technology are safety and reliability. First solutions for the safe deployment of this technology exist, and avantgarde creators are embracing the possibilities offered by autonomous drones.
+
+无人机表演系统是专为现场演出设计的先进表演自动化系统，可控制 1 架至数千架自主多旋翼无人机或其他小型飞行器。这类新型系统通过编排大量飞行物在三维空间的同步运动，让无人机能够拓展传统灯光、音效、舞台特效和人类表演者的表现形式，有望从根本上改变现场活动的体验。
+技术应用场景
+该技术的新兴应用场景包括飞行角色动画、飞行灯光秀、舞台道具与场景元素的移动，以及飞行机器人演员和合成集群的创建。
+核心挑战与发展现状
+这项新技术的核心挑战是安全性和可靠性。
+目前已有保障该技术安全部署的初步解决方案，先锋创作者正积极探索自主无人机带来的多种可能。
+
+---------------------------------------------------------------------------
+
+ang2018high
+High-precision multi-UAV teaming for the first outdoor night show in Singapore
+
+Advancement in the development of automation in aerial robotics has created endless applications today by utilizing autonomous drones, or in other words, unmanned aerial vehicles (UAVs). Motivated by the idea of the entertainment robots, in this paper, we present a robust and safe multi-UAV formation system for the purpose of entertainment in the form of a night multi-UAV teaming light show. The performance includes a 5-minutes flight show with 16 UAVs, changing patterns with background music, and with synchronized visual lighting from each of the UAVs. The high-precision autonomous formation flight is achieved with a centralized control method with a single ground control station (GCS). The system includes offline trajectory generation, safety features such as collision avoidance and UAV states monitoring, geo-fencing for out-of-bound control and many more which will be discussed in this paper. The live performance of the multi-UAV teaming night show was successfully presented to the public in conjunction with The Future of Us Exhibitions held in January 2016, in Singapore.
+
+空中机器人自动化技术的发展，通过利用自主无人机（即无人驾驶飞行器，UAV），如今已催生了无数应用场景。受娱乐机器人理念启发，本文提出一套稳健且安全的多无人机编队系统，用于呈现夜间多无人机团队灯光秀形式的娱乐表演。
+表演设计与实现
+该表演为时长 5 分钟的 16 架无人机飞行秀，结合背景音乐变换队形，每架无人机的视觉灯光保持同步。通过单一地面控制站（GCS）的集中式控制方法，实现高精度自主编队飞行。
+系统核心功能
+系统包含离线轨迹生成、避碰与无人机状态监测等安全特性、边界控制地理围栏等功能，本文将对此展开详细讨论。
+实际应用与成果
+2016 年 1 月，该多无人机团队夜间表演在新加坡举办的 “我们的未来” 展览期间成功向公众呈现。
+
+---------------------------------------------------------------------------
+
+xie2011design
+The Design and Challenges of Online Reprogramming System for Wireless Sensor Networks.
+
+At present, the online network reprogramming faces two challenges: 1) How to save the energy consumed during the code dissemination; and 2) How to enhance the security of online network reprogramming. In this paper, we modify the work flow of online reprogramming system and separates an alone reprogramming component from the whole program image which need not be transmitted in order to reduce the energy consumption. According to the security vulnerabilities in the image management aspects of code dissemination, a cipher puzzle-based image management algorithm is proposed. According to the based-request attacks, several counter measures are introduced in our online reprogramming system, such as secure broadcast authentication based on cluster keys and the request count technique. By integrating several key techniques, our online reprogramming system can securely and energy-efficiently disseminate the new program image into the whole WSNs.
+
+当前，在线网络重编程面临两大挑战：一是如何降低代码分发过程中的能耗；二是如何提升在线网络重编程的安全性。本文通过修改在线重编程系统的工作流程，从无需传输的整个程序镜像中分离出独立的重编程组件，以此减少能耗。
+安全机制设计
+针对代码分发中镜像管理环节的安全漏洞，提出一种基于密码谜题的镜像管理算法。
+针对基于请求的攻击，在在线重编程系统中引入多项防御措施，包括基于集群密钥的安全广播认证和请求计数技术。
+系统效果
+通过整合多项关键技术，该在线重编程系统能够安全且高效节能地将新程序镜像分发至整个无线传感器网络（WSNs）。
+
+---------------------------------------------------------------------------
+
+wang2006reprogramming
+Reprogramming wireless sensor networks: challenges and approaches
+
+Wireless sensor networks need an efficient and reliable reprogramming service to facilitate management and maintenance tasks. In this article we first outline a framework to examine different functions in reprogramming, followed by an analysis of reprogramming challenges. We then provide a comprehensive survey of the state-of-the-art reprogramming systems, and discuss different approaches to address these challenges. Finally we explore performance, protocol behavior, and the impact of several design factors.
+
+无线传感器网络需要高效可靠的重编程服务，以方便管理和维护任务的开展。本文首先构建一个框架，用于分析重编程中的不同功能，随后剖析重编程面临的挑战。
+研究内容展开
+对主流重编程系统进行全面综述，探讨应对这些挑战的不同方法。
+深入研究系统性能、协议行为以及多个设计因素带来的影响。
+
+---------------------------------------------------------------------------
+
+de2009energy
+Energy-efficient reprogramming of a swarm of mobile sensors
+
+Existing code update protocols for reprogramming nodes in a sensor network are either unsuitable or inefficient when used in a mobile environment. The prohibitive factor of uncertainty about a node's location due to their continuous movement coupled with the obvious constraint of a node's limited resources, pose daunting challenges to the design of an effective code dissemination protocol for mobile sensor networks. In this paper, we propose ReMo, an energy-efficient, multihop reprogramming protocol for mobile sensor networks. Without making any assumptions on the location of nodes, ReMo uses the LQI and RSSI measurements of received packets to estimate link qualities and relative distances with neighbors in order to select the best node for code exchange. The protocol is based on a probabilistic broadcast paradigm with the mobile nodes smoothly modifying their advertisement transmission rates based on the dynamic changes in network density, thereby saving valuable energy. Contrary to previous protocols, ReMo downloads pages regardless of their order, thus, exploiting the mobility of the nodes and facilitating a fast transfer of the code. Our simulation results show significant improvement in reprogramming time and number of message transmissions over other existing protocols under different settings of network mobility. Our implementation results of ReMo on a testbed of SunSPOTs also showcase its better performance than existing reprogramming protocols in terms of transfer time and number of message transmissions.
+
+现有传感器网络节点代码更新协议在移动环境中要么不适用，要么效率低下。节点持续移动带来的位置不确定性，加上节点资源有限的显著约束，给移动传感器网络高效代码分发协议的设计带来了巨大挑战。本文提出 ReMo 协议，这是一种适用于移动传感器网络的节能多跳重编程协议。
+ReMo 协议核心设计
+无需假设节点位置，通过接收数据包的链路质量指示（LQI）和接收信号强度指示（RSSI）测量，估计链路质量和与邻居节点的相对距离，从而选择最优代码交换节点。
+基于概率广播范式，移动节点根据网络密度的动态变化平滑调整广告传输速率，节省宝贵能源。
+打破以往协议的顺序下载模式，允许无序下载代码片段，充分利用节点移动性，加速代码传输。
+性能验证结果
+仿真结果表明，在不同网络移动性设置下，ReMo 协议在重编程时间和消息传输数量上，相比现有其他协议有显著提升。
+在 SunSPOTs 测试平台上的实现结果也显示，其在传输时间和消息传输数量方面，性能优于现有重编程协议。
+
+---------------------------------------------------------------------------
+
+varadharajan2018over
+Over-the-air updates for robotic swarms
+
+Along with the growing number of robotic devices introduced by automation and the Internet of Things has come the growth of interest in methods and tools for deploying code updates to active sensor arrays and swarms of robots. This article presents a toolset that can perform an over-the-air code update of the robots in a swarm while the swarm is active, without interrupting the swarm’s mission. Each update is generated as a patch of the currently deployed code. A consensus mechanism borrowed from swarm intelligence ensures that, at any given time, all robots in the swarm run the same code version. Simulations were conducted with thousands of units to study the scalability and bandwidth consumption of the update process. Real deployment experiments were then performed on a small swarm of commercial quadcopters. This article is part of a theme issue on release engineering.
+
+随着自动化和物联网带来的机器人设备数量不断增加，人们对向运行中的传感器阵列和机器人集群部署代码更新的方法与工具的关注度也在提升。本文提出一套工具集，可在集群运行期间对其中的机器人进行空中代码更新，且不中断集群的任务执行。
+工具集核心设计
+每次更新以当前部署代码的补丁形式生成，无需传输完整代码镜像。
+借鉴集群智能的共识机制，确保在任意时刻，集群内所有机器人运行相同版本的代码。
+性能测试与验证
+通过数千台设备的仿真实验，研究更新过程的可扩展性和带宽消耗情况。
+在小型商用四旋翼集群上进行实际部署实验，验证工具集的实用性。
+本文属于 “发布工程” 主题专辑的一部分。
+
+---------------------------------------------------------------------------
+
+venkata2023kt
+KT-BT: A framework for knowledge transfer through behavior trees in multirobot systems
+
+Multirobot and multiagent systems demonstrate collective (swarm) intelligence through systematic and distributed integration of local behaviors in a group. Agents sharing knowledge about the mission and environment can enhance performance at individual and mission levels. However, this is difficult to achieve, partly due to the lack of a generic framework for transferring part of the known knowledge (behaviors) between agents. This article presents a new knowledge representation framework and a transfer strategy called KT-BT: knowledge transfer through behavior trees. The KT-BT framework follows a query-response-update mechanism through an online behavior tree framework, where agents broadcast queries for unknown conditions and respond with appropriate knowledge using a condition-action-control subflow. We embed a novel grammar structure called stringBT that encodes knowledge, enabling behavior sharing. We theoretically investigate the properties of the KT-BT framework in achieving homogeneity of high knowledge across the entire group compared to a heterogeneous system without the capability of sharing their knowledge. We extensively verify our framework in a simulated multirobot search and rescue problem. The results show successful knowledge transfers and improved group performance in various scenarios. We further study the effects of opportunities and communication range on group performance, knowledge spread, and functional heterogeneity in a group of agents, presenting interesting insights.
+
+多机器人和多智能体系统通过群体中局部行为的系统化、分布式整合，展现出集体（集群）智能。共享任务和环境知识的智能体，能提升个体和任务层面的性能。但这一目标难以实现，部分原因是缺乏在智能体间传递已知知识（行为）的通用框架。本文提出一种新的知识表示框架及迁移策略 KT-BT（基于行为树的知识迁移）。
+KT-BT 框架核心设计
+遵循在线行为树框架的 “查询 - 响应 - 更新” 机制，智能体广播对未知条件的查询，并通过 “条件 - 动作 - 控制” 子流程反馈相应知识。
+嵌入名为 stringBT 的新型语法结构，用于编码知识，实现行为共享。
+理论分析与实验验证
+从理论上分析 KT-BT 框架的特性，对比无知识共享能力的异构系统，验证其能否使整个群体达到高知识同质性。
+在模拟多机器人搜救问题中广泛验证框架，结果显示在多种场景下实现了成功的知识迁移，提升了群体性能。
+进一步研究机会窗口和通信范围对智能体群体性能、知识传播及功能异质性的影响，得出了具有参考价值的见解。
+
+---------------------------------------------------------------------------
+
+khaluf2019neglected
+The neglected pieces of designing collective decision-making processes
+
+Autonomous decision-making is a fundamental requirement for the intelligent behavior of individual agents and systems. For artificial systems, one of the key design prerequisites is providing the system with the ability to make proper decisions. Current literature on collective artificial systems designs decision-making mechanisms inspired mostly by the successful natural systems. Nevertheless, most of the approaches focus on voting mechanisms and miss other fundamental aspects. In this paper, we aim to draw attention to the missed pieces for the design of efficient collective decision-making, mainly information processes in its two types of stimuli and options set.
+
+自主决策是个体智能体和系统展现智能行为的基本要求。对于人工系统而言，关键设计前提之一是赋予系统做出恰当决策的能力。当前集体人工系统相关文献中，决策机制的设计大多受成功的自然系统启发。
+现有研究局限与本文核心关注
+然而，多数方法聚焦于投票机制，忽略了其他基础层面。
+本文旨在引起研究者对高效集体决策设计中缺失部分的关注，主要是两种类型（刺激相关和选项集相关）的信息处理过程。
+
+---------------------------------------------------------------------------
+
+valentini2017best
+The best-of-n problem in robot swarms: Formalization, state of the art, and novel perspectives
+
+The ability to collectively choose the best among a finite set of alternatives is a fundamental cognitive skill for robot swarms. In this paper, we propose a formal definition of the best-of-n problem and a taxonomy that details its possible variants. Based on this taxonomy, we analyze the swarm robotics literature focusing on the decision-making problem dealt with by the swarm. We find that, so far, the literature has primarily focused on certain variants of the best-of-n problem, while other variants have been the subject of only a few isolated studies. Additionally, we consider a second taxonomy about the design methodologies used to develop collective decision-making strategies. Based on this second taxonomy, we provide an in-depth survey of the literature that details the strategies proposed so far and discusses the advantages and disadvantages of current design methodologies.
+
+机器人集群在有限备选方案集中集体选出最优项的能力，是其核心认知技能之一。本文提出 “n 选优” 问题的正式定义，并构建分类体系详细阐述其可能的变体类型。
+基于分类体系的文献分析
+“n 选优” 问题变体分析：依据该分类体系，分析聚焦集群决策问题的集群机器人学文献。研究发现，现有文献主要关注 “n 选优” 问题的部分变体，而其他变体仅存在少量孤立研究。
+设计方法学分类分析：构建第二类分类体系，针对集体决策策略的开发设计方法学进行分类。基于此，对现有文献展开深入综述，详细梳理已提出的策略，并探讨当前设计方法学的优缺点。
+
+---------------------------------------------------------------------------
+
+dorigo2014self
+Self-Organized Collective Decision Making: The Weighted Voter Model
+
+Collective decision making in self-organized systems is challenging because it relies on local perception and local communication. Globally defined qualities such as consensus time and decision accuracy are both difficult to predict and difficult to guarantee. We present the weighted voter model which implements a self-organized collective decision making process. We provide an ODE model, a master equation model (numerically solved by the Gillespie algorithm), and agent-based simulations of the proposed decision-making strategy. This set of models enables us to investigate the system behavior in the thermodynamic limit and to investigate finite-size effects due to random fluctuations. Based on our results, we give minimum requirements to guarantee consensus on the optimal decision, a minimum swarm size to guarantee a certain accuracy, and we show that the proposed approach scales with system size and is robust to noise.
+
+自组织系统中的集体决策极具挑战性，因为它依赖局部感知和局部通信。共识时间、决策精度等全局定义的指标既难以预测，也难以保证。本文提出加权投票者模型，用于实现自组织集体决策过程。
+模型构建与分析
+构建常微分方程（ODE）模型、主方程模型（通过吉莱斯皮算法数值求解）以及基于智能体的仿真模型，用于验证所提决策策略。
+借助这套模型，研究系统在热力学极限下的行为，以及随机波动导致的有限尺寸效应。
+核心研究结果
+明确保证最优决策共识的最低要求，以及保证特定精度所需的最小集群规模。
+验证所提方法具有系统规模扩展性，且对噪声具有鲁棒性。
+
+---------------------------------------------------------------------------
+
+yan2013survey
+A survey and analysis of multi-robot coordination
+
+In the field of mobile robotics, the study of multi-robot systems (MRSs) has grown significantly in size and importance in recent years. Having made great progress in the development of the basic problems concerning single-robot control, many researchers shifted their focus to the study of multi-robot coordination. This paper presents a systematic survey and analysis of the existing literature on coordination, especially in multiple mobile robot systems (MMRSs). A series of related problems have been reviewed, which include a communication mechanism, a planning strategy and a decision-making structure. A brief conclusion and further research perspectives are given at the end of the paper.
+
+近年来，在移动机器人领域，多机器人系统（MRSs）的研究在规模和重要性上均显著增长。随着单机器人控制相关基础问题的研究取得重大进展，许多研究者将焦点转向了多机器人协调研究。本文对现有协调相关文献（尤其是多移动机器人系统（MMRSs）领域）进行了系统综述与分析。
+综述核心内容
+梳理了一系列相关问题，包括通信机制、规划策略和决策结构。
+文末给出简要结论，并提出未来的研究方向。
+
+---------------------------------------------------------------------------
+
+sun2017multi
+Multi-sensor distributed fusion estimation with applications in networked systems: A review paper
+
+In this paper, the advances of distributed fusion estimation (DFE) algorithms for multi-sensor networked systems (NSs) are reviewed. First, several general DFE algorithms are reviewed. Then, some random phenomena in NSs are discussed, including data quantization, random transmission delays, packet dropouts, fading measurements and communication disturbances. Finally, the advances of DFE algorithms for NSs are summarized.
+
+本文综述了多传感器网络化系统（NSs）的分布式融合估计算法（DFE）研究进展。
+综述核心框架
+首先梳理几种通用的分布式融合估计算法。
+随后探讨网络化系统中存在的各类随机现象，包括数据量化、随机传输延迟、数据包丢失、观测衰落和通信干扰。
+最后总结网络化系统分布式融合估计算法的研究进展。
+
+---------------------------------------------------------------------------
+
+rizk2019cooperative
+Cooperative heterogeneous multi-robot systems: A survey
+
+The emergence of the Internet of things and the widespread deployment of diverse computing systems have led to the formation of heterogeneous multi-agent systems (MAS) to complete a variety of tasks. Motivated to highlight the state of the art on existing MAS while identifying their limitations, remaining challenges, and possible future directions, we survey recent contributions to the field. We focus on robot agents and emphasize the challenges of MAS sub-fields including task decomposition, coalition formation, task allocation, perception, and multi-agent planning and control. While some components have seen more advancements than others, more research is required before effective autonomous MAS can be deployed in real smart city settings that are less restrictive than the assumed validation environments of MAS. Specifically, more autonomous end-to-end solutions need to be experimentally tested and developed while incorporating natural language ontology and dictionaries to automate complex task decomposition and leveraging big data advancements to improve perception algorithms for robotics.
+
+物联网的兴起和各类计算系统的广泛部署，催生了异构多智能体系统（MAS）的形成，以完成多样化任务。为梳理现有 MAS 的研究现状，明确其局限性、遗留挑战及潜在未来方向，本文对该领域的近期研究成果进行了综述。
+综述核心聚焦
+重点关注机器人智能体，深入探讨 MAS 子领域的挑战，包括任务分解、联盟形成、任务分配、感知以及多智能体规划与控制。
+指出尽管部分组件的研究进展更为显著，但要在真实智慧城市场景中部署高效自主的 MAS，仍需开展更多研究 —— 这些真实场景比 MAS 的假设验证环境约束更少。
+关键研究建议
+明确提出，需通过实验测试和开发更多自主端到端解决方案，同时融入自然语言本体和词典以实现复杂任务分解的自动化，并借助大数据技术的进步改进机器人感知算法。
+
+---------------------------------------------------------------------------
+
+li2021multi
+Multi-sensor image fusion: A survey of the state of the art
+
+Image fusion has been developing into an important area of research. In remote sensing, the use of the same image sensor in different working modes, or different image sensors, can provide reinforcing or complementary information. Therefore, it is highly valuable to fuse outputs from multiple sensors (or the same sensor in different working modes) to improve the overall performance of the remote images, which are very useful for human visual perception and image processing task. Accordingly, in this paper, we first provide a comprehensive survey of the state of the art of multi-sensor image fusion methods in terms of three aspects: pixel-level fusion, feature-level fusion and decision-level fusion. An overview of existing fusion strategies is then introduced, after which the existing fusion quality measures are summarized. Finally, this review analyzes the development trends in fusion algorithms that may attract researchers to further explore the research in this field.
+
+图像融合已发展成为一个重要的研究领域。在遥感领域，同一图像传感器在不同工作模式下，或不同图像传感器，可提供互补或增强的信息。因此，融合多个传感器（或同一传感器不同工作模式）的输出以提升遥感图像的整体性能具有重要价值，这对人类视觉感知和图像处理任务十分有用。
+综述核心框架
+从像素级融合、特征级融合和决策级融合三个方面，全面综述多传感器图像融合方法的研究现状。
+介绍现有融合策略的概况，随后总结当前的融合质量评价指标。
+分析融合算法的发展趋势，为研究者进一步探索该领域提供方向。
+
+---------------------------------------------------------------------------
+
+ebert2018multi
+Multi-feature collective decision making in robot swarms
+
+Collective decision making has been studied extensively in the fields of multi-agent systems and swarm robotics, inspired by its pervasiveness in biological systems such as honeybee and ant colonies. However, most previous research has focused on collective decision making on a single feature. In this work, we introduce and investigate the multi-feature collective decision making problem, where a collective must decide on multiple binary features simultaneously, given no a priori information about their relative difficulties. Each agent may only estimate one feature at any given time, but the agents can locally communicate their noisy estimates to arrive at a decision. We demonstrate a decentralized algorithm for singlefeature decision making and a dynamic task allocation strategy that allows the agents to lock in decisions on multiple features in finite time. We validate our approach using simulated and physical Kilobot robots. Our results show that a collective can correctly classify a multi-feature environment, even if presented with pathological initial agent-to-feature allocations.
+
+受蜜蜂、蚁群等生物系统中普遍存在的集体决策现象启发，多智能体系统和集群机器人领域已对该主题展开广泛研究。但以往多数研究聚焦于单一特征的集体决策，本文引入并探讨多特征集体决策问题 —— 在未知各特征相对难度的先验信息下，集体需同时对多个二元特征做出决策。
+核心设计与策略
+每个智能体在任意时刻仅能估计一个特征，但可通过局部通信共享含噪声的估计结果，进而达成集体决策。
+提出去中心化单特征决策算法，以及动态任务分配策略，确保智能体在有限时间内锁定多个特征的决策结果。
+验证与结果
+通过仿真实验和 Kilobot 物理机器人验证所提方法的有效性。
+结果表明，即便初始智能体与特征的分配存在极端不合理情况，集体仍能正确分类多特征环境。
+
+---------------------------------------------------------------------------
+
+bartashevich2019benchmarking
+Benchmarking collective perception: New task difficulty metrics for collective decision-making
+
+This paper presents nine different visual patterns for a Collective Perception scenario as new benchmark problems, which can be used for the future development of more efficient collective decision-making strategies. The experiments using isomorphism and three of the well-studied collective decision-making mechanisms are conducted to validate the performance of the new scenarios. The results on a diverse set of problems show that the real task difficulty lies not only in the quantity ratio of the features in the environment but also in their distributions and the clustering levels. Given this, two new metrics for the difficulty of the task are additionally proposed and evaluated on the provided set of benchmarks.
+
+本文提出 9 种不同的集体感知场景视觉模式作为新基准问题，可用于未来开发更高效的集体决策策略。
+实验设计与验证
+采用同构性分析和 3 种已被深入研究的集体决策机制开展实验，验证新场景的性能。
+多组问题的实验结果表明，实际任务难度不仅取决于环境中特征的数量比例，还与特征的分布情况和聚类程度相关。
+新指标提出与评估
+基于实验发现，额外提出两种新的任务难度评估指标，并在提供的基准问题集中进行评估验证。
+
+---------------------------------------------------------------------------
+
+shan2021discrete
+Discrete collective estimation in swarm robotics with distributed Bayesian belief sharing
+
+Multi-option collective decision-making is a challenging task in the context of swarm intelligence. In this paper, we extend the problem of collective perception from simple binary decision-making of choosing the color in majority to estimating the most likely fill ratio from a series of discrete fill ratio hypotheses. We have applied direct comparison (DC) and direct modulation of voter-based decisions (DMVD) to this scenario to observe their performances in a discrete collective estimation problem. We have also compared their performances against an Individual Exploration baseline. Additionally, we propose a novel collective decision-making strategy called distributed Bayesian belief sharing (DBBS) and apply it to the above discrete collective estimation problem. In the experiments, we explore the performances of considered collective decision-making algorithms in various parameter settings to determine the trade-off among accuracy, speed, message transfer and reliability in the decision-making process. Our results show that both DC and DMVD outperform the Individual Exploration baseline, but both algorithms exhibit different trade-offs with respect to accuracy and decision speed. On the other hand, DBBS exceeds the performances of all other considered algorithms in all four metrics, at the cost of higher communication complexity.
+
+多选项集体决策是集群智能领域的一项挑战性任务。本文将集体感知问题从 “选择多数派颜色” 的简单二元决策，拓展为从一系列离散填充率假设中估计最可能填充率的问题。
+算法应用与对比设计
+将直接比较法（DC）和投票决策直接调制法（DMVD）应用于该场景，观察它们在离散集体估计问题中的性能。
+将上述两种算法的性能与 “个体探索” 基准方法进行对比，同时提出一种新型集体决策策略 —— 分布式贝叶斯信念共享（DBBS），并将其应用于上述离散集体估计问题。
+实验分析与结果
+在实验中，通过不同参数设置探究所考虑集体决策算法的性能，明确决策过程中准确性、速度、消息传输量和可靠性之间的权衡关系。
+结果显示，DC 和 DMVD 均优于 “个体探索” 基准方法，但两种算法在准确性和决策速度上呈现出不同的权衡特性；而 DBBS 在四个指标上均超越其他所有被考虑的算法，代价是更高的通信复杂度。
+
+---------------------------------------------------------------------------
+
