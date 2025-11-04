@@ -1729,3 +1729,482 @@ The swarm intelligence literature frequently asserts that swarms exhibit high le
 本文通过故障模式与影响分析（FMEA）和可靠性建模，探索机器人集群的容错性。以无线连接机器人集群为案例展开研究，结合仿真实验和真实机器人实验室实验进行验证。
 
 -------------------------------------------------------------------------
+
+strobel2018managing
+Managing byzantine robots via blockchain technology in a swarm robotics collective decision making scenario
+
+While swarm robotics systems are often claimed to be highly fault-tolerant, so far research has limited its attention to safe laboratory settings and has virtually ignored security issues in the presence of Byzantine robots—i.e., robots with arbitrarily faulty or malicious behavior. However, in many applications one or more Byzantine robots may suffice to let current swarm coordination mechanisms fail with unpredictable or disastrous outcomes. In this paper, we provide a proof-of-concept for managing security issues in swarm robotics systems via blockchain technology. Our approach uses decentralized programs executed via blockchain technology (blockchain-based smart contracts) to establish secure swarm coordination mechanisms and to identify and exclude Byzantine swarm members. We studied the performance of our blockchain-based approach in a collective decision-making scenario both in the presence and absence of Byzantine robots and compared our results to those obtained with an existing collective decision approach. The results show a clear advantage of the blockchain approach when Byzantine robots are part of the swarm.
+
+尽管集群机器人系统常被宣称具有高容错性，但目前研究多局限于安全的实验室环境，几乎忽略了存在拜占庭机器人时的安全问题 —— 拜占庭机器人即行为任意故障或恶意的机器人。然而在许多应用中，哪怕存在一个或多个拜占庭机器人，都可能导致现有集群协调机制失效，引发不可预测或灾难性后果。
+区块链驱动的集群安全方案
+本文提出一种基于区块链技术管理集群机器人系统安全问题的概念验证方案。该方案利用区块链技术执行的去中心化程序（区块链智能合约），建立安全的集群协调机制，并识别和排除拜占庭集群成员。
+性能验证与对比
+在存在和不存在拜占庭机器人的集体决策场景中，研究了该区块链方案的性能，并与现有集体决策方法的结果进行对比。结果表明，当集群中存在拜占庭机器人时，区块链方案具有明显优势。
+
+-------------------------------------------------------------------------
+
+pini2011task
+Task partitioning in swarms of robots: reducing performance losses due to interference at shared resources
+
+The performance of large groups of robots is often limited by a commonly shared resource. This effect, termed interference, can have a large impact on robotic swarms. This article studies the issue of interference in a swarm of robots working on a harvesting task. The environment of the robots is spatially constrained, i.e., there is a commonly shared resource, the nest, which limits the group’s performance when used without any arbitration mechanism. The article studies the use of task partitioning for reducing concurrent accesses to the resource, and therefore limiting the impact of interference on the group’s performance. In our study, we spatially partition the environment into two subparts, thereby partitioning the corresponding harvesting task as well. We employ a simple method to allocate individuals to the partitions. The approach is empirically studied both in an environment with a narrow nest area and an environment without this constraint. The results of the task partitioning strategy are analyzed and compared to the case in which task partitioning is not employed.
+
+大规模机器人集群的性能常受共享资源限制，这种被称为 “干扰” 的效应会对机器人集群产生显著影响。本文研究机器人集群执行采集任务时的干扰问题，机器人所处环境存在空间约束 —— 即存在一个共享资源（巢穴），若缺乏仲裁机制，该资源会限制集群性能。
+任务分区策略设计
+本文探索通过任务分区减少对共享资源的并发访问，进而降低干扰对集群性能的影响。研究中，将环境在空间上划分为两个子区域，对应拆分采集任务，并采用简单方法为各区域分配机器人个体。
+实验验证与对比分析
+在巢穴区域狭窄和无此约束的两种环境中，通过实证研究该策略。分析任务分区策略的效果，并与未采用任务分区的情况进行对比。
+
+-------------------------------------------------------------------------
+
+o2023predictive
+Predictive Fault Tolerance for Autonomous Robot Swarms
+
+Active fault tolerance is essential for robot swarms to retain long-term autonomy. Previous work on swarm fault tolerance focuses on reacting to electro-mechanical faults that are spontaneously injected into robot sensors and actuators. Resolving faults once they have manifested as failures is an inefficient approach, and there are some safety-critical scenarios in which any kind of robot failure is unacceptable. We propose a predictive approach to fault tolerance, based on the principle of preemptive maintenance, in which potential faults are autonomously detected and resolved before they manifest as failures. Our approach is shown to improve swarm performance and prevent robot failure in the cases tested.
+
+主动容错是机器人集群维持长期自主性的关键。以往集群容错研究聚焦于应对机器人传感器和执行器中自发出现的机电故障，但故障显现为失效后再进行解决的方式效率低下，且在部分安全关键场景中，任何形式的机器人失效都是不可接受的。
+预测性容错策略
+本文提出一种基于预防性维护原理的预测性容错方法，能够自主检测潜在故障，并在其演变为失效前进行解决。
+策略效果验证
+测试结果表明，该方法在实验场景中提升了集群性能，并有效预防了机器人失效。
+
+-------------------------------------------------------------------------
+
+oladiran2019fault
+Fault recovery in swarm robotics systems using learning algorithms
+
+When faults occur in swarm robotic systems they can have a detrimental effect on collective behaviours, to the point that failed individuals may jeopardise the swarm's ability to complete its task. Although fault tolerance is a desirable property of swarm robotic systems, fault recovery mechanisms have not yet been thoroughly explored. Individual robots may suffer a variety of faults, which will affect collective behaviours in different ways, therefore a recovery process is required that can cope with many different failure scenarios. In this thesis, we propose a novel approach for fault recovery in robot swarms that uses Reinforcement Learning and Self-Organising Maps to select the most appropriate recovery strategy for any given scenario. The learning process is evaluated in both centralised and distributed settings. Additionally, we experimentally evaluate the performance of this approach in comparison to random selection of fault recovery strategies, using simulated collective phototaxis, aggregation and foraging tasks as case studies. Our results show that this machine learning approach outperforms random selection, and allows swarm robotic systems to recover from faults that would otherwise prevent the swarm from completing its mission. This work builds upon existing research in fault detection and diagnosis in robot swarms, with the aim of creating a fully fault-tolerant swarm capable of long-term autonomy.
+
+集群机器人系统发生故障时，会对集体行为产生不利影响，严重时故障个体可能危及集群完成任务的能力。尽管容错性是集群机器人系统的理想特性，但故障恢复机制尚未得到深入研究。单个机器人可能出现多种故障，且这些故障会以不同方式影响集体行为，因此需要一种能应对多种故障场景的恢复流程。
+故障恢复策略设计
+本文提出一种新型集群机器人故障恢复方法，结合强化学习和自组织映射，为不同故障场景选择最合适的恢复策略。分别在集中式和分布式设置下评估学习过程。
+实验验证与对比
+以仿真的集体趋光性、聚集和觅食任务为案例，通过实验评估该方法的性能，并与随机选择故障恢复策略的方式进行对比。结果表明，这种机器学习方法性能优于随机选择，能使集群机器人系统从原本会导致任务失败的故障中恢复。
+研究意义
+该研究基于现有集群机器人故障检测与诊断研究，旨在构建具备长期自主性的全容错集群系统。
+
+-------------------------------------------------------------------------
+
+tarapore2019fault
+Fault detection in a swarm of physical robots based on behavioral outlier detection
+
+The ability to reliably detect faults is essential in many real-world tasks that robot swarms have the potential to perform. Most studies on fault detection in swarm robotics have been conducted exclusively in simulation, and they have focused on a single type of fault or a specific task. In a series of previous studies, we have developed a robust fault-detection approach in which robots in a swarm learn to distinguish between normal and faulty behaviors online. In this paper, we assess the performance of our fault-detection approach on a swarm of seven physical mobile robots. We experiment with three classic swarm robotics tasks and consider several types of faults in both sensors and actuators. Experimental results show that the robots are able to reliably detect the presence of hardware faults in one another even when the swarm behavior is changed during operation. This paper is thus an important step toward making robot swarms sufficiently reliable and dependable for real-world applications.
+
+可靠的故障检测能力，对于集群机器人有望执行的众多实际任务至关重要。大多数集群机器人故障检测研究仅在仿真环境中开展，且聚焦于单一类型故障或特定任务。在先前的一系列研究中，我们已开发出一种稳健的故障检测方法，让集群中的机器人能够在线学习区分正常与故障行为。
+物理机器人实验设计
+本文在由 7 台实体移动机器人组成的集群上，评估该故障检测方法的性能。实验涵盖三项经典集群机器人任务，并考虑传感器和执行器的多种故障类型。
+实验结果与研究意义
+实验结果表明，即使集群行为在运行过程中发生变化，机器人仍能可靠检测彼此的硬件故障。该研究为推动集群机器人达到实际应用所需的可靠性水平，迈出了重要一步。
+
+-------------------------------------------------------------------------
+
+khaldi2017monitoring
+Monitoring a robot swarm using a data-driven fault detection approach
+
+Using swarm robotics system, with one or more faulty robots, to accomplish specific tasks may lead to degradation in performances complying with the target requirements. In such circumstances, robot swarms require continuous monitoring to detect abnormal events and to sustain normal operations. In this paper, an innovative exogenous fault detection method for monitoring robots swarm is presented. The method merges the flexibility of principal component analysis (PCA) models and the greater sensitivity of the exponentially-weighted moving average (EWMA) and cumulative sum (CUSUM) control charts to insidious changes. The method is tested and evaluated on a swarm of simulated foot-bot robots performing a circle formation task, via the viscoelastic control model. We illustrate through simulated data collected from the ARGoS simulator that a significant improvement in fault detection can be obtained by using the proposed method where compared to the conventional PCA-based methods (i.e., 
+ and 
+).
+
+使用存在一台或多台故障机器人的集群机器人系统执行特定任务，可能导致性能下降，无法满足目标要求。这种情况下，集群机器人需要持续监控以检测异常事件，维持正常运行。
+外源性故障检测方法设计
+本文提出一种创新的集群机器人外源性故障检测方法，融合主成分分析（PCA）模型的灵活性，以及指数加权移动平均（EWMA）和累积和（CUSUM）控制图对潜在变化的高敏感性。
+仿真验证与性能对比
+基于黏弹性控制模型，在执行圆形编队任务的仿真足部机器人集群上测试并评估该方法。通过 ARGoS 仿真器采集的仿真数据表明，与传统基于 PCA 的方法（即和）相比，该方法能显著提升故障检测效果。
+
+-------------------------------------------------------------------------
+
+khadidos2015exogenous
+Exogenous fault detection and recovery for swarm robotics
+
+A robotic swarm needs to maintain continuous operation even in the event of failure of one or more individual robots. Even with a small number of faulty robots, the time for achieving the task will be significantly increased. If the behaviors of biological systems are considered, a number of approaches based on communication, to detect damaged or injured cells or insects can be identified. In this research the transmission of position data between robots has been used as the main method of fault location. The transmission of this data permits members of a robotic swarm to identify and subsequently isolate a faulty robot, either in its drive train or position measurement system. This paper discusses the approach used and presents simulation results.
+
+机器人集群即使在一台或多台个体机器人发生故障时，仍需维持持续运行。即便只有少量故障机器人，任务完成时间也会显著增加。借鉴生物系统的行为机制，可发现多种基于通信来检测受损细胞或昆虫的方法。
+基于位置数据传输的故障定位方法
+本研究将机器人间的位置数据传输作为故障定位的主要方式。通过传输位置数据，集群机器人成员能够识别出驱动系统或位置测量系统存在故障的机器人，并随后将其隔离。
+方法探讨与仿真结果
+本文详细阐述了所采用的方法，并呈现了相关仿真结果。
+
+-------------------------------------------------------------------------
+
+millard2016exogenous
+Exogenous fault detection in swarm robotic systems
+
+Swarm robotic systems comprise many individual robots, and exhibit a degree of innate fault tolerance due to this built-in redundancy. They are robust in the sense that the complete failure of individual robots will have little detrimental effect on a swarm's overall collective behaviour. However, it has recently been shown that partially failed individuals may be harmful, and cause problems that cannot be solved by simply adding more robots to the swarm. Instead, an active approach to dealing with failed individuals is required for a swarm to continue operation in the face of partial failures. This thesis presents a novel method of exogenous fault detection that allows robots to detect the presence of faults in each other, via the comparison of expected and observed behaviour. Each robot predicts the expected behaviour of its neighbours by simulating them online in an internal replica of the real world. This expected behaviour is then compared against observations of their true behaviour, and any significant discrepancy is detected as a fault. This work represents the first step towards a distributed fault detection, diagnosis, and recovery process that would afford robot swarms a high degree of fault tolerance, and facilitate long-term autonomy.
+
+集群机器人系统由大量个体机器人组成，凭借内置的冗余特性，具备一定程度的固有容错能力。从个体机器人完全失效对集群整体集体行为影响较小这一角度来说，它们具有鲁棒性。然而，近期研究表明，部分故障个体可能具有危害性，其引发的问题无法通过简单增加机器人数量来解决。相反，面对部分故障，集群需要采用主动应对故障个体的方法，才能维持持续运行。
+外源性故障检测方法设计
+本文提出一种新型外源性故障检测方法，通过对比期望行为与观测行为，让机器人能够相互检测故障。每个机器人通过在内部真实世界副本中在线仿真邻居机器人，预测其期望行为。随后将该期望行为与观测到的真实行为进行对比，任何显著差异都会被判定为故障。
+研究意义
+该研究为构建分布式故障检测、诊断与恢复流程迈出了第一步，有望使集群机器人具备高水平容错能力，为实现长期自主性提供支持。
+
+-------------------------------------------------------------------------
+
+millard2013towards
+Towards exogenous fault detection in swarm robotic systems
+
+It has long been assumed that swarm systems are robust, in the sense that the failure of individual robots will have little detrimental effect on a swarm’s overall collective behaviour. However, Bjerknes and Winfield [1] have recently shown that this is not always the case, particularly in the event of partial failures (such as motor failure). The reliability modelling in [1] shows that overall system reliability rapidly decreases with swarm size, therefore this is a problem that cannot simply be solved by adding more robots to the swarm. Instead, future large-scale swarm systems will need an active approach to dealing with failed individuals if they are to achieve a high level of fault tolerance.
+
+长期以来，人们普遍认为集群系统具有鲁棒性，即个体机器人失效对集群整体集体行为的不利影响较小。然而，Bjerknes 和 Winfield 近期的研究 [1] 表明，情况并非总是如此，尤其是在出现部分故障（如电机故障）时。
+可靠性建模结论
+文献 [1] 中的可靠性建模结果显示，随着集群规模增大，系统整体可靠性会迅速下降。因此，这一问题无法通过简单增加机器人数量来解决。
+未来集群系统的容错需求
+相反，未来大规模集群系统若要实现高水平容错能力，需要采用主动应对故障个体的方法。
+
+-------------------------------------------------------------------------
+
+christensen2009fireflies
+From fireflies to fault-tolerant swarms of robots
+
+One of the essential benefits of swarm robotic systems is redundancy. In case one robot breaks down, another robot can take steps to repair the failed robot or take over the failed robot's task. Although fault tolerance and robustness to individual failures have often been central arguments in favor of swarm robotic systems, few studies have been dedicated to the subject. In this paper, we take inspiration from the synchronized flashing behavior observed in some species of fireflies. We derive a completely decentralized algorithm to detect non-operational robots in a swarm robotic system. Each robot flashes by lighting up its on-board light-emitting diodes (LEDs), and neighboring robots are driven to flash in synchrony. Since robots that are suffering catastrophic failures do not flash periodically, they can be detected by operational robots. We explore the performance of the proposed algorithm both on a real-world swarm robotic system and in simulation. We show that failed robots are detected correctly and in a timely manner, and we show that a system composed of robots with simulated self-repair capabilities can survive relatively high failure rates.
+
+集群机器人系统的核心优势之一是冗余性：若一台机器人发生故障，另一台机器人可采取措施修复故障机器人或接管其任务。尽管对个体故障的容错性和鲁棒性常被视为支持集群机器人系统的核心论据，但相关研究却较少。
+萤火虫启发的故障检测算法
+本文借鉴部分萤火虫物种的同步闪光行为，提出一种完全分散式算法，用于检测集群机器人系统中的失效机器人。每台机器人通过点亮车载发光二极管（LED）实现 “闪光”，邻近机器人会被驱动同步闪光。由于发生严重故障的机器人无法周期性闪光，正常运行的机器人可据此检测到它们。
+实验验证与性能表现
+在真实集群机器人系统和仿真环境中，均对该算法的性能进行了测试。结果表明，故障机器人能被准确、及时地检测到；由具备仿真自修复能力的机器人组成的系统，可在较高故障率下维持运行。
+
+-------------------------------------------------------------------------
+
+varadharajan2020swarm
+Swarm relays: Distributed self-healing ground-and-air connectivity chains
+
+The coordination of robot swarms – large decentralized teams of robots – generally relies on robust and efficient inter-robot communication. Maintaining communication between robots is particularly challenging in field deployments where robot motion, unstructured environments, limited computational resources, low bandwidth, and robot failures add to the complexity of the problem. In this paper we propose a novel lightweight algorithm that lets a heterogeneous group of robots navigate to a target in complex 3D environments while maintaining connectivity with a ground station by building a chain of robots. The fully decentralized algorithm is robust to robot failures, can heal broken communication links, and exploits heterogeneous swarms: when a target is unreachable by ground robots, the chain is extended with flying robots. We test the performance of our algorithm using up to 100 robots in a physics-based simulator with three mazes and several robot failure scenarios. We then validate the algorithm with physical platforms: 7 wheeled robots and 6 flying ones, in homogeneous and heterogeneous scenarios in the lab and on the field.
+
+机器人集群（大规模分散式机器人团队）的协调通常依赖稳健高效的机器人间通信。在野外部署场景中，机器人移动、非结构化环境、有限的计算资源、低带宽以及机器人故障等因素会增加通信维持的复杂性，使其更具挑战性。
+轻量级连通导航算法设计
+本文提出一种新型轻量级算法，让异构机器人团队在复杂 3D 环境中导航至目标点，同时通过构建机器人链与地面站保持连通。该算法完全分散，对机器人故障具有鲁棒性，能够修复断裂的通信链路，并充分利用异构集群优势：当地面机器人无法抵达目标时，会通过飞行机器人延伸机器人链。
+仿真与实物验证
+在基于物理的仿真环境中，使用多达 100 台机器人，结合三个迷宫场景和多种机器人故障场景，测试了算法性能。随后在实验室和野外的同构与异构场景中，通过 7 台轮式机器人和 6 台飞行机器人组成的实物平台，对算法进行了验证。
+
+-------------------------------------------------------------------------
+
+edition2000authoritative
+The authoritative dictionary of ieee standards terms
+
+The terms defined in the Dictionary are listed in letter-by-letter alphabetical order. Spaces are ignored in this style of alphabetization, so cable value will come before cab signal. Descriptive categories associated with the term in earlier editions of the Dictionary will follow the term in parentheses. New categories appear after the definitions (see Categories, below), followed by the designation of the standard or standards that include the definition. If a standard designation is followed by the letter s, it means that edition of the standard was superseded by a newer revision and the term was not included in the revision. If a designation is followed by the letter w, it means that edition of the standard was withdrawn and not replaced by a revision. A bracketed number refers to the non-IEEE standard sources given in the back of the book.Abstracts of the current set of approved IEEE standards are provided in the back of the book. It should be noted that updated information about IEEE standards can be obtained at any time from the IEEE Standards World Wide Web site at http://standards.ieee.org/.
+
+《词典》中定义的术语按字母顺序逐字母排列。这种排序方式忽略空格，因此 “cable value” 会排在 “cab signal” 之前。
+术语相关信息标注规则
+早期版本《词典》中与术语关联的描述性类别，会紧随术语置于括号内。
+新类别列在定义之后（见下文 “类别说明”），其后标注包含该定义的一项或多项标准编号。
+若标准编号后带有字母 “s”，表示该版本标准已被更新修订版取代，且修订版中未收录该术语。
+若标准编号后带有字母 “w”，表示该版本标准已被撤销，且未发布修订版替代。
+方括号中的数字指向书末列出的非 IEEE 标准来源。
+补充信息说明
+书末提供当前已批准的 IEEE 标准摘要。需注意，可随时通过 IEEE 标准官方网站（http://standards.ieee.org/）获取 IEEE 标准的最新信息。
+
+-------------------------------------------------------------------------
+
+zhou2019review
+Review on diagnosis techniques for intermittent faults in dynamic systems
+
+In the past decades, with the rapid development of modern technologies, a special kind of fault, the intermittent fault (IF) has become a serious threat to system securities. Although fruitful research results have been obtained for fault diagnosis, most of them are concerned with permanent faults. Furthermore, up to now, there has been no overview on the diagnosis techniques for IFs in dynamic systems. In fact, IFs are common in a variety of fields, whereas their research is far from mature and many open issues still remain to be solved. Therefore, in this overview, our main objective is to attract direct attentions from more researchers and engineers into the fascinating area of IF diagnosis. In this paper, the concept, research background, challenges and research motivations of IFs are introduced. Then, current research into diagnostics of IFs is reviewed, along with discussions on their strengths, limitations, and future directions.
+
+过去几十年，随着现代技术的快速发展，一种特殊的故障 —— 间歇性故障（IF）已成为威胁系统安全的严重隐患。尽管故障诊断领域已取得丰硕研究成果，但多数聚焦于永久性故障。此外，迄今为止，尚未有关于动态系统中间歇性故障诊断技术的综述文献。
+间歇性故障研究现状与综述目的
+间歇性故障在多个领域普遍存在，但其研究尚不成熟，仍有诸多开放问题亟待解决。因此，本文综述的核心目标是吸引更多科研人员和工程师关注这一极具研究价值的间歇性故障诊断领域。
+综述核心内容
+首先介绍间歇性故障的概念、研究背景、面临的挑战及研究动机，随后综述当前间歇性故障诊断的研究现状，讨论各类方法的优势、局限性以及未来研究方向。
+
+-------------------------------------------------------------------------
+
+niu2021distributed
+Distributed intermittent fault detection for linear stochastic systems over sensor network
+
+In this article, the problem of intermittent fault (IF) detection is investigated for linear stochastic systems over sensor networks, where the appearing and disappearing times, and magnitude of IF are all nondeterministic. By utilizing the moving-horizon estimator, a novel residual generator is designed to realize the distributed detection of IFs in sensor networks. Different from the traditional moving horizon estimation algorithms, weight matrices of the quadratic cost function in this article are regulated by an unreliability index of the prior estimate to suppress the smearing effect of IFs. In virtue of the matrix transformation method and statistical theory, estimator parameters are obtained and the detectability of a single IF is analyzed by using the residual. In order to avoid the collisions of detection results from different residuals, the global detectability condition is given for all IFs. A cooperative decision-making strategy is proposed such that the only detection result can be guaranteed, which includes the appearing and disappearing times of IFs, and the nodes suffering from IFs. Finally, an illustrative example is provided to show the feasibility and effectiveness of the derived results.
+
+本文研究传感器网络下线性随机系统的间歇性故障（IF）检测问题，其中间歇性故障的出现时间、消失时间及幅值均具有不确定性。
+分布式故障检测方案设计
+利用滚动时域估计器，设计一种新型残差生成器，实现传感器网络中间歇性故障的分布式检测。与传统滚动时域估计算法不同，本文通过先验估计的不可靠性指标调节二次代价函数的权重矩阵，以抑制间歇性故障的拖尾效应。
+参数求解与可检测性分析
+借助矩阵变换方法和统计理论，求解估计器参数，并利用残差分析单个间歇性故障的可检测性。为避免不同残差检测结果冲突，给出所有间歇性故障的全局可检测性条件。
+协同决策策略与实例验证
+提出协同决策策略，确保输出唯一的检测结果，包括间歇性故障的出现时间、消失时间以及发生故障的节点。最后通过仿真实例验证所提方法的可行性和有效性。
+
+-------------------------------------------------------------------------
+
+sheng2021intermittent
+Intermittent fault detection for linear discrete-time stochastic multi-agent systems
+
+In this paper, the intermittent fault (IF) detection problem is investigated for a class of linear discrete-time stochastic multi-agent systems (MASs). By using the reduced-order observer method and introducing a sliding-time window, the truncated residuals are designed to detect the appearing time and disappearing time of the IF. Moreover, two sets of hypothesis tests are proposed to determine the detection and location thresholds of the IF, and the detectability of the IF is discussed in the framework of statistical analysis. Finally, a simulation example is provided to validate the feasibility and effectiveness of the proposed method.
+
+本文研究一类线性离散时间随机多智能体系统（MASs）的间歇性故障（IF）检测问题。
+截断残差设计
+采用降阶观测器方法并引入滑动时间窗，设计截断残差以检测间歇性故障的出现时间和消失时间。
+假设检验与可检测性分析
+提出两组假设检验，确定间歇性故障的检测阈值和定位阈值，并在统计分析框架下讨论间歇性故障的可检测性。
+仿真验证
+最后通过仿真实例，验证所提方法的可行性和有效性。
+
+-------------------------------------------------------------------------
+
+zhang2021intermittent
+Intermittent fault detection for delayed stochastic systems over sensor networks
+
+This paper is concerned with the intermittent fault (IF) detection problem for a class of linear discrete-time stochastic systems over sensor networks with constant time delay. By utilizing the lifting method, the distributed decoupled observers are proposed based on the output information of neighbor nodes and the node itself. In order to detect the appearing time and disappearing time of the IF, the truncated residuals are designed by introducing a sliding-time window. Furthermore, the IF detection and location thresholds are determined based on the hypothesis testing technique and the detectability of the IF is analyzed in the framework of stochastic analysis. Finally, a simulation example is presented to illustrate the effectiveness of the derived results.
+
+本文研究带有时不变时滞的传感器网络下一类线性离散时间随机系统的间歇性故障（IF）检测问题。
+分布式解耦观测器设计
+利用提升方法，基于邻居节点和自身节点的输出信息，提出分布式解耦观测器。
+截断残差与阈值确定
+通过引入滑动时间窗设计截断残差，以检测间歇性故障的出现时间和消失时间。基于假设检验技术确定间歇性故障的检测阈值和定位阈值，并在随机分析框架下分析间歇性故障的可检测性。
+仿真验证
+最后通过仿真实例，验证所提方法的有效性。
+
+-------------------------------------------------------------------------
+
+syed2016novel
+A novel intermittent fault detection algorithm and health monitoring for electronic interconnections
+
+There are various occurrences and root causes that result in no-fault-found (NFF) events but an intermittent fault (IF) is the most frustrating. This paper describes the challenging and most important area of an IF detection and health monitoring that focuses toward NFF situation in electronics interconnections. The experimental work focuses on mechanically-induced intermittent conditions in connectors. This paper illustrates a test regime, which can be used to repeatedly reproduce intermittence in electronic connectors, while subjected to vibration. A novel algorithm is used to detect an IF in interconnection. It sends a sine wave and decodes the received signal for intermittent information from the channel. This algorithm has been simulated to capture an IF signature using PSpice (electronic circuit simulation software). A simulated circuit is implemented for practical verification. However, measurements are presented using an oscilloscope. The results of this experiment provide an insight into the limitations of existing test equipment and requirements for future IF detection techniques. Aside from scheduled maintenance, this paper considers the possibility for in-service intermittent detection to be built into future systems, i.e., can IFs be captured without external test gear?
+
+导致无故障发现（NFF）事件的原因多种多样，但间歇性故障（IF）是最令人困扰的一种。本文聚焦电子互连中无故障发现场景，探讨极具挑战性且至关重要的间歇性故障检测与健康监测领域。
+实验设计与核心目标
+实验重点研究连接器中机械诱导的间歇性故障，设计了一套测试方案。该方案可在振动环境下，重复复现电子连接器的间歇性故障现象。
+故障检测算法与验证
+采用一种新型算法检测互连中的间歇性故障，通过发送正弦波并解码接收信号，提取信道中的间歇性故障信息。利用电子电路仿真软件 PSpice 对该算法进行仿真，捕获间歇性故障特征。搭建仿真电路进行实际验证，并通过示波器获取测量数据。
+研究结果与延伸思考
+实验结果揭示了现有测试设备的局限性，明确了未来间歇性故障检测技术的需求方向。除定期维护外，本文还探讨了在未来系统中集成在役间歇性故障检测功能的可能性，即能否在无需外部测试设备的情况下捕获间歇性故障。
+
+-------------------------------------------------------------------------
+
+quan2020survey
+Survey of UAV motion planning
+
+Motion planning is a vital module for unmanned aerial vehicles (UAVs), especially in scenarios of autonomous navigation and operation. This survey delivers some recent state-of-the-art UAV motion planning algorithms and related applications. The logic flow of this survey is divided as the path finding, which is the front-end of most motion planning systems, and the trajectory optimisation, which usually serves as the back-end. Motivation, methodology, problem formulation and derivation are given in this survey, in detail. Finally, a section about real-world applications is given, where roles and effectiveness of most popular motion planning methods are revealed.
+
+运动规划是无人机（UAV）的核心模块，尤其在自主导航和作业场景中至关重要。本文综述了近年来无人机运动规划领域的前沿算法及相关应用。
+综述逻辑框架
+综述按运动规划系统的前端路径搜索和后端轨迹优化两部分展开逻辑梳理。
+核心内容阐述
+详细介绍了各类算法的研究动机、方法原理、问题建模及推导过程。
+实际应用分析
+最后设置实际应用章节，阐明主流运动规划方法在实际场景中的作用及效果。
+
+-------------------------------------------------------------------------
+
+han2019fiesta
+Fiesta: Fast incremental euclidean distance fields for online motion planning of aerial robots
+
+Euclidean Signed Distance Field (ESDF) is useful for online motion planning of aerial robots since it can easily query the distance and gradient information against obstacles. Fast incrementally built ESDF map is the bottleneck for conducting real-time motion planning. In this paper, we investigate this problem and propose a mapping system called FIESTA to build global ESDF map incrementally. By introducing two independent updating queues for inserting and deleting obstacles separately, and using Indexing Data Structures and Doubly Linked Lists for map maintenance, our algorithm updates as few as possible nodes using a BFS framework. Our ESDF map has high computational performance and produces near-optimal results. We show our method outperforms other up-to-date methods in term of performance and accuracy by both theory and experiments. We integrate FIESTA into a completed quadrotor system and validate it by both simulation and onboard experiments. We release our method as open-source software for the community 11https://github.com/hlx1996/FIESTA
+
+欧氏符号距离场（ESDF）便于查询障碍物的距离和梯度信息，因此适用于空中机器人的在线运动规划。快速增量构建 ESDF 地图是实现实时运动规划的瓶颈问题。本文针对该问题展开研究，提出一种名为 FIESTA 的映射系统，用于增量构建全局 ESDF 地图。
+FIESTA 系统核心设计
+分别为障碍物的插入和删除引入两个独立的更新队列，结合索引数据结构和双向链表进行地图维护。
+基于广度优先搜索（BFS）框架，尽可能少地更新节点，兼顾高计算性能和近最优结果。
+性能验证与开源发布
+通过理论分析和实验验证，证明该方法在性能和精度上优于其他最新方法。将 FIESTA 集成到完整的四旋翼系统中，通过仿真和机载实验完成验证，并将该方法作为开源软件发布（https://github.com/hlx1996/FIESTA），供科研社区使用。
+
+-------------------------------------------------------------------------
+
+wang2022geometrically
+Geometrically constrained trajectory optimization for multicopters
+
+In this article, we present an optimization-based framework for multicopter trajectory planning subject to geometrical configuration constraints and user-defined dynamic constraints. The basis of the framework is a novel trajectory representation built upon our novel optimality conditions for unconstrained control effort minimization. We design linear-complexity operations on this representation to conduct spatial–temporal deformation under various planning requirements. Smooth maps are utilized to exactly eliminate geometrical constraints in a lightweight fashion. A variety of state-input constraints are supported by the decoupling of dense constraint evaluation from sparse parameterization and the backward differentiation of flatness map. As a result, this framework transforms a generally constrained multicopter planning problem into an unconstrained optimization that can be solved reliably and efficiently. Our framework bridges the gaps among solution quality, planning efficiency, and constraint fidelity for a multicopter with limited resources and maneuvering capability. Its generality and robustness are both demonstrated by applications to different flight tasks. Extensive simulations and benchmarks are also conducted to show its capability of generating high-quality solutions while retaining the computation speed against other specialized methods by orders of magnitude.
+
+本文提出一种基于优化的多旋翼飞行器轨迹规划框架，该框架需满足几何配置约束和用户定义的动态约束。框架的核心是一种新型轨迹表示方法，该方法基于我们提出的无约束控制量最小化最优性条件构建。
+框架核心设计
+针对该轨迹表示设计线性复杂度操作，可在不同规划需求下实现时空变形。
+采用平滑映射以轻量化方式精确消除几何约束；通过将密集约束评估与稀疏参数化解耦，并结合平坦映射的反向微分，支持多种状态 - 输入约束。
+框架优势与验证
+最终，该框架将一般带约束的多旋翼规划问题转化为无约束优化问题，求解可靠且高效。它填补了资源有限、机动能力受限的多旋翼飞行器在解质量、规划效率和约束保真度之间的空白。通过在不同飞行任务中的应用，验证了框架的通用性和鲁棒性；大量仿真和基准测试表明，与其他专用方法相比，该框架能生成高质量解，且计算速度提升一个数量级以上。
+
+-------------------------------------------------------------------------
+
+wang2025unlocking
+Unlocking aerobatic potential of quadcopters: Autonomous freestyle flight generation and execution
+
+Quadcopter drones are capable of executing complex aerobatic maneuvers when controlled manually by skilled pilots but are limited to simple aerobatic actions when flying autonomously in open spaces. As such, this study introduces a comprehensive system that enables drones to generate and execute sophisticated aerobatic maneuvers in complex environments with dense obstacle distributions. A universal representation is proposed, succinctly capturing flight as a series of discrete aerobatic intentions. These intentions consist of topology and attitude changes, which can be combined in various ways to describe intricate flight maneuvers. A spatial-temporal joint optimization trajectory planner is also introduced to generate dynamically feasible trajectories that are as smooth as possible and devoid of collisions. In addition, we investigate unique yaw sensitivity issues in aerobatic flight and identify the inherent influence of differential flatness singularities on yaw rotations while avoiding associated dynamics issues. A series of ablation studies confirmed the necessity of these spatial-temporal joint optimization and yaw compensation strategies. Additional simulations and physical experiments validated the stability and feasibility of our proposed system for improving uncrewed aerial flight. The proposed system enables drones to autonomously achieve flight performance usually reserved for professional pilots, unlocking boundless potential for aerobatic flight evolution in uncrewed aerial vehicles.
+
+四旋翼无人机在熟练飞行员手动操控下可完成复杂特技动作，但在开阔空间自主飞行时仅能执行简单特技。为此，本研究提出一套综合系统，使无人机能在障碍物密集分布的复杂环境中，生成并执行高精度复杂特技动作。
+核心设计与关键技术
+通用特技意图表示：提出一种通用表示方法，将飞行凝练为一系列离散的特技意图。这些意图包含拓扑结构和姿态变化，可通过多种组合描述复杂飞行特技。
+时空联合优化轨迹规划器：设计时空联合优化轨迹规划器，生成动态可行、尽可能平滑且无碰撞的轨迹。
+偏航敏感性与奇点问题解决：研究特技飞行中独特的偏航敏感性问题，明确微分平坦奇点对偏航旋转的固有影响，同时规避相关动力学问题。
+验证与系统价值
+一系列消融实验验证了时空联合优化和偏航补偿策略的必要性；额外的仿真和实物实验证明，该系统能提升无人机飞行的稳定性和可行性。该系统使无人机能自主实现通常只有专业飞行员才能完成的飞行性能，为无人机特技飞行的发展解锁了巨大潜力。
+
+-------------------------------------------------------------------------
+
+siean2023opportunities
+Opportunities and Challenges in Human-Swarm Interaction: Systematic Review and Research Implications
+
+We conducted a Systematic Literature Review on scientific papers that examined the interaction between operators and drone swarms based on the use of a command and control center. We present the results of a meta-analysis of nine scientific papers published in the ACM DL and IEEE Xplore databases. Our findings show that research on human-drone swarm interaction shows a disproportionate interest in hand gestures compared to other input modalities for drone swarm control. Furthermore, all articles reviewed exclusively explored gestures and the size of the swarm used in the studies was limited, with a median of 3.0 and an average of 3.8 drones per study. We compiled an inventory of interaction modalities, recognition techniques, and application types from the scientific literature, which is presented in this paper. On the basis of our findings, we propose four areas for future research that can guide scientific investigations and practical developments in this field.
+
+我们对研究操作员与基于指挥控制中心的无人机集群交互的科学论文进行了系统文献综述。本文呈现了对 ACM 数字图书馆（ACM DL）和 IEEE Xplore 数据库中 9 篇已发表论文的元分析结果。
+核心研究发现
+人机无人机集群交互研究中，与其他无人机集群控制输入方式相比，对手势的关注度明显更高。
+所有综述文献均仅探讨了手势交互，且研究中使用的集群规模有限，每篇研究的无人机数量中位数为 3.0 架，平均值为 3.8 架。
+文献整理与未来研究方向
+整理了文献中涉及的交互方式、识别技术和应用类型清单，并在文中呈现。
+基于研究发现，提出四个未来研究方向，可为该领域的科学研究和实际开发提供指导。
+
+-------------------------------------------------------------------------
+
+kolling2015human
+Human interaction with robot swarms: A survey
+
+Recent advances in technology are delivering robots of reduced size and cost. A natural outgrowth of these advances are systems comprised of large numbers of robots that collaborate autonomously in diverse applications. Research on effective autonomous control of such systems, commonly called swarms, has increased dramatically in recent years and received attention from many domains, such as bioinspired robotics and control theory. These kinds of distributed systems present novel challenges for the effective integration of human supervisors, operators, and teammates that are only beginning to be addressed. This paper is the first survey of human-swarm interaction (HSI) and identifies the core concepts needed to design a human-swarm system. We first present the basics of swarm robotics. Then, we introduce HSI from the perspective of a human operator by discussing the cognitive complexity of solving tasks with swarm systems. Next, we introduce the interface between swarm and operator and identify challenges and solutions relating to human-swarm communication, state estimation and visualization, and human control of swarms. For the latter, we develop a taxonomy of control methods that enable operators to control swarms effectively. Finally, we synthesize the results to highlight remaining challenges, unanswered questions, and open problems for HSI, as well as how to address them in future works.
+
+技术的最新进展催生了尺寸更小、成本更低的机器人。这些进展自然催生出由大量机器人组成的系统，它们能在各类应用中自主协作。近年来，针对这类通常被称为 “集群” 的系统的有效自主控制研究急剧增加，并受到生物启发机器人学、控制理论等多个领域的关注。这类分布式系统为人类监督员、操作员和队友的有效整合带来了全新挑战，而这些挑战才刚刚开始被应对。本文是首篇关于人机集群交互（HSI）的综述，明确了设计人机集群系统所需的核心概念。
+综述核心内容
+集群机器人学基础：首先阐述集群机器人学的基本原理。
+操作员视角下的 HSI：从人类操作员视角引入人机集群交互，探讨利用集群系统完成任务的认知复杂性。
+集群与操作员的交互接口：介绍集群与操作员之间的交互接口，明确人机集群通信、状态估计与可视化、人类对集群的控制等方面的挑战与解决方案。
+集群控制方法分类：针对人类对集群的控制，构建控制方法分类体系，助力操作员有效控制集群。
+总结与未来展望
+最后，综合研究结果，强调人机集群交互领域尚未解决的挑战、悬而未决的问题，并提出未来研究中应对这些问题的方向。
+
+-------------------------------------------------------------------------
+
+jarvis2025first
+First-Person View Interfaces for Teleoperation of Aerial Swarms
+
+Aerial swarms can substantially improve the effectiveness of drones in applications such as inspection, monitoring, and search for rescue. This is especially true when those swarms are made of several individual drones that use local sensing and coordination rules to achieve collective motion. Despite recent progress in swarm autonomy, human control and decision-making are still critical for missions where lives are at risk or human cognitive skills are required. However, first-person-view (FPV) teleoperation systems require one or more human operators per drone, limiting the scalability of these systems to swarms. This work investigates the performance, preference, and behaviour of pilots using different FPV interfaces for teleoperation of aerial swarms. Interfaces with single and multiple perspectives were experimentally studied with humans piloting a simulated aerial swarm through an obstacle course. Participants were found to prefer and perform better with views from the back of the swarm, while views from the front caused users to fly faster but resulted in more crashes. Presenting users with multiple views at once resulted in a slower completion time, and users were found to focus on the largest view, regardless of its perspective within the swarm.
+
+空中集群能显著提升无人机在巡检、监测和搜救等应用中的效能。当集群由多台具备局部感知和协作规则的个体无人机组成，以实现集体运动时，这种提升尤为明显。尽管集群自主性近年来取得进展，但在涉及生命安全或需要人类认知能力的任务中，人类的控制和决策仍至关重要。然而，第一人称视角（FPV）遥控系统每台无人机需配备一名或多名操作员，限制了这类系统向集群规模扩展的可能性。
+研究核心与实验设计
+本研究探究飞行员使用不同 FPV 接口遥控空中集群时的性能、偏好和行为。通过实验研究单视角和多视角接口，让人类操控模拟空中集群穿越障碍路线。
+实验结果分析
+参与者更偏好集群后方视角，且使用该视角时表现更佳；
+集群前方视角会让用户飞行速度更快，但碰撞次数更多；
+同时呈现多视角会延长任务完成时间，且用户会专注于最大的视角窗口，无论其在集群中的位置如何。
+
+-------------------------------------------------------------------------
+
+abioye2025user
+A user study evaluation of predictive formal modelling at runtime in human-swarm interaction
+
+Formal Modelling is often used as part of the design and testing process of software development to ensure that components operate within suitable bounds even in unexpected circumstances. We conducted a user study evaluation of predictive formal modelling (PFM) at runtime in a human-swarm mission to determine the benefit of PFM on performance and human-swarm interaction. A total of 180 participants were recruited to perform the role of aerial swarm operators delivering parcels to target locations in a simulation environment. The PFM model was integrated into the simulation software to inform the operator of the estimated mission completion time given the current number of drones deployed. The operator could increase the number of parcels delivered in any timestep by adding drones, which also increased costs, thus requiring the use of the minimum number of drones necessary to complete the task in the given time. We collected user feedback using standard survey questionnaires and measured performance using data obtained from the Human and Robot Interactive Swarm (HARIS) simulator. Our results show that PFM increased the performance of the human swarm team without significantly increasing the operators’ workload or affecting the system’s usability.
+
+形式化建模常被用作软件开发设计与测试流程的一部分，以确保组件即使在意外情况下也能在合适范围内运行。本研究在人机集群任务中，对运行时预测性形式化建模（PFM）进行了用户研究评估，旨在明确 PFM 对任务性能和人机集群交互的增益效果。
+实验设计
+招募 180 名参与者扮演空中集群操作员，在仿真环境中完成向目标位置配送包裹的任务。将 PFM 模型集成到仿真软件中，根据当前部署的无人机数量，向操作员告知预估的任务完成时间。操作员可通过增加无人机数量，在任意时间步提升包裹配送量，但这也会增加成本，因此需要使用最少的无人机在规定时间内完成任务。
+数据收集与结果
+通过标准调查问卷收集用户反馈，并利用人机交互集群（HARIS）仿真器获取的数据衡量任务性能。结果显示，PFM 提升了人机集群团队的任务性能，且未显著增加操作员的工作负荷，也未影响系统的可用性。
+
+-------------------------------------------------------------------------
+
+alonso2015gesture
+Gesture based human-multi-robot swarm interaction and its application to an interactive display
+
+A taxonomy for gesture-based interaction between a human and a group (swarm) of robots is described. Methods are classified into two categories. First, free-form interaction, where the robots are unconstrained in position and motion and the user can use deictic gestures to select subsets of robots and assign target goals and trajectories. Second, shape-constrained interaction, where the robots are in a configuration shape that can be modified by the user. In the later, the user controls a subset of meaningful degrees of freedom defining the overall shape instead of each robot directly. A multi-robot interactive display is described where a depth sensor is used to recognize human gesture, determining the commands sent to a group comprising tens of robots. Experimental results with a preliminary user study show the usability of the system.
+
+本文提出一套人机与机器人集群（群体）基于手势交互的分类体系，将交互方法分为两类。
+交互方法分类
+自由形式交互：机器人的位置和运动不受约束，用户可通过指示性手势选择机器人子集，并为其分配目标任务和轨迹。
+形状约束交互：机器人处于特定构型形状中，用户可修改该形状。这种模式下，用户无需直接控制每个机器人，而是控制定义整体形状的若干关键自由度。
+交互系统设计与验证
+设计了一种多机器人交互显示系统，通过深度传感器识别人类手势，进而确定发送给数十台机器人组成的集群的指令。初步用户研究的实验结果验证了该系统的可用性。
+
+-------------------------------------------------------------------------
+
+ayanian2014controlling
+Controlling a team of robots with a single input
+
+We present a novel end-to-end solution for distributed multirobot coordination that translates multitouch gestures into low-level control inputs for teams of robots. Highlighting the need for a holistic solution to the problem of scalable human control of multirobot teams, we present a novel control algorithm with provable guarantees on the robots' motion that lends itself well to input from modern tablet and smartphone interfaces. Concretely, we develop an iOS application in which the user is presented with a team of robots and a bounding box (prism). The user carefully translates and scales the prism in a virtual environment; these prism coordinates are wirelessly transferred to our server and then received as input to distributed onboard robot controllers. We develop a novel distributed multirobot control policy which provides guarantees on convergence to a goal with distance bounded linearly in the number of robots, and avoids interrobot collisions. This approach allows the human user to solve the cognitive tasks such as path planning, while leaving precise motion to the robots. Our system was tested in simulation and experiments, demonstrating its utility and effectiveness.
+
+本文提出一种新型端到端分布式多机器人协调解决方案，可将多点触控手势转化为机器人团队的底层控制输入。针对多机器人团队可扩展人机控制问题，强调需提供整体解决方案，进而提出一种新型控制算法。该算法对机器人运动具有可证明的性能保证，且适配现代平板和智能手机接口的输入方式。
+系统设计与核心组件
+iOS 应用界面：开发 iOS 应用，向用户呈现机器人团队和一个边界框（棱柱体）。用户在虚拟环境中精确平移和缩放该棱柱体，其坐标通过无线传输至服务器，再作为输入传递给分布式机载机器人控制器。
+分布式控制策略：设计新型分布式多机器人控制策略，保证机器人能收敛至目标位置，且距离误差与机器人数量呈线性有界关系，同时避免机器人间碰撞。
+系统优势与验证
+该方法让人类用户专注解决路径规划等认知任务，而将精确运动控制交给机器人完成。通过仿真和实物实验对系统进行测试，验证了其实用性和有效性。
+
+-------------------------------------------------------------------------
+
+macchini2021personalized
+Personalized human-swarm interaction through hand motion
+
+The control of collective robotic systems, such as drone swarms, is often delegated to autonomous navigation algorithms due to their high dimensionality. However, like other robotic entities, drone swarms can still benefit from being teleoperated by human operators, whose perception and decision-making capabilities are still out of the reach of autonomous systems. Drone swarm teleoperation is only at its dawn, and a standard human-swarm interface (HSI) is missing to date. In this study, we analyzed the spontaneous interaction strategies of naive users with a swarm of drones. We implemented a machine-learning algorithm to define a personalized Body-Machine Interface (BoMI) based only on a short calibration procedure. During this procedure, the human operator is asked to move spontaneously as if they were in control of a simulated drone swarm. We assessed that hands are the most commonly adopted body segment, and thus we chose a LEAP Motion controller to track them to let the users control the aerial drone swarm. This choice makes our interface portable since it does not rely on a centralized system for tracking the human body. We validated our HSIs generation algorithm on a set of participants in a realistic simulated environment, showing a positive user feedback and performance comparable with a remote controller after training. Our method leaves the user free to choose between position and velocity control only based on their body motion preferences.
+
+由于集体机器人系统（如无人机集群）的高维度特性，其控制通常委托给自主导航算法。然而，与其他机器人实体一样，无人机集群仍能从人类操作员的遥控中获益 —— 人类的感知和决策能力仍是自主系统目前无法企及的。无人机集群遥控尚处于起步阶段，至今缺乏标准的人机集群接口（HSI）。
+研究设计与核心方法
+用户自发交互策略分析：分析无经验用户与无人机集群的自发交互策略，基于机器学习算法，仅通过简短的校准流程定义个性化的身体 - 机器接口（BoMI）。
+校准流程与跟踪选择：校准过程中，要求人类操作员像控制模拟无人机集群一样自发移动。研究发现手部是最常用的身体部位，因此选择 LEAP Motion 控制器进行手部跟踪，实现对空中无人机集群的控制。该选择使接口具备便携性，无需依赖集中式人体跟踪系统。
+系统验证与优势
+在真实的仿真环境中，通过一组参与者验证了人机集群接口生成算法的有效性。结果显示，用户反馈积极，经过训练后，系统性能与遥控器相当。该方法允许用户仅根据自身身体运动偏好，自由选择位置控制或速度控制模式。
+
+--------------------------------------------------------------------------
+
+podevijn2013gesturing
+Gesturing at subswarms: Towards direct human control of robot swarms
+
+The term human-swarm interaction (HSI) refers to the interaction between a human operator and a swarm of robots. In this paper, we investigate HSI in the context of a resource allocation and guidance scenario. We present a framework that enables direct communication between human beings and real robot swarms, without relying on a secondary display. We provide the user with a gesture-based interface that allows him to issue commands to the robots. In addition, we develop algorithms that allow robots receiving the commands to display appropriate feedback to the user. We evaluate our framework both in simulation and with real-world experiments. We conduct a summative usability study based on experiments in which participants must guide multiple subswarms to different task locations.
+
+人机集群交互（HSI）指人类操作员与机器人集群之间的交互过程。本文在资源分配与引导场景下研究人机集群交互，提出一套无需依赖辅助显示屏、可实现人类与真实机器人集群直接通信的框架。
+框架核心组件
+手势交互接口：为用户提供基于手势的交互接口，支持用户向机器人下达指令。
+机器人反馈算法：开发专用算法，使接收指令的机器人能向用户呈现合适的反馈信息。
+框架评估方式
+通过仿真和真实环境实验对框架进行评估，开展总结性可用性研究。研究基于实验场景设计，要求参与者引导多个子集群前往不同的任务地点。
+
+--------------------------------------------------------------------------
+
+zhou2016assistive
+Assistive collision avoidance for quadrotor swarm teleoperation
+
+This paper presents a method for controlling quadrotor swarms in an environment with obstacles, with an intuitive human-swarm interface operated by a single human user. Our method allows for the quadrotor swarm to maintain a desired formation, while also keeping the quadrotors a safe distance from obstacles and from one another. We use a Virtual Rigid Body abstraction to provide a bridge between the single human user and the quadrotor swarm, so that a human user can fly an arbitrarily large quadrotor swarm from a single joystick. By applying multiple vector fields, collisions are automatically avoided within the swarm of quadrotors, and between the quadrotors and obstacles, while the Virtual Rigid Body is controlled by the human user. Our method is demonstrated in hardware experiments with groups of quadrotor micro aerial vehicles teleoperated by a single human operator in a motion capture system.
+
+本文提出一种在障碍物环境中控制四旋翼集群的方法，配备由单人操作的直观人机集群接口。该方法能让四旋翼集群维持期望队形，同时保证四旋翼之间、四旋翼与障碍物之间保持安全距离。
+核心设计与控制逻辑
+虚拟刚体抽象层：采用虚拟刚体抽象作为单个人类用户与四旋翼集群之间的桥梁，使用户可通过单个操纵杆操控任意规模的四旋翼集群。
+多向量场避障：通过应用多个向量场，在人类用户控制虚拟刚体的过程中，自动避免四旋翼集群内部以及集群与障碍物之间的碰撞。
+实验验证
+在运动捕捉系统中，通过单人遥控多台四旋翼微型飞行器的硬件实验，验证了该方法的有效性。
+
+--------------------------------------------------------------------------
+
+lee2013semiautonomous
+Semiautonomous haptic teleoperation control architecture of multiple unmanned aerial vehicles
+
+We propose a novel semiautonomous haptic teleoperation control architecture for multiple unmanned aerial vehicles (UAVs), consisting of three control layers: 1) UAV control layer, where each UAV is abstracted by, and is controlled to follow the trajectory of, its own kinematic Cartesian virtual point (VP); 2) VP control layer, which modulates each VP's motion according to the teleoperation commands and local artificial potentials (for VP-VP/VP-obstacle collision avoidance and VP-VP connectivity preservation); and 3) teleoperation layer, through which a single remote human user can command all (or some) of the VPs' velocity while haptically perceiving the state of all (or some) of the UAVs and obstacles. Master passivity/slave stability and some asymptotic performance measures are proved. Experimental results using four custom-built quadrotor-type UAVs are also presented to illustrate the theory.
+
+本文提出一种新型多无人机（UAV）半自主触觉遥操作控制架构，包含三个控制层：
+三层控制架构设计
+无人机控制层：每架无人机通过自身运动学笛卡尔虚拟点（VP）抽象表示，控制无人机跟踪其虚拟点的轨迹。
+虚拟点控制层：根据遥操作指令和局部人工势场，调节每个虚拟点的运动。人工势场用于实现虚拟点间 / 虚拟点与障碍物的避碰，以及维持虚拟点间的连通性。
+遥操作层：单个远程人类用户可通过该层指令所有（或部分）虚拟点的速度，同时通过触觉感知所有（或部分）无人机和障碍物的状态。
+理论证明与实验验证
+证明了主端无源性 / 从端稳定性及部分渐近性能指标，通过四架定制四旋翼无人机的实验结果，验证了该理论的有效性。
+
+--------------------------------------------------------------------------
+
+kolling2013human
+Human swarm interaction: An experimental study of two types of interaction with foraging swarms
+
+In this paper we present the first study of human-swarm interaction comparing two fundamental
+types of interaction, coined intermittent and environmental. These types are exemplified by two
+control methods, selection and beacon control, made available to a human operator to control a
+foraging swarm of robots. Selection and beacon control differ with respect to their temporal and
+spatial influence on the swarm and enable an operator to generate different strategies from the basic
+behaviors of the swarm. Selection control requires an active selection of groups of robots while
+beacon control exerts an influence on nearby robots within a set range. Both control methods are
+implemented in a testbed in which operators solve an information foraging problem by utilizing a set
+of swarm behaviors. The robotic swarm has only local communication and sensing capabilities. The
+number of robots in the swarm range from 50 to 200. Operator performance for each control method
+is compared in a series of missions in different environments with no obstacles up to cluttered and
+structured obstacles. In addition, performance is compared to simple and advanced autonomous
+swarms. Thirty-two participants were recruited for participation in the study. Autonomous swarm
+algorithms were tested in repeated simulations. Our results showed that selection control scales better to larger swarms and generally outperforms beacon control. Operators utilized different swarm
+behaviors with different frequency across control methods, suggesting an adaptation to different
+strategies induced by choice of control method. Simple autonomous swarms outperformed human
+operators in open environments, but operators adapted better to complex environments with obstacles. Human controlled swarms fell short of task-specific benchmarks under all conditions. Our
+results reinforce the importance of understanding and choosing appropriate types of human-swarm
+interaction when designing swarm systems, in addition to choosing appropriate swarm behaviors
+
+本文首次开展人机集群交互研究，对比两种基础交互类型 —— 暂称为间歇式交互和环境式交互。这两种类型通过两种控制方法具体体现，即选择控制和信标控制，操作员可借助这两种方法控制觅食机器人集群。
+两种控制方法的核心差异
+选择控制和信标控制对集群的时间和空间影响不同，能让操作员基于集群的基本行为生成不同策略。
+选择控制需要主动选取机器人群组；信标控制则对设定范围内的附近机器人施加影响。
+实验设计与变量
+在实验平台中实现两种控制方法，操作员需利用一组集群行为解决信息觅食问题。
+机器人集群仅具备局部通信和感知能力，规模为 50 至 200 台不等。
+在无障碍物、障碍物密集、结构化障碍物等不同环境的系列任务中，对比两种控制方法下的操作员表现，并与简单和先进自主集群的性能进行比较。
+招募 32 名参与者参与研究，通过重复仿真测试自主集群算法。
+实验结果与结论
+选择控制在更大规模集群中扩展性更好，总体性能优于信标控制；操作员在不同控制方法下使用集群行为的频率不同，表明会适应由控制方法选择所引导的不同策略。
+简单自主集群在开阔环境中表现优于人类操作员，但人类操作员在有障碍物的复杂环境中适应性更强；在所有条件下，人类控制的集群均未达到任务特定基准。
+研究结果表明，设计集群系统时，除选择合适的集群行为外，理解并选择恰当的人机集群交互类型也至关重要。
+
+--------------------------------------------------------------------------
+
