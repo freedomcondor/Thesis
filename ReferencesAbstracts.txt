@@ -2565,3 +2565,355 @@ Multi-option collective decision-making is a challenging task in the context of 
 
 ---------------------------------------------------------------------------
 
+prasetyo2018best
+The best-of-n problem with dynamic site qualities: Achieving adaptability with stubborn individuals
+
+Collective decision-making is one of main building blocks of swarm robotics collective behaviors. It is the ability of individuals to make a collective decision without any centralized leadership, but only via local interaction and communication. The best-of-n problem is a subclass of collective decision-making, whereby the swarm has to select the best option among a set of n possible alternatives. Recently, the best-of-n problems has gathered momentum: a number of decision-making mechanisms have been studied focusing both on cases where there is an explicit measurable difference between the two qualities, as well as on cases when there are only delay costs in the environment driving the consensus to one of the n alternatives. To the best of our knowledge, all the formal studies on the best-of-n problem have considered a site quality distribution that is stationary and does not change over time.
+In this paper, we perform a study of the best-of-n problems in a dynamic environment setting. We consider the situation where site qualities can be directly measured by agents, and we introduce abrupt changes to these qualities, whereby the two qualities are swapped at a given time.
+Using computer simulations, we show that a vanilla application of one of the most studied decision-making mechanism, the voter model, does not guarantee adaptation of the swarm consensus towards the best option after the swap occurs. Therefore, we introduce the notion of stubborn agents, which are not allowed to change their opinion. We show that the presence of the stubborn agents is enough to achieve adaptability to dynamic environments. We study the performance of the system with respect to a number of key parameters: the swarm size, the difference between the two qualities and the proportion of stubborn individuals.
+
+集体决策是集群机器人集体行为的核心组成部分之一，指个体无需集中式领导，仅通过局部交互与通信即可达成集体决策的能力。“n 选优” 问题是集体决策的一个子类，要求集群从 n 个可能的备选方案中选出最优项。近年来，“n 选优” 问题的研究热度持续上升，已有大量决策机制被探讨 —— 既包括备选方案质量存在明确可测量差异的情况，也包括环境中仅通过延迟成本推动集群对 n 个备选方案达成共识的情况。据我们所知，所有关于 “n 选优” 问题的正式研究，均假设场景质量分布是静态的，不会随时间变化。
+动态环境下的 “n 选优” 问题研究
+本文针对动态环境场景开展 “n 选优” 问题研究，假设智能体可直接测量场景质量，并引入质量突变情况 —— 在特定时间点交换两个场景的质量属性。
+计算机仿真结果表明，直接应用最具代表性的决策机制之一（投票者模型），无法保证质量交换后集群共识能自适应调整至最优方案。
+改进策略与性能分析
+为此，提出 “固执智能体” 概念，这类智能体不允许改变自身观点。研究表明，固执智能体的存在足以使集群具备动态环境适应性。
+围绕多个关键参数研究系统性能，包括集群规模、两个场景的质量差异以及固执智能体的比例。
+
+---------------------------------------------------------------------------
+
+prasetyo2019collective
+Collective decision making in dynamic environments
+
+Collective decision making is the ability of individuals to jointly make a decision without any centralized leadership, but only relying on local interactions. A special case is represented by the best-of-n problem, whereby the swarm has to select the best option among a set of n discrete alternatives. In this paper, we perform a thorough study of the best-of-n problem in dynamic environments, in the presence of two options (). Site qualities can be directly measured by agents, and we introduce abrupt changes to these qualities. We introduce two adaptation mechanisms to deal with dynamic site qualities: stubborn agents and spontaneous opinion switching. Using both computer simulations and ordinary differential equation models, we show that: (i) The mere presence of the stubborn agents is enough to achieve adaptability, but increasing its number has detrimental effects on the performance; (ii) the system adaptation increases with increasing swarm size, while it does not depend on agents’ density, unless this is below a critical threshold; (iii) the spontaneous switching mechanism can also be used to achieve adaptability to dynamic environments, and its key parameter, the probability of switching, can be used to regulate the trade-off between accuracy and speed of adaptation.
+
+集体决策是个体无需集中式领导，仅依靠局部交互即可共同做出决策的能力。“n 选优” 问题是其特殊情况，要求集群从 n 个离散备选方案中选出最优项。本文针对动态环境下的 “n 选优” 问题（设 n=2）展开深入研究，假设智能体可直接测量场景质量，并引入质量突变情况。
+动态环境适应机制设计
+提出两种应对场景质量动态变化的适应机制：固执智能体机制和自发观点切换机制。
+验证方法与核心结论
+通过计算机仿真和常微分方程模型验证，得出以下结论：
+仅需存在固执智能体即可实现环境适应性，但增加其数量会对系统性能产生不利影响；
+系统适应性随集群规模增大而提升，且与智能体密度无关，除非密度低于临界阈值；
+自发切换机制也可实现动态环境适应性，其核心参数（切换概率）可用于调节适应性的准确性与速度之间的权衡关系。
+
+---------------------------------------------------------------------------
+
+khaluf2017edge
+Edge detection in static and dynamic environments using robot swarms
+
+Robotic systems offer an attractive solution for a large spectrum of real-world applications that are hosted in dangerous or inaccessible areas for humans. In such applications, one of the fundamental tasks is to detect and mark particular features (e.g., pollution areas) in order to develop a proper response. In this paper, we focus on the specific problem of environmental edge detection using a swarm of homogeneous robots that can sense and act distributively using a large number of individuals. In our study, we consider both static and dynamic 2D environments, in which the spatial distribution of the feature(s) may change over time. We verify our results using a set of physics-based simulations.
+
+机器人系统为大量部署在人类难以进入或存在危险的真实场景中的应用，提供了极具吸引力的解决方案。在这类应用中，核心任务之一是检测并标记特定特征（如污染区域），以便制定合理的应对方案。本文聚焦于利用同构机器人集群进行环境边缘检测的具体问题，该集群由大量个体组成，能够通过分布式感知与行动完成任务。
+研究场景与验证方法
+研究同时涵盖静态和动态二维环境，其中动态环境中特征的空间分布可能随时间变化。
+通过一系列基于物理的仿真实验，对研究结果进行验证。
+
+---------------------------------------------------------------------------
+
+wahby2019collective
+Collective change detection: Adaptivity to dynamic swarm densities and light conditions in robot swarms
+
+Robot swarms are known to be robust to individual robot failures. However, a reduced swarm size causes a reduced swarm density. A too low swarm density may then decrease swarm performance, that should be compensated by adapting the individual behavior. Similarly, swarm behaviors can also be adapted to changes in the environment, such as dynamic light conditions. We study aggregation of swarm robots controlled by an extended variant of the BEECLUST algorithm. The robots are asked to aggregate at the brightest spot in their environment. Our approach efficiently adapts this swarm aggregation behavior to variability in swarm density and light conditions. First, each robot individually monitors its environment continuously by sampling its local swarm density and perceived light condition. Second, we exploit the collaboration of robots by letting them share features of these measurements with their neighbors by communication. In extensive robot swarm experiments with ten robots we validate our approach with dynamically changing swarm densities and under dynamic light conditions. We find an improved performance compared to robot swarms without communication and without awareness of the swarm density.
+
+机器人集群对个体机器人故障具有良好的鲁棒性，但集群规模减小会导致密度降低。过低的集群密度可能会下降集群性能，需要通过调整个体行为来弥补。同样，集群行为也可适配环境变化，例如动态光照条件。本文研究由 BEECLUST 算法扩展变体控制的机器人集群聚集行为，要求机器人聚集到环境中最明亮的区域。
+自适应策略设计
+每个机器人通过持续采样局部集群密度和感知到的光照条件，独立监测自身所处环境。
+利用机器人间的协作能力，让机器人通过通信与邻居共享这些测量数据的特征，实现集群行为的高效自适应。
+实验验证与结果
+在 10 台机器人组成的集群实验中，验证了该方法在动态变化的集群密度和光照条件下的有效性。
+结果表明，与无通信功能、无集群密度感知能力的机器人集群相比，该方法显著提升了集群性能。
+
+---------------------------------------------------------------------------
+
+khaluf2020construction
+Construction task allocation through the collective perception of a dynamic environment
+
+Building structures is a remarkable collective process but its automation remains an open challenge. Robot swarms provide a promising solution to this challenge. However, collective construction involves a number of difficulties regarding efficient robots allocation to the different activities, particularly if the goal is to reach an optimal construction rate. In this paper, we study an abstract construction scenario, where a swarm of robots is engaged in a collective perception process to estimate the density of building blocks around a construction site. The goal of this perception process is to maintain a minimum density of blocks available to the robots for construction. To maintain this density, the allocation of robots to the foraging task needs to be adjusted such that enough blocks are retrieved. Our results show a robust collective perception that enables the swarm to maintain a minimum block density under different rates of construction and foraging. Our approach leads the system to stabilize around a state in which the robots allocation allows the swarm to maintain a tile density that is close to or above the target minimum.
+
+搭建结构是一项非凡的集体过程，但其自动化仍面临未解决的挑战。机器人集群为这一挑战提供了极具前景的解决方案。然而，集体建造涉及高效分配机器人执行不同任务的诸多难题，尤其是当目标是实现最优建造速率时。本文研究一种抽象建造场景，机器人集群通过集体感知过程估计建筑工地周围建筑模块的密度。
+感知目标与任务分配策略
+该感知过程的目标是维持可供机器人建造使用的模块最低密度。
+为维持这一密度，需要调整分配至觅食任务的机器人数量，以确保获取足够的建筑模块。
+研究结果与系统性能
+研究结果表明，该集体感知机制具有鲁棒性，能使集群在不同建造速率和觅食速率下，维持模块的最低密度要求。
+所提方法可使系统稳定在特定状态，此时的机器人分配方案能让集群维持接近或高于目标最低值的模块密度。
+
+---------------------------------------------------------------------------
+
+capitan2013decentralized
+Decentralized multi-robot cooperation with auctioned POMDPs
+
+Planning under uncertainty faces a scalability problem when considering multi-robot teams, as the information space scales exponentially with the number of robots. To address this issue, this paper proposes to decentralize multi-robot partially observable Markov decision processes (POMDPs) while maintaining cooperation between robots by using POMDP policy auctions. Auctions provide a flexible way of coordinating individual policies modeled by POMDPs and have low communication requirements. In addition, communication models in the multi-agent POMDP literature severely mismatch with real inter-robot communication. We address this issue by exploiting a decentralized data fusion method in order to efficiently maintain a joint belief state among the robots. The paper presents two different applications: environmental monitoring with unmanned aerial vehicles (UAVs); and cooperative tracking, in which several robots have to jointly track a moving target of interest. The first one is used as a proof of concept and illustrates the proposed ideas through different simulations. The second one adds real multi-robot experiments, showcasing the flexibility and robust coordination that our techniques can provide.
+
+考虑多机器人团队时，不确定性下的规划面临可扩展性问题，因为信息空间会随机器人数量呈指数级增长。为解决这一问题，本文提出去中心化多机器人部分可观测马尔可夫决策过程（POMDPs），同时通过 POMDP 策略拍卖维持机器人间的协作。拍卖为协调以 POMDPs 建模的个体策略提供了灵活方式，且通信需求较低。此外，多智能体 POMDP 相关文献中的通信模型与真实机器人间通信存在严重不匹配，本文通过采用去中心化数据融合方法，高效维持机器人间的联合信念状态，以解决这一问题。
+应用场景与验证方式
+无人机环境监测：作为概念验证，通过不同仿真实验阐释所提思路的有效性。
+协同跟踪任务：多个机器人需联合跟踪移动目标，除仿真外还增加了真实多机器人实验，展现所提技术的灵活性和鲁棒协作能力。
+
+---------------------------------------------------------------------------
+
+mirzaei2007performance
+On the performance of multi-robot target tracking
+
+In this paper, we study the accuracy of cooperative localization and target tracking (CLATT) in a team of mobile robots, and derive analytical upper bounds for the position uncertainty. The obtained bounds provide a description of the asymptotic positioning performance of the robots and the targets as a function of the sensor characteristics and the structure of the graph of relative position measurements. By employing an extended Kalman filter (EKF) formulation for data fusion, two key asymptotic results are derived. The first provides the guaranteed worst-case positioning accuracy, whereas the second determines an upper bound on the expected covariance of the estimates. We investigate the effects of jointly estimating the targets' and the robots' position, and demonstrate that it results in better accuracy for the robots' position estimates. The theoretical results are confirmed both in simulation and experimentally.
+
+本文研究移动机器人团队中协同定位与目标跟踪（CLATT）的准确性，并推导位置不确定性的解析上界。所得边界描述了机器人和目标的渐近定位性能，该性能是传感器特性和相对位置测量图结构的函数。通过采用扩展卡尔曼滤波（EKF）进行数据融合，推导得出两个关键渐近结果。第一个结果给出了有保证的最坏情况定位精度，第二个结果确定了估计值的期望协方差上界。
+核心研究与验证
+探究联合估计目标和机器人位置的影响，结果表明这种方式能提升机器人位置估计的准确性。
+仿真实验和物理实验均验证了理论结果的有效性。
+
+---------------------------------------------------------------------------
+
+rodrigues2015beyond
+Beyond Onboard Sensors in Robotic Swarms-Local Collective Sensing through Situated Communication
+
+The constituent robots in swarm robotics systems are typically equipped with relatively simple, onboard sensors of limited quality and range. When robots have the capacity to communicate with one another, communication has so far been exclusively used for coordination. In this paper, we present a novel approach in which local, situated communication is leveraged to overcome the sensory limitations of the individual robots. In our approach, robots share sensory inputs with neighboring robots, thereby effectively extending each other’s sensory capabilities. We evaluate our approach in a series of experiments in which we evolve controllers for robots to capture mobile preys. We compare the performance of (i) swarms that use our approach, (ii) swarms in which robots use only their limited onboard sensors, and (iii) swarms in which robots are equipped with ideal sensors that provide extended sensory capabilities without the need for communication. Our results show that swarms in which local communication is used to extend the sensory capabilities of the individual robots outperform swarms in which only onboard sensors are used. Our results also show that in certain experimental configurations, the performance of swarms using our approach is close to the performance of swarms with ideal sensors.
+
+集群机器人系统中的组成机器人通常配备相对简单、质量和范围有限的机载传感器。当机器人具备相互通信能力时，通信迄今为止仅被用于协调任务。本文提出一种新颖方法，利用局部情境通信克服个体机器人的感知局限性。该方法中，机器人与相邻机器人共享感知输入，从而有效扩展彼此的感知能力。
+实验设计与对比
+通过一系列实验评估该方法，进化机器人控制器以完成捕捉移动猎物的任务。
+对比三组集群的性能：采用所提方法的集群、仅使用自身有限机载传感器的集群、配备理想传感器（无需通信即可获得扩展感知能力）的集群。
+实验结果
+利用局部通信扩展个体感知能力的集群，性能优于仅使用机载传感器的集群。
+在特定实验配置下，采用所提方法的集群性能接近配备理想传感器的集群。
+
+---------------------------------------------------------------------------
+
+stroupe2001distributed
+Distributed sensor fusion for object position estimation by multi-robot systems
+
+We present a method for representing, communicating and fusing distributed, noisy and uncertain observations of an object by multiple robots. The approach relies on re-parameterization of the canonical two-dimensional Gaussian distribution that corresponds more naturally to the observation space of a robot. The approach enables two or more observers to achieve greater effective sensor coverage of the environment and improved accuracy in object position estimation. We demonstrate empirically that, when using our approach, more observers achieve more accurate estimations of an object's position. The method is tested in three application areas, including object location, object tracking, and ball position estimation for robotic soccer. Quantitative evaluations of the technique in use on mobile robots are provided.
+
+本文提出一种方法，用于多机器人对目标物体的分布式、含噪声且不确定观测结果的表示、通信与融合。该方法依赖于对标准二维高斯分布的重新参数化，这种参数化方式更贴合机器人的观测空间。
+方法核心优势
+支持两个或多个观测者获得更大的有效环境传感器覆盖范围。
+提升目标物体位置估计的准确性，实证表明观测者数量越多，位置估计精度越高。
+应用测试与评估
+在三个应用领域进行测试，包括目标定位、目标跟踪以及机器人足球中的球位估计。
+对移动机器人应用该技术进行定量评估，验证方法的实用性。
+
+---------------------------------------------------------------------------
+
+zadorozhny2013information
+Information fusion based on collective intelligence for multi-robot search and rescue missions
+
+In this paper, we introduce an automatic information fusion method that exploits the collective intelligence of mobile robots to efficiently “crowdsource” victim detection tasks. We reduce the load on the operators requiring them to acknowledge only presence of the victim in an image (to annotate the image). The task of finding victim location is performed via automatic fusion of annotated images from the image queue.
+
+本文提出一种自动信息融合方法，该方法利用移动机器人的集体智能，高效 “众包” 完成受害者检测任务。
+核心设计与任务分配
+减轻操作人员的工作负荷，仅要求他们确认图像中是否存在受害者（即对图像进行标注）。
+受害者位置的查找任务，通过自动融合图像队列中的标注图像完成。
+
+--------------------------------------------------------------------------
+
+sasaoka2016multi
+Multi-robot SLAM via information fusion extended Kalman filters
+
+This paper is concerned with Simultaneous Localization and Mapping (SLAM) problem with multiple mobile robots. Each robot detects landmarks and other robots, and estimates their positions by the extended Kalman filters. To achieve good estimation accuracy, an optimal information fusion technique is adapted to the multi-robot SLAM problem. This technique involves the minimization of the estimation error covariance by weighted averaging of the state estimates from the extended Kalman filters. Simulation and experimental results are included to show the effectiveness of the present method.
+
+本文研究多移动机器人的同时定位与地图构建（SLAM）问题。每个机器人检测地标和其他机器人，并通过扩展卡尔曼滤波器估计它们的位置。
+信息融合策略与目标
+为实现良好的估计精度，将一种最优信息融合技术应用于多机器人 SLAM 问题。
+该技术通过对扩展卡尔曼滤波器的状态估计值进行加权平均，最小化估计误差协方差。
+验证结果
+通过仿真实验和物理实验结果，验证了所提方法的有效性。
+
+--------------------------------------------------------------------------
+
+czarnetzki2010handling
+Handling heterogeneous information sources for multi-robot sensor fusion
+
+In real world scenarios, measurements from a robot's environment and their respective models are rarely homogeneous in terms of their uncertainty. Instead it is likely to have classes of objects that greatly differ in this respect, such as static and dynamic, unique and ambiguous or previously known and previously unknown objects. This paper extends the concept of FastSLAM to exploit this fact in order to more efficiently localize an autonomous mobile robot and simultaneously map features and track dynamic objects in its environment in a cooperative multi-robot scenario.
+
+在真实场景中，机器人对环境的测量结果及其对应的模型，在不确定性方面很少是均匀的。相反，不同类别物体的不确定性可能存在显著差异，例如静态与动态物体、独特与模糊物体，或是已知与未知物体。
+方法扩展与应用场景
+本文扩展快速同时定位与地图构建（FastSLAM）的概念，充分利用上述物体不确定性差异的特点。
+实现多机器人协作场景下，自主移动机器人的高效定位，同时完成环境特征建模与动态物体跟踪任务。
+
+----------------------------------------------------------------------------
+
+otte2016collective
+Collective cognition and sensing in robotic swarms via an emergent group-mind
+
+Algorithms for robotic swarms often involve programming each robot with simple rules that cause complex group behavior to emerge out of many individual interactions. We study an algorithm with emergent behavior that transforms a robotic swarm into a single unified computational meta-entity that can be programmed at runtime. In particular, a swarm-spanning artificial neural network emerges as wireless neural links between robots self-organize. The resulting artificial group-mind is trained to differentiate between spatially heterogeneous light patterns it observes by using the swarm’s distributed light sensors like cells in a retina. It then orchestrates different coordinated heterogeneous swarm responses depending on which pattern it observes. Experiments on real robot swarms containing up to 316 robots demonstrate that this enables collective decision making based on distributed sensor data, and facilitates human-swarm interaction.
+
+集群机器人算法通常会为每个机器人编写简单规则，通过大量个体间的交互涌现出复杂的群体行为。本文研究一种具有涌现行为的算法，该算法能将机器人集群转化为单一统一的计算元实体，并可在运行时进行编程。
+核心机制与功能实现
+机器人间通过自组织形成无线神经连接，进而涌现出跨集群的人工神经网络。
+这个人工群体智能系统利用集群的分布式光传感器（类似视网膜细胞），经过训练后能区分所观测到的空间异质光模式。
+根据观测到的不同光模式，系统会协调产生多样化的异质集群响应行为。
+实验验证与价值
+在包含多达 316 台机器人的真实集群实验中验证了该算法的有效性。
+实验表明，该方法能基于分布式传感器数据实现集体决策，并为人类与集群的交互提供便利。
+
+----------------------------------------------------------------------------
+
+kornienko2005cognitive
+Cognitive micro-agents: individual and collective perception in microrobotic swarm
+
+In this paper we present the research results in the field of perception for real microrobotic swarm. The proposed hardware and software solution uses IR-based reflective measurement for individual perception and the Dampster-Shafer evidential reasoning for hypothesis refinement in collective perception. Especial attention is paid to a reliable identification of encountered geometries and a reduction of local communication. Based on the experimental results we make a conclusion about cognitive capabilities of individual microrobots and the whole swarm.
+
+本文呈现了真实微型机器人集群感知领域的研究成果。所提出的软硬件解决方案，采用基于红外的反射测量实现个体感知，并通过登普斯特 - 谢弗证据推理完成集体感知中的假设优化。
+研究重点与结论
+重点关注对所遇几何结构的可靠识别，同时减少局部通信量。
+基于实验结果，得出关于单个微型机器人及整个集群认知能力的结论。
+
+----------------------------------------------------------------------------
+
+giusti2012cooperative
+Cooperative sensing and recognition by a swarm of mobile robots
+
+We present an approach for distributed real-time recognition tasks using a swarm of mobile robots. We focus on the visual recognition of hand gestures, but the solutions that we provide have general applicability and address a number of challenges common to many distributed sensing and classification problems. In our approach, robots acquire and process hand images from multiple points of view, most of which do not allow for a satisfactory classification. Each robot is equipped with a statistical classifier, which is used to generate an opinion for the sensed gesture. Using a low-bandwidth wireless channel, the robots locally exchange their opinions. They also exploit mobility to adapt their positions to maximize the mutual information collectively gathered by the swarm. A distributed consensus protocol is implemented, to allow to rapidly settle on a decision once enough evidence is available. The system is implemented and demonstrated on real robots. In addition, extensive quantitative results of emulation experiments, based on a real image dataset, are reported. We consider different scenarios and study the scalability and the robustness of the swarm performance for distributed recognition.
+
+本文提出一种基于移动机器人集群的分布式实时识别方法，重点研究手势视觉识别任务。该方案具有通用性，可解决众多分布式感知与分类问题共有的一系列挑战。
+核心设计与流程
+机器人从多个视角采集并处理手势图像，多数视角无法直接实现满意分类；每台机器人配备统计分类器，生成对所感知手势的判断结果。
+通过低带宽无线信道，机器人在局部范围内交换判断结果；同时利用移动能力调整自身位置，最大化集群收集的互信息。
+实现分布式共识协议，确保积累足够证据后快速达成决策。
+验证与分析
+在真实机器人上实现并演示该系统，同时基于真实图像数据集开展大量仿真实验，报告定量结果。
+考虑不同场景，研究集群在分布式识别任务中的性能可扩展性与鲁棒性。
+
+----------------------------------------------------------------------------
+
+colledanchise2018behavior
+Behavior trees in robotics and AI: An introduction
+
+a book
+
+Behavior Trees (BTs) provide a way to structure the behavior of an artificial agent such as a robot or a non-player character in a computer game. Traditional design methods, such as finite state machines, are known to produce brittle behaviors when complexity increases, making it very hard to add features without breaking existing functionality.　 BTs were created to address this very problem, and enables the creation of systems that are both modular and reactive. Behavior Trees in Robotics and AI: An Introduction provides a broad introduction as well as an in-depth exploration of the topic, and is the first comprehensive book on the use of BTs.
+
+This book introduces the subject of BTs from simple topics, such as semantics and design principles, to complex topics, such as learning and task planning. For each topic, the authors provide a set of examples, ranging from simple illustrations to realistic complex behaviors, to enable the reader to successfully combine theory with practice.
+
+Starting with an introduction to BTs, the book then describes how BTs relate to, and in many cases, generalize earlier switching structures, or control architectures. These ideas are then used as a foundation for a set of efficient and easy to use design principles. The book then presents a set of important extensions and provides a set of tools for formally analyzing these extensions using a state space formulation of BTs.
+
+With the new analysis tools, the book then formalizes the descriptions of how BTs generalize earlier approaches and shows how BTs can be automatically generated using planning and learning. The final part of the book provides an extended set of tools to capture the behavior of Stochastic BTs, where the outcomes of actions are described by probabilities. These tools enable the computation of both success probabilities and time to completion.
+
+This book targets a broad audience, including both students and professionals interested in modeling complex behaviors for robots, game characters, or other AI agents. Readers can choose at which depth and pace they want to learn the subject, depending on their needs and background.
+
+行为树（BTs）为构建人工智能体（如机器人或电脑游戏中的非玩家角色）的行为提供了一种结构化方法。传统设计方法（如有限状态机）在复杂度提升时易产生脆弱行为，新增功能时极易破坏现有功能。行为树的出现正是为解决这一问题，能够构建兼具模块化与反应性的系统。《机器人与人工智能中的行为树：入门指南》一书既对该主题进行了广泛概述，又展开了深入探讨，是首部关于行为树应用的综合性著作。
+书籍核心内容架构
+从基础主题切入，涵盖行为树的语义学和设计原则，逐步深入至学习、任务规划等复杂主题。每个主题均配有丰富案例，从简单图示到贴近实际的复杂行为，助力读者实现理论与实践的结合。
+开篇介绍行为树的基本概念，随后阐述其与早期切换结构（或控制架构）的关联，以及在多数情况下对这些结构的泛化能力，并以此为基础提出一套高效易用的设计原则。
+呈现行为树的一系列重要扩展，并提供基于状态空间表述的形式化分析工具，用于对这些扩展进行严谨分析。
+借助新的分析工具，形式化描述行为树对早期方法的泛化过程，展示如何通过规划与学习自动生成行为树。
+最后一部分提供一套扩展工具，用于捕捉随机行为树的特性 —— 此类行为树中动作结果以概率形式描述，工具可计算任务成功概率与完成时间。
+目标读者与学习方式
+本书面向广泛读者群体，包括对机器人、游戏角色或其他人工智能体的复杂行为建模感兴趣的学生与专业人士。读者可根据自身需求与背景，灵活选择学习深度与进度。
+
+-----------------------------------------------------------------------------
+
+iovino2022survey
+A survey of behavior trees in robotics and ai
+
+Behavior Trees (BTs) were invented as a tool to enable modular AI in computer games, but have received an increasing amount of attention in the robotics community in the last decade. With rising demands on agent AI complexity, game programmers found that the Finite State Machines (FSM) that they used scaled poorly and were difficult to extend, adapt and reuse.
+In BTs, the state transition logic is not dispersed across the individual states, but organized in a hierarchical tree structure, with the states as leaves. This has a significant effect on modularity, which in turn simplifies both synthesis and analysis by humans and algorithms alike. These advantages are needed not only in game AI design, but also in robotics, as is evident from the research being done.
+In this paper we present a comprehensive survey of the topic of BTs in Artificial Intelligence and Robotic applications. The existing literature is described and categorized based on methods, application areas and contributions, and the paper is concluded with a list of open research challenges.
+
+行为树（BTs）最初是为实现电脑游戏中的模块化人工智能而发明的工具，过去十年间在机器人领域受到的关注日益增多。随着对智能体人工智能复杂度的需求不断提升，游戏程序员发现他们所使用的有限状态机（FSM）扩展性差，且难以扩展、适配和复用。
+行为树的核心特性与优势
+行为树中，状态转换逻辑并未分散在各个独立状态中，而是组织成层级树状结构，状态作为树的叶节点存在。
+这种结构极大提升了模块化程度，进而简化人类与算法对系统的合成与分析过程。
+这些优势不仅适用于游戏人工智能设计，也同样满足机器人领域的需求，相关研究成果已充分证明这一点。
+综述内容与结构
+本文对人工智能和机器人应用中的行为树主题进行全面综述，对现有文献按方法、应用领域和贡献进行描述与分类，最后列出该领域尚未解决的研究挑战。
+
+-----------------------------------------------------------------------------
+
+colledanchise2016advantages
+The advantages of using behavior trees in mult-robot systems
+
+Multi-robot teams offer possibilities of improved performance and fault tolerance, compared to single robot solutions. In this paper, we show how to realize those possibilities when starting from a single robot system controlled by a Behavior Tree (BT). By extending the single robot BT to a multi-robot BT, we are able to combine the fault tolerant properties of the BT, in terms of built-in fallbacks, with the fault tolerance inherent in multi-robot approaches, in terms of a faulty robot being replaced by another one. Furthermore, we improve performance by identifying and taking advantage of the opportunities of parallel task execution, that are present in the single robot BT. Analyzing the proposed approach, we present results regarding how mission performance is affected by minor faults (a robot losing one capability) as well as major faults (a robot losing all its capabilities).
+
+与单机器人解决方案相比，多机器人团队在性能提升和容错性方面具有更大潜力。本文展示了如何从一个由行为树（BT）控制的单机器人系统出发，实现这些潜力。通过将单机器人行为树扩展为多机器人行为树，能够将行为树本身的容错特性（基于内置备选机制）与多机器人方案固有的容错性（基于故障机器人被其他机器人替代）相结合。此外，通过识别并利用单机器人行为树中存在的并行任务执行机会，进一步提升系统性能。
+分析与结果呈现
+对所提方法进行分析，呈现轻微故障（机器人失去一项功能）和严重故障（机器人失去所有功能）对任务性能影响的相关结果。
+
+-----------------------------------------------------------------------------
+
+jones2018evolving
+Evolving behaviour trees for swarm robotics
+
+Controllers for swarms of robots are hard to design as swarm behaviour emerges from their interaction, and so controllers are often evolved. However, these evolved controllers are often difficult to understand, limiting our ability to predict swarm behaviour. We suggest behaviour trees are a good control architecture for swarm robotics, as they are comprehensible and promote modular reuse. We design a foraging task for kilobots and evolve a behaviour tree capable of performing that task, both in simulation and reality, and show the controller is compact and understandable.
+
+机器人集群的控制器设计难度较大，因为集群行为源于个体间的交互，因此控制器通常通过进化方式生成。然而，这些进化而来的控制器往往难以理解，限制了我们对集群行为的预测能力。本文提出，行为树是集群机器人的优良控制架构，因其具备可理解性且支持模块化复用。
+实验设计与验证
+为千足机器人（kilobots）设计觅食任务，并进化出一套能够完成该任务的行为树控制器。
+分别在仿真环境和真实场景中验证该控制器的性能，结果表明该控制器结构简洁、易于理解。
+
+-----------------------------------------------------------------------------
+
+kuckling2022automode
+AutoMoDe-Cedrata: automatic design of behavior trees for controlling a swarm of robots with communication capabilities
+
+Behavior trees are a control architecture that has gained recent attention in AI and robotics. Previous research on the use of behavior trees in swarm robotics has shown the necessity for the behaviors to have proper return values, instead of running indefinitely. This work extends our previous work in which we defined AutoMoDe-Cedrata, an automatic modular design that makes use of modules that have been explicitly defined for behavior trees. While the search space is sufficiently large to include well-performing solutions, Cedrata had problems discovering communication-based strategies. In this work, we extend Cedrata by introducing Cedrata-GP and Cedrata-GE which are based on genetic programming and grammatical evolution, respectively. We test these design methods on two missions and compare the performance of the automatic design methods against the performance of solutions created by human designers. The results show that the structure of Cedrata allows for well-performing solutions that are reliably found by human designers. However, the automatic design methods fail to discover the same communication strategies as the human designers.
+
+行为树是近年来在人工智能和机器人领域受到关注的一种控制架构。此前关于行为树在集群机器人中应用的研究表明，行为必须具备合适的返回值，而非无限期运行。本研究扩展了我们之前的工作 —— 提出 AutoMoDe-Cedrata 设计方法，这是一种自动模块化设计方案，利用为行为树明确定义的模块构建控制器。尽管该方法的搜索空间足够大，可包含性能优良的解决方案，但 Cedrata 在发现基于通信的策略方面存在不足。
+方法扩展与实验设计
+引入两种扩展方案 Cedrata-GP 和 Cedrata-GE，分别基于遗传编程和语法进化，以改进原有设计方法。
+在两项任务中测试这些自动设计方法，并将其性能与人类设计者构建的解决方案进行对比。
+实验结果
+Cedrata 的结构设计使得人类设计者能够稳定找到性能优良的解决方案。
+自动设计方法未能发现与人类设计者相同的通信策略，在该类策略的探索上存在局限。
+
+----------------------------------------------------------------------------
+
+neupane2019learning
+Learning Swarm Behaviors using Grammatical Evolution and Behavior Trees
+
+Algorithms used in networking, operation research
+and optimization can be created using bio-inspired
+swarm behaviors, but it is difficult to mimic swarm
+behaviors that generalize through diverse environments. State-machine-based artificial collective
+behaviors evolved by standard Grammatical Evolution (GE) provide promise for general swarm
+behaviors but may not scale to large problems.
+This paper introduces an algorithm that evolves
+problem-specific swarm behaviors by combining
+multi-agent grammatical evolution and Behavior
+Trees (BTs). We present a BT-based BNF grammar, supported by different fitness function types,
+which overcomes some of the limitations in using GEs to evolve swarm behavior. Given humanprovided, problem-specific fitness-functions, the
+learned BT programs encode individual agent behaviors that produce desired swarm behaviors. We
+empirically verify the algorithm’s effectiveness on
+three different problems: single-source foraging,
+collective transport, and nest maintenance. Agent
+diversity is key for the evolved behaviors to outperform hand-coded solutions in each task.
+
+网络、运筹学和优化领域使用的算法可通过仿生集群行为构建，但很难模拟能在多样化环境中泛化的集群行为。基于状态机、通过标准语法进化（GE）生成的人工集体行为，为实现通用集群行为提供了可能，但在处理大规模问题时可能无法有效扩展。本文提出一种算法，通过结合多智能体语法进化与行为树（BTs），生成面向特定问题的集群行为。
+核心设计与优势
+设计基于行为树的巴科斯 - 诺尔范式（BNF）语法，并搭配多种适应度函数类型，克服了传统语法进化在生成集群行为时的部分局限性。
+给定人类设计的问题特定适应度函数后，学习到的行为树程序会编码个体智能体行为，进而涌现出期望的集群行为。
+实验验证与关键发现
+在三个不同任务（单源觅食、集体运输和巢穴维护）中实证验证了算法的有效性。
+智能体多样性是生成的行为在每个任务中优于手工编码解决方案的关键因素。
+
+----------------------------------------------------------------------------
+
+jones2019onboard
+Onboard evolution of understandable swarm behaviors
+
+Designing the individual robot rules that give rise to desired emergent swarm behaviors is difficult. The common method of running evolutionary algorithms off‐line to automatically discover controllers in simulation suffers from two disadvantages: the generation of controllers is not situated in the swarm and so cannot be performed in the wild, and the evolved controllers are often opaque and hard to understand. A swarm of robots with considerable on‐board processing power is used to move the evolutionary process into the swarm, providing a potential route to continuously generating swarm behaviors adapted to the environments and tasks at hand. By making the evolved controllers human‐understandable using behavior trees, the controllers can be queried, explained, and even improved by a human user. A swarm system capable of evolving and executing fit controllers entirely onboard physical robots in less than 15 min is demonstrated. One of the evolved controllers is then analyzed to explain its functionality. With the insights gained, a significant performance improvement in the evolved controller is engineered.
+
+设计能涌现出期望集群行为的个体机器人规则难度较大。通过离线运行进化算法在仿真中自动发现控制器的常用方法存在两个缺点：控制器的生成不依托实际集群，无法在真实场景中执行；进化出的控制器通常晦涩难懂，难以理解。本文利用具备强大机载处理能力的机器人集群，将进化过程迁移至集群内部，为持续生成适配当前环境与任务的集群行为提供了可行路径。
+核心设计与优势
+采用行为树使进化出的控制器具备人类可理解性，用户可对控制器进行查询、解读甚至优化。
+实现了一套集群系统，能够在物理机器人的机载设备上完全完成适配控制器的进化与执行，整个过程耗时不到 15 分钟。
+实验验证与优化
+对其中一个进化出的控制器进行分析，阐释其功能原理。
+基于获得的洞察，对该进化控制器进行优化设计，显著提升了其性能。
+
+----------------------------------------------------------------------------
+
+florez2008dynamic
+Dynamic expansion of behaviour trees
+
+Artificial intelligence in games is typically used for creating player's opponents. Manual edition of intelligent behaviors for Non-Player Characters (NPCs) of games is a cumbersome task that needs experienced designers. Our research aims to assist designers in this task. Behaviours typically use recurring patterns, so that experience and reuse are crucial aspects for behavior design. The use of hierarchical state machines allows working on different abstraction levels, sharing transitions and reusing pieces from the more detailed levels. However, the static nature of the design process does not release the designer from the burden to completely specify each behaviour. Our approach applies Case-Based Reasoning (CBR) techniques to retrieve and reuse stored behaviors represented as hierarchical state machines (actually, behaviour trees). In this paper we focus on dynamic retrieval of behaviours taking into account the world state and the underlying goals to select the most appropriate state machine to guide the NPC behaviour. The global behaviour of the NPC is dynamically built in run time querying the CBR system. We exemplify our approach through a serious game, developed by our research group, with gameplay elements from First-Person Shooter (FPS) games.
+
+游戏中的人工智能通常用于创建玩家的对手。手动设计游戏非玩家角色（NPC）的智能行为是一项繁琐的任务，需要经验丰富的设计师完成。本研究旨在为设计师提供这项任务的辅助方案。行为设计中通常存在重复模式，因此经验积累与复用是行为设计的关键环节。
+传统方法局限与新方案设计
+层次状态机的使用支持在不同抽象层级开展设计，可共享状态转换逻辑，并复用更细致层级的设计模块。但这种静态设计过程仍要求设计师完整定义每个行为，未能减轻其工作负担。
+本文提出的方法采用基于案例推理（CBR）技术，检索并复用以层次状态机（实际为行为树）形式存储的行为。核心在于结合游戏世界状态和底层目标动态检索行为，筛选最合适的状态机指导 NPC 行为。
+方案验证与应用
+NPC 的全局行为在运行时通过查询 CBR 系统动态构建。
+以研究团队开发的一款严肃游戏为例进行方案演示，该游戏融入了第一人称射击（FPS）游戏的玩法元素。
+
+----------------------------------------------------------------------------
