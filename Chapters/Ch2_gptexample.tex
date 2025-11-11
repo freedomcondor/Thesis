@@ -1,0 +1,85 @@
+\chapter{Related Work}
+\label{ch2}
+
+\section{Introduction}
+
+Swarm robotics is inspired by social animals such as ants, birds, and fish \cite{bonabeau1999swarm}.
+Early models such as Boids demonstrated that simple local rules can generate complex collective behaviors \cite{reynolds1987flocks}.
+Robot swarms follow this principle, aiming to create scalable, fault-tolerant systems capable of adaptive and self-organized behaviors
+\cite{dorigo2014swarm,
+      dorigo2020reflections,
+      dorigo2021swarm}.
+These systems have been applied in
+    environmental monitoring \cite{talamali2021less},
+    navigation and transportation \cite{dorigo2013swarmanoid},
+    self-assembly \cite{rubenstein2014programmable},
+    construction \cite{team2012designing, petersen2019review},
+
+\textcolor{red}{say something about bio-hybrid}
+    and bio-hybrid interaction \cite{wahby2018autonomously, halloy2007social}.
+
+Despite these advances, fundamental challenges such as the macro-micro problem remain 
+\textcolor{red}{rephrase sentence}
+\cite{hamann2008framework,
+      hamann2010space,
+      hamann2018swarm,
+      hamann2013towards,
+      valentini2015efficient}. \textcolor{red}{incomplete reference, from Aryo paper 49}
+Although researches have shown that decentralized methods can direct robots swarm to finish certain tasks
+\cite{dorigo2004evolving,
+      nouyan2009teamwork,
+      dorigo2013swarmanoid,
+      rubenstein2014programmable,
+      li2019decentralized},
+yet inefficiencies have also been exposed due to the lack of global information held by each individual robot 
+\cite{eberhardinger2018approach,
+      eberhardinger2018measuring,
+      kaddoum2010criteria,
+      nedic2018network,
+      jovanovic2016controller}.
+These limitations motivate the use of hierarchical and hybrid strategies.
+
+\section{Hybrid, Hierarchical, and Leadership Approaches}
+
+Hybrid and hierarchical approaches attempt to balance decentralized flexibility and centralized efficiency. Dynamic hierarchies enable temporary leader election, role assignment, and authority transfer \cite{dorigo2020reflections}. Automatic behavior design and heterogeneity are further challenges \cite{francesca2016automatic, birattari2019automatic, salman2024automatic, kengyel2015potential}.
+
+Flat swarms rely on local rules \cite{viragh2014flocking, vasarhelyi2018optimized, floreano2008bio, csahin2004swarm, beni1988concept} and are inspired by natural systems \cite{buhl2006disorder, detrain2008collective, theraulaz1998origin}. Heterogeneous swarms may include informed or persistent agents \cite{firat2020self, valentini2016collective, balazs2020adaptive}. Leader-based systems introduce guidance \cite{gu2009leader, amraii2014explicit, zheng2020adversarial}. Hierarchical and partially centralized architectures have been proposed \cite{dalmao2011cucker, jia2019modelling, divband2019photomorphogenesis, pignotti2018flocking, zhou2022swarm}.
+
+Multi-robot nervous systems (MNS) extend these ideas for formation control and information flow \cite{mathews2017mergeable, zhu2020formation, zhang2023self, jamshidpey2020multi, jamshidpey2024centralization, jamshidpey2023reducing}.
+
+\section{Swarm vs. Centralized Approaches for Different Tasks}
+
+\subsection{Formation Control}
+
+Formation control is a classical problem \cite{liu2018survey, oh2015survey}. Local sensing techniques include ultraviolet markers \cite{walter2018fast}, fiducial markers \cite{ulrich2022towards}, and micro-drones \cite{kushleyev2013towards}. Control theory approaches employ passivity-based methods \cite{stacey2015passivity}, leader-follower structures \cite{desai1999control}, and fast-converging optimization algorithms \cite{spanogianopoulos2017fast}. Graph-theoretic frameworks \cite{desai2002modeling, yang2018growing, mehdifar2018finite} and bearing-based methods \cite{zhao2019bearing, schiano2016rigidity, zhao2015translational, li2020adaptive, zhang2022distributed} are widely studied.
+
+Target position assignment is essential for efficiency. Distributed assignment methods include distributed simplex algorithms \cite{burger2012distributed}, Hungarian methods \cite{chopra2017distributed}, linear bottleneck optimization \cite{akella2020assignment}, and market-based approaches \cite{michael2008distributed, montijano2014efficient, mosteo2017optimal, macalpine2015scram, wang2020shape, agarwal2018simultaneous, zavlanos2007distributed, alonso2016distributed, ravichandar2020strata, kambayashi2018distributed}.
+
+\subsection{Coverage and Exploration}
+
+Coverage is critical in sensor networks and environmental monitoring. Surveys distinguish between fixed \cite{wang2011coverage} and moving sensors \cite{galceran2013survey}, as well as adaptive decentralized strategies \cite{luo2018adaptive, santos2019decentralized, siligardi2019robust}. Collective perception \cite{schmickl2006collective}, search and rescue \cite{baxter2007multi}, and foraging \cite{lima2017cellular} have also been explored. Both offline path planning \cite{nazarahari2019multi, thabit2018multi, yu2016optimal, mirzaei2011cooperative} and online mapping \cite{ge2005complete, miki2018multi, marjovi2009multi, albani2017field} strategies are applied. Random-walk and pheromone-inspired methods have been proposed \cite{mcguire2019minimal, kegeleirs2019random, koenig2001terrain, schroeder2017efficient, deshpande2017robot}.
+
+\subsection{Other Applications}
+
+Mapping and SLAM \cite{howard2006multi}, path optimization \cite{psaraftis2016dynamic}, cooperative transportation \cite{tuci2018cooperative}, and search-and-rescue missions \cite{robin2016multi} exemplify broader swarm tasks.
+
+\subsection{Fault Tolerance and Network Considerations}
+
+Connectivity is critical for swarm performance \cite{kirst2016dynamic, zavlanos2011graph, cortes2008distributed, de2006decentralized, moreau2005stability, olfati2007consensus}. Fault tolerance strategies include detection \cite{bjerknes2013fault, tarapore2017generic, winfield2006safety, strobel2018managing, pini2011task, o2023predictive, oladiran2019fault} and repair \cite{christensen2009fireflies, varadharajan2020swarm}.
+
+\section{Human-Swarm Interaction and Reprogramming}
+
+Scaling up swarms requires manageable interfaces for human operators \cite{siean2023opportunities, kolling2015human}. Interaction methods include gesture \cite{alonso2015gesture, podevijn2013gesturing}, joysticks \cite{zhou2016assistive}, and haptic feedback \cite{lee2013semiautonomous}. Programming is often performed offline with pre-defined rules \cite{hamann2018swarm, brambilla2013swarm, francesca2014automode, francesca2016automatic, birattari2019automatic, rubenstein2014programmable, valentini2016collective, werfel2014designing, dorigo2013swarmanoid}. Online and over-the-air updates \cite{zyrianoff2024over, abadie2024robotap} or decentralized methods \cite{xie2011design, wang2006reprogramming, de2009energy, varadharajan2018over, venkata2023kt} are emerging.
+
+\section{Swarm Autonomy}
+
+Swarm autonomy integrates cognitive robotics concepts \cite{cangelosi2022cognition, vernon2014artificial, heinrich2022swarm, khaluf2019neglected} and follows hierarchical classification from basic (fault self-repair, obstacle avoidance) to advanced (dynamic goal adjustment, cross-task adaptation, human-swarm collaboration) \cite{sae2021automated, valentini2017best, dorigo2014self, valentini2016collective, prasetyo2018best, prasetyo2019collective, khaluf2017edge, wahby2019collective, khaluf2020construction, capitan2013decentralized, mirzaei2007performance, rodrigues2015beyond, stroupe2001distributed, zadorozhny2013information, sasaoka2016multi, czarnetzki2010handling, otte2016collective, kornienko2005cognitive, giusti2012cooperative}.
+
+\subsection{Behavior Trees}
+
+Behavior Trees (BT) are used for multi-robot control \cite{colledanchise2018behavior, iovino2022survey, colledanchise2016advantages, jeong2022behavior}. Evolving BTs employ genetic programming or grammatical evolution \cite{jones2018evolving, kuckling2022automode, neupane2019learning}, with online adaptation for real-time autonomy \cite{jones2019onboard, venkata2023kt, florez2008dynamic}.
+
+\section{Summary}
+
+Existing research has advanced swarm robotics significantly, but challenges remain in combining autonomy, scalability, hierarchical coordination, human-swarm interaction, and reprogramming capabilities. Hybrid architectures and self-organized hierarchies are emerging solutions, yet there is still a need for frameworks that integrate these features into fully deployable and autonomous swarm systems.
+
