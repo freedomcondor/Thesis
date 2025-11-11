@@ -11,103 +11,132 @@
 % 4 Swarm autonomy    TODO from Builderbot paper and zotero
 
 \textcolor{blue}{what is swarm}
+Swarm robotics is inspired by social animals such as ants, birds, and fish
+    \cite{bonabeau1999swarm} % the book of Swarm intelligence
+.
+Early models such as Boids demonstrated that simple local rules can generate complex collective behaviors
+    \cite{reynolds1987flocks}.
+Swarm robotics follows this principle, aiming to create decentralized systems capable of scalability, adaptability, and fault-tolerance.
+    \cite{dorigo2014swarm} \textcolor{red}{to read} % scholarpedia on swarm robotics
+    \cite{dorigo2020reflections} \textcolor{red}{to read}
+    \cite{dorigo2021swarm} %past, present and future
+Such decentralized systems have shown advantages in applications that requires large scale and space such as
+    Environmental monitoring \cite{talamali2021less} \textcolor{red}{varify, from Abstract, maybe not a good choice}, 
+    navigation and transport \cite{dorigo2013swarmanoid}, 
+    self-assembly \cite{rubenstein2014programmable}, 
+    and construction \cite{team2012designing} \cite{petersen2019review}
+.
 
-swarm is inspired from social animals like ants, birds ... \cite{bonabeau1999swarm}
+\textcolor{blue}{bio-hybrid, doesn't belong here, maybe move to Ch1}
+\textcolor{red}{There are also researches on bio-hybrid research. Researches tries to understand the self-organizing from nature
+    \cite{wahby2018autonomously}
+    \cite{halloy2007social}
+    \cite{buhl2006disorder}
+    \cite{detrain2008collective}
+    \cite{theraulaz1998origin}
+}.
 
-starts from boids \cite{reynolds1987flocks}
+Despite of great potentials, it is still challenging to connect low level individual reaction and high level collective behavior.
+Although researches have been trying to create theoretical framwork
+    \cite{hamann2008framework}
+    \cite{hamann2010space} \textcolor{red}{to read}
+    \cite{hamann2018swarm} \textcolor{red}{to read}
+    \cite{hamann2013towards}
+and have shown that decentralized methods can direct robots swarm to finish certain tasks
+    \cite{dorigo2004evolving}
+    \cite{nouyan2009teamwork}
+    \cite{dorigo2013swarmanoid}
+    \cite{rubenstein2014programmable}
+    \cite{li2019decentralized}
+,
+yet inefficiencies have also been exposed due to the lack of global information held by each individual robot
+\textcolor{red}{re-consider these citations:}
+%for Evaluation:
+    \cite{eberhardinger2018approach}
+    \cite{eberhardinger2018measuring}
+    \cite{kaddoum2010criteria}
+%tradeoffs
+    \cite{nedic2018network} % Network topology and communication-computation tradeoffs in decentralized optimization
+    \cite{jovanovic2016controller} % Tradeoffs ...
 
-robot swarms follows that principal, try to create a robots system that is scalable and fault tolerant.
-\cite{dorigo2014swarm}
-\cite{dorigo2020reflections} %reflections to swarm robotics.
-\cite{dorigo2021swarm} %past, present and future
+\textcolor{blue}{Therefore, hierarchical}
+These limitations motivate the use of hierarchical and hybrid strategies.
+\textcolor{red}{argue more here : people realize it is not enough for pure, flat, self-organized systems. We still need some centralization}
+    \cite{kengyel2015potential} % pure flat is not good
 
-They useful in applications like 
-Environmental monitoring \cite{talamali2021less}
-navigation and transport \cite{dorigo2013swarmanoid}
-self-assembly \cite{rubenstein2014programmable}
-construction: \cite{team2012designing} \cite{petersen2019review}
-
-biohybrid interaction 
-\cite{wahby2018autonomously}
-\cite{halloy2007social}
-
-although fundamental questions still needs to be answered : Macro-micro problem:
-\cite{hamann2008framework}
-\cite{hamann2010space}
-\cite{hamann2018swarm}
-\cite{hamann2013towards} % swarm calculus
-\cite{valentini2015efficient} \textcolor{red}{incomplete reference, from Aryo paper 49}
-
-researches have already shown that robots can work in decentralized way
-\cite{dorigo2004evolving}
-\cite{nouyan2009teamwork}
-\cite{dorigo2013swarmanoid}
-\cite{rubenstein2014programmable}
-\cite{li2019decentralized}
-
-However, in many scenarios, due to partial information, decentralized shows its deficiency.
-
-for Evaluation:
-\cite{eberhardinger2018approach}
-\cite{eberhardinger2018measuring}
-\cite{kaddoum2010criteria}
-tradeoffs
-\cite{nedic2018network} Network topology and communication-computation tradeoffs in decentralized optimization
-\cite{jovanovic2016controller} Tradeoffs ...
-
-Therefore, hierarchical.
+\cite{valentini2015efficient} \textcolor{red}{incomplete reference, from Aryo paper 49, belongs to decision making, doesn't belong here}
+% 100 kilobots decision making
 
 \section{Hybrid, hierarchical, and leadership approaches in the literature}
 
-\cite{dorigo2020reflections} it is challenging to self-organized hierarchy.
+In pure flat (homogeneous) swarms, like its nature inspiraion
+    \cite{buhl2006disorder}
+    \cite{detrain2008collective}
+    \cite{theraulaz1998origin}
+,
+all the individuals look the same and act the same
+    \cite{viragh2014flocking}
+    \cite{vasarhelyi2018optimized}
+    \cite{floreano2008bio}
+    \cite{csahin2004swarm}
+    \cite{beni1988concept}
+.
+On the other hand, in many cases, heterogeneous swarms performs better
+    \cite{kengyel2015potential} % hetero is better
+.
+Some individual with more information may improve the swarm behavior.
+A approach is to include informed or persistent agents to influence other individuals when flocking
+    \cite{firat2020self} % use informal individual to cue the whole swarm to aggreate to a desired shelter
+    \cite{valentini2016collective} \textcolor{red}{varify}
+    \cite{balazs2020adaptive} \textcolor{red}{varify}
+,
+or explicitly call the informed individuals "leaders"
+    \cite{gu2009leader}
+    \cite{amraii2014explicit}
+.
+Further, there are researches try to hide the trace of the leaders to avoid possible attacks \textcolor{red}{consider drop}
+    \cite{zheng2020adversarial}
+.
 
-other Challenges include automation design:
-\cite{francesca2016automatic}
-\cite{birattari2019automatic}
-\cite{salman2024automatic}
-and heterogeneity 
-\cite{kengyel2015potential}
+\textcolor{blue}{What is hierarchical}
+Hybrid and hierarchical approaches attempt to balance decentralized flexibility and centralized efficiency.
+These approaches means to induce hierarchy structure or leadership in the swarm,
+so that the swarm is good at flocking
+    \cite{dalmao2011cucker,
+          jia2019modelling,
+          pignotti2018flocking}
+and self-assembly, or formation
+    \cite{li2019decentralized,
+          divband2019photomorphogenesis}
+.
 
-flat swarm:
-\cite{viragh2014flocking}
-\cite{vasarhelyi2018optimized}
-\cite{bonabeau1999swarm} book
-\cite{floreano2008bio} book
-\cite{csahin2004swarm}
-\cite{beni1988concept} cellular robotic system
+However, to keep scalability and avoid a single point of failure,
+it involves mechanisms like temporary leader election, role assignment, and authority transfer
+to enable dynamic hierarchies
+which is also challenging
+    \cite{dorigo2020reflections} \textcolor{red}{varify}.
 
-animals in flat system
-\cite{buhl2006disorder}
-\cite{detrain2008collective}
-\cite{theraulaz1998origin}
-
-some heterogeneous with some members:
-\cite{firat2020self} : more informed 
-\cite{valentini2016collective} : more communicative \textcolor{red}{how?}
-\cite{balazs2020adaptive} : more persistent
-
-with leaders:
-\cite{gu2009leader} flocking leader, not formation
-\cite{amraii2014explicit} leader in flocking, not formation
-\cite{zheng2020adversarial} tries to detect and hind the leader
-\cite{shan2020collective} : Distributed Bayesian Hypothesis Testing (DBHT), not sure about leader, consider drop
-\cite{kaiser2022innate} : not sure about leader, about neuroevolution, consider drop
-
-hierarchical
-\cite{dalmao2011cucker}
-\cite{jia2019modelling}
-\cite{divband2019photomorphogenesis}
-\cite{pignotti2018flocking}
-
-\cite{zhou2022swarm} partially centralized, fixed structure
-
+\textcolor{blue}{Therefore, MNSs}
 MNS:
-\cite{mathews2017mergeable}
-\cite{zhu2020formation}
-\cite{zhang2023self} Yuwei's paper, Self-reconfigurable hierarchical for formation control
-\cite{jamshidpey2020multi}
-\cite{jamshidpey2024centralization}
-\cite{jamshidpey2023reducing}
+    \cite{mathews2017mergeable}
+    \cite{zhu2020formation}
+    \cite{zhang2023self} Yuwei's paper, Self-reconfigurable hierarchical for formation control
+    \cite{jamshidpey2020multi}
+    \cite{jamshidpey2024centralization}
+    \cite{jamshidpey2023reducing}
+    \textcolor{red}{my paper ?}
+    \cite{zhu2024self}
+
+\textcolor{red}{find new home for these}
+    \cite{shan2020collective} : %Distributed Bayesian Hypothesis Testing (DBHT), not sure about leader, consider drop
+    \cite{kaiser2022innate} : %not sure about leader, about neuroevolution, consider drop
+    \cite{zhou2022swarm}
+
+\textcolor{red}{consider a better place for automatic design, go to swarm program section}
+    other challenges include automation design:
+    \cite{francesca2016automatic}
+    \cite{birattari2019automatic}
+    \cite{salman2024automatic}
 
 \section{Swarm vs. centralized approaches for different tasks}
 
