@@ -11,36 +11,31 @@
 % 4 Swarm autonomy    TODO from Builderbot paper and zotero
 
 \textcolor{blue}{what is swarm}
+
 Swarm robotics is inspired by social animals such as ants, birds, and fish
     \cite{bonabeau1999swarm} % the book of Swarm intelligence
 .
 Early models such as Boids demonstrated that simple local rules can generate complex collective behaviors
     \cite{reynolds1987flocks}.
 Swarm robotics follows this principle, aiming to create decentralized systems capable of scalability, adaptability, and fault-tolerance.
-    \cite{dorigo2014swarm} \textcolor{red}{to read} % scholarpedia on swarm robotics
-    \cite{dorigo2020reflections} \textcolor{red}{to read}
+    \cite{dorigo2014swarm} % scholarpedia on swarm robotics
+    \cite{dorigo2020reflections}
     \cite{dorigo2021swarm} %past, present and future
 Such decentralized systems have shown advantages in applications that requires large scale and space such as
-    Environmental monitoring \cite{talamali2021less} \textcolor{red}{varify, from Abstract, maybe not a good choice}, 
+    Environmental monitoring \cite{talamali2021less} \textcolor{red}{varify}, 
     navigation and transport \cite{dorigo2013swarmanoid}, 
     self-assembly \cite{rubenstein2014programmable}, 
     and construction \cite{team2012designing} \cite{petersen2019review}
 .
 
-\textcolor{blue}{bio-hybrid, doesn't belong here, maybe move to Ch1}
-\textcolor{red}{There are also researches on bio-hybrid research. Researches tries to understand the self-organizing from nature
-    \cite{wahby2018autonomously}
-    \cite{halloy2007social}
-    \cite{buhl2006disorder}
-    \cite{detrain2008collective}
-    \cite{theraulaz1998origin}
-}.
+
+\textcolor{blue}{but swarm is not always efficient}
 
 Despite of great potentials, it is still challenging to connect low level individual reaction and high level collective behavior.
 Although researches have been trying to create theoretical framwork
     \cite{hamann2008framework}
-    \cite{hamann2010space} \textcolor{red}{to read}
-    \cite{hamann2018swarm} \textcolor{red}{to read}
+    \cite{hamann2010space}
+    \cite{hamann2018swarm}
     \cite{hamann2013towards}
 and have shown that decentralized methods can direct robots swarm to finish certain tasks
     \cite{dorigo2004evolving}
@@ -60,16 +55,17 @@ yet inefficiencies have also been exposed due to the lack of global information 
     \cite{jovanovic2016controller} % Tradeoffs ...
 
 \textcolor{blue}{Therefore, hierarchical}
+
 These limitations motivate the use of hierarchical and hybrid strategies.
 \textcolor{red}{argue more here : people realize it is not enough for pure, flat, self-organized systems. We still need some centralization}
     \cite{kengyel2015potential} % pure flat is not good
 
-\cite{valentini2015efficient} \textcolor{red}{incomplete reference, from Aryo paper 49, belongs to decision making, doesn't belong here}
-% 100 kilobots decision making
 
 \section{Hybrid, hierarchical, and leadership approaches in the literature}
 
-In pure flat (homogeneous) swarms, like its nature inspiraion
+\textcolor{blue}{flat, homogeneous}
+
+In pure flat and homogeneous swarms, like its nature inspiraion
     \cite{buhl2006disorder}
     \cite{detrain2008collective}
     \cite{theraulaz1998origin}
@@ -81,6 +77,9 @@ all the individuals look the same and act the same
     \cite{csahin2004swarm}
     \cite{beni1988concept}
 .
+
+\textcolor{blue}{heterogeneous}
+
 On the other hand, in many cases, heterogeneous swarms performs better
     \cite{kengyel2015potential} % hetero is better
 .
@@ -98,7 +97,8 @@ Further, there are researches try to hide the trace of the leaders to avoid poss
     \cite{zheng2020adversarial}
 .
 
-\textcolor{blue}{What is hierarchical}
+\textcolor{blue}{hierarchical}
+
 Hybrid and hierarchical approaches attempt to balance decentralized flexibility and centralized efficiency.
 These approaches means to induce hierarchy structure or leadership in the swarm,
 so that the swarm is good at flocking
@@ -117,10 +117,11 @@ which is also challenging
     \cite{dorigo2020reflections} \textcolor{red}{varify}.
 
 \textcolor{blue}{Therefore, MNSs}
-MNS:
+MNS tries to form a centralized control structure in a decentralized way.
     \cite{mathews2017mergeable}
+Later work extend this idea to formation and coverage.
     \cite{zhu2020formation}
-    \cite{zhang2023self} Yuwei's paper, Self-reconfigurable hierarchical for formation control
+    \cite{zhang2023self}%Yuwei's paper, Self-reconfigurable hierarchical for formation control
     \cite{jamshidpey2020multi}
     \cite{jamshidpey2024centralization}
     \cite{jamshidpey2023reducing}
@@ -132,97 +133,132 @@ MNS:
     \cite{kaiser2022innate} : %not sure about leader, about neuroevolution, consider drop
     \cite{zhou2022swarm}
 
-\textcolor{red}{consider a better place for automatic design, go to swarm program section}
-    other challenges include automation design:
-    \cite{francesca2016automatic}
-    \cite{birattari2019automatic}
-    \cite{salman2024automatic}
-
 \section{Swarm vs. centralized approaches for different tasks}
+
+In this section, we will discuss the swarm vs. centralized approaches for classic swarm tasks like formation etc.
 
 \subsection{Formation}
 
-Formation is a classic task for swarm.
-\cite{liu2018survey} a survey
-\cite{oh2015survey} a survey
+Formation control is one of the most actively studied topics in swarm robotics or multi-agent systems
+    \cite{liu2018survey}% a survey
+    \cite{oh2015survey}% a survey
+.
+A variety of formation control problems have been studied in the literature for different situation assumptions.
 
 It relies on localization of neighbours
 \cite{walter2018fast} %localization of UaVs using ultraviolet 
 leD markers
 \cite{ulrich2022towards} %fast fiducial marker with full 6 dof pose estimation
 
-\cite{kushleyev2013towards} micro drones
+\subsubsection{Fixed roles}
 
-\subsubsection{Formation control in control theory}
+These class usually focus in control theory.
 
-\cite{stacey2015passivity} proposes a passivity-based formation control framework for 3D dynamic vehicles that achieves local asymptotic stability using partial relative position measurements through virtual mechanical couplings and adaptive compensation.
+\textcolor{blue}{They are decentralized in the sense of movement (robots move according to neighbours), but centralized in the sense of roles (predefined roles).}
+These researches usually assumes fixed roles, each robot knows their target positions already.
+They focus on control theory in velocity control or acceleration control to converge to the desired formation.
 
-\cite{desai1999control} presents a framework for coordinating a team of mobile robots to navigate and change formations in obstacle-filled environments using a leader-follower structure, control graphs, and optimal control\-based path planning.
+\cite{kushleyev2013towards} micro drones, \textcolor{red}{goes to path planning}.
 
-\cite{spanogianopoulos2017fast} applies the fast-converging nPSO algorithm to enable rapid, collision-free optimal formation of UAV swarms in congested urban environments with large obstacles.
+They talk about how to form a rigid body with each robot detects the distance or bearing of the predefined neighbours
+    \cite{yang2018growing}
+    \cite{mehdifar2018finite} 
+    \cite{stacey2015passivity}.
 
-\cite{desai2002modeling} presents a graph-theoretic framework for modeling and controlling formations of nonholonomic mobile robots, enabling coordinated navigation, formation maintenance, and transitions between formations in obstacle-filled environments.
+\textcolor{red}{distance rigidity}
+\textcolor{blue}{bearing rigidity}
+Bearing rigidity is a way to form a rigid body with only sense of bearing
+    \cite{zhao2019bearing}.
+In bearing rigidity, there are two leaders, other ones try to keep a certain bearing with neighbours, and the two leaders control the scale, rotation and translation of the formation.
 
-rigid body graph
-\cite{yang2018growing} too mathematical
-\cite{mehdifar2018finite} 
+Mathematical researches have developed theories on bearing rigidity from 2D to higher dimensions
+    \cite{zhao2015bearing}.
+Based on that, many researches focus on control theory methods 
+    \cite{zhao2015translational}
+    \cite{schiano2016rigidity} bearing formation controller
+    \cite{li2020adaptive}
+    \cite{li2021adaptive}
+    \cite{li2020bearing}
+    \cite{zhao2021finite}
+    \cite{zhang2022distributed}
+    \cite{zhang2023bearing} for water surface
 
-bearing
-\cite{zhao2019bearing} more like a survey
-\cite{schiano2016rigidity} bearing formation controller
-\cite{zhao2015translational}
-\cite{zhao2015bearing}
-\cite{li2020adaptive}
-\cite{li2021adaptive}
-\cite{li2020bearing}
-\cite{zhao2021finite} more general
-\cite{zhang2022distributed}
-\cite{zhang2023bearing} water
-\cite{arrigoni2018bearing}
-\cite{trinh2018bearing}
-\cite{trinh2021finite}
+    \textcolor{red}{still to read}
+    \cite{arrigoni2018bearing}
+    \cite{trinh2018bearing}
+    \cite{trinh2021finite}
 
-bearing rigidity
-\cite{tay1985generating} \textcolor{red}{consider drop}
-\cite{eren2012formation} 
-\cite{trinh2019minimal}
-\cite{karimian2017theory}
-\cite{hou2016elementary}
-\cite{carboni2014rigidity} maybe not about bearing, only rigidity, \textcolor{red}{consider drop}
+    \cite{tay1985generating} \textcolor{red}{too many, consider drop}
+    \cite{eren2012formation} 
+    \cite{trinh2019minimal}
+    \cite{karimian2017theory}
+    \cite{hou2016elementary}
+    \cite{carboni2014rigidity} maybe not about bearing, only rigidity, \textcolor{red}{consider drop}
+.
 
-\subsubsection{target position assignment}
+\cite{desai1999control}
+\cite{desai2002modeling}
+talk about switching formations.
 
-To form the formation efficiently, it is crucial to assign the robots to a good target position based on its current positions.
 
-\cite{rm2020review} presents a concise review on the variant state-of-the-art dynamic task allocation strategies.
+\subsubsection{Switching Roles}
 
-\cite{burger2012distributed} introduces a distributed simplex algorithm for solving degenerate linear programs and multi-agent assignment problems over asynchronous peer-to-peer networks, achieving consensus on optimal solutions with linear scalability in communication graph diameter.
+\textcolor{blue}{Why role switching is important}
+As talked in Chapter 1, one feature of swarm robotics is that the individuals in the swarm can self-organize their roles.
+To predefine the roles of the robots in the formation is not always a good idea, especially when the swarm is large, or we consider the some individual may fail randomly.
+One should be able to scatter the swarm randomly and let them configure their position on their own.
 
-\cite{chopra2017distributed} presents a distributed version of the Hungarian method that enables teams of robots to cooperatively solve assignment and routing problems with spatiotemporal constraints through local computations and communications over a peer-to-peer network.
+Researches on self-assembly satisfy this assumption
+    \cite{rubenstein2014programmable}
+    \cite{li2019decentralized}
+.
 
-\cite{akella2020assignment} presents algorithms for optimally assigning interchangeable robots to variable goal formations by partitioning the formation parameter space into cost-invariant equivalence classes and efficiently solving linear bottleneck assignment problems for each class. (\textcolor{red}{centralized best time assignment})
+But in those approaches, robots moves around to find a vacant spot, which is low efficient.
+Researches has been seeking a mathematical model for efficient role assignment.
 
-\cite{zavlanos2007distributed} presents a distributed formation control framework that combines consensus algorithms, market-based coordination, and artificial potential fields to achieve permutation-invariant formations, ensuring convergence and scalability using only local agent information.
+\textcolor{blue}{centralized assignment}
+Centralized assignment can make theoretical best role assignment.
+One needs to knows the positions of all the robots and the positions of the whole formation.
+After that, we have algorthms to find the best role assignment.
+    \cite{rm2020review}
+    \cite{mosteo2017optimal} \textcolor{red}{varify}
+    %     presents an optimal algorithm for assigning roles and positions to homogeneous robots in freely placeable formations by jointly computing formation translation, rotation, and role assignments to minimize total displacement, with provable correctness and a distributed implementation.
+    \cite{macalpine2015scram}
+    % introduces SCRAM, a scalable, collision-free role assignment framework that assigns interchangeable robots to target positions to minimize makespan while avoiding collisions, with applications to large-scale multi-robot systems.
+    \cite{agarwal2018simultaneous}
+    % presents an algorithm that simultaneously optimizes robot assignments and variable goal formation parameters by transforming the problem into a linear sum assignment problem, enabling collision-free trajectories with O(n³) computational complexity.
+    \cite{ravichandar2020strata}
+    % introduces STRATA, a unified framework for task assignment in large heterogeneous agent teams that accounts for continuous traits, species- and agent-level variability, and ensures tasks' trait requirements are met efficiently.
+.
 
-\cite{alonso2016distributed} proposes a distributed formation control approach that combines consensus and sequential convex optimization to enable teams of robots to navigate and reconfigure safely among static and dynamic obstacles in 2D and 3D environments.
+\textcolor{blue}{distributed assignment}
+There are also distributed assignment approaches.
+In these approaches, each robot carries part of the calculation for the whole assignment algorithm (solving some columns of the matrix).
+    \cite{burger2012distributed}
+    % introduces a distributed simplex algorithm for solving degenerate linear programs and multi-agent assignment problems over asynchronous peer-to-peer networks, achieving consensus on optimal solutions with linear scalability in communication graph diameter.
+    \cite{chopra2017distributed}
+    % presents a distributed version of the Hungarian method that enables teams of robots to cooperatively solve assignment and routing problems with spatiotemporal constraints through local computations and communications over a peer-to-peer network.
+    \cite{akella2020assignment}
+    % presents algorithms for optimally assigning interchangeable robots to variable goal formations by partitioning the formation parameter space into cost-invariant equivalence classes and efficiently solving linear bottleneck assignment problems for each class. (\textcolor{red}{centralized best time assignment})
+    \cite{zavlanos2007distributed}
+    % presents a distributed formation control framework that combines consensus algorithms, market-based coordination, and artificial potential fields to achieve permutation-invariant formations, ensuring convergence and scalability using only local agent information.
+    \cite{alonso2016distributed}
+    % proposes a distributed formation control approach that combines consensus and sequential convex optimization to enable teams of robots to navigate and reconfigure safely among static and dynamic obstacles in 2D and 3D environments.
+    \cite{michael2008distributed}
+    % introduces a distributed, market-based algorithm for dynamic multi-robot task assignment that guarantees efficient convergence to desired task distributions while enabling coordinated formation control, splitting, and merging behaviors.
+    \cite{montijano2014efficient}
+    % presents a distributed optimization framework for multi-robot formation control that simultaneously solves for optimal positions and role assignments, using averaging and a modified distributed simplex algorithm to guarantee globally optimal configurations.
+    \cite{wang2020shape}
+    % presents a distributed algorithm for homogeneous robot swarms that concurrently assigns goal locations and plans collision-free paths, enabling fast and reliable shape formation for up to thousands of robots.
+.
 
-\cite{michael2008distributed} introduces a distributed, market-based algorithm for dynamic multi-robot task assignment that guarantees efficient convergence to desired task distributions while enabling coordinated formation control, splitting, and merging behaviors.
+None of them are scalable : calcualtion grows as the swarm scales up.
 
-\cite{montijano2014efficient} presents a distributed optimization framework for multi-robot formation control that simultaneously solves for optimal positions and role assignments, using averaging and a modified distributed simplex algorithm to guarantee globally optimal configurations.
-
-\cite{mosteo2017optimal} presents an optimal algorithm for assigning roles and positions to homogeneous robots in freely placeable formations by jointly computing formation translation, rotation, and role assignments to minimize total displacement, with provable correctness and a distributed implementation.
-
-\cite{macalpine2015scram} introduces SCRAM, a scalable, collision-free role assignment framework that assigns interchangeable robots to target positions to minimize makespan while avoiding collisions, with applications to large-scale multi-robot systems.
-
-\cite{wang2020shape} presents a distributed algorithm for homogeneous robot swarms that concurrently assigns goal locations and plans collision-free paths, enabling fast and reliable shape formation for up to thousands of robots.
-
-\cite{agarwal2018simultaneous} presents an algorithm that simultaneously optimizes robot assignments and variable goal formation parameters by transforming the problem into a linear sum assignment problem, enabling collision-free trajectories with O(n³) computational complexity.
-
-\cite{ravichandar2020strata} introduces STRATA, a unified framework for task assignment in large heterogeneous agent teams that accounts for continuous traits, species- and agent-level variability, and ensures tasks' trait requirements are met efficiently.
-
-\cite{kambayashi2018distributed} uses virtual agents has potential for interchangeable
+\cite{kambayashi2018distributed} follows a unique path to use virtual agents has potential for interchangeable, but can't handle faulty robots.
 
 \subsection{coverage}:
+
+\cite{spanogianopoulos2017fast} \textcolor{red}{goes to coverage}
 
 \cite{wang2011coverage} survey : fixed sensor
 \cite{galceran2013survey} survey : moving sensor , Coverage Path Planning(CPP)
@@ -393,6 +429,12 @@ human to the whole swarm
 
 \subsection{programming / re-programming}
 
+\textcolor{red}{consider a better place for automatic design, go to swarm program section}
+    other challenges include automation design:
+    \cite{francesca2016automatic}
+    \cite{birattari2019automatic}
+    \cite{salman2024automatic}
+
 \subsection {offline examples}
 
 mostly offline :
@@ -448,6 +490,10 @@ collective decision
 \cite{valentini2016collective}
 
 \textcolor{blue}{from Ayros paper}
+
+\cite{valentini2015efficient} \textcolor{red}{incomplete reference, from Aryo paper 49, belongs to decision making, doesn't belong here}
+% 100 kilobots decision making
+
 multi-robot fusion problems are well understood, and existing methods are powerful
 centralized
 \textcolor{red}{About collective sensing : make it its section in applications}
