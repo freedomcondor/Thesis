@@ -45,7 +45,7 @@ and have shown that decentralized methods can direct robots swarm to finish cert
     \cite{li2019decentralized}
 ,
 yet inefficiencies have also been exposed due to the lack of global information held by each individual robot
-\textcolor{red}{re-consider these citations:}
+\textcolor{red}{re-consider these citations, check what Aryo says, maybe use one of Marco's review:}
 %for Evaluation:
     \cite{eberhardinger2018approach}
     \cite{eberhardinger2018measuring}
@@ -116,7 +116,7 @@ to enable dynamic hierarchies
 which is also challenging
     \cite{dorigo2020reflections} \textcolor{red}{varify}.
 
-\textcolor{blue}{Therefore, MNSs}
+\textcolor{blue}{Therefore, MNSs} \textcolor{red}{prior work in our research line, not in Ch2, but in Ch1}
 MNS tries to form a centralized control structure in a decentralized way.
     \cite{mathews2017mergeable}
 Later work extend this idea to formation and coverage.
@@ -134,6 +134,10 @@ Later work extend this idea to formation and coverage.
     \cite{zhou2022swarm}
 
 \section{Swarm vs. centralized approaches for different tasks}
+
+\textcolor{red}{the point is}
+\textcolor{red}{1 we want to show there is a gap :  self-organized hierarchy}
+\textcolor{red}{2 both sides have some downsides}
 
 In this section, we will discuss the swarm vs. centralized approaches for classic swarm tasks like formation etc.
 
@@ -229,6 +233,8 @@ After that, we have algorthms to find the best role assignment.
     % presents an algorithm that simultaneously optimizes robot assignments and variable goal formation parameters by transforming the problem into a linear sum assignment problem, enabling collision-free trajectories with O(n³) computational complexity.
     \cite{ravichandar2020strata}
     % introduces STRATA, a unified framework for task assignment in large heterogeneous agent teams that accounts for continuous traits, species- and agent-level variability, and ensures tasks' trait requirements are met efficiently.
+    \cite{akella2020assignment}
+    % presents algorithms for optimally assigning interchangeable robots to variable goal formations by partitioning the formation parameter space into cost-invariant equivalence classes and efficiently solving linear bottleneck assignment problems for each class. (\textcolor{red}{centralized best time assignment})
 .
 
 \textcolor{blue}{distributed assignment}
@@ -238,8 +244,6 @@ In these approaches, each robot carries part of the calculation for the whole as
     % introduces a distributed simplex algorithm for solving degenerate linear programs and multi-agent assignment problems over asynchronous peer-to-peer networks, achieving consensus on optimal solutions with linear scalability in communication graph diameter.
     \cite{chopra2017distributed}
     % presents a distributed version of the Hungarian method that enables teams of robots to cooperatively solve assignment and routing problems with spatiotemporal constraints through local computations and communications over a peer-to-peer network.
-    \cite{akella2020assignment}
-    % presents algorithms for optimally assigning interchangeable robots to variable goal formations by partitioning the formation parameter space into cost-invariant equivalence classes and efficiently solving linear bottleneck assignment problems for each class. (\textcolor{red}{centralized best time assignment})
     \cite{zavlanos2007distributed}
     % presents a distributed formation control framework that combines consensus algorithms, market-based coordination, and artificial potential fields to achieve permutation-invariant formations, ensuring convergence and scalability using only local agent information.
     \cite{alonso2016distributed}
@@ -256,150 +260,47 @@ None of them are scalable : calcualtion grows as the swarm scales up.
 
 \cite{kambayashi2018distributed} follows a unique path to use virtual agents has potential for interchangeable, but can't handle faulty robots.
 
-\subsection{coverage}:
+\subsection{Search and Rescue}
 
-\cite{spanogianopoulos2017fast} \textcolor{red}{goes to coverage}
+Search and rescue involves in coveraging an area.
 
-\cite{wang2011coverage} survey : fixed sensor
-\cite{galceran2013survey} survey : moving sensor , Coverage Path Planning(CPP)
+Three manners:
+    \cite{wang2011coverage} % a survey
+    \cite{galceran2013survey} % survey
+Make the sensors scatter and cover the area.
+They happen in a decentralized way.
+    \cite{santos2019decentralized}
+    \cite{luo2018adaptive}
+    \cite{spanogianopoulos2017fast}
+    \cite{siligardi2019robust}
+wandering exploration
+    \cite{huang2019exploration} \textcolor{red}{varify these three}
+    \cite{ichikawa1999characteristics}
+    \cite{mcguire2019minimal}
 
-sensor network
-\cite{luo2018adaptive}
-\cite{santos2019decentralized}
-\cite{siligardi2019robust} talks about connectivity, coverage is only part of it
-
-environmental monitoring, collective perception
-\cite{schmickl2006collective} : collective perception
-\cite{baxter2007multi} search and rescue
-\cite{lima2017cellular} foraging
-
-\cite{almadhoun2019survey} a survey of multi-robot covrage path planning
+The other is to sweep an area, this usually pre-defines the paths of each robot.
+\textcolor{blue}{sweep to cover, S shape path}
+\cite{almadhoun2019survey} % a survey, talked about sweep coverage
 \cite{avellar2015multi}
-\cite{julia2012comparison} : single robot? path planning coverage
+This is a offline centralized way for path planning.
+\textcolor{blue}{not really about coverage, only from A to B through obstacles}
+    \cite{nazarahari2019multi}
+    \cite{thabit2018multi}
+    \cite{yu2016optimal}
 
-area divided, each robot sweep one block
-\cite{rekleitis2008efficient}
-\cite{scherer2015autonomous}
+\cite{scherer2015autonomous} is a mix, centralized for path planning, after target, decentralized for connection establishment.
 
-offline, path optimization
-\cite{nazarahari2019multi}
-\cite{thabit2018multi}
-\cite{yu2016optimal}
+\subsection{Light Show}
+\cite{waibel2017drone} light show
+\cite{ang2018high} light show
 
-offline construct map
-\cite{mirzaei2011cooperative}
+\section{Fault tolerance}
 
-online construct map
-\cite{ge2005complete}
-\cite{miki2018multi} abstract not talking about map, but about search and action \textcolor{red}{consider drop}
-
-about map broadcast
-\cite{marjovi2009multi}
-\cite{albani2017field}
-
-randomwalking coverage:
-\cite{mcguire2019minimal}
-\cite{kegeleirs2019random}
-\cite{huang2019exploration}
-\cite{ichikawa1999characteristics}
-\cite{pang2021effect}
-\cite{khaluf2018collective}
-\cite{zia2017cognitive} cellular-automata for city coverage, maybe not randomwalking
-
-pheromone based
-\cite{koenig2001terrain}
-\cite{schroeder2017efficient}
-\cite{deshpande2017robot}
-\cite{maftuleac2015local} maybe not about pheromone, only flying robots
-\cite{stirling2010energy} not about pheromone, only flying robots
-
-formation sweep :
-
-centralized:
-\cite{wang1991navigation} only formation, not about coverage
-\cite{din2018behavior} 
-\cite{campbell2012review} a survey, about boat obstacle avoidance
-
-self-organized: 
-MNS et al
-\cite{jamshidpey2020multi}
-\cite{jamshidpey2023reducing}
-\cite{mathews2017mergeable}
-\cite{zhang2023self}
-\cite{zhu2020formation}
-\cite{zhu2024self} \textcolor{red}{not correct places}
-
-\subsection{others}:
-\cite{howard2006multi} mapping SLAM
-\cite{psaraftis2016dynamic} path optimization, about vehicle routing
-
-\cite{tuci2018cooperative} transportation
-\cite{robin2016multi} search and rescue
-
-
-
-\subsection{complex network}
-
-\textcolor{red}{complex network is a too big area} check if swarm robot enough, if yes, check if flat :: check the point of include
-
-\textcolor{blue}{from first paragraph of Sinan's paper about fault tolerance, talking about connectivity of a swarm network}
-
-\cite{kirst2016dynamic}
-\cite{zavlanos2011graph}
-
-if connectivity is not reliable, system convergence and performance guarantees can be compromised: why this is important to the Thesis
-\cite{cortes2008distributed} consensus
-\cite{de2006decentralized}
-\cite{moreau2005stability}
-\cite{olfati2007consensus} consensus
-
-\subsection{fault tolerance}
-\cite{bjerknes2013fault}
-\cite{tarapore2017generic}
-\cite{winfield2006safety}
-\cite{strobel2018managing} \textcolor{red}{incomplete}
-\cite{pini2011task}
-\cite{o2023predictive}
-\cite{oladiran2019fault}
-
-fault detection
-\cite{tarapore2019fault}
-\cite{khaldi2017monitoring}
-
-exogenous fault detection
-\cite{khadidos2015exogenous} nothing special with fault tolerance
-\cite{millard2016exogenous} 
-\cite{millard2013towards}
-
-replacing/repairing the failed robots without pausing the mission
-\cite{christensen2009fireflies} detection
-\cite{varadharajan2020swarm} relay, maybe related to MNS, dynamic communication
-
-\subsection{IFS, maybe not needed}
-\cite{edition2000authoritative}
-\cite{zhou2019review}
-\cite{niu2021distributed}
-\cite{sheng2021intermittent}
-\cite{zhang2021intermittent}
-\cite{syed2016novel}
-
-\subsection{path planning}
-
-UAV motion planning
-
-\cite{quan2020survey} surveys recent state-of-the-art UAV motion planning methods, covering path finding and trajectory optimization techniques along with their motivations, formulations, and real-world applications.
-single drone
-
-\cite{zhou2022swarm} introduces a fully autonomous swarm of palm-sized flying robots equipped with an efficient onboard trajectory planner that enables real-time, collision-free navigation and coordination in cluttered natural environments like dense forests.
-
-\cite{wang2022geometrically} proposes an optimization-based framework for multicopter trajectory planning that efficiently handles geometric and dynamic constraints through a novel trajectory representation and constraint elimination technique, achieving high-quality, real-time solutions.
-
-\cite{wang2025unlocking} presents a system that enables quadcopters to autonomously generate and execute complex aerobatic maneuvers using a discrete maneuver representation, spatial-temporal trajectory optimization, and yaw compensation strategies in cluttered environments.
-
-\cite{han2019fiesta} presents FIESTA, a fast incremental mapping system for building global Euclidean Signed Distance Fields (ESDFs) that enables real-time motion planning for aerial robots through efficient obstacle updates and high-performance map maintenance.
-a bit detailed
+This is a feature
 
 \section{Manageability} \textcolor{red}{adjust this word}
+
+This is a feature
 
 Human needs to supervise a swarm : interact, steer, reprogram.
 
