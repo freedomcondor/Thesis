@@ -45,14 +45,15 @@ and have shown that decentralized methods can direct robots swarm to finish cert
     \cite{li2019decentralized}
 ,
 yet inefficiencies have also been exposed due to the lack of global information held by each individual robot
-\textcolor{red}{re-consider these citations, check what Aryo says, maybe use one of Marco's review:}
+    \cite{dorigo2021swarm}
+%\textcolor{red}{re-consider these citations, check what Aryo says, maybe use one of Marco's review:}
 %for Evaluation:
-    \cite{eberhardinger2018approach}
-    \cite{eberhardinger2018measuring}
-    \cite{kaddoum2010criteria}
+%    \cite{eberhardinger2018approach}
+%    \cite{eberhardinger2018measuring}
+%    \cite{kaddoum2010criteria}
 %tradeoffs
-    \cite{nedic2018network} % Network topology and communication-computation tradeoffs in decentralized optimization
-    \cite{jovanovic2016controller} % Tradeoffs ...
+%    \cite{nedic2018network} % Network topology and communication-computation tradeoffs in decentralized optimization
+%    \cite{jovanovic2016controller} % Tradeoffs ...
 
 \textcolor{blue}{Therefore, hierarchical}
 
@@ -87,7 +88,7 @@ Some individual with more information may improve the swarm behavior.
 A approach is to include informed or persistent agents to influence other individuals when flocking
     \cite{firat2020self} % use informal individual to cue the whole swarm to aggreate to a desired shelter
     \cite{valentini2016collective} \textcolor{red}{varify}
-    \cite{balazs2020adaptive} \textcolor{red}{varify}
+    \cite{balazs2020adaptive}
 ,
 or explicitly call the informed individuals "leaders"
     \cite{gu2009leader}
@@ -116,22 +117,8 @@ to enable dynamic hierarchies
 which is also challenging
     \cite{dorigo2020reflections} \textcolor{red}{varify}.
 
-\textcolor{blue}{Therefore, MNSs} \textcolor{red}{prior work in our research line, not in Ch2, but in Ch1}
-MNS tries to form a centralized control structure in a decentralized way.
-    \cite{mathews2017mergeable}
-Later work extend this idea to formation and coverage.
-    \cite{zhu2020formation}
-    \cite{zhang2023self}%Yuwei's paper, Self-reconfigurable hierarchical for formation control
-    \cite{jamshidpey2020multi}
-    \cite{jamshidpey2024centralization}
-    \cite{jamshidpey2023reducing}
-    \textcolor{red}{my paper ?}
-    \cite{zhu2024self}
-
 \textcolor{red}{find new home for these}
-    \cite{shan2020collective} : %Distributed Bayesian Hypothesis Testing (DBHT), not sure about leader, consider drop
-    \cite{kaiser2022innate} : %not sure about leader, about neuroevolution, consider drop
-    \cite{zhou2022swarm}
+%    \cite{kaiser2022innate} : %not sure about leader, about neuroevolution, consider drop
 
 \section{Swarm vs. centralized approaches for different tasks}
 
@@ -162,14 +149,15 @@ These class usually focus in control theory.
 These researches usually assumes fixed roles, each robot knows their target positions already.
 They focus on control theory in velocity control or acceleration control to converge to the desired formation.
 
-\cite{kushleyev2013towards} micro drones, \textcolor{red}{goes to path planning}.
 
 They talk about how to form a rigid body with each robot detects the distance or bearing of the predefined neighbours
     \cite{yang2018growing}
     \cite{mehdifar2018finite} 
     \cite{stacey2015passivity}.
 
-\textcolor{red}{distance rigidity}
+\textcolor{red}{distance rigidity, cite something here}
+
+
 \textcolor{blue}{bearing rigidity}
 Bearing rigidity is a way to form a rigid body with only sense of bearing
     \cite{zhao2019bearing}.
@@ -186,18 +174,6 @@ Based on that, many researches focus on control theory methods
     \cite{zhao2021finite}
     \cite{zhang2022distributed}
     \cite{zhang2023bearing} for water surface
-
-    \textcolor{red}{still to read}
-    \cite{arrigoni2018bearing}
-    \cite{trinh2018bearing}
-    \cite{trinh2021finite}
-
-    \cite{tay1985generating} \textcolor{red}{too many, consider drop}
-    \cite{eren2012formation} 
-    \cite{trinh2019minimal}
-    \cite{karimian2017theory}
-    \cite{hou2016elementary}
-    \cite{carboni2014rigidity} maybe not about bearing, only rigidity, \textcolor{red}{consider drop}
 .
 
 \cite{desai1999control}
@@ -260,11 +236,11 @@ None of them are scalable : calcualtion grows as the swarm scales up.
 
 \cite{kambayashi2018distributed} follows a unique path to use virtual agents has potential for interchangeable, but can't handle faulty robots.
 
-\subsection{Search and Rescue}
+\subsection{Navigation, Search and Rescue}
 
 Search and rescue involves in coveraging an area.
 
-Three manners:
+Three classes:
     \cite{wang2011coverage} % a survey
     \cite{galceran2013survey} % survey
 Make the sensors scatter and cover the area.
@@ -274,33 +250,50 @@ They happen in a decentralized way.
     \cite{spanogianopoulos2017fast}
     \cite{siligardi2019robust}
 wandering exploration
-    \cite{huang2019exploration} \textcolor{red}{varify these three}
-    \cite{ichikawa1999characteristics}
-    \cite{mcguire2019minimal}
+    \cite{huang2019exploration} random
+    \cite{ichikawa1999characteristics} random
+    \cite{mcguire2019minimal} touch and walk along the wall.
 
-The other is to sweep an area, this usually pre-defines the paths of each robot.
 \textcolor{blue}{sweep to cover, S shape path}
+The other is to sweep an area, this usually pre-defines the paths of each robot.
 \cite{almadhoun2019survey} % a survey, talked about sweep coverage
 \cite{avellar2015multi}
-This is a offline centralized way for path planning.
-\textcolor{blue}{not really about coverage, only from A to B through obstacles}
+
+\textcolor{blue}{navigation, not really about coverage, only from A to B through obstacles}
+For navigation : offline centralized way for path planning.
     \cite{nazarahari2019multi}
     \cite{thabit2018multi}
     \cite{yu2016optimal}
+    \cite{kushleyev2013towards} micro drones
+online, but all information shares, not scalable
+    \cite{zhou2022swarm}
 
-\cite{scherer2015autonomous} is a mix, centralized for path planning, after target, decentralized for connection establishment.
+    \cite{scherer2015autonomous} is a mix, centralized for path planning, after target, decentralized for connection establishment.
 
 \subsection{Light Show}
-\cite{waibel2017drone} light show
-\cite{ang2018high} light show
+
+Light show is centralized
+    \cite{waibel2017drone} light show
+    \cite{ang2018high} light show
 
 \section{Fault tolerance}
 
-This is a feature
+\textcolor{red}{not about hierachy, doesn't hit the point}.
+
+\textcolor{red}{Sinan :}
+Swarm robotics usually studies passive tolerance to permanent faults—that is, faults such as electromechanical failures that will remain unless they are actively repaired.
+When relying on passive fault tolerance,
+studies have usually demonstrated that a swarm continues its mission after some or many robots have failed,
+either by continuing with fewer robots
+    \cite{bjerknes2013fault}
+    \cite{rubenstein2014programmable}
+    \cite{khadidos2015exogenous}
+or by replacing/repairing the failed robots without pausing the mission
+    \cite{christensen2009fireflies}
+    \cite{varadharajan2020swarm}
+.
 
 \section{Manageability} \textcolor{red}{adjust this word}
-
-This is a feature
 
 Human needs to supervise a swarm : interact, steer, reprogram.
 
@@ -389,6 +382,7 @@ collective decision
 \cite{valentini2017best} best of N
 \cite{dorigo2014self}
 \cite{valentini2016collective}
+\cite{shan2020collective}
 
 \textcolor{blue}{from Ayros paper}
 
