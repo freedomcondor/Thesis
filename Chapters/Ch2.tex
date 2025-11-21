@@ -236,42 +236,48 @@ None of them are scalable : calcualtion grows as the swarm scales up.
 
 \cite{kambayashi2018distributed} follows a unique path to use virtual agents has potential for interchangeable, but can't handle faulty robots.
 
-\subsection{Navigation, Search and Rescue}
+\subsection{Coverage}
 
-\textcolor{red}{only about coverage}
-\textcolor{red}{path planning, goes to other places, maybe obstacle avoidance, or simply drop them. check what does Aryo say, and check their applications}
-
-Search and rescue involves in coveraging an area.
-
-Three classes:
+For coverage, usually three classes:
     \cite{wang2011coverage} % a survey
     \cite{galceran2013survey} % survey
-Make the sensors scatter and cover the area.
+1. Make the sensors scatter and cover the area.
 They happen in a decentralized way.
     \cite{santos2019decentralized}
     \cite{luo2018adaptive}
     \cite{spanogianopoulos2017fast}
     \cite{siligardi2019robust}
-wandering exploration
+2. wandering exploration
     \cite{huang2019exploration} random
     \cite{ichikawa1999characteristics} random
     \cite{mcguire2019minimal} touch and walk along the wall.
 
-\textcolor{blue}{sweep to cover, S shape path}
+3. textcolor{blue}{sweep to cover, S shape path}
 The other is to sweep an area, this usually pre-defines the paths of each robot.
-\cite{almadhoun2019survey} % a survey, talked about sweep coverage
-\cite{avellar2015multi}
+    \cite{almadhoun2019survey} % a survey, talked about sweep coverage
+    \cite{avellar2015multi}
+
+\cite{scherer2015autonomous} is a mix, centralized for path planning, after target, decentralized for connection establishment.
+
+\subsection{Path Planning}
+
+\textcolor{red}{path planning, goes to other places, maybe obstacle avoidance, or simply drop them.}
+\textcolor{red}{Aryo include them as offline under coverage, but they are not really about coverage}
 
 \textcolor{blue}{navigation, not really about coverage, only from A to B through obstacles}
-For navigation : offline centralized way for path planning.
+
+For navigation : offline centralized way for path planning
     \cite{nazarahari2019multi}
     \cite{thabit2018multi}
     \cite{yu2016optimal}
-    \cite{kushleyev2013towards} micro drones
-online, but all information shares, not scalable
-    \cite{zhou2022swarm}
+    \cite{kushleyev2013towards}
+.
 
-    \cite{scherer2015autonomous} is a mix, centralized for path planning, after target, decentralized for connection establishment.
+online, decentralized
+    \cite{zhou2020ego}
+    \cite{zhou2021ego}
+    \cite{zhou2022swarm}
+.
 
 \subsection{Light Show}
 
@@ -281,20 +287,26 @@ Light show is centralized
 
 \section{Fault tolerance}
 
-\textcolor{red}{not about hierachy, doesn't hit the point}.
-
-\textcolor{red}{Sinan :}
-Swarm robotics usually studies passive tolerance to permanent faults—that is, faults such as electromechanical failures that will remain unless they are actively repaired.
-When relying on passive fault tolerance,
-studies have usually demonstrated that a swarm continues its mission after some or many robots have failed,
-either by continuing with fewer robots
-    \cite{bjerknes2013fault}
-    \cite{rubenstein2014programmable}
-    \cite{khadidos2015exogenous}
-or by replacing/repairing the failed robots without pausing the mission
-    \cite{christensen2009fireflies}
-    \cite{varadharajan2020swarm}
+Fault tolerance is a default feature for swarm
+    \cite{dorigo2014swarm}
+    \cite{hamann2018swarm}
 .
+\textcolor{red}{cite/explainTha some normal fault tolerance, that is not for centralized, predetermined}
+
+but a swarm is sucepetable to intermittent faults IFs
+    \cite{zhou2019review}
+    \cite{niu2021distributed}
+.
+
+To detect IFs, centralized methods are efficient
+    \cite{sheng2021intermittent}
+    \cite{zhang2021intermittent}
+    \cite{syed2016novel}
+.4
+
+To make swarm also tolerant to IFs, hybrid methods are considered
+    \textcolor{red}{cite Sinan's paper}
+    \cite{ouguz2025proactive}
 
 \section{Manageability} \textcolor{red}{adjust this word}
 
