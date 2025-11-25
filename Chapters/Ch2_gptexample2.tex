@@ -1,0 +1,123 @@
+\chapter{Related Work}
+\label{ch2}
+
+\section{Introduction}
+
+Swarm robotics draws inspiration from collective behaviors in social animals such as ants, birds, and fish \cite{bonabeau1999swarm}. Early models like Reynolds' Boids demonstrated that simple local behavioral rules can give rise to coherent large-scale patterns \cite{reynolds1987flocks}. Modern swarm robotics aims to leverage these principles to construct decentralized robotic systems that are scalable, adaptive, and fault tolerant \cite{dorigo2014swarm, dorigo2020reflections, dorigo2021swarm}. These decentralized systems have shown advantages in large-scale or spatially distributed tasks, including environmental monitoring \cite{talamali2021less}, navigation and transportation \cite{dorigo2013swarmanoid}, self-assembly \cite{rubenstein2014programmable}, and collective construction \cite{team2012designing, petersen2019review}.
+
+Despite significant progress, a persistent challenge remains: connecting low-level individual robot behaviors to the desired high-level collective outcomes.
+Various theoretical frameworks have been proposed
+    \cite{hamann2008framework,
+     hamann2010space,
+     hamann2018swarm,
+     hamann2013towards}, 
+and decentralized controllers have been demonstrated for specific tasks
+    \cite{dorigo2004evolving, 
+        nouyan2009teamwork, 
+        dorigo2013swarmanoid, 
+        rubenstein2014programmable,
+        li2019decentralized
+    }.
+However, purely decentralized swarms often face fundamental inefficiencies, particularly due to their reliance on strictly local information
+     \cite{dorigo2021swarm}.
+These limitations motivate research into hybrid and hierarchical approaches that integrate selective forms of centralization 
+    \cite{kengyel2015potential}.
+
+This chapter reviews prior work in hybrid and hierarchical swarm control, compares decentralized and centralized approaches across key swarm robotics tasks, and examines related developments in formation control, coverage, manageability, re-programming, and swarm autonomy.
+
+% ===============================================================
+\section{Hybrid, Hierarchical, and Leadership Approaches}
+
+\subsection{Flat Swarms}
+
+Flat and homogeneous swarms, inspired directly by natural self-organizing processes
+ \cite{buhl2006disorder, detrain2008collective, theraulaz1998origin}
+ , assume that all agents are identical and follow the same behavioral rules
+  \cite{viragh2014flocking, vasarhelyi2018optimized, floreano2008bio, csahin2004swarm, beni1988concept}. Such systems excel in robustness and scalability but struggle with tasks that require differentiated roles, long-range coordination, or efficient global organization.
+
+\subsection{Heterogeneous and Informed-Agent Approaches}
+
+Heterogeneous swarms or swarms with informed individuals can often outperform purely homogeneous systems \cite{kengyel2015potential}. Informed or persistent agents can influence the behavior of others during tasks such as flocking or collective decision-making \cite{firat2020self, valentini2016collective, balazs2020adaptive}. Some works explicitly name these individuals as leaders \cite{gu2009leader, amraii2014explicit}. These leaders may be vulnerable to adversarial detection, a concern explored in \cite{zheng2020adversarial}.
+
+\subsection{Hierarchical and Hybrid Structures}
+
+Hybrid or hierarchical approaches attempt to combine decentralized robustness with centralized efficiency. They introduce temporary leaders, role assignments, or distributed authority transfer mechanisms to improve coordination \cite{dalmao2011cucker, jia2019modelling, pignotti2018flocking, li2019decentralized, divband2019photomorphogenesis}. However, maintaining scalability while avoiding single points of failure remains challenging \cite{dorigo2020reflections}. As tasks grow in complexity, researchers increasingly recognize the importance of *self-organized hierarchy formation*, an ability still largely absent in classical decentralized swarms.
+
+% ===============================================================
+\section{Swarm vs.~Centralized Approaches Across Tasks}
+
+Purely decentralized swarms are highly scalable and fault tolerant but often lack efficiency, especially when global information is required. Centralized systems, by contrast, achieve high precision and optimal coordination but lose scalability and robustness. This section reviews these trade-offs across major tasks in multi-robot systems.
+
+% ---------------------------------------------------------------
+\subsection{Formation Control}
+
+Formation control is one of the most fundamental research topics in multi-robot and swarm systems \cite{liu2018survey, oh2015survey}. Most formation controllers rely on relative localization, using distance sensors, ultraviolet markers, or fiducial markers \cite{walter2018fast, ulrich2022towards}.
+
+\subsubsection{Fixed-Role Approaches}
+
+Many classical methods assume that each robot is preassigned a fixed target position—decentralized in motion execution, yet centralized in role specification. These works develop stable controllers for rigid-body formation using distance or bearing constraints \cite{yang2018growing, mehdifar2018finite, stacey2015passivity}. Bearing rigidity theory \cite{zhao2019bearing, zhao2015bearing} further enables controllers that maintain formation shape using only bearing measurements \cite{zhao2015translational, schiano2016rigidity, li2020adaptive, li2021adaptive, li2020bearing, zhao2021finite, zhang2022distributed, zhang2023bearing}. Switching formations under rigid-body assumptions have also been studied \cite{desai1999control, desai2002modeling}.
+
+\subsubsection{Role Switching and Self-Assembly}
+
+A key property of swarms is the ability to self-organize roles rather than relying on predefined assignments. Self-assembly approaches \cite{rubenstein2014programmable, li2019decentralized} allow robots to explore until they find unoccupied positions, but this can be inefficient. Centralized role assignment methods compute globally optimal allocations \cite{rm2020review, mosteo2017optimal, macalpine2015scram, agarwal2018simultaneous, ravichandar2020strata, akella2020assignment}, achieving minimal travel cost but requiring global knowledge.
+
+Distributed assignment approaches attempt to decentralize the computation of global allocation algorithms \cite{burger2012distributed, chopra2017distributed, zavlanos2007distributed, alonso2016distributed, michael2008distributed, montijano2014efficient, wang2020shape}. However, computation or communication costs in these systems scale with swarm size, making them less suitable for very large swarms. Virtual-agent approaches such as \cite{kambayashi2018distributed} enable interchangeable roles but cannot handle faulty robots.
+
+% ---------------------------------------------------------------
+\subsection{Coverage}
+
+Coverage tasks generally fall into three categories \cite{wang2011coverage, galceran2013survey}:
+
+1. **Decentralized dispersion:** robots scatter to uniformly cover an area \cite{santos2019decentralized, luo2018adaptive, spanogianopoulos2017fast, siligardi2019robust}.  
+2. **Exploration-based coverage:** robots wander randomly or use minimal sensing \cite{huang2019exploration, ichikawa1999characteristics, mcguire2019minimal}.  
+3. **Sweep-based coverage:** robots execute predefined patterns such as S-shaped sweeps \cite{almadhoun2019survey, avellar2015multi}.
+
+Hybrid systems can combine centralized path planning with decentralized execution, such as \cite{scherer2015autonomous}.
+
+% ---------------------------------------------------------------
+\subsection{Navigation and Path Planning}
+
+Centralized planners compute global optimal paths but lack scalability \cite{nazarahari2019multi, thabit2018multi, yu2016optimal, kushleyev2013towards}. Decentralized methods enable real-time obstacle avoidance but cannot guarantee global optimality \cite{zhou2020ego, zhou2021ego, zhou2022swarm}. Navigation is typically treated as a building block within larger tasks such as coverage or exploration.
+
+% ---------------------------------------------------------------
+\subsection{Drone Light Shows}
+
+Drone-based light shows are a well-known example of fully centralized multi-robot control \cite{waibel2017drone, ang2018high}. They can coordinate hundreds or thousands of robots with high precision, but require reliable global communication and cannot scale to autonomous decentralized operation.
+
+% ===============================================================
+\section{Fault Tolerance}
+
+Swarm systems are naturally robust to complete robot failures \cite{dorigo2014swarm, hamann2018swarm}. However, intermittent faults (IFs)—in which robots repeatedly fail and recover—pose unique challenges \cite{zhou2019review, niu2021distributed}. Centralized monitoring is effective for IF detection \cite{sheng2021intermittent, zhang2021intermittent, syed2016novel}, but not scalable. Hybrid strategies have been proposed to make large swarms more resilient to IFs \cite{ouguz2025proactive}.
+
+% ===============================================================
+\section{Manageability and Human–Swarm Interaction}
+
+\subsection{Human–Swarm Interaction}
+
+As swarms scale up, humans cannot interact with every robot individually. Surveys \cite{siean2023opportunities, kolling2015human} classify interfaces and strategies for human–swarm interaction (HSI). Interface-centered works explore gesture control \cite{alonso2015gesture, podevijn2013gesturing}, haptic devices \cite{lee2013semiautonomous}, or wearable systems \cite{jarvis2025first}. Other works propose methods for operators to influence the swarm collectively \cite{ayanian2014controlling, macchini2021personalized}. Studies on managing large robot teams \cite{abioye2025user} focus on supervision rather than steering.
+
+\subsection{Programming and Re-Programming Swarms}
+
+\subsubsection{Offline Design}
+
+Swarm controllers are typically designed offline through extensive trial-and-error \cite{hamann2018swarm, brambilla2013swarm}. Automated design approaches such as AutoMoDe \cite{francesca2014automode, francesca2016automatic, birattari2019automatic} generate swarm behaviors algorithmically. These methods have been used for tasks such as self-assembly \cite{rubenstein2014programmable}, collective decision-making \cite{valentini2016collective}, construction \cite{werfel2014designing}, and multi-robot missions \cite{dorigo2013swarmanoid}.
+
+\subsubsection{Online but Centralized}
+
+Centralized over-the-air programming has been demonstrated for robot swarms \cite{zyrianoff2024over, abadie2024robotap}. Drone light shows also perform large-scale online synchronization \cite{waibel2017drone, ang2018high}.
+
+\subsubsection{Online and Decentralized}
+
+Fully decentralized online reprogramming has been explored in wireless sensor networks \cite{xie2011design, wang2006reprogramming}, though progress is limited by slow consensus-based propagation \cite{de2009energy, varadharajan2018over}. Recent work such as KT-BT enables knowledge transfer in multi-robot teams using behavior tree structures \cite{venkata2023kt}.
+
+% ===============================================================
+\section{Swarm Autonomy}
+
+Autonomy in robotics is often framed through cognitive robotics perspectives \cite{cangelosi2022cognition, vernon2014artificial, heinrich2022swarm, khaluf2019neglected} and standardized autonomy levels \cite{sae2021automated}. In swarms, autonomy includes capabilities such as distributed perception, collective decision-making, adaptive task allocation, and self-reconfiguration.
+
+Collective decision-making has been widely studied, particularly in best-of-$N$ problems \cite{valentini2017best, dorigo2014self, valentini2016collective, shan2020collective}. Additional works consider sensing-based decisions on environmental quality or spatial features \cite{prasetyo2018best, prasetyo2019collective, khaluf2017edge, wahby2019collective, khaluf2020construction}.
+
+Distributed information fusion has also been explored in multi-robot systems \cite{yan2013survey, sun2017multi, rizk2019cooperative, li2021multi}, though many methods rely on assumptions incompatible with large decentralized swarms.
+
+Behavior trees (BTs) offer modular representations for robot behaviors \cite{colledanchise2018behavior, iovino2022survey}. BTs have been adopted in multi-robot systems \cite{colledanchise2016advantages, jeong2022behavior} and evolved automatically through genetic programming or grammatical evolution \cite{jones2018evolving, neupane2019learning, kuckling2022automode}. Online evolving BTs have also been demonstrated \cite{jones2019onboard, venkata2023kt}.
+

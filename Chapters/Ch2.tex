@@ -1,6 +1,7 @@
-\chapter{Related Work}
+t \chapter{Related Work}
 \label{ch2}
 
+% skeleton
 % 1 Hybrid, hierarchical, and leadership approaches in the literature   TODO from Sci-Ro paper, yuwei paper
 % 2 Swarm vs. centralized approaches for different tasks (explain what is possible to do with both, for those tasks -- current limitations are implied)
 %   1.1 formation control
@@ -10,115 +11,119 @@
 % 3 The process of swarm programming / re-programming (mostly about how this is done offline, don't worry about the limitations when trying to do this online)
 % 4 Swarm autonomy    TODO from Builderbot paper and zotero
 
+\section{Introduction}
+
 \textcolor{blue}{what is swarm}
 
-Swarm robotics is inspired by social animals such as ants, birds, and fish
-    \cite{bonabeau1999swarm} % the book of Swarm intelligence
+Swarm robotics draws inspiration from collective behaviors in social animals such as ants, birds, and fish
+    \cite{bonabeau1999swarm}  % the book of Swarm intelligence
 .
-Early models such as Boids demonstrated that simple local rules can generate complex collective behaviors
-    \cite{reynolds1987flocks}.
-Swarm robotics follows this principle, aiming to create decentralized systems capable of scalability, adaptability, and fault-tolerance.
-    \cite{dorigo2014swarm} % scholarpedia on swarm robotics
-    \cite{dorigo2020reflections}
-    \cite{dorigo2021swarm} %past, present and future
-Such decentralized systems have shown advantages in applications that requires large scale and space such as
-    Environmental monitoring \cite{talamali2021less} \textcolor{red}{varify}, 
-    navigation and transport \cite{dorigo2013swarmanoid}, 
-    self-assembly \cite{rubenstein2014programmable}, 
-    and construction \cite{team2012designing} \cite{petersen2019review}
+Early models like Reynolds' Boids demonstrated that simple local behavioral rules can give rise to coherent large-scale patterns
+    \cite{reynolds1987flocks}
 .
-
+Swarm Robotics aims to leverage these principles to construct decentralized robotic systems that are scalable, adaptive, and fault tolerant
+    \cite{dorigo2014swarm,    % scholarpedia on swarm robotics
+          dorigo2020reflections,
+          dorigo2021swarm}    %past, present and future
+.
+These decentralized systems have shown advantages in large-scale or spatially distributed tasks, including
+    environmental monitoring
+    \cite{talamali2021less},  \textcolor{red}{varify}, 
+    navigation and transportation
+    \cite{dorigo2013swarmanoid},
+    self-assembly
+    \cite{rubenstein2014programmable},
+    and collective construction
+    \cite{team2012designing, petersen2019review}
+.
 
 \textcolor{blue}{but swarm is not always efficient}
 
-Despite of great potentials, it is still challenging to connect low level individual reaction and high level collective behavior.
-Although researches have been trying to create theoretical framwork
-    \cite{hamann2008framework}
-    \cite{hamann2010space}
-    \cite{hamann2018swarm}
-    \cite{hamann2013towards}
-and have shown that decentralized methods can direct robots swarm to finish certain tasks
-    \cite{dorigo2004evolving}
-    \cite{nouyan2009teamwork}
-    \cite{dorigo2013swarmanoid}
-    \cite{rubenstein2014programmable}
-    \cite{li2019decentralized}
-,
-yet inefficiencies have also been exposed due to the lack of global information held by each individual robot
+\textcolor{red}{Maybe remove this sentence: Despite significant progress, it remains a fundamental challenge to connect low-level individual robot behaviors to the desired high-level collective outcomes.}
+
+Despite that various theoretical frameworks have been proposed
+    \cite{hamann2008framework,
+          hamann2010space,
+          hamann2018swarm,
+          hamann2013towards}
+and decentralized controllers have been demonstrated for specific tasks
+    \cite{dorigo2004evolving,
+          nouyan2009teamwork,
+          dorigo2013swarmanoid,
+          rubenstein2014programmable,
+          li2019decentralized}
+.
+However, purely decentralized swarms often face fundamental inefficiencies, particularly due to their reliance on strictly local information
     \cite{dorigo2021swarm}
-%\textcolor{red}{re-consider these citations, check what Aryo says, maybe use one of Marco's review:}
-%for Evaluation:
-%    \cite{eberhardinger2018approach}
-%    \cite{eberhardinger2018measuring}
-%    \cite{kaddoum2010criteria}
-%tradeoffs
-%    \cite{nedic2018network} % Network topology and communication-computation tradeoffs in decentralized optimization
-%    \cite{jovanovic2016controller} % Tradeoffs ...
 
 \textcolor{blue}{Therefore, hierarchical}
 
-These limitations motivate the use of hierarchical and hybrid strategies.
-\textcolor{red}{argue more here : people realize it is not enough for pure, flat, self-organized systems. We still need some centralization}
+These limitations motivate research into hybrid and hierarchical approaches that integrate selective forms of centralization 
     \cite{kengyel2015potential} % pure flat is not good
 
+\textcolor{blue}{In this chapter, review}
 
-\section{Hybrid, hierarchical, and leadership approaches in the literature}
+This chapter reviews prior work in hybrid and hierarchical swarm control,
+compares decentralized and centralized approaches across key swarm robotics tasks,
+and examines related developments in formation control, coverage, manageability, re-programming, and swarm autonomy.
 
-\textcolor{blue}{flat, homogeneous}
+\section{Heterogeneous, Hybrid, and hierarchical Approaches}
 
-In pure flat and homogeneous swarms, like its nature inspiraion
-    \cite{buhl2006disorder}
-    \cite{detrain2008collective}
-    \cite{theraulaz1998origin}
+\textcolor{blue}{flat swarms}
+
+Flat and homogeneous swarms, inspired directly by natural self-organizing processes
+    \cite{buhl2006disorder,
+          detrain2008collective,
+          theraulaz1998origin}
 ,
-all the individuals look the same and act the same
-    \cite{viragh2014flocking}
-    \cite{vasarhelyi2018optimized}
-    \cite{floreano2008bio}
-    \cite{csahin2004swarm}
-    \cite{beni1988concept}
+assume that all agents are identical and follow the same behavioral rules
+    \cite{viragh2014flocking,
+          vasarhelyi2018optimized,
+          floreano2008bio,
+          csahin2004swarm,
+          beni1988concept}
 .
+Such systems excel in robustness and scalability but struggle with tasks that require differentiated roles, long-range coordination, or efficient global organization.
 
 \textcolor{blue}{heterogeneous}
 
-On the other hand, in many cases, heterogeneous swarms performs better
+On the other hand, heterogeneous swarms or swarms with informed individuals can often outperform purely homogeneous systems
     \cite{kengyel2015potential} % hetero is better
 .
-Some individual with more information may improve the swarm behavior.
-A approach is to include informed or persistent agents to influence other individuals when flocking
-    \cite{firat2020self} % use informal individual to cue the whole swarm to aggreate to a desired shelter
-    \cite{valentini2016collective} \textcolor{red}{varify}
-    \cite{balazs2020adaptive}
+Informed or persistent agents can influence the behavior of others during tasks such as flocking or collective decision-making
+    \cite{firat2020self, % use informal individual to cue the whole swarm to aggreate to a desired shelter
+          valentini2016collective,
+          balazs2020adaptive}
+    \textcolor{red}{varify: valentini2016collective}
 ,
-or explicitly call the informed individuals "leaders"
+Some works explicitly name these individuals as leaders
     \cite{gu2009leader}
     \cite{amraii2014explicit}
 .
-Further, there are researches try to hide the trace of the leaders to avoid possible attacks \textcolor{red}{consider drop}
+These leaders may be vulnerable to adversarial detection, a concern explored in 
+    \textcolor{red}{consider drop}
     \cite{zheng2020adversarial}
 .
 
 \textcolor{blue}{hierarchical}
 
-Hybrid and hierarchical approaches attempt to balance decentralized flexibility and centralized efficiency.
-These approaches means to induce hierarchy structure or leadership in the swarm,
-so that the swarm is good at flocking
+Hybrid or hierarchical approaches attempt to combine decentralized robustness with centralized efficiency.
+They introduce temporary leaders, role assignments, or distributed authority transfer mechanisms to improve swarm efficiency in flocking
     \cite{dalmao2011cucker,
           jia2019modelling,
           pignotti2018flocking}
-and self-assembly, or formation
+and self-assembly and formation
     \cite{li2019decentralized,
           divband2019photomorphogenesis}
 .
 
-However, to keep scalability and avoid a single point of failure,
-it involves mechanisms like temporary leader election, role assignment, and authority transfer
-to enable dynamic hierarchies
-which is also challenging
-    \cite{dorigo2020reflections} \textcolor{red}{varify}.
-
-\textcolor{red}{find new home for these}
-%    \cite{kaiser2022innate} : %not sure about leader, about neuroevolution, consider drop
+However,
+it remains challenging
+to keep scalability and avoid a single point of failure
+while constructing hierarchy with such mechanisms.
+    \cite{dorigo2020reflections}
+.
+As tasks grow in complexity, researchers increasingly recognize the importance of *self-organized hierarchy formation*, an ability still largely absent in classical decentralized swarms.
 
 \section{Swarm vs. centralized approaches for different tasks}
 
@@ -471,214 +476,3 @@ Online Evolving BT:
 
 
 \cite{florez2008dynamic} about dynamic BT, but haven't been applied to robots, for games
-
-
-
-%-------------------------------------------------------------
-% P1 start summary :
-% Although swarm researches developed over the past decades, researches focus on aspect.
-% there lacks a systematic solution to cover overall applications in real scenario.
-
-% P2 an ideal swarm system should be :
-%   easy to deploy, change(reprogram)
-%   use only local information
-%   morphology
-%   as a whole, sense the environment, make decision and react (autonomous).
-
-% P3 however decentralized and centralized methods each can fulfill part of those.
-
-% P4 This chapter gives a review of each of those
-
-
-%subsection : Hybrid, hierarchical
-% As centralized - decentralized each has its own pros and cons
-% there are researches try to engage hybrid or hierarchical reserachs
-
-%subsection : Task assignment in formation
-
-%subsection : swarm autonomous
-
-%subsection : reprogramming and human swarm interaction
-
-%-----------------------------------------------------------
-
-
-%Chapter 1 described some concrete problems and why they are important and difficult.
-%In this chapter, we review and discuss literatures about them.
-
-% a swarm should be
-%As discussed in Ch1, a swarm should be
-%    easy to deploy
-%    use only local information
-%    as a whole, sense the environment and react.
-
-% however difficult
-%However, with these constraints, many tasks are difficult to complete.
-
-%\section{self-organization hierarchy}
-
-%Many researches try to combine centralized and decentralized.
-%They go hierarchical, with hierarchical, information can easily flow
-
-%\section{Task assignment in formation}
-
-%formation is researched in control theory.
-
-%Task assignment makes efficient formation
-%Task assignment calculated hungarian, network flow, n-flex algorithm
-
-%distributed task assignment, each robot calculate a part of it, but calcualtion increases
-
-%\section{swarm autonomous}
-
-%what's in the builderbot paper.
-
-%\section{reprogramming and human swarm interaction}
-
-%what's in the builderbot paper.
-
-%2.1 集群机器人的核心控制范式：从完全分布式到层级化混合架构
-
-%2.1.1 纯分布式集群（Swarm）的理论基础与典型方法
-%无领导集群的自组织机制（如基于局部规则的群体行为涌现）
-%优势： scalability、容错性、适应动态环境的鲁棒性
-%代表性研究：蚁群优化、鸟群模型（Boids）及其在机器人集群中的应用
-
-%2.1.2 集中式控制（Centralized）的技术路径与适用场景
-%全局信息感知与统一决策的实现方式（如基于中央服务器的路径规划）
-%优势：任务精度高、行为可预测性强、易于编程与调试
-%局限性：单点故障风险、扩展性瓶颈、对通信带宽依赖高
-
-%2.1.3 混合架构与层级化领导模式（Hybrid, Hierarchical, Leadership）的演进
-%动态层级的构建逻辑：临时领导者选举、角色分配与权限转移机制
-%代表性方案：分布式领导（如基于局部优势的动态层级）与半集中式控制（如分区协调）
-%核心价值：平衡分布式的灵活性与集中式的高效性
-
-%2.2 任务场景导向的控制策略对比：集群与集中式方案的适用性分析
-
-%2.2.1 队形控制（Formation Control）
-%集群方案：基于局部距离 / 方位感知的自组织队形（如 Voronoi 图、人工势场法）
-%优势：适应队形动态调整、个体故障不影响整体
-%局限：精度依赖局部信息质量、大规模集群易出现累积误差
-%集中式方案：全局路径规划与轨迹优化（如模型预测控制 MPC）
-%优势：高精度队形保持、复杂图案生成能力强
-%局限：计算负荷随规模指数增长、抗干扰能力弱
-
-%2.2.2 探索与搜救任务（Exploration, Search and Rescue）
-%集群方案：基于区域覆盖的分布式探索（如随机行走 + 信息共享）
-%优势：无盲区覆盖、适应未知环境、多目标并行处理
-%局限：任务协调效率低、全局信息整合滞后
-%集中式方案：基于全局地图的任务分配（如 A * 算法 + 任务优先级排序）
-%优势：任务规划最优性高、资源调度高效
-%局限：依赖完整环境先验知识、难以应对突发障碍
-
-%2.2.3 无人机娱乐表演（Drone Entertainment Shows）
-%集群方案：基于预编程规则的分布式同步（如时间触发的轨迹对齐）
-%优势：单无人机故障不中断整体表演、小规模部署灵活
-%局限：复杂图案生成难度大、实时调整能力差
-%集中式方案：全局动画分解与个体轨迹预生成
-%优势：支持高精度复杂图案、时间同步性强
-%局限：对通信延迟敏感、扩展性受限于中央计算能力
-
-%2.2.4 其他典型任务的扩展分析
-%物流协同运输：负载分配策略的集群 vs 集中式对比
-%环境监测：数据采集与融合方式的效率差异
-
-%2.3 集群编程与重编程的方法论：离线范式与核心挑战
-
-%2.3.1 传统集群编程的离线模式
-%行为规则预定义：基于个体算法的群体行为映射（如强化学习训练局部策略）
-%仿真验证与参数调优：通过物理引擎模拟优化群体行为参数（如 Swarmulator 等工具）
-%部署流程：统一固件更新与任务指令预装（无在线调整能力）
-
-%2.3.2 离线编程的核心技术路径
-%基于模板的行为组合：模块化规则库（如避障、聚集、跟随模块的组合调用）
-%宏观行为到微观规则的转化方法：解决 “微 - 宏映射” 问题的数学建模（如控制论方法、群体动力学）
-
-%2.3.3 离线范式的局限性隐含
-%环境适应性差：预编程规则难以应对未预期场景
-%扩展性瓶颈：大规模集群的参数调优成本呈指数增长
-
-%2.4 集群自主性（Swarm Autonomy）的定义与评价维度
-
-%2.4.1 自主性的层级划分
-%基础自主性：个体故障自修复、简单环境适应（如避障）
-%高级自主性：群体目标动态调整、跨任务自转换、人机协同决策
-
-%2.4.2 现有方案的自主性边界
-%纯分布式集群：高个体自主性但群体目标僵化
-%集中式集群：群体目标可控但个体自主性缺失
-%混合架构：在动态目标调整与自主决策方面的探索进展
-
-%2.4.3 自主性与可控性的平衡难题
-%高自主性带来的行为不可预测性风险
-%人类干预与集群自主决策的接口设计挑战
-
-%2.5 本章小结与研究定位
-
-%现有研究的核心局限：混合架构的动态性不足、大规模任务的精度与效率难以兼顾、在线重编程能力缺失
-%本研究（SoNS）的切入点：基于动态层级的混合架构如何突破上述局限，为集群自主性与可编程性提供新路径
-
-%2.1 Core Control Paradigms in Swarm Robotics: From Fully Distributed to Hierarchical Hybrid Architectures
-%2.1.1 Theoretical Foundations and Typical Methods of Purely Distributed Swarms
-%Self-organization mechanisms in leaderless swarms (e.g., emergence of collective behavior based on local rules)
-%Advantages: Scalability, fault tolerance, and robustness in adapting to dynamic environments
-%Representative studies: Ant Colony Optimization, the Boids model, and their applications in robotic swarms​
-%2.1.2 Technical Paths and Applicable Scenarios of Centralized Control​
-%Implementation of global information perception and unified decision-making (e.g., path planning based on a central server)​
-%Advantages: High task precision, strong behavior predictability, and ease of programming and debugging​
-%Limitations: Single-point failure risk, scalability bottlenecks, and high dependence on communication bandwidth​
-%2.1.3 Evolution of Hybrid Architectures and Hierarchical Leadership Models​
-%Logic for constructing dynamic hierarchies: Mechanisms for temporary leader election, role assignment, and authority transfer​
-%Representative solutions: Distributed leadership (e.g., dynamic hierarchies based on local superiority) and semi-centralized control (e.g., partitioned coordination)​
-%Core value: Balancing the flexibility of distributed systems and the efficiency of centralized systems​
-%2.2 Task-Scenario-Oriented Comparison of Control Strategies: Analysis of the Applicability of Swarm vs. Centralized Solutions​
-%2.2.1 Formation Control​
-%Swarm solutions: Self-organized formations based on local distance/orientation perception (e.g., Voronoi diagrams, artificial potential field method)​
-%Advantages: Adaptable to dynamic formation adjustments; individual failures do not affect the whole system​
-%Limitations: Precision depends on the quality of local information; cumulative errors tend to occur in large-scale swarms​
-%Centralized solutions: Global path planning and trajectory optimization (e.g., Model Predictive Control, MPC)​
-%Advantages: High-precision formation maintenance and strong capability for generating complex patterns​
-%Limitations: Computational load grows exponentially with scale; weak anti-interference ability​
-%2.2.2 Exploration and Search and Rescue Missions​
-%Swarm solutions: Distributed exploration based on area coverage (e.g., random walk + information sharing)​
-%Advantages: Blind-spot-free coverage, adaptability to unknown environments, and parallel processing of multiple targets​
-%Limitations: Low task coordination efficiency; lag in global information integration​
-%Centralized solutions: Task assignment based on global maps (e.g., A* algorithm + task priority ranking)​
-%Advantages: High optimality of task planning and efficient resource scheduling​
-%Limitations: Dependence on complete prior environmental knowledge; difficulty in responding to unexpected obstacles​
-%2.2.3 Drone Entertainment Shows​
-%Swarm solutions: Distributed synchronization based on preprogrammed rules (e.g., time-triggered trajectory alignment)​
-%Advantages: Single-drone failures do not interrupt the overall performance; flexible small-scale deployment​
-%Limitations: High difficulty in generating complex patterns; poor real-time adjustment capability​
-%Centralized solutions: Global animation decomposition and pre-generation of individual trajectories​
-%Advantages: Support for high-precision complex patterns and strong temporal synchronization​
-%Limitations: Sensitivity to communication latency; scalability limited by central computing capacity​
-%2.2.4 Extended Analysis of Other Typical Tasks​
-%Collaborative logistics transportation: Comparison of swarm vs. centralized solutions in load distribution strategies​
-%Environmental monitoring: Efficiency differences in data collection and fusion methods​
-%2.3 Methodologies for Swarm Programming and Reprogramming: Offline Paradigms and Core Challenges​
-%2.3.1 Offline Modes of Traditional Swarm Programming​
-%Predefinition of behavioral rules: Mapping of collective behavior based on individual algorithms (e.g., reinforcement learning for training local policies)​
-%Simulation verification and parameter tuning: Optimization of collective behavior parameters via physics engine simulations (e.g., tools like Swarmulator)​
-%Deployment process: Unified firmware updates and pre-installation of task instructions (no online adjustment capability)​
-%2.3.2 Core Technical Paths of Offline Programming​
-%Template-based behavior composition: Modular rule libraries (e.g., combined invocation of obstacle avoidance, aggregation, and following modules)​
-%Methods for converting macro-level behavior to micro-level rules: Mathematical modeling to address the "micro-macro mapping" problem (e.g., control theory methods, collective dynamics)​
-%2.3.3 Implied Limitations of the Offline Paradigm​
-%Poor environmental adaptability: Preprogrammed rules struggle to handle unanticipated scenarios​
-%Scalability bottlenecks: Parameter tuning costs for large-scale swarms grow exponentially​
-%2.4 Definition and Evaluation Dimensions of Swarm Autonomy​
-%2.4.1 Hierarchical Classification of Autonomy​
-%Basic autonomy: Individual fault self-repair, simple environmental adaptation (e.g., obstacle avoidance)​
-%Advanced autonomy: Dynamic adjustment of collective goals, cross-task self-transformation, human-swarm collaborative decision-making​
-%2.4.2 Autonomy Boundaries of Existing Solutions​
-%Purely distributed swarms: High individual autonomy but rigid collective goals​
-%Centralized swarms: Controllable collective goals but lack of individual autonomy​
-%Hybrid architectures: Ongoing research progress in dynamic goal adjustment and autonomous decision-making​
-%2.4.3 Challenges in Balancing Autonomy and Controllability​
-%Risk of unpredictable behavior caused by high autonomy​
-%Challenges in designing interfaces for human intervention and swarm autonomous decision-making​
-%2.5 Chapter Summary and Research Positioning​
-%Core limitations of existing research: Insufficient dynamics of hybrid architectures, difficulty in balancing precision and efficiency for large-scale tasks, and lack of online reprogramming capabilities​
-%Entry point of this research (SoNS): How hybrid architectures based on dynamic hierarchies can overcome the above limitations and provide a new path for swarm autonomy and programmability
