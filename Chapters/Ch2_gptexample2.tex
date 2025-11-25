@@ -63,6 +63,42 @@ A key property of swarms is the ability to self-organize roles rather than relyi
 
 Distributed assignment approaches attempt to decentralize the computation of global allocation algorithms \cite{burger2012distributed, chopra2017distributed, zavlanos2007distributed, alonso2016distributed, michael2008distributed, montijano2014efficient, wang2020shape}. However, computation or communication costs in these systems scale with swarm size, making them less suitable for very large swarms. Virtual-agent approaches such as \cite{kambayashi2018distributed} enable interchangeable roles but cannot handle faulty robots.
 
+Swarm vs. Centralized Approaches for Different Tasks
+
+In multi-robot systems, purely decentralized swarms and centralized approaches represent two ends of the spectrum, each with distinct advantages and limitations. Decentralized swarms excel in scalability and fault tolerance, as each agent operates based on local information and simple behavioral rules. However, they often suffer from inefficiency when global coordination or optimal role allocation is required. In contrast, centralized systems can achieve high precision and globally optimal coordination by leveraging full knowledge of the swarm and task environment, but they typically sacrifice scalability and robustness, becoming vulnerable to single points of failure. Understanding these trade-offs is crucial for designing swarm systems capable of tackling increasingly complex tasks.
+
+Formation Control
+
+Formation control is a fundamental research topic in both swarm and multi-robot systems
+\cite{liu2018survey, oh2015survey}.
+Decentralized formation controllers often rely on local sensing, such as relative distances, bearings, ultraviolet markers, or fiducial markers, to maintain formation
+\cite{walter2018fast, ulrich2022towards}.
+
+Fixed-Role Approaches. 
+
+Classical methods preassign each robot a target position. During deployment, robots move according to the positions of predefined neighbors, making motion control decentralized but role specification effectively centralized. These approaches achieve stable rigid-body formations using distance- or bearing-based constraints
+\cite{yang2018growing, mehdifar2018finite, stacey2015passivity}.
+Bearing rigidity theory further allows formation maintenance using only bearing measurements, with two designated leaders controlling scale, rotation, and translation while other robots maintain relative bearings
+\cite{zhao2019bearing, zhao2015bearing, li2020adaptive, zhang2023bearing}.
+Switching formations under rigid-body assumptions has also been explored
+\cite{desai1999control, desai2002modeling}.
+Overall, these methods emphasize control-theoretic guarantees over flexibility or adaptivity, assuming fixed roles and full knowledge of the desired formation.
+
+Switching Roles.
+
+One key feature of swarm robotics is self-organized role assignment. Predetermining roles may be impractical in large swarms or in environments with potential agent failures. Self-assembly approaches allow robots to autonomously select vacant positions, but these methods are often inefficient due to random search
+\cite{rubenstein2014programmable, li2019decentralized}.
+Centralized algorithms, by contrast, can compute globally optimal role assignments by leveraging full knowledge of robot and formation positions
+\cite{rm2020review, macalpine2015scram, agarwal2018simultaneous, ravichandar2020strata, akella2020assignment},
+ensuring minimal total displacement or collision-free paths.
+
+Distributed assignment strategies attempt to reduce centralization by dividing computational responsibilities among robots, using consensus, market-based coordination, or distributed optimization to approximate optimal assignments
+\cite{burger2012distributed, chopra2017distributed, zavlanos2007distributed, alonso2016distributed, michael2008distributed, montijano2014efficient, wang2020shape}.
+Despite these efforts, current distributed methods still struggle to scale efficiently with swarm size, and approaches handling faulty or interchangeable agents remain limited
+\cite{kambayashi2018distributed}.
+
+These observations highlight a critical gap in swarm robotics: while centralized approaches provide optimal coordination and decentralized swarms provide robustness, mechanisms for scalable, self-organized hierarchy and role allocation remain largely underexplored. Developing such mechanisms is essential for achieving both efficiency and resilience in large-scale, complex multi-robot tasks.
+
 % ---------------------------------------------------------------
 \subsection{Coverage}
 
