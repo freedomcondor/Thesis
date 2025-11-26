@@ -102,6 +102,24 @@ These observations highlight a critical gap in swarm robotics: while centralized
 % ---------------------------------------------------------------
 \subsection{Coverage}
 
+Coverage is a fundamental objective in multi-robot systems, where the goal is to ensure that a target region is fully observed, sensed, or explored. Effective coverage is essential for applications such as environmental monitoring, search and rescue, precision agriculture, and surveillance. A wide range of strategies has been developed, and most can be classified into three main categories
+\cite{wang2011coverage, galceran2013survey}.
+
+(1) Decentralized Sensor Dispersion.
+In these approaches, robots rely solely on local information to spread out and maximize area coverage. The robots typically use potential fields, repulsion mechanisms, or adaptive local policies to maintain appropriate separation and avoid sensing overlap. Such methods are inherently decentralized and offer strong scalability and robustness
+\cite{santos2019decentralized, luo2018adaptive, spanogianopoulos2017fast, siligardi2019robust}.
+
+(2) Wandering or Random Exploration.
+Another family of approaches relies on stochastic motion policies or simple local heuristics to gradually explore the environment. Robots may move randomly, rely on collision responses, or follow encountered structures such as walls. These strategies are easy to implement and require minimal information but often suffer from slow convergence and redundant traversal
+\cite{huang2019exploration, ichikawa1999characteristics, mcguire2019minimal}.
+
+(3) Sweep-Based Coverage (Predefined Path Patterns).
+Sweep-based methods assign systematic paths—such as lawnmower or S-shaped trajectories—to ensure full coverage of a known region. These strategies often require predefined roles, global map knowledge, or explicit task allocation, which introduces centralized components but yields efficient and predictable coverage
+\cite{almadhoun2019survey, avellar2015multi}.
+Hybrid approaches also exist; for example, \cite{scherer2015autonomous} employs centralized planning to generate coverage paths and then relies on decentralized mechanisms for coordination and maintaining communication links.
+
+Overall, coverage tasks clearly reveal the trade-offs between decentralized scalability and centralized efficiency. While decentralized dispersion and exploration are robust and easy to scale, they often lack efficiency and global optimality. Conversely, sweep-based and centrally coordinated methods achieve highly efficient coverage but depend on predefined assignments or global knowledge, limiting their adaptability in large, dynamic environments.
+
 Coverage tasks generally fall into three categories \cite{wang2011coverage, galceran2013survey}:
 
 1. **Decentralized dispersion:** robots scatter to uniformly cover an area \cite{santos2019decentralized, luo2018adaptive, spanogianopoulos2017fast, siligardi2019robust}.  
@@ -113,6 +131,22 @@ Hybrid systems can combine centralized path planning with decentralized executio
 % ---------------------------------------------------------------
 \subsection{Navigation and Path Planning}
 
+\subsection{Path Planning}
+
+Path planning is a key component of multi-robot and swarm systems, with existing methods ranging from centralized global planners to decentralized online approaches.
+
+Centralized Offline Planning.
+Centralized planners assume global map knowledge and compute collision-free trajectories for all robots before execution. These methods provide high-quality or even optimal solutions but scale poorly with swarm size. Hybrid approaches such as \cite{nazarahari2019multi} combine deterministic search with evolutionary optimization to generate smooth, safe, and near-optimal paths while handling multi-robot collision constraints. Other centralized methods
+\cite{thabit2018multi, yu2016optimal, kushleyev2013towards}
+use coordinated global search to guarantee completeness or bounded optimality. While effective in structured environments, their reliance on full-state information and high computational load limits applicability to large swarms.
+
+Decentralized Online Planning.
+Decentralized planners operate using local sensing and real-time optimization, offering better scalability and robustness. The EGO-Swarm family
+\cite{zhou2020ego, zhou2021ego, zhou2022swarm}
+demonstrates fast, distributed trajectory generation by predicting nearby robots’ short-horizon behavior and optimizing smooth, dynamically feasible paths at high frequency. These approaches enable agile navigation in cluttered environments but lack global optimality guarantees and may struggle in tightly constrained spaces.
+
+Overall, path planning illustrates the broader trade-off in swarm systems: centralized methods achieve coordinated, efficient trajectories but sacrifice scalability, whereas decentralized planners scale well but rely on local information and may be less globally efficient. This motivates the need for self-organizing hierarchical mechanisms that integrate local autonomy with structured coordination.
+
 Centralized planners compute global optimal paths but lack scalability \cite{nazarahari2019multi, thabit2018multi, yu2016optimal, kushleyev2013towards}. Decentralized methods enable real-time obstacle avoidance but cannot guarantee global optimality \cite{zhou2020ego, zhou2021ego, zhou2022swarm}. Navigation is typically treated as a building block within larger tasks such as coverage or exploration.
 
 % ---------------------------------------------------------------
@@ -122,6 +156,22 @@ Drone-based light shows are a well-known example of fully centralized multi-robo
 
 % ===============================================================
 \section{Fault Tolerance}
+
+\section{Fault Tolerance}
+
+Fault tolerance is often viewed as an inherent property of swarm systems, enabled by redundancy, distributed control, and the absence of single points of failure
+\cite{dorigo2014swarm, hamann2018swarm}.
+Most classical swarm behaviors—such as decentralized task allocation or coverage—naturally degrade gracefully when a subset of robots fails, without requiring centralized supervision.
+
+However, intermittent faults (IFs) present a unique challenge. Unlike permanent failures, IFs cause robots to malfunction unpredictably while later returning to normal operation, making them harder to detect and more disruptive to collective behaviors
+\cite{zhou2019review, niu2021distributed}.
+Such faults can propagate instability in consensus, formation control, or cooperative tasks, especially when robots rely solely on local observations.
+
+Centralized detection methods remain highly effective for identifying IFs, as they can aggregate system-wide data, exploit temporal correlations, and apply more computationally intensive diagnostics
+\cite{sheng2021intermittent, zhang2021intermittent, syed2016novel}.
+Yet, these approaches are incompatible with the decentralization and scalability expected of swarm robotics.
+
+To achieve IF tolerance within a swarm paradigm, recent work explores hybrid approaches that combine local autonomy with limited, structured communication. Such methods enable robots to recognize abnormal peers, isolate faulty behaviors, and reorganize the collective while preserving scalability (e.g., Sinan’s work and its extension in \cite{ouguz2025proactive}). These approaches aim to endow swarms with the ability to handle unpredictable, transient faults without reverting to a fully centralized architecture.
 
 Swarm systems are naturally robust to complete robot failures \cite{dorigo2014swarm, hamann2018swarm}. However, intermittent faults (IFs)—in which robots repeatedly fail and recover—pose unique challenges \cite{zhou2019review, niu2021distributed}. Centralized monitoring is effective for IF detection \cite{sheng2021intermittent, zhang2021intermittent, syed2016novel}, but not scalable. Hybrid strategies have been proposed to make large swarms more resilient to IFs \cite{ouguz2025proactive}.
 

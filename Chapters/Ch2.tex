@@ -212,74 +212,107 @@ Developing such mechanisms is essential for achieving both efficiency and resili
 
 \subsection{Coverage}
 
-For coverage, usually three classes:
-    \cite{wang2011coverage} % a survey
-    \cite{galceran2013survey} % survey
-1. Make the sensors scatter and cover the area.
-They happen in a decentralized way.
-    \cite{santos2019decentralized}
-    \cite{luo2018adaptive}
-    \cite{spanogianopoulos2017fast}
-    \cite{siligardi2019robust}
-2. wandering exploration
-    \cite{huang2019exploration} random
-    \cite{ichikawa1999characteristics} random
-    \cite{mcguire2019minimal} touch and walk along the wall.
+\textcolor{blue}{what is coverage, why it is important}
 
-3. textcolor{blue}{sweep to cover, S shape path}
-The other is to sweep an area, this usually pre-defines the paths of each robot.
-    \cite{almadhoun2019survey} % a survey, talked about sweep coverage
-    \cite{avellar2015multi}
+Coverage is another classic task in multi-robot systems.
+The goal is to ensure that a target region is fully observed, sensed, or explored by a group of agents.
+Effective coverage is essential for applications such as environmental monitoring, search and rescue, precision agriculture, and surveillance.
+A wide range of strategies has been developed, and most can be classified into three main categories
+    \cite{wang2011coverage,     % survey
+          galceran2013survey}.  % survey
 
-\cite{scherer2015autonomous} is a mix, centralized for path planning, after target, decentralized for connection establishment.
+\textbf{Decentralized Sensor Dispersion}
+In these approaches, robots rely solely on local information to spread out and maximize area coverage.
+The robots typically use potential fields, repulsion mechanisms, or adaptive local policies to maintain appropriate separation and avoid sensing overlap.
+Such methods are inherently decentralized and offer strong scalability and robustness
+    \cite{santos2019decentralized,
+          luo2018adaptive,
+          spanogianopoulos2017fast,
+          siligardi2019robust}.
 
-\subsection{Path Planning}
+\textbf{Wandering or Random Exploration}
+Another family of approaches relies on random motions to gradually explore the environment.
+Robots may move randomly, rely on simple reactive collision responses.
+These strategies are also decentralized.
+They are easy to implement and require only minimal information but often suffer from slow convergence and redundant traversal
+    \cite{huang2019exploration,
+          ichikawa1999characteristics,
+          mcguire2019minimal}.
 
-\textcolor{red}{path planning, goes to other places, maybe obstacle avoidance, or simply drop them.}
-\textcolor{red}{Aryo include them as offline under coverage, but they are not really about coverage}
+\textbf{Predefined Sweep Trajectory-Based Coverage}
+Sweep-based methods pre-calculate systematic paths, usually S-shaped trajectories, to ensure full coverage of a known region.
+These strategies often require predefined roles, global map knowledge, or explicit task allocation, which introduces centralized components but yields efficient and predictable coverage
+\cite{almadhoun2019survey, avellar2015multi}.
 
-\textcolor{blue}{navigation, not really about coverage, only from A to B through obstacles}
+There are also mixed approaches. For example, \cite{scherer2015autonomous} employs centralized predefined sweep trajectories to generate coverage paths and then relies on decentralized mechanisms to establish communication links for environmental information collection.
 
-For navigation : offline centralized way for path planning
-    \cite{nazarahari2019multi}
-    \cite{thabit2018multi}
-    \cite{yu2016optimal}
-    \cite{kushleyev2013towards}
-.
+To summarize, 
+coverage tasks clearly show the dichotomy between decentralization and centralization.
+While decentralized dispersion and exploration are robust and easy to scale, they often lack efficiency and global optimality.
+Conversely, sweep-based and centrally coordinated methods achieve highly efficient coverage but depend on predefined assignments or global knowledge, limiting their adaptability in large, dynamic environments.
 
-online, decentralized
-    \cite{zhou2020ego}
-    \cite{zhou2021ego}
-    \cite{zhou2022swarm}
-.
+\subsection{Navigation Path Planning}
+
+Path planning is a key component of multi-robot and swarm systems, especially in multi-drone systems.
+Existing methods ranges from centralized global planners to decentralized online approaches.
+
+\textbf{Centralized Offline Planning}
+Centralized planners assume global map knowledge and compute collision-free trajectories for all robots before execution.
+These methods provide high-quality or even optimal solutions but scale poorly with swarm size.
+Multi-robot path optimization is usually NP-hard problem,
+so researches employ heuristics and approximate solutions to generate global trajectories for robots
+    \cite{nazarahari2019multi,
+          thabit2018multi,
+          yu2016optimal,
+          kushleyev2013towards}.
+
+\textbf{Decentralized Online Planning}
+Decentralized planners operate using local sensing and real-time optimization, offering better scalability and robustness.
+The EGO-Swarm family
+    \cite{zhou2020ego,
+          zhou2021ego,
+          zhou2022swarm}
+demonstrates fast, distributed trajectory generation by predicting nearby robots' short-horizon behavior and optimizing smooth, dynamically feasible paths at high frequency.
+These approaches enable agile navigation in cluttered environments but lack global optimality guarantees and may struggle in tightly constrained spaces.
+And similar to formation control, they do not consider task assignments.
+In this term, the target position of each robot is pre-defined and fixed.
 
 \subsection{Light Show}
 
-Light show is centralized
-    \cite{waibel2017drone} light show
-    \cite{ang2018high} light show
+Drone light shows are becoming popular in urban life.
+It represent a fully centralized form of swarm coordination,
+where global trajectories are precomputed offline and broadcast to all agents.
+This guarantees precise synchronization and visually coherent formations at large scale
+    \cite{waibel2017drone,
+          ang2018high}.
+However, such architecture relies heavily on global communication and predetermined paths.
+It is vulnerable to a single point (ground station) of failure or communication failures,
+lacking the scalability or adaptability typically associated with decentralized systems.
 
 \section{Fault tolerance}
 
-Fault tolerance is a default feature for swarm
+Fault tolerance is an inherent property of swarm system for its redundancy and absence of single points of failure
     \cite{dorigo2014swarm}
-    \cite{hamann2018swarm}
-.
-\textcolor{red}{cite/explainTha some normal fault tolerance, that is not for centralized, predetermined}
+    \cite{hamann2018swarm}.
 
-but a swarm is sucepetable to intermittent faults IFs
+\textcolor{blue}{cite/explain some normal fault tolerance, that is not for centralized, predetermined}
+Most classical swarm tasks, such as coverage or collective decision making, can tolerate a subset of robots failes.
+Robots simplys continue to operate as normal, without knowing or caring about the failure peers.
+
+\textcolor{blue}{However, IFs} \textcolor{red}{check what Sinan says, maybe rewrite this part}
+However, intermittent faults (IFs) poses a unique challenge for swarm systems.
+An IF is a failure that occurs for a short period of time, and then recovers.
+If makes them difficult to detect and have bad influence to the swarm
     \cite{zhou2019review}
-    \cite{niu2021distributed}
-.
+    \cite{niu2021distributed}.
 
-To detect IFs, centralized methods are efficient
+Centralized methods are highly effective for identifying IFs, since they have access to system-wide data.
     \cite{sheng2021intermittent}
     \cite{zhang2021intermittent}
-    \cite{syed2016novel}
-.4
+    \cite{syed2016novel}.
 
-To make swarm also tolerant to IFs, hybrid methods are considered
-    \textcolor{red}{cite Sinan's paper}
+To achieve IF tolerance for swarms, recent work explores hybrid approaches.
+    \textcolor{red}{cite Sinan's paper?}
     \cite{ouguz2025proactive}
 
 \section{Manageability} \textcolor{red}{adjust this word}
@@ -299,10 +332,16 @@ Human interface side
 \cite{alonso2015gesture} 
 \cite{abioye2025user} 100 humans managing drones, not steering
 
+centralized : 
+
 human to the whole swarm
 \cite{ayanian2014controlling}
 \cite{alonso2015gesture}
 \cite{macchini2021personalized}
+
+decentralized :
+
+human to a subset of the swarm : low efficiency
 
 \cite{podevijn2013gesturing} gesture, subset of the swarm
 \cite{zhou2016assistive} joysticks
@@ -312,27 +351,20 @@ human to the whole swarm
 
 \subsection{programming / re-programming}
 
-\textcolor{red}{consider a better place for automatic design, go to swarm program section}
-    other challenges include automation design:
-    \cite{francesca2016automatic}
-    \cite{birattari2019automatic}
-    \cite{salman2024automatic}
-
-\subsubsection {offline examples}
-
-mostly offline :
-
 usually, long trial and error: 
 \cite{hamann2018swarm} a book
 \cite{brambilla2013swarm} a review
+
+\subsubsection {offline}
 
 automatic design:
  offline automatic design
 \cite{francesca2014automode} AutoMoDe
 \cite{francesca2016automatic} a survey
 \cite{birattari2019automatic} a survey
+\cite{salman2024automatic}
 
-examples of pre-design
+examples of pre-program
 \cite{rubenstein2014programmable} self-assembly
 \cite{valentini2016collective} decision making
 \cite{werfel2014designing} construction
@@ -355,6 +387,37 @@ but slow : consensus
 \cite{varadharajan2018over} 
 
 \cite{venkata2023kt} introduces the KT-BT framework, using behavior trees and stringBT grammar, enabling multirobot knowledge transfer, with simulations showing improved group performance.
+
+\subsubsection{behavior tree}
+
+\textcolor{red}{goes to reprogram section}
+
+Behavior tree general
+\cite{colledanchise2018behavior}
+\cite{iovino2022survey}
+
+BT for multi-robot system
+\cite{colledanchise2016advantages}
+\cite{jeong2022behavior}
+
+Evolving BT:
+
+genetic programming
+\cite{jones2018evolving} \textcolor{red}{evolving}
+\cite{kuckling2022automode}
+
+grammatical evolution
+\cite{neupane2019learning}
+\cite{kuckling2022automode}
+
+Online Evolving BT:
+
+\cite{jones2019onboard}
+\cite{venkata2023kt}
+
+
+\cite{florez2008dynamic} about dynamic BT, but haven't been applied to robots, for games
+
 
 \section{Swarm Autonomy}
 
@@ -416,32 +479,3 @@ not fully de-centralized
 \cite{kornienko2005cognitive}
 \cite{giusti2012cooperative}
 
-\subsection{behavior tree}
-
-\textcolor{red}{goes to reprogram section}
-
-Behavior tree general
-\cite{colledanchise2018behavior}
-\cite{iovino2022survey}
-
-BT for multi-robot system
-\cite{colledanchise2016advantages}
-\cite{jeong2022behavior}
-
-Evolving BT:
-
-genetic programming
-\cite{jones2018evolving} \textcolor{red}{evolving}
-\cite{kuckling2022automode}
-
-grammatical evolution
-\cite{neupane2019learning}
-\cite{kuckling2022automode}
-
-Online Evolving BT:
-
-\cite{jones2019onboard}
-\cite{venkata2023kt}
-
-
-\cite{florez2008dynamic} about dynamic BT, but haven't been applied to robots, for games
