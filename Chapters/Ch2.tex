@@ -313,37 +313,40 @@ Centralized methods are highly effective for identifying IFs, since they have ac
 
 \section{Manageability} \textcolor{red}{adjust this word}
 
-Human needs to supervise a swarm : interact, steer, reprogram.
-
-However the difficulty is, when scale up, human operator can't communicate with all the robot.
+As a robot system, despite its autonomy, human operators needs to enforce supervision to the system: to interact, steer, and reprogram the system.
+However for a swarm robot system, when scale up, human operator can't communicate with all the robot.
+This section gives review in terms of Human-swarm interaction and swarm programming.
 
 \subsection{Human-swarm interaction}
 
-survey:
-\cite{siean2023opportunities}
-\cite{kolling2015human}
+As swarms scale up, humans cannot interact with every robot individually.
+Surveys
+    \cite{siean2023opportunities,
+          kolling2015human}
+classify interfaces and strategies for human–swarm interaction.
 
-Human interface side
-\cite{jarvis2025first}
-\cite{alonso2015gesture} 
-\cite{abioye2025user} 100 humans managing drones, not steering
+A class of researches explore interfaces to manipulate the swarm such as gesture control
+    \cite{alonso2015gesture,
+          podevijn2013gesturing},
+haptic devices
+    \cite{lee2013semiautonomous},
+or wearable systems
+    \cite{jarvis2025first}.
 
-centralized : 
+Among these works, by default, operators are able to communicate with all the robots in the swarm to send commands collectively
+    \cite{ayanian2014controlling,
+          macchini2021personalized,
+          abioye2025user}
+\textcolor{red}{varify},
+which will face scalability problem when the swarm scales up.
 
-human to the whole swarm
-\cite{ayanian2014controlling}
-\cite{alonso2015gesture}
-\cite{macchini2021personalized}
+For decentralized methods where human communicate with only one robot or subset of the swarm, researches forcus on how to make the subset of the swarm influence the whole swarm
+    \cite{podevijn2013gesturing, % gesture, subset of the swarm
+          zhou2016assistive,  % joysticks
+          lee2013semiautonomous}. % haptic feedback
+These methods are not very efficient for swarm to converge.
 
-decentralized :
-
-human to a subset of the swarm : low efficiency
-
-\cite{podevijn2013gesturing} gesture, subset of the swarm
-\cite{zhou2016assistive} joysticks
-\cite{lee2013semiautonomous} haptic feedback
-
-\cite{kolling2013human}
+\cite{kolling2013human} \textcolor{red}{verify}
 
 \subsection{programming / re-programming}
 
