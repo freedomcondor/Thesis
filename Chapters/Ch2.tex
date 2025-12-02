@@ -313,17 +313,20 @@ Centralized methods are highly effective for identifying IFs, since they have ac
 
 \section{Manageability} \textcolor{red}{adjust this word}
 
-As a robot system, despite its autonomy, human operators needs to enforce supervision to the system: to interact, steer, and reprogram the system.
-However for a swarm robot system, when scale up, human operator can't communicate with all the robot.
-This section gives review in terms of Human-swarm interaction and swarm programming.
+\textcolor{red}{although autonomous}
+Although robot swarms are designed to operate autonomously,
+human operators still play a crucial role in supervising the system,
+issuing high-level commands, and reprogramming the swarm when necessary.
+However, as swarm size increases, direct communication with all the robots in the swarm becomes infeasible.
+This section reviews existing research on human–swarm interaction and swarm online programming.
 
 \subsection{Human-swarm interaction}
 
-As swarms scale up, humans cannot interact with every robot individually.
-Surveys
+As swarm systems scale up, it becomes impractical for a human operator to interact with individual robots.
+Existing surveys
     \cite{siean2023opportunities,
           kolling2015human}
-classify interfaces and strategies for human–swarm interaction.
+classify the main interface modalities and control strategies for human–swarm interaction (HSI).
 
 A class of researches explore interfaces to manipulate the swarm such as gesture control
     \cite{alonso2015gesture,
@@ -332,7 +335,6 @@ haptic devices
     \cite{lee2013semiautonomous},
 or wearable systems
     \cite{jarvis2025first}.
-
 Among these works, by default, operators are able to communicate with all the robots in the swarm to send commands collectively
     \cite{ayanian2014controlling,
           macchini2021personalized,
@@ -344,79 +346,89 @@ For decentralized methods where human communicate with only one robot or subset 
     \cite{podevijn2013gesturing, % gesture, subset of the swarm
           zhou2016assistive,  % joysticks
           lee2013semiautonomous}. % haptic feedback
-These methods are not very efficient for swarm to converge.
+While these methods improve scalability,
+they often suffer from slow convergence or limited expressiveness.
 
 \cite{kolling2013human} \textcolor{red}{verify}
 
 \subsection{programming / re-programming}
 
-usually, long trial and error: 
-\cite{hamann2018swarm} a book
-\cite{brambilla2013swarm} a review
+Designing controllers for swarm systems is often a long trial-and-error process
+    \cite{hamann2018swarm,
+          brambilla2013swarm}.  
+It becomes more challenging when swarms must adapt to new tasks or environments.
+This section reviews approaches to offline, centralized online, and decentralized online reprogramming.
 
-\subsubsection {offline}
+\textcolor{blue}{Offline Programming}
 
-automatic design:
- offline automatic design
-\cite{francesca2014automode} AutoMoDe
-\cite{francesca2016automatic} a survey
-\cite{birattari2019automatic} a survey
-\cite{salman2024automatic}
+Classically, swarms are deployed in offline way.
+Programs are pre-designed and pre-downloaded to all the robots before deployment, for example,
+    \cite{rubenstein2014programmable,
+          valentini2016collective,
+          werfel2014designing,
+          dorigo2013swarmanoid}.
+However, offline methods cannot react to unexpected task changes during deployment.
+Noteably, automatic design methods falls in this category.
+    \cite{francesca2014automode,
+          francesca2016automatic,
+          birattari2019automatic,
+          salman2024automatic}.
+They demonstrate how optimization and evolutionary algorithms can produce robust swarm behaviors without manual tuning.
+Yet the programs are pre-generated.
 
-examples of pre-program
-\cite{rubenstein2014programmable} self-assembly
-\cite{valentini2016collective} decision making
-\cite{werfel2014designing} construction
-\cite{dorigo2013swarmanoid} multi task mission
+\textcolor{blue}{online but centralized}
 
-\subsubsection {online but centralized}
-\cite{zyrianoff2024over} over the air
-\cite{abadie2024robotap}
+Centralized online reprogramming techniques update robot behaviors after deployment through a global communication channel.
+Over-the-air programming frameworks
+    \cite{zyrianoff2024over,
+          abadie2024robotap}
+enable operators to push new software to all robots.
+Large-scale drone light shows
+    \cite{waibel2017drone,
+          ang2018high}
+represent a widely deployed example of centralized online control.
+Although they can coordinate thousands of robots,
+they typically allow only predefined trajectories and low-level commands.
 
-\textcolor{blue}{light show: too big, only simple commands}
-\textcolor{red}{goes to online centralized, make it a paragraph}
-\cite{waibel2017drone} light show
-\cite{ang2018high} light show
+\textcolor{blue}{online, decentralized}
 
-\subsubsection {online, decentralized}
-\cite{xie2011design} wireless sensor network
-\cite{wang2006reprogramming} wireless sensor network a survey
-but slow : consensus
-\cite{de2009energy}
-\cite{varadharajan2018over} 
+Decentralized reprogramming methods update robot controllers without relying on a central broadcaster.
+Early work in wireless sensor networks
+    \cite{xie2011design,
+          wang2006reprogramming}
+shows the feasibility of distributed software updates.
+However, they also highlights fundamental limitations such as slow propagation and high energy consumption resulting from consensus mechanisms
+    \cite{de2009energy,
+          varadharajan2018over}.
 
-\cite{venkata2023kt} introduces the KT-BT framework, using behavior trees and stringBT grammar, enabling multirobot knowledge transfer, with simulations showing improved group performance.
+More recent work explores knowledge transfer in multi-robot systems.
+For instance, Venkata et al.\ \cite{venkata2023kt} introduce the KT-BT framework, which uses behavior trees and a grammar-based encoding (stringBT) to achieve decentralized transfer of acquired skills, improving collective performance during online adaptation.
 
 \subsubsection{behavior tree}
 
-\textcolor{red}{goes to reprogram section}
+Behavior trees (BTs) provide a modular, hierarchical framework for representing robot behaviors
+    \cite{colledanchise2018behavior,
+          iovino2022survey}
+and have been adopted in several multi-robot applications
+    \cite{colledanchise2016advantages,
+          jeong2022behavior}.
+Reprogramming tasks exploit BTs compositionality and readability.
 
-Behavior tree general
-\cite{colledanchise2018behavior}
-\cite{iovino2022survey}
+Evolving BTs through evolutionary algorithms—such as genetic programming
+    \cite{jones2018evolving,
+          kuckling2022automode}
+or grammatical evolution
+    \cite{neupane2019learning,
+          kuckling2022automode}—
+enables automated creation of swarm behaviors.
+Recent advances support online evolution as well
+    \cite{jones2019onboard,
+          venkata2023kt},
+allowing robots to adapt their BT controllers during deployment.
 
-BT for multi-robot system
-\cite{colledanchise2016advantages}
-\cite{jeong2022behavior}
-
-Evolving BT:
-
-genetic programming
-\cite{jones2018evolving} \textcolor{red}{evolving}
-\cite{kuckling2022automode}
-
-grammatical evolution
-\cite{neupane2019learning}
-\cite{kuckling2022automode}
-
-Online Evolving BT:
-
-\cite{jones2019onboard}
-\cite{venkata2023kt}
-
-
-\cite{florez2008dynamic} about dynamic BT, but haven't been applied to robots, for games
-
+Dynamic BTs have also been investigated in game AI
+    \cite{florez2008dynamic},
+though their application to real-world robotics remains to be explored.
 
 \section{Swarm Autonomy}
 
