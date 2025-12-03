@@ -89,9 +89,9 @@ can often outperform purely homogeneous systems
 
 Informed or persistent agents can influence the behavior of others during tasks such as flocking or collective decision-making
     \cite{firat2020self, % use informal individual to cue the whole swarm to aggreate to a desired shelter
-          valentini2016collective,
+          prasetyo2018best,
           balazs2020adaptive}.
-\textcolor{red}{varify: valentini2016collective is not a good choice, find another decision making with stubborn individuals}
+\textcolor{red}{varify: prasetyo2018best}
 Some works explicitly name these individuals as leaders
     \cite{gu2009leader,
           amraii2014explicit}.
@@ -146,11 +146,13 @@ During deployment,
 robots move according to the positions of predefined neighbors,
 making motion control decentralized
 but role specification effectively centralized.
-These approaches achieve stable rigid-body formations using distance- or bearing-based constraints
+These approaches achieve stable rigid-body formations using distance-based constraints
     \cite{yang2018growing,
           mehdifar2018finite,
-          stacey2015passivity}.
-\textcolor{red}{distance rigidity.}
+          stacey2015passivity,
+          anderson2018rigid,
+          oh2011adistance,
+          oh2011bdistance}.
 Bearing rigidity theory
     \cite{zhao2019bearing,
           zhao2015bearing}
@@ -311,16 +313,61 @@ Centralized methods are highly effective for identifying IFs, since they have ac
     \cite{zhang2021intermittent}
     \cite{syed2016novel}.
 
-\section{Manageability} \textcolor{red}{adjust this word}
+\section{Swarm Autonomy and Manageability}
 
-\textcolor{red}{although autonomous}
-Although robot swarms are designed to operate autonomously,
+\subsection{Swarm autonomy}
+
+% indivudal autonomy is good, but swarm autonomy is a challenge
+Despite significant advances in individual robot autonomy and artificial cognition
+    \cite{cangelosi2022cognition,
+          vernon2014artificial},
+achieving autonomy in swarm robotics remains an open challenge.
+% for swarm, good works 
+Existing swarm researches primarily focus on single task such as action, perception, adaptation
+    \cite{heinrich2022swarm},
+but higher level cognitive capabilities such as learning or anticipation are still largely absent,
+and it lacks a overall framework to unify all the attributes.
+
+Collective decision making is a classical task for swarm systems for environmental analysis.
+Classical models for collective decision making, such as best-of-N and best-of-two
+    \cite{khaluf2019neglected, % decision making
+          valentini2017best,   % best of N
+          dorigo2014self,
+          valentini2016collective,
+          shan2020collective,
+          ebert2018multi,
+          prasetyo2018best,       % best of N
+          prasetyo2019collective, % best of N
+          valentini2015efficient}, % best of N
+demonstrate how simple local rules allow groups to reach agreement without centralized control.
+Subsequent work investigates convergence speed, decision accuracy, and robustness under noise or malicious information
+    \cite{shan2020collective,            % bayesian
+          bartashevich2019benchmarking,  % 
+          shan2021discrete, %\textcolor{red}{too tech}
+          strobel2018managing}. %\textcolor{red}{ref incomplete} % byzenting
+
+Despite these progress, decision-making in swarms generally remains a simple reactive task for environmental analysis,
+rather than maintaining a broader understanding of the mission context.
+In terms of automony, many elements are missing
+    \cite{khaluf2019neglected},
+such as the swarm needs to detect that a new collective decision is required, or to autonomously adapt the decision-making process to conditions that were not explicitly studied beforehand.
+Current frameworks provide no unified mechanisms for learning new behaviors online, anticipating future events, or autonomously restructuring task workflows.
+
+According to the SAE J3016 standard
+    \cite{sae2021automated}
+defines autonomous level for robot systems.
+Existing robot swarm systems would be barely classified as having collective behaviors equivalent to the individual behaviors described in {\it Level 2 (Partial automation)},
+as existing robot swarm systems are able to
+execute intended tasks, but a human operator is still required to continuously monitor the environment and system and deciding when to intervene to correct or stop the system.
+That would be a challenge for swarm systems as will be talked about in the following section.
+
+\subsection{Human-swarm interaction}
+
+Although robot swarms are generally capable of executing their intended tasks,
 human operators still play a crucial role in supervising the system,
 issuing high-level commands, and reprogramming the swarm when necessary.
 However, as swarm size increases, direct communication with all the robots in the swarm becomes infeasible.
 This section reviews existing research on human–swarm interaction and swarm online programming.
-
-\subsection{Human-swarm interaction}
 
 As swarm systems scale up, it becomes impractical for a human operator to interact with individual robots.
 Existing surveys
@@ -430,29 +477,11 @@ Dynamic BTs have also been investigated in game AI
     \cite{florez2008dynamic},
 though their application to real-world robotics remains to be explored.
 
-\section{Swarm Autonomy}
 
-From builderbot paper :
-What Is Cognitive Robotics?
-\cite{cangelosi2022cognition} 
-\cite{vernon2014artificial} 
-\cite{heinrich2022swarm}
-\cite{khaluf2019neglected}
-
-level standard :
-\cite{sae2021automated}
-
-collective decision
-\textcolor{red}{goes to task section}
-\cite{valentini2017best} best of N
-\cite{dorigo2014self}
-\cite{valentini2016collective}
-\cite{shan2020collective}
+\iffalse
+\section{Abandon}
 
 \textcolor{blue}{from Ayros paper}
-
-\cite{valentini2015efficient} \textcolor{red}{incomplete reference, from Aryo paper 49, belongs to decision making, doesn't belong here}
-% 100 kilobots decision making
 
 multi-robot fusion problems are well understood, and existing methods are powerful
 centralized
@@ -462,18 +491,10 @@ These are all surveys
 \cite{sun2017multi}
 \cite{rizk2019cooperative}
 \cite{li2021multi}
-\textcolor{red}{consider drop this fusion part}
+\textcolor{red}{consider drop this sensor fusion part}
 
-check colors, many about decision making
-\cite{strobel2018managing} \textcolor{red}{ref incomplete}
-\cite{ebert2018multi} \textcolor{red}{decision making}
-\cite{shan2020collective}
-\cite{bartashevich2019benchmarking}
-\cite{shan2021discrete} \textcolor{red}{too tech}
 
 another scenario, about the quality of the block
-\cite{prasetyo2018best}   best of N
-\cite{prasetyo2019collective}  best of N
 \cite{khaluf2017edge}  find edge of an area
 \cite{wahby2019collective} aggreate to the bright area
 \cite{khaluf2020construction} about construction, fusion sensing the density of the building
@@ -489,4 +510,4 @@ not fully de-centralized
 \cite{otte2016collective} This is one a bit different, swarm robot nerval network
 \cite{kornienko2005cognitive}
 \cite{giusti2012cooperative}
-
+\fi

@@ -178,6 +178,29 @@ Swarm systems are naturally robust to complete robot failures \cite{dorigo2014sw
 % ===============================================================
 \section{Manageability and Human–Swarm Interaction}
 
+\subsection{Swarm Autonomy}
+
+Achieving autonomy in swarm robotics remains an open challenge, despite significant advances in individual robot autonomy and artificial cognition
+\cite{cangelosi2022cognition, vernon2014artificial}.
+While single robots can increasingly perform perception, planning, mapping, and action selection in unstructured environments, extending these abilities to a large-scale, decentralized collective is far from trivial. Existing swarm systems primarily focus on low-level action and perception—such as aggregation, flocking, dispersion, and collective exploration
+\cite{heinrich2022swarm}—but higher-level cognitive capabilities such as long-horizon planning, global situation assessment, task adequacy recognition, and adaptive mission execution are still largely absent.
+
+A substantial body of research examines collective decision-making as a mechanism for environmental analysis and distributed consensus. Classical models such as the best-of-two and best-of-
+𝑁
+N problems
+\cite{khaluf2019neglected, valentini2017best, dorigo2014self, prasetyo2018best, prasetyo2019collective, valentini2015efficient}
+demonstrate how simple local rules allow groups to reach agreement without centralized control. Subsequent work investigates convergence speed, decision accuracy, and robustness under noise or heterogeneous information
+\cite{shan2020collective, bartashevich2019benchmarking}.
+More recent studies explore scenarios with Byzantine or adversarial agents
+\cite{strobel2018managing},
+showing that collective decisions can be severely disrupted even when a small subset of individuals provides malicious or inconsistent information.
+
+Despite this progress, decision-making in swarms generally remains reactive and short-sighted: robots respond to local sensory inputs or instantaneous measurements, rather than maintaining a broader understanding of the mission context. Current frameworks provide no unified mechanisms for learning new behaviors online, anticipating future events, or autonomously restructuring task workflows. From the perspective of autonomy levels in automated systems
+\cite{sae2021automated},
+most swarm systems lack key capabilities including global situational awareness, task adequacy evaluation, autonomous request for human intervention, and reliable interfaces for supervisory control. As a result, human operators are still required to provide high-level goals, reconfigure system parameters, or redeploy the swarm when tasks or environments change.
+
+In summary, while collective decision-making offers an initial form of distributed cognition, it does not yet constitute full autonomy. A truly autonomous swarm would need to sense and interpret its environment, plan collectively, update or acquire new behaviors during deployment, and coordinate these capabilities without centralized oversight—capabilities that remain largely unrealized in the current literature.
+
 \subsection{Human–Swarm Interaction}
 
 As swarms scale up, humans cannot interact with every robot individually. Surveys \cite{siean2023opportunities, kolling2015human} classify interfaces and strategies for human–swarm interaction (HSI). Interface-centered works explore gesture control \cite{alonso2015gesture, podevijn2013gesturing}, haptic devices \cite{lee2013semiautonomous}, or wearable systems \cite{jarvis2025first}. Other works propose methods for operators to influence the swarm collectively \cite{ayanian2014controlling, macchini2021personalized}. Studies on managing large robot teams \cite{abioye2025user} focus on supervision rather than steering.
