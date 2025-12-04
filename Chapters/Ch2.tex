@@ -113,6 +113,8 @@ and self-assembly or formation
           divband2019photomorphogenesis}.
 Such approaches can be regarded as highly heterogeneous systems in which each individual assumes its own role.
 
+\textcolor{blue}{but hierarchical is not self-organized : not scalable nor fault tolerant}
+
 However,
 maintaining scalability and avoiding single points of failure in these systems often require sophisticated mechanisms,
 such as temporary leadership, explicit role assignments, or distributed authority-transfer schemes.
@@ -122,9 +124,10 @@ As task complexity increases, researchers increasingly recognize the importance 
 
 \section{Swarm vs. centralized approaches for different tasks}
 
-\textcolor{blue}{The point is}
-\textcolor{blue}{1 we want to show there is a gap :  self-organized hierarchy}
-\textcolor{blue}{2 both sides have some downsides}
+\textcolor{blue}{The point is : }
+\textcolor{blue}{1 we want to show there is a gap }
+\textcolor{blue}{2 both sides have some downsides }
+\textcolor{blue}{ : so we need self-organized hierarchy}
 
 Purely decentralized swarms are highly scalable and fault tolerant but often lack efficiency, especially when global information is required.
 Centralized systems, by contrast, achieve high precision and optimal coordination but lose scalability and fault tolerance.
@@ -206,6 +209,8 @@ Despite these efforts, current distributed methods still struggle to scale effic
 Approaches handling faulty or interchangeable agents also remain limited
     \cite{kambayashi2018distributed}.
 
+\textcolor{blue}{there is a gap}
+
 These observations highlight a critical gap in terms of role assignment in swarm formation:
 while centralized approaches provide optimal coordination
 and decentralized swarms provide robustness and scalability,
@@ -248,6 +253,8 @@ These strategies often require predefined roles, global map knowledge, or explic
 
 There are also mixed approaches. For example, \cite{scherer2015autonomous} employs centralized predefined sweep trajectories to generate coverage paths and then relies on decentralized mechanisms to establish communication links for environmental information collection.
 
+\textcolor{blue}{summarize: a gap}
+
 To summarize, 
 coverage tasks clearly show the dichotomy between decentralization and centralization.
 While decentralized dispersion and exploration are robust and easy to scale, they often lack efficiency and global optimality.
@@ -255,7 +262,7 @@ Conversely, sweep-based and centrally coordinated methods achieve highly efficie
 
 \subsection{Navigation Path Planning}
 
-Path planning is a key component of multi-robot and swarm systems, especially in multi-drone systems.
+In recent applications, especially for drones systems, path planning is a key component of multi-robot and swarm systems,
 Existing methods ranges from centralized global planners to decentralized online approaches.
 
 \textbf{Centralized Offline Planning}
@@ -279,7 +286,14 @@ These approaches enable agile navigation in cluttered environments but lack glob
 And similar to formation control, they do not consider task assignments.
 In this term, the target position of each robot is pre-defined and fixed.
 
+\textcolor{blue}{summarize: a gap}
+
+To conclude, similar to formation control, although researches have been well developed to generate high-quality or even optimal solutions,
+fully scalable and fault tolerable systems remains to be explored.
+
 \subsection{Light Show}
+
+\textcolor{blue}{centralized : not fault tolerant, not scalable}
 
 Drone light shows are becoming popular in urban life.
 It represent a fully centralized form of swarm coordination,
@@ -293,31 +307,39 @@ lacking the scalability or adaptability typically associated with decentralized 
 
 \section{Fault tolerance}
 
-Fault tolerance is an inherent property of swarm system for its redundancy and absence of single points of failure
+Fault tolerance is an inherent property of swarm systems for their redundancy and absence of single points of failures
     \cite{dorigo2014swarm}
     \cite{hamann2018swarm}.
 
-\textcolor{blue}{cite/explain some normal fault tolerance, that is not for centralized, predetermined}
+\textcolor{red}{cite/explain some normal fault tolerance, that is not for centralized, predetermined}
 Most classical swarm tasks, such as coverage or collective decision making, can tolerate a subset of robots failes.
-Robots simplys continue to operate as normal, without knowing or caring about the failure peers.
+Robots simplys continue to operate as normal, without knowing or caring about the failure peers \textcolor{red}{cite something here}.
 
-\textcolor{blue}{However, IFs} \textcolor{red}{check what Sinan says, maybe rewrite this part}
+\textcolor{blue}{However, IFs}
+
 However, intermittent faults (IFs) poses a unique challenge for swarm systems.
 An IF is a failure that occurs for a short period of time, and then recovers.
 If makes them difficult to detect and have bad influence to the swarm
     \cite{zhou2019review}
     \cite{niu2021distributed}.
+\textcolor{red}{check what Sinan says, the argument here not strong enough}
 
 Centralized methods are highly effective for identifying IFs, since they have access to system-wide data.
     \cite{sheng2021intermittent}
     \cite{zhang2021intermittent}
-    \cite{syed2016novel}.
+    \cite{syed2016novel},
+but as discussed in the previous section, centralized methods are vulnerable to single point failures and not scalable.
+
+\textcolor{blue}{Therefore, a gap}
+
+Overall, both centralized and de-centralized swarm system have their own unique challenges in terms of fault tolerance.
 
 \section{Swarm Autonomy and Manageability}
 
 \subsection{Swarm autonomy}
 
-% indivudal autonomy is good, but swarm autonomy is a challenge
+\textcolor{blue}{indivudal autonomy is good, but swarm autonomy is a challenge}
+
 Despite significant advances in individual robot autonomy and artificial cognition
     \cite{cangelosi2022cognition,
           vernon2014artificial},
@@ -328,7 +350,9 @@ Existing swarm researches primarily focus on single task such as action, percept
 but higher level cognitive capabilities such as learning or anticipation are still largely absent,
 and it lacks a overall framework to unify all the attributes.
 
-Collective decision making is a classical task for swarm systems for environmental analysis.
+\textcolor{blue}{Collective decision is a key component for swarm autonomy}
+
+Collective decision making, as a classical task for swarm systems for environmental analysis, poses an important role in swarm automony.
 Classical models for collective decision making, such as best-of-N and best-of-two
     \cite{khaluf2019neglected, % decision making
           valentini2017best,   % best of N
@@ -346,12 +370,16 @@ Subsequent work investigates convergence speed, decision accuracy, and robustnes
           shan2021discrete, %\textcolor{red}{too tech}
           strobel2018managing}. %\textcolor{red}{ref incomplete} % byzenting
 
+\textcolor{blue}{but Collective decision too simple, swarm needs higher level of cognition}
+
 Despite these progress, decision-making in swarms generally remains a simple reactive task for environmental analysis,
 rather than maintaining a broader understanding of the mission context.
 In terms of automony, many elements are missing
     \cite{khaluf2019neglected},
 such as the swarm needs to detect that a new collective decision is required, or to autonomously adapt the decision-making process to conditions that were not explicitly studied beforehand.
 Current frameworks provide no unified mechanisms for learning new behaviors online, anticipating future events, or autonomously restructuring task workflows.
+
+\textcolor{blue}{current swarm is roughly at level 2}
 
 According to the SAE J3016 standard
     \cite{sae2021automated}
@@ -363,17 +391,19 @@ That would be a challenge for swarm systems as will be talked about in the follo
 
 \subsection{Human-swarm interaction}
 
-Although robot swarms are generally capable of executing their intended tasks,
+\textcolor{blue}{human-swarm interaction is needed}
+
+As discussed in previous section, although robot swarms are generally capable of executing their intended tasks,
 human operators still play a crucial role in supervising the system,
 issuing high-level commands, and reprogramming the swarm when necessary.
 However, as swarm size increases, direct communication with all the robots in the swarm becomes infeasible.
 This section reviews existing research on human–swarm interaction and swarm online programming.
 
-As swarm systems scale up, it becomes impractical for a human operator to interact with individual robots.
-Existing surveys
+Current researches mainly focus on two sides : human interfaces and swarm influence.
     \cite{siean2023opportunities,
-          kolling2015human}
-classify the main interface modalities and control strategies for human–swarm interaction (HSI).
+          kolling2015human}.
+
+\textcolor{blue}{interface side: gesture control and etc}
 
 A class of researches explore interfaces to manipulate the swarm such as gesture control
     \cite{alonso2015gesture,
@@ -389,6 +419,8 @@ Among these works, by default, operators are able to communicate with all the ro
 \textcolor{red}{varify},
 which will face scalability problem when the swarm scales up.
 
+\textcolor{blue}{influence side: decentralized, but not efficient}
+
 For decentralized methods where human communicate with only one robot or subset of the swarm, researches forcus on how to make the subset of the swarm influence the whole swarm
     \cite{podevijn2013gesturing, % gesture, subset of the swarm
           zhou2016assistive,  % joysticks
@@ -398,12 +430,22 @@ they often suffer from slow convergence or limited expressiveness.
 
 \cite{kolling2013human} \textcolor{red}{verify}
 
+\textcolor{blue}{so, a gap}
+
+In general, there lacks a framework that can issue efficient commands to swarm robots without sacrificing scalability.
+
 \subsection{programming / re-programming}
 
-Designing controllers for swarm systems is often a long trial-and-error process
+\textcolor{blue}{People needs to easily (and online) program the swarm, but with challenges}
+
+When supervising the swarm, the programmer needs to be able to re-program the swarm easily and online.
+However, it faces two problems.
+Firstly, designing controllers for swarm systems is often a long trial-and-error process
     \cite{hamann2018swarm,
           brambilla2013swarm}.  
 It becomes more challenging when swarms must adapt to new tasks or environments.
+Secondly, when the swarm scales up, it becomes difficult for the programmer to communicate with the swarm and deliver the new program.
+
 This section reviews approaches to offline, centralized online, and decentralized online reprogramming.
 
 \textcolor{blue}{Offline Programming}
@@ -450,6 +492,10 @@ However, they also highlights fundamental limitations such as slow propagation a
 
 More recent work explores knowledge transfer in multi-robot systems.
 For instance, Venkata et al.\ \cite{venkata2023kt} introduce the KT-BT framework, which uses behavior trees and a grammar-based encoding (stringBT) to achieve decentralized transfer of acquired skills, improving collective performance during online adaptation.
+
+\textcolor{blue}{summarize}
+
+To summarize, a unified framework where a human operator can reprogram a swarm in fully scalable and efficient way remains to be explored.
 
 \subsubsection{behavior tree}
 
