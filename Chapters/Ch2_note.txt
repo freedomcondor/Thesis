@@ -1,0 +1,40 @@
+1 often draws
+2 Boids is not for swarm robotics    match boids to swarm robotics
+3 advantages != benefits
+4 SO applies to many tasks   !=  show advantages
+5 why large-scale and spatially 
+
+6 connect -> two way, but we care for one-way    connect -> design
+7 fundamental inefficiencis -> explain
+
+00000   key tasks -> establish key
+00000   Manageability -{ fault tolerance, swarm - repro, swarm auto }
+
+flat swarms -> mention interaction
+
+81, downs go to intro section -> remove senteence
+
+
+hetero- sometimes better
+
+explain persistent agents
+
+adversial detection, not only, and explain.  comment out, and see if it fit to somewhere else
+
+mention leader-follower  check Sci-Ro
+
+
+efficiency : 
+   1 ease of design / manigibility
+   2 short time    sometimes 1 is important
+   
+in 2.1 mention these, and use these to efficiency
+
+too specific for hierarchical downssides
+
+
+
+1. efficiency
+2. something not introduced
+2. terms I do not mention beforee
+3. claim not cited
