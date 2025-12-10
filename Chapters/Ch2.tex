@@ -102,10 +102,11 @@ Some works explicitly name these individuals as leaders
 
 \textcolor{blue}{hierarchical}
 
-On the other hand, hierarchical approaches impose an additional topological organization on the swarm.
-In these systems, hierarchy is formed by pre-defined pairs of leaders and followers,
-allowing information to flow in a more structured manner
-such as flocking
+In addition, hierarchical approaches impose an additional topological organization on the swarm.
+In these systems, hierarchy is formed by pre-defined pairs of leaders and followers.
+Each follower is assigned a leader and gets information from it, such as position references.
+In this way, information flows in a more structured manner in the swarm.
+Many tasks benefit from this, such as flocking
     \cite{dalmao2011cucker,
           jia2019modelling,
           pignotti2018flocking}
@@ -134,8 +135,8 @@ As task complexity increases, researchers increasingly recognize the importance 
 \textcolor{blue}{2 both sides have some downsides }
 \textcolor{blue}{ : so we need self-organized hierarchy}
 
-Purely decentralized swarms are highly scalable and fault tolerant but often lack efficiency, especially when global information is required.
-Centralized systems, by contrast, achieve high precision and optimal coordination but lose scalability and fault tolerance.
+Purely decentralized swarms are highly scalable and fault tolerant but often are difficult to design and perform poorly in certain tasks, especially when global information is required.
+Centralized systems, by contrast, are easy to design, achieve better performance due to its optimal coordination, but lose scalability and fault tolerance.
 This section reviews these trade-offs across major tasks in multi-robot systems.
 
 \subsection{Formation}
@@ -153,19 +154,20 @@ Classical methods assume that each robot is preassigned a fixed target position.
 During deployment,
 robots move according to the positions of predefined neighbors,
 making motion control decentralized
-but role specification effectively centralized.
-These approaches achieve stable rigid-body formations using distance-based constraints
+but role specification centralized in practice.
+These approaches focus on achieving stable rigid-body formations with each robot referencing its neighbors using distance-based constraints
     \cite{yang2018growing,
           mehdifar2018finite,
           stacey2015passivity,
           anderson2018rigid,
           oh2011adistance,
-          oh2011bdistance}.
-Bearing rigidity theory
+          oh2011bdistance},
+which maintains formation using distance measurements,
+or bearing-based constraints,
+which allows formation maintenance using only bearing measurements, with two designated leaders controlling scale, rotation, and translation while other robots maintain relative bearings
     \cite{zhao2019bearing,
-          zhao2015bearing}
-further allows formation maintenance using only bearing measurements, with two designated leaders controlling scale, rotation, and translation while other robots maintain relative bearings
-    \cite{zhao2015translational,
+          zhao2015bearing,
+          zhao2015translational,
           schiano2016rigidity,
           li2020adaptive,
           li2021adaptive,
@@ -177,14 +179,16 @@ Switching formations under rigid-body assumptions has also been explored
     \cite{desai1999control,
           desai2002modeling}.
 
-Overall, these methods emphasize control-theoretic guarantees over flexibility or adaptivity, assuming fixed roles and full knowledge of the desired formation.
+Overall, these methods assumes fixed roles and full knowledge of the desired formation, emphasizing control-theoretic guarantees over flexibility or adaptivity, 
 
 \subsubsection{Switching Roles}
 
 \textcolor{blue}{Why role switching is important}
 
-One required feature of swarm robotics is self-organized role assignment.
-An efficient role assignment can reduce individual robot movements and thereby accelerate formation.
+A key feature of swarm robotics is the ability to deploy robots without pre-assigned roles.
+Moreover, for fault tolerance, the swarm should be able to reassign roles in response to unexpected failures.
+These considerations highlight the importance of role assignment.
+In formation tasks, efficient role assignment can reduce unnecessary crossing movements among robots and thereby speed up formation convergence.
 However, in large swarms or environments prone to agent failures, preassigning roles is often impractical.
 Some self-assembly approaches allow robots to autonomously select vacant positions, but these methods are often inefficient due to random search
     \cite{rubenstein2014programmable,
@@ -253,7 +257,7 @@ They are easy to implement and require only minimal information but often suffer
 
 \textbf{Predefined Sweep Trajectory-Based Coverage}
 Sweep-based methods pre-calculate systematic paths, usually S-shaped trajectories, to ensure full coverage of a known region.
-These strategies often require predefined roles, global map knowledge, or explicit task allocation, which introduces centralized components but yields efficient and predictable coverage
+These strategies often require predefined roles, global map knowledge, or explicit task allocation, which introduces centralized components but yields fast and predictable coverage
 \cite{almadhoun2019survey, avellar2015multi}.
 
 There are also mixed approaches. For example, \cite{scherer2015autonomous} employs centralized predefined sweep trajectories to generate coverage paths and then relies on decentralized mechanisms to establish communication links for environmental information collection.
@@ -262,19 +266,18 @@ There are also mixed approaches. For example, \cite{scherer2015autonomous} emplo
 
 To summarize, 
 coverage tasks clearly show the dichotomy between decentralization and centralization.
-While decentralized dispersion and exploration are robust and easy to scale, they often lack efficiency and global optimality.
-Conversely, sweep-based and centrally coordinated methods achieve highly efficient coverage but depend on predefined assignments or global knowledge, limiting their adaptability in large, dynamic environments.
+While decentralized dispersion and exploration are robust and easy to scale, they often lack global optimality.
+Conversely, sweep-based and centrally coordinated methods achieve highly fast and complete coverage but depend on predefined assignments or global knowledge, limiting their adaptability in large, dynamic environments.
 
 \subsection{Navigation Path Planning}
 
-In recent applications, especially for drones systems, path planning is a key component of multi-robot and swarm systems,
+In recent applications of multi-robot systems, especially for drones systems, path planning is a key component.
 Existing methods ranges from centralized global planners to decentralized online approaches.
 
 \textbf{Centralized Offline Planning}
 Centralized planners assume global map knowledge and compute collision-free trajectories for all robots before execution.
-These methods provide high-quality or even optimal solutions but scale poorly with swarm size.
-Multi-robot path optimization is usually NP-hard problem,
-so researches employ heuristics and approximate solutions to generate global trajectories for robots
+Since multi-robot path optimization is usually an NP-hard problem,
+these researches employ heuristics and approximate solutions to generate high-quality global trajectories for robots
     \cite{nazarahari2019multi,
           thabit2018multi,
           yu2016optimal,
@@ -301,7 +304,7 @@ fully scalable and fault tolerable systems remains to be explored.
 \textcolor{blue}{centralized : not fault tolerant, not scalable}
 
 Drone light shows are becoming popular in urban life.
-It represent a fully centralized form of swarm coordination,
+It represents a fully centralized form of swarm coordination,
 where global trajectories are precomputed offline and broadcast to all agents.
 This guarantees precise synchronization and visually coherent formations at large scale
     \cite{waibel2017drone,
@@ -318,13 +321,13 @@ Fault tolerance is an inherent property of swarm systems for their redundancy an
 
 \textcolor{red}{cite/explain some normal fault tolerance, that is not for centralized, predetermined}
 Most classical swarm tasks, such as coverage or collective decision making, can tolerate a subset of robots failes.
-Robots simplys continue to operate as normal, without knowing or caring about the failure peers \textcolor{red}{cite something here}.
+Robots simply continue to operate as normal, without knowing or caring about the failure peers \textcolor{red}{cite something here}.
 
 \textcolor{blue}{However, IFs}
 
 However, intermittent faults (IFs) poses a unique challenge for swarm systems.
 An IF is a failure that occurs for a short period of time, and then recovers.
-If makes them difficult to detect and have bad influence to the swarm
+If makes them difficult to be detected and have negative influence to the swarm
     \cite{zhou2019review}
     \cite{niu2021distributed}.
 \textcolor{red}{check what Sinan says, the argument here not strong enough}
@@ -345,15 +348,15 @@ Overall, both centralized and de-centralized swarm system have their own unique 
 
 \textcolor{blue}{indivudal autonomy is good, but swarm autonomy is a challenge}
 
-Despite significant advances in individual robot autonomy and artificial cognition
+In despite of significant advances in individual robot autonomy and artificial cognition
     \cite{cangelosi2022cognition,
           vernon2014artificial},
 achieving autonomy in swarm robotics remains an open challenge.
 % for swarm, good works 
-Existing swarm researches primarily focus on single task such as action, perception, adaptation
+Existing swarm researches primarily focus on single task such as action, perception, and adaptation
     \cite{heinrich2022swarm},
 but higher level cognitive capabilities such as learning or anticipation are still largely absent,
-and it lacks a overall framework to unify all the attributes.
+and it lacks an overall framework to unify all the attributes.
 
 \textcolor{blue}{Collective decision is a key component for swarm autonomy}
 
@@ -379,19 +382,19 @@ Subsequent work investigates convergence speed, decision accuracy, and robustnes
 
 Despite these progress, decision-making in swarms generally remains a simple reactive task for environmental analysis,
 rather than maintaining a broader understanding of the mission context.
-In terms of automony, many elements are missing
+Many elements are missing, in terms of automony,
     \cite{khaluf2019neglected},
 such as the swarm needs to detect that a new collective decision is required, or to autonomously adapt the decision-making process to conditions that were not explicitly studied beforehand.
 Current frameworks provide no unified mechanisms for learning new behaviors online, anticipating future events, or autonomously restructuring task workflows.
 
 \textcolor{blue}{current swarm is roughly at level 2}
 
-According to the SAE J3016 standard
+The SAE J3016 standard
     \cite{sae2021automated}
 defines autonomous level for robot systems.
 Existing robot swarm systems would be barely classified as having collective behaviors equivalent to the individual behaviors described in {\it Level 2 (Partial automation)},
 as existing robot swarm systems are able to
-execute intended tasks, but a human operator is still required to continuously monitor the environment and system and deciding when to intervene to correct or stop the system.
+execute intended tasks, but a human operator is still required to continuously monitor the environment and system and decide when to intervene to correct or stop the system.
 That would be a challenge for swarm systems as will be talked about in the following section.
 
 \subsection{Human-swarm interaction}
@@ -431,13 +434,13 @@ For decentralized methods where human communicate with only one robot or subset 
           zhou2016assistive,  % joysticks
           lee2013semiautonomous}. % haptic feedback
 While these methods improve scalability,
-they often suffer from slow convergence or limited expressiveness.
+they often suffer from slow convergence.
 
 \cite{kolling2013human} \textcolor{red}{verify}
 
 \textcolor{blue}{so, a gap}
 
-In general, there lacks a framework that can issue efficient commands to swarm robots without sacrificing scalability.
+In general, there lacks a framework that can issue commands to swarm robots in fast speed without sacrificing scalability.
 
 \subsection{programming / re-programming}
 
@@ -451,7 +454,7 @@ Firstly, designing controllers for swarm systems is often a long trial-and-error
 It becomes more challenging when swarms must adapt to new tasks or environments.
 Secondly, when the swarm scales up, it becomes difficult for the programmer to communicate with the swarm and deliver the new program.
 
-This section reviews approaches to offline, centralized online, and decentralized online reprogramming.
+This section reviews approaches from offline, centralized online, and to decentralized online reprogramming.
 
 \textcolor{blue}{Offline Programming}
 
