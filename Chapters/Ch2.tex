@@ -37,7 +37,8 @@ Owing to the absence of centralized control, such systems can be deployed over l
 
 \textcolor{blue}{but, macro, micro problem, and swarm is not always efficient}
 
-However, despite significant progress, it remains a fundamental scientific question how to design low-level individual robot behaviors to result in the desired high-level collective outcomes, known as micro-marco problem
+However, despite significant progress, it remains a fundamental scientific question how to design low-level individual robot behaviors to result in the desired high-level collective outcomes.
+The micro-macro problem refers to this challenge
     \cite{dorigo2021swarm}.
 Despite that various theoretical frameworks have been proposed
     \cite{hamann2008framework,
@@ -56,14 +57,17 @@ yet purely decentralized swarms are often difficult to design and manage, and ma
 
 \textcolor{blue}{Therefore, hierarchical}
 
-These limitations motivate research into hybrid and hierarchical approaches that integrate selective forms of centralization into decentralized systems,
-These systems seek to bypass the micro-macro problem to ease the design and raise the performance of a decentralized system and, in the meantime, keep the scalability and fault tolerance features.
+These limitations motivate research into hybrid and hierarchical approaches that integrate selective forms of centralization into decentralized systems.
+These systems seek to bypass the micro-macro problem,
+                      ease the design of swarm behaviors and coordination strategies,
+                      and improve the performance of a decentralized system,
+while preserving scalability and fault tolerance features.
 
 \textcolor{blue}{In this chapter, we review}
 
 This chapter reviews prior work in hybrid and hierarchical swarm control,
-compares the existing literature on decentralized and centralized approaches,
-and examines developments in swarm manageability, including fault tolerance, swarm re-programming, and swarm autonomy.
+compares the existing literature on decentralized and centralized approaches in different tasks,
+and discusses aspects of swarm manageability, including human-swarm iteraction, swarm re-programming, and swarm autonomy.
 
 \section{Heterogeneous, Hybrid, and hierarchical Approaches}
 
@@ -83,7 +87,7 @@ assume that all agents are identical, follow the same behavioral rules, and inte
 
 \textcolor{blue}{heterogeneous}
 
-Opposite to that, heterogeneous swarms consist of individuals serving different roles or having different behaviors.
+In contrast, heterogeneous swarms consist of individuals serving different roles or having different behaviors.
 These systems,
 with individuals in different physical types or with different information,
 can often outperform purely homogeneous systems
@@ -114,14 +118,14 @@ and self-assembly or formation
     \cite{li2019decentralized,
           divband2019photomorphogenesis},
 %and thereby improving efficiency in tasks
-and thereby ease the design of the behavior and accelerates the convergence time.
+and thereby ease the design of the behavior and reduce task completion time.
 Such approaches can be regarded as highly heterogeneous systems in which each individual assumes its own role.
 
 \textcolor{blue}{but hierarchical is not self-organized : not scalable nor fault tolerant}
 
 However,
 because the topology organization is usually pre-defined, these systems suffer from low scalability and single points of failure.
-No existing approach has provided a comprehensive way to combine self-organization and hierarchical systems.
+No existing approach has provided a general mechanism for self-organized hierarchy—that is, adaptively forming and maintaining hierarchical structures without predefined topology or fixed leadership.
 %maintaining scalability and avoiding single points of failure in these systems often require sophisticated mechanisms,
 %such as temporary leadership, explicit role assignments, or distributed authority-transfer schemes.
 Constructing hierarchy in a truly self-organized manner remains a major challenge
@@ -135,8 +139,13 @@ As task complexity increases, researchers increasingly recognize the importance 
 \textcolor{blue}{2 both sides have some downsides }
 \textcolor{blue}{ : so we need self-organized hierarchy}
 
-Purely decentralized swarms are highly scalable and fault tolerant but often are difficult to design and perform poorly in certain tasks, especially when global information is required.
-Centralized systems, by contrast, are easy to design, achieve better performance due to its optimal coordination, but lose scalability and fault tolerance.
+Purely decentralized swarms are highly scalable and fault tolerant,
+but often difficult to design
+and may exhibit suboptimal global coordination,
+                lower solution quality,
+                and slower task completion in certain tasks,
+especially when global information is required.
+Centralized systems, by contrast, are easy to design, achieve higher task optimality through global coordination, but lose scalability and fault tolerance.
 This section reviews these trade-offs across major tasks in multi-robot systems.
 
 \subsection{Formation}
@@ -180,6 +189,7 @@ Switching formations under rigid-body assumptions has also been explored
           desai2002modeling}.
 
 Overall, these methods assumes fixed roles and full knowledge of the desired formation, emphasizing control-theoretic guarantees over flexibility or adaptivity, 
+but offering little support for dynamic or fault-tolerant operation and lack flexibility after deployment.
 
 \subsubsection{Switching Roles}
 
@@ -230,7 +240,7 @@ Developing such mechanisms is essential for achieving both efficiency and resili
 
 \textcolor{blue}{what is coverage, why it is important}
 
-Coverage is another classic task in multi-robot systems.
+While formation focuses on maintaining morphology of the swarm, coverage addresses a different aspect of swarm coordination.
 The goal is to ensure that a target region is fully observed, sensed, or explored by a group of agents.
 Effective coverage is essential for applications such as environmental monitoring, search and rescue, precision agriculture, and surveillance.
 A wide range of strategies has been developed, and most can be classified into three main categories
@@ -250,7 +260,7 @@ Such methods are inherently decentralized and offer strong scalability and robus
 Another family of approaches relies on random motions to gradually explore the environment.
 Robots may move randomly, rely on simple reactive collision responses.
 These strategies are also decentralized.
-They are easy to implement and require only minimal information but often suffer from slow convergence and redundant traversal
+They are easy to implement and require only minimal information but often suffer from long finish time and redundant traversal
     \cite{huang2019exploration,
           ichikawa1999characteristics,
           mcguire2019minimal}.
@@ -325,9 +335,10 @@ Robots simply continue to operate as normal, without knowing or caring about the
 
 \textcolor{blue}{However, IFs}
 
-However, intermittent faults (IFs) poses a unique challenge for swarm systems.
+However, intermittent faults (IFs) pose a unique challenge for swarm systems.
 An IF is a failure that occurs for a short period of time, and then recovers.
-If makes them difficult to be detected and have negative influence to the swarm
+Its sporadic nature makes it difficult to reliably detect,
+and the repeated reoccurrence of IFs can often degrade overall swarm performance
     \cite{zhou2019review}
     \cite{niu2021distributed}.
 \textcolor{red}{check what Sinan says, the argument here not strong enough}
@@ -348,7 +359,9 @@ Overall, both centralized and de-centralized swarm system have their own unique 
 
 \textcolor{blue}{indivudal autonomy is good, but swarm autonomy is a challenge}
 
-In despite of significant advances in individual robot autonomy and artificial cognition
+Autonomy is often regarded as a central long-term goal of robotic systems—the ability for robots to operate without continuous human supervision.
+
+In despite of significant advances in individual robot autonomy
     \cite{cangelosi2022cognition,
           vernon2014artificial},
 achieving autonomy in swarm robotics remains an open challenge.
@@ -434,13 +447,13 @@ For decentralized methods where human communicate with only one robot or subset 
           zhou2016assistive,  % joysticks
           lee2013semiautonomous}. % haptic feedback
 While these methods improve scalability,
-they often suffer from slow convergence.
+they often suffer from slow convergence to the desired swarm-wide behavior.
 
 \cite{kolling2013human} \textcolor{red}{verify}
 
 \textcolor{blue}{so, a gap}
 
-In general, there lacks a framework that can issue commands to swarm robots in fast speed without sacrificing scalability.
+In general, there is a lack of a framework that can issue commands to swarm robots with low latency while maintaining scalability.
 
 \subsection{programming / re-programming}
 
@@ -498,24 +511,23 @@ However, they also highlights fundamental limitations such as slow propagation a
     \cite{de2009energy,
           varadharajan2018over}.
 
-More recent work explores knowledge transfer in multi-robot systems.
-For instance, Venkata et al.\ \cite{venkata2023kt} introduce the KT-BT framework, which uses behavior trees and a grammar-based encoding (stringBT) to achieve decentralized transfer of acquired skills, improving collective performance during online adaptation.
-
 \textcolor{blue}{summarize}
 
-To summarize, a unified framework where a human operator can reprogram a swarm in fully scalable and efficient way remains to be explored.
+To summarize, a unified framework that enables a human operator to reprogram swarm behavior in a scalable and efficient manner remains largely unexplored.
 
-\subsubsection{behavior tree}
+\subsection{behavior tree}
 
-Behavior trees (BTs) provide a modular, hierarchical framework for representing robot behaviors
+Behavior trees (BTs) provide a modular and hierarchical framework for representing robot behaviors
     \cite{colledanchise2018behavior,
-          iovino2022survey}
-and have been adopted in several multi-robot applications
+          iovino2022survey},
+which have been adopted in several multi-robot applications
     \cite{colledanchise2016advantages,
           jeong2022behavior}.
-Reprogramming tasks exploit BTs compositionality and readability.
 
-Evolving BTs through evolutionary algorithms—such as genetic programming
+Due to their compositionality and readability, BTs offer a potential solution to key challenges in swarm autonomy and human–swarm interaction. 
+They allow robots to adapt their behavior online, enable hierarchical organization of complex tasks, and facilitate interaction with human operators through modular control structures. 
+
+Evolving BTs via evolutionary algorithms—such as genetic programming
     \cite{jones2018evolving,
           kuckling2022automode}
 or grammatical evolution
@@ -531,6 +543,8 @@ Dynamic BTs have also been investigated in game AI
     \cite{florez2008dynamic},
 though their application to real-world robotics remains to be explored.
 
+More recent work exploit behavior trees for knowledge transfer in multi-robot systems as a adaptability mechanism.
+For instance, Venkata et al.\ \cite{venkata2023kt} introduce the KT-BT framework, which uses behavior trees and a grammar-based encoding (stringBT) to achieve decentralized transfer of acquired skills, improving collective performance during online adaptation.
 
 \iffalse
 \section{Abandon}
