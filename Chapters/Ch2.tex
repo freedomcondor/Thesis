@@ -24,7 +24,7 @@ Swarm Robotics aims to leverage the principles of self-organization to construct
     \cite{dorigo2014swarm,    % scholarpedia on swarm robotics
           dorigo2020reflections,
           dorigo2021swarm}.    %past, present and future
-These self-organized systems have shown potential in many applications, especially when large scale or space is needed, including
+These self-organized systems have shown potential in many applications, including
     environmental monitoring
     \cite{talamali2021less},
     navigation and transportation
@@ -60,14 +60,14 @@ yet purely decentralized swarms are often difficult to design and manage, and ma
 These limitations motivate research into hybrid and hierarchical approaches that integrate selective forms of centralization into decentralized systems.
 These systems seek to bypass the micro-macro problem,
                       ease the design of swarm behaviors and coordination strategies,
-                      and improve the performance of a decentralized system,
+                      and improve the manageability of a decentralized system,
 while preserving scalability and fault tolerance features.
 
 \textcolor{blue}{In this chapter, we review}
 
 This chapter reviews prior work in hybrid and hierarchical swarm control,
 compares the existing literature on decentralized and centralized approaches in different tasks,
-and discusses aspects of swarm manageability, including human-swarm iteraction, swarm re-programming, and swarm autonomy.
+and discusses aspects of swarm manageability, including human-swarm interaction, swarm re-programming, and swarm autonomy.
 
 \section{Heterogeneous, Hybrid, and hierarchical Approaches}
 
@@ -85,62 +85,62 @@ assume that all agents are identical, follow the same behavioral rules, and inte
           beni1988concept}.
 %Such systems excel in robustness and scalability but struggle with tasks that require differentiated roles, long-range coordination, or efficient global organization.
 
-\textcolor{blue}{heterogeneous}
+\textcolor{blue}{heterogeneous and hierarchy, the boundary is vague}
 
 In contrast, heterogeneous swarms consist of individuals serving different roles or having different behaviors.
 These systems,
 with individuals in different physical types or with different information,
-can often outperform purely homogeneous systems
+can outperform purely homogeneous systems, depending on the task requirements
     \cite{kengyel2015potential}. % hetero is better
-
-Individuals with more information can influence the behavior of others during tasks such as flocking or collective decision-making
+For example, individuals with more information can influence the behavior of others during tasks such as flocking or collective decision-making
     \cite{firat2020self, % use informal individual to cue the whole swarm to aggreate to a desired shelter
           prasetyo2018best,
           balazs2020adaptive}.
 \textcolor{red}{varify: prasetyo2018best}
-Some works explicitly name these individuals as leaders
+
+In some works, some individuals are assigned explicit leadership roles
     \cite{gu2009leader,
           amraii2014explicit}.
-%\textcolor{red}{consider drop:}
-%These leaders may be vulnerable to adversarial detection, a concern explored in    \cite{zheng2020adversarial}.
-
-\textcolor{blue}{hierarchical}
-
-In addition, hierarchical approaches impose an additional topological organization on the swarm.
-In these systems, hierarchy is formed by pre-defined pairs of leaders and followers.
+The leaders are usually pre-defined and fixed after deployment, while the rest of the coordination remains self-organized and based on local interactions. 
 Each follower is assigned a leader and gets information from it, such as position references.
-In this way, information flows in a more structured manner in the swarm.
-Many tasks benefit from this, such as flocking
+In this way, information flows in a more structured manner among robots, thereby easing the design of the behaviors and reducing task completion times.
+Many tasks can benefit from this, for example flocking
     \cite{dalmao2011cucker,
           jia2019modelling,
-          pignotti2018flocking}
-and self-assembly or formation
-    \cite{li2019decentralized,
-          divband2019photomorphogenesis},
+          pignotti2018flocking}.
+%\textcolor{red}{consider drop:}
+%These leaders may be vulnerable to adversarial detection, a concern explored in    \cite{zheng2020adversarial}.
+Some of these leader--follower approaches are organized into two-level systems.
+Some other approaches impose a multi-level topological organization, in which the hierarchy is usually formed by fixed leader--follower pairs.
+
+%In some works of self-assembly or formation
+%    \cite{desai1999control,
+%          li2019decentralized,
+%          rubenstein2014programmable},
+%although leaders and followers are not explicitly pre-assigned, each robot implicitly selects a leader upon joining the system and adjusts its position based on that leader’s state, effectively forming a leader–follower hierarchy.
+
 %and thereby improving efficiency in tasks
-and thereby ease the design of the behavior and reduce task completion time.
-Such approaches can be regarded as highly heterogeneous systems in which each individual assumes its own role.
+%Such approaches can be regarded as highly heterogeneous systems in which each individual assumes its own role.
 
 \textcolor{blue}{but hierarchical is not self-organized : not scalable nor fault tolerant}
 
 However,
 because the topology organization is usually pre-defined, these systems suffer from low scalability and single points of failure.
-No existing approach has provided a general mechanism for self-organized hierarchy—that is, adaptively forming and maintaining hierarchical structures without predefined topology or fixed leadership.
+No existing approach has provided a general mechanism for self-organizing hierarchy—that is, adaptively forming and maintaining hierarchical structures without predefined topology or fixed leadership.
 %maintaining scalability and avoiding single points of failure in these systems often require sophisticated mechanisms,
 %such as temporary leadership, explicit role assignments, or distributed authority-transfer schemes.
-Constructing hierarchy in a truly self-organized manner remains a major challenge
-    \cite{dorigo2020reflections}.
-As task complexity increases, researchers increasingly recognize the importance of self-organized hierarchy, a capability still largely absent in classical decentralized swarms.
+As task complexity increases, self-organizing hierarchy becomes increasingly relevant. However, constructing hierarchy in a truly self-organizing manner remains a major challenge
+    \cite{dorigo2020reflections}. %However, a capability still largely absent in classical decentralized swarms.
 
 \section{Swarm vs. centralized approaches for different tasks}
 
 \textcolor{blue}{The point is : }
 \textcolor{blue}{1 we want to show there is a gap }
 \textcolor{blue}{2 both sides have some downsides }
-\textcolor{blue}{ : so we need self-organized hierarchy}
+\textcolor{blue}{ : so we need self-organizing hierarchy}
 
 Purely decentralized swarms are highly scalable and fault tolerant,
-but often difficult to design
+but they are often difficult to design 
 and may exhibit suboptimal global coordination,
                 lower solution quality,
                 and slower task completion in certain tasks,
@@ -233,7 +233,7 @@ Approaches handling faulty or interchangeable agents also remain limited
 These observations highlight a critical gap in terms of role assignment in swarm formation:
 while centralized approaches provide optimal coordination
 and decentralized swarms provide robustness and scalability,
-self-organized hierarchy for role allocation remain largely underexplored.
+self-organizing hierarchy for role allocation remain largely underexplored.
 Developing such mechanisms is essential for achieving both efficiency and resilience in large-scale, formation tasks.
 
 \subsection{Coverage}
@@ -314,7 +314,7 @@ fully scalable and fault tolerable systems remains to be explored.
 \textcolor{blue}{centralized : not fault tolerant, not scalable}
 
 Drone light shows are becoming popular in urban life.
-It represents a fully centralized form of swarm coordination,
+It represents a fully centralized form of robots coordination,
 where global trajectories are precomputed offline and broadcast to all agents.
 This guarantees precise synchronization and visually coherent formations at large scale
     \cite{waibel2017drone,
