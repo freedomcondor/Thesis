@@ -1,4 +1,4 @@
-t \chapter{Related Work}
+\chapter{Related Work}
 \label{ch2}
 
 % skeleton
@@ -69,7 +69,7 @@ This chapter reviews prior work in hybrid and hierarchical swarm control,
 compares the existing literature on decentralized and centralized approaches in different tasks,
 and discusses aspects of swarm manageability, including human-swarm interaction, swarm re-programming, and swarm autonomy.
 
-\section{Heterogeneous, Hybrid, and hierarchical Approaches}
+\section{Heterogeneity and leadership}
 
 \textcolor{blue}{flat swarms}
 
@@ -132,48 +132,124 @@ No existing approach has provided a general mechanism for self-organizing hierar
 As task complexity increases, self-organizing hierarchy becomes increasingly relevant. However, constructing hierarchy in a truly self-organizing manner remains a major challenge
     \cite{dorigo2020reflections}. %However, a capability still largely absent in classical decentralized swarms.
 
-\section{Swarm vs. centralized approaches for different tasks}
+\section{Self-organized versus centralized or predetermined control}
 
 \textcolor{blue}{The point is : }
 \textcolor{blue}{1 we want to show there is a gap }
 \textcolor{blue}{2 both sides have some downsides }
 \textcolor{blue}{ : so we need self-organizing hierarchy}
 
-Purely decentralized swarms are highly scalable and fault tolerant,
+Purely self-organized swarms are highly scalable and fault tolerant,
 but they are often difficult to design 
 and may exhibit suboptimal global coordination,
                 lower solution quality,
                 and slower task completion in certain tasks,
 especially when global information is required.
-Centralized systems, by contrast, are easy to design, achieve higher task optimality through global coordination, but lose scalability and fault tolerance.
+In contrast, systems with control that is centralized, predetermined, or both, are much easier to design.
+They can achieve higher task optimality, for example through global information, but lose scalability and fault tolerance.
 This section reviews these trade-offs across major tasks in multi-robot systems.
 
-\subsection{Formation}
+\subsection{Multi-robot coverage}
 
-Formation control is one of the most fundamental research topics in multi-robot and swarm systems
+\textcolor{blue}{what is coverage, why it is important}
+
+%While formation focuses on maintaining morphology of the swarm, 
+Coverage addresses an aspect of swarm coordination.
+The goal is to ensure that a target region is fully observed, sensed, or explored by a group of agents.
+Effective coverage is essential for applications such as environmental monitoring, search and rescue, precision agriculture, and surveillance.
+A wide range of strategies has been developed, and most can be classified into three main categories: ...
+    \cite{wang2011coverage,     % survey
+          galceran2013survey}.  % survey
+
+\textbf{Sensor Dispersion}
+In these approaches, robots rely solely on local information to spread out and maximize area coverage.
+The robots typically use potential fields, repulsion mechanisms, or adaptive local policies to maintain appropriate separation and avoid sensing overlap.
+Such methods offer strong scalability and robustness
+    \cite{santos2019decentralized,
+          luo2018adaptive,
+          spanogianopoulos2017fast,
+          siligardi2019robust}.
+
+\textbf{Random Exploration}
+Another family of approaches relies on random motions to gradually explore the environment.
+In these approaches, robots move mostly randomly and often also perform simple reactive collision avoidance.
+These strategies are self-organized.
+They are easy to implement and require only minimal information, but often suffer from long completion times and inefficient coverage, due to redundancy and non-uniform exploration
+    \cite{huang2019exploration,
+          ichikawa1999characteristics,
+          mcguire2019minimal}.
+
+\textbf{Predetermined Sweeps}
+Sweep-based methods pre-calculate systematic paths, usually S-shaped trajectories, to ensure full coverage of a known region.
+These strategies often require explicit predetermined roles and global map knowledge, which yields fast and predictable coverage, but usually lacks adaptability and can suffer from communication bottlenecks and single points of failure
+\cite{almadhoun2019survey, avellar2015multi}.
+
+There are also mixed approaches. For example, \cite{scherer2015autonomous} uses motion trajectories that are predetermined but manages the collection of environmental information in a self-organized manner.
+
+\textcolor{blue}{summarize: a gap}
+
+To summarize, 
+%coverage tasks clearly show the dichotomy between self-organization and centralization.
+while random exploration is robust and scalable, it often lacks global optimality.
+Conversely, predetermined and/or centrally coordinated methods can achieve fast and uniform coverage, but usually lack adaptability and fault tolerance.
+
+\subsection{Path Planning}
+
+In multi-robot systems, path planning is a key component.
+Existing methods range from centralized and/or predetermined global planners to self-organized online approaches.
+
+\textbf{Centralized Offline Planning}
+Centralized planners assume global map knowledge and compute predetermined collision-free trajectories for all robots before deployment.
+Since multi-robot path optimization is usually an NP-hard problem,
+these methods usually employ heuristics %and approximate solutions to generate high-quality global trajectories for robots
+    \cite{nazarahari2019multi,
+          thabit2018multi,
+          yu2016optimal,
+          kushleyev2013towards}.
+
+\textbf{Distributed Online Planning}
+There are a few existing examples of distributed online planners: e.g., the EGO-Swarm family
+    \cite{zhou2020ego,
+          zhou2021ego,
+          zhou2022swarm}.
+These existing planners use local sensing and onboard optimization.
+They demonstrate fast, distributed trajectory generation by predicting nearby robots' short-horizon behavior and optimizing smooth, dynamically feasible paths at high frequency.
+These approaches enable agile navigation in cluttered environments but the generated solutions are of course not perfectly optimal, in contrast to what could in principle be achieved using offline global optimization.  %guarantees and may struggle in tightly constrained spaces.
+%And similar to formation control, they do not consider task assignments.
+However, the target position of each robot is pre-defined and fixed.
+
+\textcolor{blue}{summarize: a gap}
+
+To conclude, although distributed approaches exist to generate high-quality solutions, both offline and online,
+fully scalable and fault tolerable systems remains to be explored.
+
+\subsection{Formation control}
+
+Formation control is a key fundamental topic in multi-robot and swarm systems
     \cite{liu2018survey,
           oh2015survey}. % surveys
-Most decentralized formation controllers rely on relative localization, using distance sensors, ultraviolet markers, or fiducial markers
+Most self-organized formation controllers rely on relative localization, using distance sensors, ultraviolet markers, or fiducial markers
     \cite{walter2018fast, %localization of UaVs using ultraviolet 
           ulrich2022towards}.  %fast fiducial marker with full 6 dof pose estimation
+...
 
 \subsubsection{Fixed-Role Approaches}
 
-Classical methods assume that each robot is preassigned a fixed target position.
+Most existing methods assume that each robot is preassigned a fixed role in the formation.
 During deployment,
-robots move according to the positions of predefined neighbors,
-making motion control decentralized
-but role specification centralized in practice.
-These approaches focus on achieving stable rigid-body formations with each robot referencing its neighbors using distance-based constraints
+the interaction topology among the robots is predefined and fixed, and robots move by referencing the positions of the robots they are connected to in this predefined topology.
+%making motion control,
+%but role specification predetermined in practice.
+These approaches typically focus on achieving stable rigid-body formations using distance-based constraints
     \cite{yang2018growing,
           mehdifar2018finite,
           stacey2015passivity,
           anderson2018rigid,
           oh2011adistance,
           oh2011bdistance},
-which maintains formation using distance measurements,
-or bearing-based constraints,
-which allows formation maintenance using only bearing measurements, with two designated leaders controlling scale, rotation, and translation while other robots maintain relative bearings
+%which maintains formation using distance measurements,
+or bearing-based constraints
+%which allows formation maintenance using only bearing measurements, with two designated leaders controlling scale, rotation, and translation while other robots maintain relative bearings
     \cite{zhao2019bearing,
           zhao2015bearing,
           zhao2015translational,
@@ -200,22 +276,22 @@ Moreover, for fault tolerance, the swarm should be able to reassign roles in res
 These considerations highlight the importance of role assignment.
 In formation tasks, efficient role assignment can reduce unnecessary crossing movements among robots and thereby speed up formation convergence.
 However, in large swarms or environments prone to agent failures, preassigning roles is often impractical.
-Some self-assembly approaches allow robots to autonomously select vacant positions, but these methods are often inefficient due to random search
-    \cite{rubenstein2014programmable,
-          li2019decentralized}.
+%Some self-assembly approaches allow robots to autonomously select vacant positions, but these methods are often inefficient due to random search
+%    \cite{rubenstein2014programmable,
+%          li2019decentralized}.
 
-Centralized algorithms, by contrast, can compute globally optimal role assignments by leveraging full knowledge of robot and formation positions
+Centralized algorithms can compute globally optimal role assignments by leveraging full knowledge of robot positions and formation targets
     \cite{rm2020review,
           macalpine2015scram,
           agarwal2018simultaneous,
           ravichandar2020strata,
           akella2020assignment},
-ensuring minimal total displacement or collision-free paths.
+ensuring minimal total displacement and/or collision-free paths.
 
 \textcolor{blue}{distributed assignment}
 
-Distributed assignment strategies attempt to reduce centralization by dividing computational responsibilities among robots,
-using consensus, market-based coordination, or distributed optimization to approximate optimal assignments
+Distributed assignment strategies instead divide computational responsibilities among robots,
+using, e.g., consensus mechanisms, market-based coordination, or distributed optimization algorithms
     \cite{mosteo2017optimal,
           burger2012distributed,
           chopra2017distributed,
@@ -230,130 +306,27 @@ Approaches handling faulty or interchangeable agents also remain limited
 
 \textcolor{blue}{there is a gap}
 
-These observations highlight a critical gap in terms of role assignment in swarm formation:
-while centralized approaches provide optimal coordination
-and decentralized swarms provide robustness and scalability,
-self-organizing hierarchy for role allocation remain largely underexplored.
-Developing such mechanisms is essential for achieving both efficiency and resilience in large-scale, formation tasks.
-
-\subsection{Coverage}
-
-\textcolor{blue}{what is coverage, why it is important}
-
-While formation focuses on maintaining morphology of the swarm, coverage addresses a different aspect of swarm coordination.
-The goal is to ensure that a target region is fully observed, sensed, or explored by a group of agents.
-Effective coverage is essential for applications such as environmental monitoring, search and rescue, precision agriculture, and surveillance.
-A wide range of strategies has been developed, and most can be classified into three main categories
-    \cite{wang2011coverage,     % survey
-          galceran2013survey}.  % survey
-
-\textbf{Decentralized Sensor Dispersion}
-In these approaches, robots rely solely on local information to spread out and maximize area coverage.
-The robots typically use potential fields, repulsion mechanisms, or adaptive local policies to maintain appropriate separation and avoid sensing overlap.
-Such methods are inherently decentralized and offer strong scalability and robustness
-    \cite{santos2019decentralized,
-          luo2018adaptive,
-          spanogianopoulos2017fast,
-          siligardi2019robust}.
-
-\textbf{Wandering or Random Exploration}
-Another family of approaches relies on random motions to gradually explore the environment.
-Robots may move randomly, rely on simple reactive collision responses.
-These strategies are also decentralized.
-They are easy to implement and require only minimal information but often suffer from long finish time and redundant traversal
-    \cite{huang2019exploration,
-          ichikawa1999characteristics,
-          mcguire2019minimal}.
-
-\textbf{Predefined Sweep Trajectory-Based Coverage}
-Sweep-based methods pre-calculate systematic paths, usually S-shaped trajectories, to ensure full coverage of a known region.
-These strategies often require predefined roles, global map knowledge, or explicit task allocation, which introduces centralized components but yields fast and predictable coverage
-\cite{almadhoun2019survey, avellar2015multi}.
-
-There are also mixed approaches. For example, \cite{scherer2015autonomous} employs centralized predefined sweep trajectories to generate coverage paths and then relies on decentralized mechanisms to establish communication links for environmental information collection.
-
-\textcolor{blue}{summarize: a gap}
-
-To summarize, 
-coverage tasks clearly show the dichotomy between decentralization and centralization.
-While decentralized dispersion and exploration are robust and easy to scale, they often lack global optimality.
-Conversely, sweep-based and centrally coordinated methods achieve highly fast and complete coverage but depend on predefined assignments or global knowledge, limiting their adaptability in large, dynamic environments.
-
-\subsection{Navigation Path Planning}
-
-In recent applications of multi-robot systems, especially for drones systems, path planning is a key component.
-Existing methods ranges from centralized global planners to decentralized online approaches.
-
-\textbf{Centralized Offline Planning}
-Centralized planners assume global map knowledge and compute collision-free trajectories for all robots before execution.
-Since multi-robot path optimization is usually an NP-hard problem,
-these researches employ heuristics and approximate solutions to generate high-quality global trajectories for robots
-    \cite{nazarahari2019multi,
-          thabit2018multi,
-          yu2016optimal,
-          kushleyev2013towards}.
-
-\textbf{Decentralized Online Planning}
-Decentralized planners operate using local sensing and real-time optimization, offering better scalability and robustness.
-The EGO-Swarm family
-    \cite{zhou2020ego,
-          zhou2021ego,
-          zhou2022swarm}
-demonstrates fast, distributed trajectory generation by predicting nearby robots' short-horizon behavior and optimizing smooth, dynamically feasible paths at high frequency.
-These approaches enable agile navigation in cluttered environments but lack global optimality guarantees and may struggle in tightly constrained spaces.
-And similar to formation control, they do not consider task assignments.
-In this term, the target position of each robot is pre-defined and fixed.
-
-\textcolor{blue}{summarize: a gap}
-
-To conclude, similar to formation control, although researches have been well developed to generate high-quality or even optimal solutions,
-fully scalable and fault tolerable systems remains to be explored.
+In summary, while centralized or predetermined approaches can ease the implementation of optimization algorithms,
+they lack robustness and scalability.
+%self-organizing hierarchy for role allocation remain largely underexplored.
+%Developing such mechanisms is essential for achieving both efficiency and resilience in large-scale, formation tasks.
 
 \subsection{Light Show}
 
 \textcolor{blue}{centralized : not fault tolerant, not scalable}
 
 Drone light shows are becoming popular in urban life.
-It represents a fully centralized form of robots coordination,
-where global trajectories are precomputed offline and broadcast to all agents.
-This guarantees precise synchronization and visually coherent formations at large scale
+Existing shows use a fully centralized and predetermined approach to robot coordination,
+where global trajectories are precomputed offline and any commands that are issued during the show are broadcast to all agents from a ground station.
+This can provide precise synchronization and visually coherent formations with very many robots
     \cite{waibel2017drone,
           ang2018high}.
-However, such architecture relies heavily on global communication and predetermined paths.
-It is vulnerable to a single point (ground station) of failure or communication failures,
+However, the resulting systems are vulnerable to a single point (ground station) of failure and to communication failures and bottlenecks,
 lacking the scalability or adaptability typically associated with decentralized systems.
 
-\section{Fault tolerance}
+\section{Behavior design and manageability}
 
-Fault tolerance is an inherent property of swarm systems for their redundancy and absence of single points of failures
-    \cite{dorigo2014swarm}
-    \cite{hamann2018swarm}.
-
-\textcolor{red}{cite/explain some normal fault tolerance, that is not for centralized, predetermined}
-Most classical swarm tasks, such as coverage or collective decision making, can tolerate a subset of robots failes.
-Robots simply continue to operate as normal, without knowing or caring about the failure peers \textcolor{red}{cite something here}.
-
-\textcolor{blue}{However, IFs}
-
-However, intermittent faults (IFs) pose a unique challenge for swarm systems.
-An IF is a failure that occurs for a short period of time, and then recovers.
-Its sporadic nature makes it difficult to reliably detect,
-and the repeated reoccurrence of IFs can often degrade overall swarm performance
-    \cite{zhou2019review}
-    \cite{niu2021distributed}.
-\textcolor{red}{check what Sinan says, the argument here not strong enough}
-
-Centralized methods are highly effective for identifying IFs, since they have access to system-wide data.
-    \cite{sheng2021intermittent}
-    \cite{zhang2021intermittent}
-    \cite{syed2016novel},
-but as discussed in the previous section, centralized methods are vulnerable to single point failures and not scalable.
-
-\textcolor{blue}{Therefore, a gap}
-
-Overall, both centralized and de-centralized swarm system have their own unique challenges in terms of fault tolerance.
-
-\section{Swarm Autonomy and Manageability}
+...
 
 \subsection{Swarm autonomy}
 
@@ -515,7 +488,7 @@ However, they also highlights fundamental limitations such as slow propagation a
 
 To summarize, a unified framework that enables a human operator to reprogram swarm behavior in a scalable and efficient manner remains largely unexplored.
 
-\subsection{behavior tree}
+\subsubsection{behavior tree}
 
 Behavior trees (BTs) provide a modular and hierarchical framework for representing robot behaviors
     \cite{colledanchise2018behavior,
@@ -545,6 +518,50 @@ though their application to real-world robotics remains to be explored.
 
 More recent work exploit behavior trees for knowledge transfer in multi-robot systems as a adaptability mechanism.
 For instance, Venkata et al.\ \cite{venkata2023kt} introduce the KT-BT framework, which uses behavior trees and a grammar-based encoding (stringBT) to achieve decentralized transfer of acquired skills, improving collective performance during online adaptation.
+
+
+
+\section{Fault tolerance}
+
+Fault tolerance is an inherent property of swarm systems for their redundancy and absence of single points of failures
+    \cite{dorigo2014swarm}
+    \cite{hamann2018swarm}.
+
+\textcolor{red}{cite/explain some normal fault tolerance, that is not for centralized, predetermined}
+Most classical swarm tasks, such as coverage or collective decision making, can tolerate a subset of robots failes.
+Robots simply continue to operate as normal, without knowing or caring about the failure peers \textcolor{red}{cite something here}.
+
+\textcolor{blue}{However, IFs}
+
+However, intermittent faults (IFs) pose a unique challenge for swarm systems.
+An IF is a failure that occurs for a short period of time, and then recovers.
+Its sporadic nature makes it difficult to reliably detect,
+and the repeated reoccurrence of IFs can often degrade overall swarm performance
+    \cite{zhou2019review}
+    \cite{niu2021distributed}.
+\textcolor{red}{check what Sinan says, the argument here not strong enough}
+
+Centralized methods are highly effective for identifying IFs, since they have access to system-wide data.
+    \cite{sheng2021intermittent}
+    \cite{zhang2021intermittent}
+    \cite{syed2016novel},
+but as discussed in the previous section, centralized methods are vulnerable to single point failures and not scalable.
+
+\textcolor{blue}{Therefore, a gap}
+
+Overall, both centralized and de-centralized swarm system have their own unique challenges in terms of fault tolerance.
+
+
+\section{Summary}
+
+In summary, centralized approaches offer global optimality and ease of control, while decentralized swarms provide robustness and scalability.
+However, neither paradigm alone fully addresses the need for efficient coordination in large-scale, dynamic tasks that require both adaptability and performance guarantees.
+A self-organizing hierarchical framework is therefore essential to bridge this gap,
+enabling swarms to dynamically reconfigure their coordination structure,
+                   balance local autonomy with global oversight,
+               and achieve human-scalable manageability without sacrificing resilience.
+
+
 
 \iffalse
 \section{Abandon}
