@@ -140,11 +140,8 @@ As task complexity increases, self-organizing hierarchy becomes increasingly rel
 \textcolor{blue}{ : so we need self-organizing hierarchy}
 
 Purely self-organized swarms are highly scalable and fault tolerant,
-but they are often difficult to design 
-and may exhibit suboptimal global coordination,
-                lower solution quality,
-                and slower task completion in certain tasks,
-especially when global information is required.
+but they are often difficult to design and
+         may exhibit inferior performance, such as slower task completion, in certain tasks.
 In contrast, systems with control that is centralized, predetermined, or both, are much easier to design.
 They can achieve higher task optimality, for example through global information, but lose scalability and fault tolerance.
 This section reviews these trade-offs across major tasks in multi-robot systems.
@@ -156,15 +153,20 @@ This section reviews these trade-offs across major tasks in multi-robot systems.
 %While formation focuses on maintaining morphology of the swarm, 
 Coverage addresses an aspect of swarm coordination.
 The goal is to ensure that a target region is fully observed, sensed, or explored by a group of agents.
+Depending on how space is partitioned and visited, coverage problems typically include area coverage (maintaining spatial distribution over a region) and sweep coverage (systematically traversing a region to ensure full visitation).
 Effective coverage is essential for applications such as environmental monitoring, search and rescue, precision agriculture, and surveillance.
-A wide range of strategies has been developed, and most can be classified into three main categories: ...
+A wide range of strategies has been developed, and most can be classified into three main categories: sensor dispersion, random exploration, and predetermined sweeps
     \cite{wang2011coverage,     % survey
           galceran2013survey}.  % survey
 
 \textbf{Sensor Dispersion}
-In these approaches, robots rely solely on local information to spread out and maximize area coverage.
-The robots typically use potential fields, repulsion mechanisms, or adaptive local policies to maintain appropriate separation and avoid sensing overlap.
-Such methods offer strong scalability and robustness
+The goal of sensor dispersion methods is to spread sensors over the environment to cover the target area,
+typically by driving robots to well-separated positions that remain largely static once coverage is achieved,
+with some notable exceptions in dynamic environments
+    \cite{santos2019decentralized}.
+In these approaches, although sensor localization may rely on GPS or range-based measurements, interactions among robots are decentralized.
+Robots typically use potential fields, repulsion mechanisms, or adaptive local policies to maintain appropriate separation and avoid sensing overlap.
+Such methods offer scalability and robustness due to their decentralized nature
     \cite{santos2019decentralized,
           luo2018adaptive,
           spanogianopoulos2017fast,
@@ -173,7 +175,7 @@ Such methods offer strong scalability and robustness
 \textbf{Random Exploration}
 Another family of approaches relies on random motions to gradually explore the environment.
 In these approaches, robots move mostly randomly and often also perform simple reactive collision avoidance.
-These strategies are self-organized.
+These searching strategies are mostly self-organized.
 They are easy to implement and require only minimal information, but often suffer from long completion times and inefficient coverage, due to redundancy and non-uniform exploration
     \cite{huang2019exploration,
           ichikawa1999characteristics,
@@ -184,13 +186,15 @@ Sweep-based methods pre-calculate systematic paths, usually S-shaped trajectorie
 These strategies often require explicit predetermined roles and global map knowledge, which yields fast and predictable coverage, but usually lacks adaptability and can suffer from communication bottlenecks and single points of failure
 \cite{almadhoun2019survey, avellar2015multi}.
 
-There are also mixed approaches. For example, \cite{scherer2015autonomous} uses motion trajectories that are predetermined but manages the collection of environmental information in a self-organized manner.
+There are also mixed approaches.
+For example, \cite{scherer2015autonomous} uses predetermined motion trajectories,
+and in the data streaming stage, the robots establish a communication network in a self-organized manner.
 
 \textcolor{blue}{summarize: a gap}
 
 To summarize, 
 %coverage tasks clearly show the dichotomy between self-organization and centralization.
-while random exploration is robust and scalable, it often lacks global optimality.
+while random exploration is robust and scalable, it often suffer from long completion times and inefficient coverage.
 Conversely, predetermined and/or centrally coordinated methods can achieve fast and uniform coverage, but usually lack adaptability and fault tolerance.
 
 \subsection{Path Planning}
@@ -216,7 +220,11 @@ These existing planners use local sensing and onboard optimization.
 They demonstrate fast, distributed trajectory generation by predicting nearby robots' short-horizon behavior and optimizing smooth, dynamically feasible paths at high frequency.
 These approaches enable agile navigation in cluttered environments but the generated solutions are of course not perfectly optimal, in contrast to what could in principle be achieved using offline global optimization.  %guarantees and may struggle in tightly constrained spaces.
 %And similar to formation control, they do not consider task assignments.
-However, the target position of each robot is pre-defined and fixed.
+However, these methods focus on decentralized navigation and trajectory generation.
+The start and goal positions of each robot are still specified externally,
+rather than being assigned or adapted autonomously by the system,
+which limits scalability and reduces robustness to agent failures.
+
 
 \textcolor{blue}{summarize: a gap}
 
@@ -228,18 +236,10 @@ fully scalable and fault tolerable systems remains to be explored.
 Formation control is a key fundamental topic in multi-robot and swarm systems
     \cite{liu2018survey,
           oh2015survey}. % surveys
-Most self-organized formation controllers rely on relative localization, using distance sensors, ultraviolet markers, or fiducial markers
+Decentralized formation controllers rely on relative localization, using distance sensors, ultraviolet markers, or fiducial markers
     \cite{walter2018fast, %localization of UaVs using ultraviolet 
           ulrich2022towards}.  %fast fiducial marker with full 6 dof pose estimation
-...
 
-\subsubsection{Fixed-Role Approaches}
-
-Most existing methods assume that each robot is preassigned a fixed role in the formation.
-During deployment,
-the interaction topology among the robots is predefined and fixed, and robots move by referencing the positions of the robots they are connected to in this predefined topology.
-%making motion control,
-%but role specification predetermined in practice.
 These approaches typically focus on achieving stable rigid-body formations using distance-based constraints
     \cite{yang2018growing,
           mehdifar2018finite,
@@ -254,24 +254,21 @@ or bearing-based constraints
           zhao2015bearing,
           zhao2015translational,
           schiano2016rigidity,
-          li2020adaptive,
-          li2021adaptive,
-          li2020bearing,
-          zhao2021finite,
-          zhang2022distributed,
-          zhang2023bearing}. % for water surface
-Switching formations under rigid-body assumptions has also been explored
-    \cite{desai1999control,
-          desai2002modeling}.
+          li2020adaptive}.
+%          li2021adaptive,
+%          li2020bearing,
+%          zhao2021finite,
+%          zhang2022distributed,
+%          zhang2023bearing}.            % for water surface
 
-Overall, these methods assumes fixed roles and full knowledge of the desired formation, emphasizing control-theoretic guarantees over flexibility or adaptivity, 
-but offering little support for dynamic or fault-tolerant operation and lack flexibility after deployment.
-
-\subsubsection{Switching Roles}
+However, these methods assume that each robot is preassigned a fixed role in the formation.
+During deployment,
+the interaction topology among the robots is predefined and fixed, and robots move by referencing the positions of the robots they are connected to in this predefined topology.
+They offer little support for dynamic or fault-tolerant operation, emphasizing control-theoretic guarantees over flexibility or adaptivity.
 
 \textcolor{blue}{Why role switching is important}
 
-A key feature of swarm robotics is the ability to deploy robots without pre-assigned roles.
+On the other hand, a key feature of swarm robotics is the ability to deploy robots without pre-assigned roles.
 Moreover, for fault tolerance, the swarm should be able to reassign roles in response to unexpected failures.
 These considerations highlight the importance of role assignment.
 In formation tasks, efficient role assignment can reduce unnecessary crossing movements among robots and thereby speed up formation convergence.
@@ -300,9 +297,19 @@ using, e.g., consensus mechanisms, market-based coordination, or distributed opt
           michael2008distributed,
           montijano2014efficient,
           wang2020shape}.
-Despite these efforts, current distributed methods still struggle to scale efficiently with swarm size, as the calculation load of each individual scales up with the swarm scale.
+In many such approaches, although computation is distributed, the per-robot computational and memory burden still grows with swarm size.
+For example, some methods require each robot to solve a portion of a global optimization problem, but the calculation dimensionality of each portion still increases with the number of agents,
+while others rely on bidding or consensus schemes in which each robot must maintain information about all the peers.
+That is why, in despite of these distributed efforts, these methods still struggle to scale efficiently with swarm size.
 Approaches handling faulty or interchangeable agents also remain limited
     \cite{kambayashi2018distributed}.
+
+In addition, switching formations under rigid-body assumptions has also been explored,
+where the swarm transitions between multiple predefined rigid formations based on environmental changes 
+by updating inter-agent constraints while preserving overall formation rigidity
+    \cite{desai1999control,
+          desai2002modeling}.
+However, these methods still rely on centralized commands to trigger formation switches, rather than allowing the swarm to adapt autonomously.
 
 \textcolor{blue}{there is a gap}
 
@@ -326,7 +333,10 @@ lacking the scalability or adaptability typically associated with decentralized 
 
 \section{Behavior design and manageability}
 
-...
+While the previous sections have focused on specific tasks such as coverage, formation control, and path planning, these tasks are typically considered in isolation. 
+From a broader robot system perspective, a multi-robot system should not only execute individual tasks but also operate autonomously, making decisions and adapting to a changing environment without continuous human commands. 
+At the same time, for practical deployment, these systems must remain manageable: human operators should be able to supervise and intervene when necessary.
+This section reviews swarm autonomy and manageability.
 
 \subsection{Swarm autonomy}
 
