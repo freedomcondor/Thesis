@@ -3,7 +3,7 @@
 
 % skeleton
 % 1 Hybrid, hierarchical, and leadership approaches in the literature   TODO from Sci-Ro paper, yuwei paper
-% 2 Swarm vs. centralized approaches for different tasks (explain what is possible to do with both, for those tasks -- current limitations are implied)
+% 2 Swarm vs. centralized approaches for different tasks (explain what is possible to do with both, for those tasks -- current limitations areswar implied)
 %   1.1 formation control
 %   1.2 exploration, search and rescue    TODO from Sci-Ro paper
 %   1.3 drone entertainment shows...
@@ -140,58 +140,60 @@ As task complexity increases, self-organizing hierarchy becomes increasingly rel
 \textcolor{blue}{ : so we need self-organizing hierarchy}
 
 Purely self-organized swarms are highly scalable and fault tolerant,
-but they are often difficult to design and
-         may exhibit inferior performance, such as slower task completion, in certain tasks.
-In contrast, systems with control that is centralized, predetermined, or both, are much easier to design.
-They can achieve higher task optimality, for example through global information, but lose scalability and fault tolerance.
-This section reviews these trade-offs across major tasks in multi-robot systems.
+but their behaviors are often difficult to design,
+and they often exhibit inferior performance. %such as slower task completion times. %in certain tasks.
+In contrast, systems with centralized or predetermined control are much easier to design.
+They can also complete many tasks more quickly and with higher accuracy by exploiting global information, but lack scalability and fault tolerance.
+This section reviews these different control approaches and their advantages and disadvantages and across several key example tasks in multi-robot systems.
 
 \subsection{Multi-robot coverage}
 
 \textcolor{blue}{what is coverage, why it is important}
 
 %While formation focuses on maintaining morphology of the swarm, 
-Coverage addresses an aspect of swarm coordination.
+Coverage addresses a key aspect of multi-robot coordination for many applications.
 The goal is to ensure that a target region is fully observed, sensed, or explored by a group of agents.
-Depending on how space is partitioned and visited, coverage problems typically include area coverage (maintaining spatial distribution over a region) and sweep coverage (systematically traversing a region to ensure full visitation).
-Effective coverage is essential for applications such as environmental monitoring, search and rescue, precision agriculture, and surveillance.
-A wide range of strategies has been developed, and most can be classified into three main categories: sensor dispersion, random exploration, and predetermined sweeps
+Effective coverage is thus essential for applications such as environmental monitoring, search and rescue, precision agriculture, and surveillance.
+There are two types of coverage problems: area coverage (maintaining spatial distribution over a region) and sweep coverage (systematically traversing a region to ensure full visitation).
+A wide range of approaches to these coverage problems have been developed, and most can be classified into three main categories: sensor dispersion for area coverage, random exploration and predetermined sweeps for sweep coverage
     \cite{wang2011coverage,     % survey
           galceran2013survey}.  % survey
 
-\textbf{Sensor Dispersion}
-The goal of sensor dispersion methods is to spread sensors over the environment to cover the target area,
+
+\textbf{Sensor Dispersion.~~}
+The goal of sensor dispersion approaches is to spread sensors over the environment to cover the target area,
 typically by driving robots to well-separated positions that remain largely static once coverage is achieved,
-with some notable exceptions in dynamic environments
+with a few notable exceptions in dynamic environments
     \cite{santos2019decentralized}.
-In these approaches, although sensor localization may rely on GPS or range-based measurements, interactions among robots are decentralized.
-Robots typically use potential fields, repulsion mechanisms, or adaptive local policies to maintain appropriate separation and avoid sensing overlap.
-Such methods offer scalability and robustness due to their decentralized nature
+In these approaches, although sensor localization may rely on GPS or range-based measurements, the interactions among the robots are typically decentralized.
+Robots use mechanisms such as potential fields, local repulsion, or other adaptive local policies to maintain appropriate separation and avoid sensing overlap.
+Such methods can offer scalability and robustness due to their decentralized interactions
     \cite{santos2019decentralized,
           luo2018adaptive,
           spanogianopoulos2017fast,
           siligardi2019robust}.
+...
+However, relying solely on local interactions can cause the system to become trapped in locally optimal states, limiting the coverage quality.
 
-\textbf{Random Exploration}
-Another family of approaches relies on random motions to gradually explore the environment.
+\textbf{Random Exploration.~~}
+In another family of approaches, robots sweep the environment in parallel.
 In these approaches, robots move mostly randomly and often also perform simple reactive collision avoidance.
-These searching strategies are mostly self-organized.
-They are easy to implement and require only minimal information, but often suffer from long completion times and inefficient coverage, due to redundancy and non-uniform exploration
+The motion control in these is approaches is fully decentralized, but sometimes centralized coordination is used for later steps, such as fusing collected information.
+Since the sweep motion control is fully decentralized, it is easy to implement and requires only minimal communication and sensing information during operation, but often suffers from long completion times and inefficient coverage, due to redundancy and non-uniform exploration
     \cite{huang2019exploration,
           ichikawa1999characteristics,
           mcguire2019minimal}.
 
-\textbf{Predetermined Sweeps}
+\textbf{Predetermined Sweeps.~~}
 Sweep-based methods pre-calculate systematic paths, usually S-shaped trajectories, to ensure full coverage of a known region.
 These strategies often require explicit predetermined roles and global map knowledge, which yields fast and predictable coverage, but usually lacks adaptability and can suffer from communication bottlenecks and single points of failure
 \cite{almadhoun2019survey, avellar2015multi}.
-
-There are also mixed approaches.
-For example, \cite{scherer2015autonomous} uses predetermined motion trajectories,
-and in the data streaming stage, the robots establish a communication network in a self-organized manner.
+There are also mixed approach variants,
+for example, \cite{scherer2015autonomous} uses fully predetermined motion trajectories,
+but the robots stream data using a relay network formed in a self-organized manner.
 
 \textcolor{blue}{summarize: a gap}
-
+%
 To summarize, 
 %coverage tasks clearly show the dichotomy between self-organization and centralization.
 while random exploration is robust and scalable, it often suffer from long completion times and inefficient coverage.
@@ -199,47 +201,48 @@ Conversely, predetermined and/or centrally coordinated methods can achieve fast 
 
 \subsection{Path Planning}
 
-In multi-robot systems, path planning is a key component.
-Existing methods range from centralized and/or predetermined global planners to self-organized online approaches.
+For many multi-robot system applications, path planning is a key component.
+Existing path planners include centralized and/or predetermined offline approaches as well as self-organized online approaches.
 
 \textbf{Centralized Offline Planning}
 Centralized planners assume global map knowledge and compute predetermined collision-free trajectories for all robots before deployment.
-Since multi-robot path optimization is usually an NP-hard problem,
-these methods usually employ heuristics %and approximate solutions to generate high-quality global trajectories for robots
+Multi-robot path optimization usually employs heuristics such as genetic algorithm and particle swarm optimization %and approximate solutions to generate high-quality global trajectories for robots
     \cite{nazarahari2019multi,
           thabit2018multi,
           yu2016optimal,
           kushleyev2013towards}.
+...
+These methods can produce high-quality paths, but they scale poorly with the number of robots and lack robustness to unexpected robot failures during execution.
 
 \textbf{Distributed Online Planning}
-There are a few existing examples of distributed online planners: e.g., the EGO-Swarm family
+There are a few existing examples of distributed online planners, such as EGO-Swarm
     \cite{zhou2020ego,
           zhou2021ego,
           zhou2022swarm}.
-These existing planners use local sensing and onboard optimization.
-They demonstrate fast, distributed trajectory generation by predicting nearby robots' short-horizon behavior and optimizing smooth, dynamically feasible paths at high frequency.
-These approaches enable agile navigation in cluttered environments but the generated solutions are of course not perfectly optimal, in contrast to what could in principle be achieved using offline global optimization.  %guarantees and may struggle in tightly constrained spaces.
-%And similar to formation control, they do not consider task assignments.
-However, these methods focus on decentralized navigation and trajectory generation.
-The start and goal positions of each robot are still specified externally,
-rather than being assigned or adapted autonomously by the system,
-which limits scalability and reduces robustness to agent failures.
+The EGO-Swarm planner uses local sensing and onboard optimization. Fast distributed trajectory generation is achieved by predicting nearby robots' short-horizon behavior and optimizing smooth, dynamically feasible paths at high frequency.
+This approach enables agile navigation in cluttered environments, but the generated solutions are of course not perfectly optimal, in contrast to what could in principle be achieved using offline global optimization.  
+Although the trajectory generation is decentralized, the start and goal positions of each robot are predetermined, which limits scalability and reduces robustness to agent failures.
 
 
 \textcolor{blue}{summarize: a gap}
 
-To conclude, although distributed approaches exist to generate high-quality solutions, both offline and online,
-fully scalable and fault tolerable systems remains to be explored.
+In summary, centralized planners can use global information to generate high-quality paths 
+                                 but scale poorly and lack robustness to failures, 
+and existing distributed approaches to path generation still fall short of providing fully scalable and fault-tolerant mechanisms for both defining and reaching goal positions.
+
 
 \subsection{Formation control}
 
-Formation control is a key fundamental topic in multi-robot and swarm systems
+Formation control is another key topic in multi-robot systems
     \cite{liu2018survey,
           oh2015survey}. % surveys
-Decentralized formation controllers rely on relative localization, using distance sensors, ultraviolet markers, or fiducial markers
+Given the emphasis of swarm robotics on scalability and fault tolerance, we focus on decentralized formation control, which is the focus of the majority of existing work from a control-theoretic perspective.
+In addition, we also examine the multi robot formation from the angle of role assignment.
+...
+
+Decentralized formation controllers use relative positioning, for example based on distance sensors, ultraviolet markers, or fiducial markers
     \cite{walter2018fast, %localization of UaVs using ultraviolet 
           ulrich2022towards}.  %fast fiducial marker with full 6 dof pose estimation
-
 These approaches typically focus on achieving stable rigid-body formations using distance-based constraints
     \cite{yang2018growing,
           mehdifar2018finite,
@@ -260,7 +263,6 @@ or bearing-based constraints
 %          zhao2021finite,
 %          zhang2022distributed,
 %          zhang2023bearing}.            % for water surface
-
 However, these methods assume that each robot is preassigned a fixed role in the formation.
 During deployment,
 the interaction topology among the robots is predefined and fixed, and robots move by referencing the positions of the robots they are connected to in this predefined topology.
@@ -297,19 +299,17 @@ using, e.g., consensus mechanisms, market-based coordination, or distributed opt
           michael2008distributed,
           montijano2014efficient,
           wang2020shape}.
-In many such approaches, although computation is distributed, the per-robot computational and memory burden still grows with swarm size.
-For example, some methods require each robot to solve a portion of a global optimization problem, but the calculation dimensionality of each portion still increases with the number of agents,
-while others rely on bidding or consensus schemes in which each robot must maintain information about all the peers.
-That is why, in despite of these distributed efforts, these methods still struggle to scale efficiently with swarm size.
-Approaches handling faulty or interchangeable agents also remain limited
+In many such approaches, although computation is distributed, the per-robot computational and memory burden still typically grows with system size.
+For example, some methods require each robot to solve a portion of a global optimization problem, such that the calculation dimensionality of each portion still increases with the number of agents.
+Other methods rely, for example, on bidding or consensus schemes in which each robot must maintain information about all robots in the system.
+That is why, despite some aspects of these approaches being distributed, they still struggle to scale efficiently with system size.
+Distributed approaches that are specifically designed to handle faulty or interchangeable agents also remain limited
     \cite{kambayashi2018distributed}.
 
-In addition, switching formations under rigid-body assumptions has also been explored,
-where the swarm transitions between multiple predefined rigid formations based on environmental changes 
-by updating inter-agent constraints while preserving overall formation rigidity
+In addition, switching formations have been explored: that is, a series of target formations are predefined and the system is triggered to switch between them %by updating inter-agent constraints while preserving overall formation rigidity
     \cite{desai1999control,
           desai2002modeling}.
-However, these methods still rely on centralized commands to trigger formation switches, rather than allowing the swarm to adapt autonomously.
+However, these methods still typically rely on centralized commands to trigger the formation switches, rather than the system adapting autonomously.
 
 \textcolor{blue}{there is a gap}
 
@@ -333,10 +333,15 @@ lacking the scalability or adaptability typically associated with decentralized 
 
 \section{Behavior design and manageability}
 
-While the previous sections have focused on specific tasks such as coverage, formation control, and path planning, these tasks are typically considered in isolation. 
-From a broader robot system perspective, a multi-robot system should not only execute individual tasks but also operate autonomously, making decisions and adapting to a changing environment without continuous human commands. 
-At the same time, for practical deployment, these systems must remain manageable: human operators should be able to supervise and intervene when necessary.
-This section reviews swarm autonomy and manageability.
+%While the previous sections have focused on specific tasks such as coverage, formation control, and path planning, these tasks are typically considered in isolation. 
+%From a broader robot system perspective, 
+A fully autonomous multi-robot system should %not only execute individual tasks but also operate autonomously, 
+be able to make decisions and adapt to a changing environment without requiring human intervention in order to accomplish its goals. 
+At the same time, these systems must remain manageable: human operators should still have the option to supervise the system and optionally intervene if they desire.
+...
+This goal is particularly challenging for swarm systems, since robots operate with only local information, hindering consensus in decision making, 
+and the lack of centralized control makes it difficult for human commands to propagate through the swarm.
+This section reviews the state of the art in swarm autonomy and manageability.
 
 \subsection{Swarm autonomy}
 
