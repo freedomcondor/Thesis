@@ -161,22 +161,22 @@ A wide range of approaches to these coverage problems have been developed, and m
 
 
 \textbf{Sensor Dispersion.~~}
-The goal of sensor dispersion approaches is to spread sensors over the environment to cover the target area,
+One approach is to spread sensors over the environment to cover the target area,
 typically by driving robots to well-separated positions that remain largely static once coverage is achieved,
 with a few notable exceptions in dynamic environments
     \cite{santos2019decentralized}.
-In these approaches, although sensor localization may rely on GPS or range-based measurements, the interactions among the robots are typically decentralized.
+In these approaches, although sensor localization may rely on GPS or distance-based measurements, the interactions among the robots are typically decentralized.
 Robots use mechanisms such as potential fields, local repulsion, or other adaptive local policies to maintain appropriate separation and avoid sensing overlap.
 Such methods can offer scalability and robustness due to their decentralized interactions
     \cite{santos2019decentralized,
           luo2018adaptive,
           spanogianopoulos2017fast,
           siligardi2019robust}.
-...
-However, relying solely on local interactions can cause the system to become trapped in locally optimal states, limiting the coverage quality.
+%However, relying solely on local interactions can cause the system to become trapped in locally optimal states, limiting the coverage quality.
+However, these methods may require a large number of robots to achieve coverage, particularly in large-scale environments.
 
 \textbf{Random Exploration.~~}
-In another family of approaches, robots sweep the environment in parallel.
+In another type of approach, robots sweep the environment in parallel.
 In these approaches, robots move mostly randomly and often also perform simple reactive collision avoidance.
 The motion control in these is approaches is fully decentralized, but sometimes centralized coordination is used for later steps, such as fusing collected information.
 Since the sweep motion control is fully decentralized, it is easy to implement and requires only minimal communication and sensing information during operation, but often suffers from long completion times and inefficient coverage, due to redundancy and non-uniform exploration
@@ -211,7 +211,6 @@ Multi-robot path optimization usually employs heuristics such as genetic algorit
           thabit2018multi,
           yu2016optimal,
           kushleyev2013towards}.
-...
 These methods can produce high-quality paths, but they scale poorly with the number of robots and lack robustness to unexpected robot failures during execution.
 
 \textbf{Distributed Online Planning}
@@ -236,9 +235,8 @@ and existing distributed approaches to path generation still fall short of provi
 Formation control is another key topic in multi-robot systems
     \cite{liu2018survey,
           oh2015survey}. % surveys
-Given the emphasis of swarm robotics on scalability and fault tolerance, we focus on decentralized formation control, which is the focus of the majority of existing work from a control-theoretic perspective.
+Given the emphasis of swarm robotics on scalability and fault tolerance, we focus on decentralized formation control, which is also the focus of the majority of existing work from the control theory literature.
 In addition, we also examine the multi robot formation from the angle of role assignment.
-...
 
 Decentralized formation controllers use relative positioning, for example based on distance sensors, ultraviolet markers, or fiducial markers
     \cite{walter2018fast, %localization of UaVs using ultraviolet 
@@ -338,8 +336,9 @@ lacking the scalability or adaptability typically associated with decentralized 
 A fully autonomous multi-robot system should %not only execute individual tasks but also operate autonomously, 
 be able to make decisions and adapt to a changing environment without requiring human intervention in order to accomplish its goals. 
 At the same time, these systems must remain manageable: human operators should still have the option to supervise the system and optionally intervene if they desire.
-...
-This goal is particularly challenging for swarm systems, since robots operate with only local information, hindering consensus in decision making, 
+This goal is particularly challenging for swarm systems, since robots operate with only local information,
+%hindering consensus in decision making, 
+which often leads to long convergence times and makes collective behaviors difficult to design,
 and the lack of centralized control makes it difficult for human commands to propagate through the swarm.
 This section reviews the state of the art in swarm autonomy and manageability.
 
@@ -347,22 +346,29 @@ This section reviews the state of the art in swarm autonomy and manageability.
 
 \textcolor{blue}{indivudal autonomy is good, but swarm autonomy is a challenge}
 
-Autonomy is often regarded as a central long-term goal of robotic systems—the ability for robots to operate without continuous human supervision.
+Autonomy is often regarded as a central long-term goal of robotic systems—the ability for robots to operate without 
+requiring human supervision or intervention.
+%continuous human supervision.
 
-In despite of significant advances in individual robot autonomy
+Despite significant advances in individual robot autonomy
     \cite{cangelosi2022cognition,
           vernon2014artificial},
 achieving autonomy in swarm robotics remains an open challenge.
 % for swarm, good works 
-Existing swarm researches primarily focus on single task such as action, perception, and adaptation
+Existing swarm researches primarily focus on a single aspect of autonomy such as action, perception, and adaptation
     \cite{heinrich2022swarm},
-but higher level cognitive capabilities such as learning or anticipation are still largely absent,
+but other cognitive capabilities such as learning or anticipation are still largely absent,
 and it lacks an overall framework to unify all the attributes.
 
 \textcolor{blue}{Collective decision is a key component for swarm autonomy}
 
-Collective decision making, as a classical task for swarm systems for environmental analysis, poses an important role in swarm automony.
-Classical models for collective decision making, such as best-of-N and best-of-two
+%Collective decision making, as a classical task for swarm systems for environmental analysis, poses an important role in swarm autonomy.
+Usually, autonomy in robotic systems implies the requirement of the ability to make decisions without human intervention.
+In swarm systems, such decisions must emerge from the behavior of individuals with only local information.
+As a result, collective decision making play an important role in swarm autonomy.
+
+%Classical models for collective decision making, such as best-of-N and best-of-two
+Classical collective decision-making problems include the best-of-N problem, of which the binary (best-of-two) case is a special instance
     \cite{khaluf2019neglected, % decision making
           valentini2017best,   % best of N
           dorigo2014self,
@@ -372,8 +378,8 @@ Classical models for collective decision making, such as best-of-N and best-of-t
           prasetyo2018best,       % best of N
           prasetyo2019collective, % best of N
           valentini2015efficient}, % best of N
-demonstrate how simple local rules allow groups to reach agreement without centralized control.
-Subsequent work investigates convergence speed, decision accuracy, and robustness under noise or malicious information
+These works demonstrate how simple local rules allow groups to reach agreement without centralized control.
+Some works investigate specific aspects such as convergence speed, decision accuracy, and robustness under noise or malicious information
     \cite{shan2020collective,            % bayesian
           bartashevich2019benchmarking,  % 
           shan2021discrete, %\textcolor{red}{too tech}
@@ -381,11 +387,12 @@ Subsequent work investigates convergence speed, decision accuracy, and robustnes
 
 \textcolor{blue}{but Collective decision too simple, swarm needs higher level of cognition}
 
-Despite these progress, decision-making in swarms generally remains a simple reactive task for environmental analysis,
-rather than maintaining a broader understanding of the mission context.
-Many elements are missing, in terms of automony,
-    \cite{khaluf2019neglected},
-such as the swarm needs to detect that a new collective decision is required, or to autonomously adapt the decision-making process to conditions that were not explicitly studied beforehand.
+Despite these progress, decision-making in swarms generally remains an isolated task
+%a simple reactive task for environmental analysis,
+rather than being integrated into a broader understanding of the mission context.
+Many elements are missing in terms of autonomy
+such as the swarm needs to detect that a new collective decision is required, or to autonomously adapt the decision-making process to conditions that were not explicitly studied beforehand
+    \cite{khaluf2019neglected}.
 Current frameworks provide no unified mechanisms for learning new behaviors online, anticipating future events, or autonomously restructuring task workflows.
 
 \textcolor{blue}{current swarm is roughly at level 2}
@@ -402,79 +409,100 @@ That would be a challenge for swarm systems as will be talked about in the follo
 
 \textcolor{blue}{human-swarm interaction is needed}
 
-As discussed in previous section, although robot swarms are generally capable of executing their intended tasks,
+Additionally, although robot swarms are generally capable of executing their intended tasks,
 human operators still play a crucial role in supervising the system,
 issuing high-level commands, and reprogramming the swarm when necessary.
 However, as swarm size increases, direct communication with all the robots in the swarm becomes infeasible.
 This section reviews existing research on human–swarm interaction and swarm online programming.
 
-Current researches mainly focus on two sides : human interfaces and swarm influence.
+%Current research mainly focus on two sides : human interfaces and swarm influence.
+Current research mainly focuses on two aspects:
+the design of human–swarm interfaces,
+and the mechanisms through which human commands applied to a small subset of robots can propagate to influence the collective behavior of the swarm
     \cite{siean2023opportunities,
           kolling2015human}.
 
 \textcolor{blue}{interface side: gesture control and etc}
 
-A class of researches explore interfaces to manipulate the swarm such as gesture control
+Some existing research explore interfaces to manipulate the swarm such as gesture control
     \cite{alonso2015gesture,
           podevijn2013gesturing},
 haptic devices
     \cite{lee2013semiautonomous},
 or wearable systems
     \cite{jarvis2025first}.
-Among these works, by default, operators are able to communicate with all the robots in the swarm to send commands collectively
+Among these works,
+%, by default, 
+operators are able to communicate with all the robots in the swarm to send commands collectively
     \cite{ayanian2014controlling,
           macchini2021personalized,
           abioye2025user}
 \textcolor{red}{varify},
-which will face scalability problem when the swarm scales up.
+%which will face scalability problem when the swarm scales up.
+which can lead to scalability issues due to the communication burden as the swarm size grows.
 
 \textcolor{blue}{influence side: decentralized, but not efficient}
 
-For decentralized methods where human communicate with only one robot or subset of the swarm, researches forcus on how to make the subset of the swarm influence the whole swarm
-    \cite{podevijn2013gesturing, % gesture, subset of the swarm
-          zhou2016assistive,  % joysticks
-          lee2013semiautonomous}. % haptic feedback
+For decentralized methods where human communicate with only one robot or subset of the swarm, researches focus on how to make the subset of the swarm influence the whole swarm
+    \cite{podevijn2013gesturing,  % gesture, subset of the swarm
+          zhou2016assistive,      %     joysticks
+          lee2013semiautonomous,  % haptic feedback
+          kolling2013human}.      % select (human select some robots) and beacon (human put a beacon and influence nearby robots) 
 While these methods improve scalability,
-they often suffer from slow convergence to the desired swarm-wide behavior.
-
-\cite{kolling2013human} \textcolor{red}{verify}
+they often suffer from slow convergence to the desired swarm-wide behavior
+and also make the design of effective local behaviors challenging.
 
 \textcolor{blue}{so, a gap}
 
-In general, there is a lack of a framework that can issue commands to swarm robots with low latency while maintaining scalability.
+%In general, there is a lack of a framework that can issue commands to swarm robots with low latency while maintaining scalability.
+In general, there is a lack of a framework that simultaneously addresses scalability, convergence efficiency, and ease of behavior design in human–swarm interaction.
 
 \subsection{programming / re-programming}
 
 \textcolor{blue}{People needs to easily (and online) program the swarm, but with challenges}
 
-When supervising the swarm, the programmer needs to be able to re-program the swarm easily and online.
+%When supervising the swarm, the programmer needs to be able to re-program the swarm easily and online.
+%When supervising the swarm, one requirement is that the programmer needs to be able to re-program the swarm easily and online.
+When supervising the swarm, one important aspect of human–swarm interaction is the ability to re-program the swarm easily and online.
 However, it faces two problems.
 Firstly, designing controllers for swarm systems is often a long trial-and-error process
     \cite{hamann2018swarm,
           brambilla2013swarm}.  
 It becomes more challenging when swarms must adapt to new tasks or environments.
-Secondly, when the swarm scales up, it becomes difficult for the programmer to communicate with the swarm and deliver the new program.
+%Secondly, when the swarm scales up, it becomes difficult for the programmer to communicate with the swarm and deliver the new program.
+Secondly, delivering new programs to all robots often requires the operator to communicate with the entire swarm, which can lead to scalability issues.
 
 This section reviews approaches from offline, centralized online, and to decentralized online reprogramming.
 
 \textcolor{blue}{Offline Programming}
 
-Classically, swarms are deployed in offline way.
-Programs are pre-designed and pre-downloaded to all the robots before deployment, for example,
+%Classically, swarms are deployed in offline way.
+Classically,
+programs are pre-designed and downloaded offline to all the robots before deployment, for example,
     \cite{rubenstein2014programmable,
           valentini2016collective,
           werfel2014designing,
           dorigo2013swarmanoid}.
-However, offline methods cannot react to unexpected task changes during deployment.
-Noteably, automatic design methods falls in this category.
+%However, offline methods cannot react to unexpected task changes during deployment.
+However, offline methods cannot react to unexpected situations such as task changes during deployment.
+%Notably, automatic design methods falls in this category
+%    \cite{francesca2014automode,
+%          francesca2016automatic,
+%          birattari2019automatic,
+%          salman2024automatic}.
+%They demonstrate how optimization and evolutionary algorithms can produce robust swarm behaviors without manual tuning.
+%Yet the programs are pre-generated.
+Notably, automatic design methods demonstrate how optimization and evolutionary algorithms can produce robust swarm behaviors without manual tuning
     \cite{francesca2014automode,
           francesca2016automatic,
           birattari2019automatic,
           salman2024automatic}.
-They demonstrate how optimization and evolutionary algorithms can produce robust swarm behaviors without manual tuning.
-Yet the programs are pre-generated.
+They usually fall in this category, as they typically require long trial-and-error optimization before deployment.
 
 \textcolor{blue}{online but centralized}
+
+...
+Even once behavior design is complete through extensive optimization, delivering and updating these programs across all robots remains challenging.
 
 Centralized online reprogramming techniques update robot behaviors after deployment through a global communication channel.
 Over-the-air programming frameworks
@@ -486,24 +514,32 @@ Large-scale drone light shows
           ang2018high}
 represent a widely deployed example of centralized online control.
 Although they can coordinate thousands of robots,
-they typically allow only predefined trajectories and low-level commands.
+they typically allow only predefined trajectories and very simple commands such as taking off or emergency landing.
 
 \textcolor{blue}{online, decentralized}
 
 Decentralized reprogramming methods update robot controllers without relying on a central broadcaster.
-Early work in wireless sensor networks
+%Early work in wireless sensor networks
+Some studies in wireless sensor networks
     \cite{xie2011design,
           wang2006reprogramming}
-shows the feasibility of distributed software updates.
-However, they also highlights fundamental limitations such as slow propagation and high energy consumption resulting from consensus mechanisms
+demonstrated the feasibility of distributed software updates.
+%However, they also highlights fundamental limitations such as slow propagation and high energy consumption resulting from consensus mechanisms
+However, studies in over-the-air program updating for robotic swarms also highlights fundamental limitations such as slow propagation resulting from consensus mechanisms
     \cite{de2009energy,
           varadharajan2018over}.
+...
+While many studies originate from wireless sensor networks, they provide foundational insights for decentralized reprogramming in robotic swarms : distributed program updating often propagates slowly and it remains challenging to coordinate consistent behavior across all the robots.
 
 \textcolor{blue}{summarize}
 
 To summarize, a unified framework that enables a human operator to reprogram swarm behavior in a scalable and efficient manner remains largely unexplored.
 
 \subsubsection{behavior tree}
+
+Behavior trees (BT) have been increasingly explored as a tool for structuring robot behaviors in a modular and hierarchical manner.
+The compositional structure makes it possible to modify or update parts of a controller without redesigning the entire behavior,
+which is particularly appealing in the context of online robot reprogramming.
 
 Behavior trees (BTs) provide a modular and hierarchical framework for representing robot behaviors
     \cite{colledanchise2018behavior,
@@ -538,44 +574,60 @@ For instance, Venkata et al.\ \cite{venkata2023kt} introduce the KT-BT framework
 
 \section{Fault tolerance}
 
-Fault tolerance is an inherent property of swarm systems for their redundancy and absence of single points of failures
-    \cite{dorigo2014swarm}
+%Fault tolerance is an inherent property of swarm systems for their redundancy and absence of single points of failures
+Swarm systems shows some inherent fault tolerance property because of their redundancy and absence of single points of failure
+    \cite{dorigo2014swarm,
+          hamann2018swarm}.
+Most classical swarm tasks, such as coverage or collective decision making, can tolerate a subset of robots fail.
+Robots simply continue to operate as normal, without knowing or caring about the failure peers 
+    \cite{bjerknes2013fault,
+          khadidos2015exogenous}.
+
+\textcolor{blue}{But fault tolerance is not completely solved}
+
+Despite these advantages, fault tolerance in robot swarms remains far from a solved problem.
+Existing approaches often struggle with limitations such as fault detection and diagnosis under partial observability, communication and sensing failures, malicious or Byzantine agents,
+and performance degradation caused by cascading or correlated failures
     \cite{hamann2018swarm}.
 
-\textcolor{red}{cite/explain some normal fault tolerance, that is not for centralized, predetermined}
-Most classical swarm tasks, such as coverage or collective decision making, can tolerate a subset of robots failes.
-Robots simply continue to operate as normal, without knowing or caring about the failure peers \textcolor{red}{cite something here}.
+\textcolor{blue}{For example, IFs}
 
-\textcolor{blue}{However, IFs}
-
-However, intermittent faults (IFs) pose a unique challenge for swarm systems.
-An IF is a failure that occurs for a short period of time, and then recovers.
-Its sporadic nature makes it difficult to reliably detect,
-and the repeated reoccurrence of IFs can often degrade overall swarm performance
-    \cite{zhou2019review}
-    \cite{niu2021distributed}.
-\textcolor{red}{check what Sinan says, the argument here not strong enough}
-
-Centralized methods are highly effective for identifying IFs, since they have access to system-wide data.
-    \cite{sheng2021intermittent}
-    \cite{zhang2021intermittent}
-    \cite{syed2016novel},
+Among these challenges, intermittent fault (IF) is an example that poses a particularly difficult and representative case.
+An IF is a failure that occurs sporadically. 
+It can appear, disappear, and reappear and then recovers.
+Its sporadic nature makes reliable detection difficult,
+and repeated occurrences can significantly degrade overall swarm performance
+    \cite{zhou2019review,
+          niu2021distributed}.
+%\textcolor{red}{check what Sinan says, the argument here not strong enough}
+Centralized methods are highly effective for identifying IFs, since they have access to system-wide data
+    \cite{sheng2021intermittent,
+          zhang2021intermittent,
+          syed2016novel},
 but as discussed in the previous section, centralized methods are vulnerable to single point failures and not scalable.
 
 \textcolor{blue}{Therefore, a gap}
 
-Overall, both centralized and de-centralized swarm system have their own unique challenges in terms of fault tolerance.
-
+%Overall, both centralized and de-centralized swarm system have their own unique challenges in terms of fault tolerance.
+Overall, although decentralized swarm systems benefit from inherent fault tolerance,
+addressing certain fault types still relies on centralized mechanisms,
+thereby undermining scalability and resilience.
 
 \section{Summary}
 
-In summary, centralized approaches offer global optimality and ease of control, while decentralized swarms provide robustness and scalability.
-However, neither paradigm alone fully addresses the need for efficient coordination in large-scale, dynamic tasks that require both adaptability and performance guarantees.
-A self-organizing hierarchical framework is therefore essential to bridge this gap,
-enabling swarms to dynamically reconfigure their coordination structure,
+Yet purely decentralized swarms are often difficult to design and manage, and may take long time to finish the task, especially in tasks that require global information, such as environmental analyzing and decision making.
+
+%In summary, centralized approaches offer global optimality and ease of control,
+In summary, centralized approaches offer easy solution to design and manage the swarm and can often coordinate the robots to finish the task quickly, 
+while decentralized swarms provide robustness and scalability.
+
+%However, neither paradigm alone fully addresses the need for efficient coordination in large-scale, dynamic tasks that require both adaptability and performance guarantees.
+However, neither paradigm alone fully addresses the need for coordinating large swarms to perform dynamic tasks that require both adaptability and performance guarantees.
+A self-organizing hierarchical framework is a strong candidate to bridge this gap.
+The goal of this Thesis is to show the design of such a self-organizing hierarchical system that
+enables swarms to dynamically reconfigure their coordination structure,
                    balance local autonomy with global oversight,
                and achieve human-scalable manageability without sacrificing resilience.
-
 
 
 \iffalse
