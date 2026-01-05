@@ -94,9 +94,9 @@ can outperform purely homogeneous systems, depending on the task requirements
     \cite{kengyel2015potential}. % hetero is better
 For example, individuals with more information can influence the behavior of others during tasks such as flocking or collective decision-making
     \cite{firat2020self, % use informal individual to cue the whole swarm to aggreate to a desired shelter
-          prasetyo2018best,
+          prasetyo2018best,  % some stubborn individuals
           balazs2020adaptive}.
-\textcolor{red}{varify: prasetyo2018best}
+%\textcolor{red}{varify: prasetyo2018best}
 
 In some works, some individuals are assigned explicit leadership roles
     \cite{gu2009leader,
@@ -349,9 +349,11 @@ and it lacks an overall framework to unify all the attributes.
 \textcolor{blue}{Collective decision is a key component for swarm autonomy}
 
 %Collective decision making, as a classical task for swarm systems for environmental analysis, poses an important role in swarm autonomy.
-Usually, autonomy in robotic systems implies the requirement of the ability to make decisions without human intervention.
+%Usually, autonomy in robotic systems implies the requirement of the ability to make decisions without human intervention.
+Generally, Autonomy in robotic systems refers to the ability to make decisions without human intervention.
 In swarm systems, such decisions must emerge from the behavior of individuals with only local information.
-As a result, collective decision making play an important role in swarm autonomy.
+%As a result, collective decision making play an important role in swarm autonomy.
+That's why collective decision making is one of the most-studied aspects of swarm autonomy.
 
 %Classical models for collective decision making, such as best-of-N and best-of-two
 The most-studied collective decision-making problem in swarm robotics is the best-of-N problem, of which the binary (best-of-two) case is a special instance
@@ -410,18 +412,19 @@ and the mechanisms through which human commands applied to a small subset of rob
 
 Some existing research explores interfaces to manipulate the swarm, such as gesture control
     \cite{alonso2015gesture,
-          podevijn2013gesturing},
+          podevijn2013gesturing,
+          macchini2021personalized}, % leap motion, control master drone. Other drones follow by Renolds
 haptic devices
     \cite{lee2013semiautonomous},
 or wearable systems
     \cite{jarvis2025first}.
 Among these works,
 %, by default, 
-operators are able to communicate with all the robots in the swarm to send commands collectively
+%operators are able to communicate with all the robots in the swarm to send commands collectively
+operators usually broadcast commands to all robots directly
     \cite{ayanian2014controlling,
-          macchini2021personalized,
           abioye2025user}
-\textcolor{red}{varify},
+%\textcolor{red}{varify},
 which can lead to scalability issues due to the communication burden as the swarm size grows.
 
 \textcolor{blue}{influence side: decentralized, but not efficient}
@@ -474,7 +477,9 @@ Automatic design methods demonstrate how optimization and evolutionary algorithm
           francesca2016automatic,
           birattari2019automatic,
           salman2024automatic}.
-They usually fall in this category, as they typically require long trial-and-error optimization before deployment.
+%They usually fall in this category, as they typically require long trial-and-error optimization before deployment.
+These methods typically rely on extensive trial-and-error optimization prior to deployment and are therefore most often applied in an offline manner.
+
 
 \textcolor{blue}{online but centralized}
 
@@ -509,6 +514,9 @@ While many studies originate from wireless sensor networks, they provide foundat
 \textcolor{blue}{summarize}
 
 To summarize, a unified framework that enables a human operator to reprogram swarm behavior in a scalable and efficient manner remains largely unexplored.
+
+\textcolor{red}{Behavior tree, move later}
+\iffalse
 
 \subsubsection{behavior tree}
 
@@ -545,7 +553,7 @@ though their application to real-world robotics remains to be explored.
 More recent work exploit behavior trees for knowledge transfer in multi-robot systems as a adaptability mechanism.
 For instance, Venkata et al.\ \cite{venkata2023kt} introduce the KT-BT framework, which uses behavior trees and a grammar-based encoding (stringBT) to achieve decentralized transfer of acquired skills, improving collective performance during online adaptation.
 
-
+\fi
 
 \section{Fault tolerance}
 
@@ -581,7 +589,7 @@ but as discussed in the previous section, centralized methods are vulnerable to 
 
 \textcolor{blue}{Therefore, a gap}
 
-Overall, although decentralized swarm systems benefit from inherent fault tolerance,
+Overall, although decentralized swarm systems benefit from some degree of inherent fault tolerance,
 addressing certain fault types still relies on centralized mechanisms,
 thereby undermining scalability and resilience.
 
