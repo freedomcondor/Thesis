@@ -1,0 +1,204 @@
+\chapter{Introduction}
+\label{ch1}
+
+\section{skeleton version 1}
+\color{blue}
+
+\subsection{autonomous robots}
+    Autonomous robotic systems are expected to
+        perceive the environment,
+        make decisions on their own,
+        operate without continuous human control.
+
+    Humans should mainly supervise the system and intervene only when necessary.
+
+\subsection{swarm robotics}
+    Why swarm robotics is attractive
+
+    Swarm robotics is a decentralized paradigm inspired by natural systems.
+
+    It offers key advantages:
+
+        scalability,
+
+        fault tolerance,
+
+    adaptability.
+
+    These properties make swarms promising for many real-world applications.
+
+    However :
+
+    Swarm systems rely on local sensing and local communication.
+
+    As a result:
+
+    collective decision making is difficult,
+
+    convergence can be slow,
+
+    human–swarm interaction is hard to scale.
+
+    This limits swarm autonomy and manageability in complex tasks.
+
+\subsection{hierarchy}
+    Hierarchy is a potential solution
+
+    Hierarchical approaches introduce structured information flow.
+
+    They allow limited forms of global coordination while preserving local interactions.
+
+    Therefore, hierarchy is a potential candidate for
+
+    improving decision making,
+
+    enabling scalable human supervision,
+
+    maintaining swarm scalability and robustness.
+
+\subsection{This thesis}
+
+    This thesis proposes a self-organizing hierarchical framework for swarm robotics.
+
+    The goal is to unify:
+
+    autonomous decision making,
+
+    scalable coordination,
+
+    human–swarm interaction,
+    under local-information constraints.
+
+The proposed framework demonstrates how hierarchy can emerge without centralized control.
+
+\color{black}
+\section{start, previous version}
+\textcolor{blue}{what is swarm robotics -> swarm intelligence -> good thing}
+
+Swarm robotics is a multi-robot paradigm in which large numbers of relatively simple robots coordinate through local interactions rather than centralized control.
+The design of swarm robotic systems is inspired by swarm intelligence, which studies the collective behaviors observed in biological systems such as flocks of birds, schools of fish, and ant colonies
+    \cite{bonabeau1999swarm}.
+In these natural systems, complex and adaptive global behaviors emerge from simple local interactions among individuals without any central coordination.
+By following this principle, swarm robotic systems can exhibit key properties such as scalability, fault tolerance, and adaptability
+    \cite{dorigo2021swarm,
+          dorigo2020reflections,
+          dorigo2021swarm}.
+These properties make swarm robotics particularly suitable for large-scale applications such as
+    environmental monitoring \cite{talamali2021less},
+    navigation and transportation \cite{dorigo2013swarmanoid},
+    self-assembly \cite{rubenstein2014programmable},
+    collective construction \cite{team2012designing, petersen2019review}.
+
+\textcolor{blue}{but there are some problems}
+
+%1
+Despite the promising capabilities of swarm robotics, several challenges hinder its broader deployment in complex, real-world scenarios.
+%2
+One of the primary difficulties lies in the so-called “micro-macro” gap: it is often nontrivial to design low-level agent behaviors that can reliably lead to the desired global swarm behavior \cite{dorigo2021swarm}.
+%3
+Designing such systems typically relies on extensive trial-and-error tuning or pre-defined behavior patterns, which may lack the flexibility to handle unforeseen environmental changes or mission objectives—thus limiting the autonomy of the swarm.
+%4
+Moreover, the autonomy of individual robots is constrained by their reliance on local sensing and information, which complicates tasks that require global situational awareness or complex coordination strategies.
+%5
+This reliance on local information also poses challenges for effective human–swarm interaction, as operators usually need global communication to command the whole swarm in real time.
+
+\textcolor{blue}{centralized is good at those}
+
+%1
+On the other hand, centralized robotic systems excel in areas where swarm robotics typically struggle.
+%2
+By treating the robot team as a single integrated system, centralized approaches enable a closed-loop cycle of global sensing, centralized data analysis, and coordinated actuation.
+%3
+Furthermore, centralized systems often maintain full network connectivity, allowing for more intuitive and direct human–robot interaction and supervision.
+%4
+However, these advantages come at the cost of scalability and fault tolerance, as the system may become a single point of failure and struggle to adapt in distributed or dynamic environments.
+
+\textcolor{blue}{so hybrid and hierachical}
+
+%1
+First, hierarchy is a primary strategy to combine centralized or decentralized methods, but establishing and maintaining such hierarchies in swarm systems presents significant challenges.
+%2
+Prior work in leader–follower models \textcolor{red}{[cite]} and role-based agent assignment \textcolor{red}{[cite]} has shown some success in managing group behavior through structured organization.
+%3
+However, most of these systems rely on pre-defined, static hierarchies, where leaders or roles are designated in advance and remain fixed throughout the operation.
+%4
+In swarm systems that depend primarily on local information and decentralized decision-making, it remains difficult to dynamically form and adjust hierarchies in a self-organized and robust manner \textcolor{red}{[cite]}.
+
+% P6. formation, task assignment
+%     s1. formation is basic
+%     s2. efficient formation relies on task assignment
+%     s3. but good task assignment needs global
+%     s4. xxx and xxx they go circles, not efficient
+%     s5. xxx and xxx, they districtuted, but not scalable
+%     s6. remains a problem,
+%1
+Second, formation control is one of the most fundamental and widely studied problems in swarm robotics.
+%2
+Effective swarm formation maintenance often relies on appropriate task assignment mechanisms, where agents are allocated roles or positions so that the travel cost for the swarm is small.
+%3
+However, achieving optimal or even efficient task assignment typically requires access to global information, which is inconsistent with the constraints of local sensing and decentralized control.
+%4
+Some decentralized approaches \textcolor{red}{[cite]} attempt to achieve the formation regardless of task assignment, where each robot move very far away until randomly finds a positon.
+%5
+Other approaches \textcolor{red}{[cite]} attempt to solve formation and task allocation in a distributed way, but the computation cost for each robot still grows with the swarm size, which violates the principle of scalability.
+%5
+As a result, robust and scalable task assignment for distributed formation control remains an open challenge in swarm robotics.
+
+% P7. swarm behavior design and autonomous
+%     s1. fixed program, 
+%     s2. Swarm needs to make decisions on its own
+%1
+Third, as mentioned above, swarm is not autonomy.
+%2
+With pre-fixed programs, swarm can't deal with unexpected situations.
+\textcolor{red}{xxxx}
+
+% P8. Human swarm interaction.
+Last, it is difficult for human to steer or re-program a swarm on the fly.
+\textcolor{red}{xxxx}
+
+
+% P10. In this paper, I propose SoNS
+%     s1. In this these, I propse SoNS, which brings centralization to SO
+%     s2. In SoNS, robot follow strictly local interaction.
+%     s3. but robots coordinate with neighbors and form a hierachical topology, information flows
+%     s4. harnessing from this, I show efficient task assignment for formation
+%     s5. I show easy design for robot autonomous
+%     s6. I show easy way for human swarm interaction
+%1
+This thesis proposes a novel framework named Self-organizing Nervous Swarm (SoNS), which aims to bring the benefits of centralized coordination into a fully decentralized, self-organizing swarm system.
+%2
+In SoNS, each robot follows strictly local interaction rules based on nearby sensing and communication, maintaining the principles of swarm intelligence.
+%3
+In the meantime, through continuous coordination with neighboring agents, the swarm spontaneously forms a hierarchical communication topology, allowing information to flow across the topology of the hierarchy in a guided way.
+%4
+Harnessing this emergent structure, efficient task assignment can be demonstrated for formation control can be achieved without requiring global knowledge.
+%5
+Furthermore, the SoNS framework is shown to simplify the design of autonomous behaviors, allowing robots to transfer codes to each other and re-program themselves to adapt to dynamic tasks and environments.
+%6
+Lastly, this thesis shows that SoNS facilitates scalable human–swarm interaction, where a human operator steer and reprogram the whole swarm by communicating with only one robot.
+
+\textcolor{blue}{bio-hybrid, doesn't belong here, maybe move to Ch1}
+\textcolor{red}{There are also researches on bio-hybrid research. Researches tries to understand the self-organizing from nature
+    \cite{wahby2018autonomously}
+    \cite{halloy2007social}
+    \cite{buhl2006disorder}
+    \cite{detrain2008collective}
+    \cite{theraulaz1998origin}
+}.
+
+\textcolor{blue}{Therefore, MNSs} \textcolor{red}{prior work in our research line, not in Ch2, but in Ch1}
+MNS tries to form a centralized control structure in a decentralized way.
+    \cite{mathews2017mergeable}
+Later work extend this idea to formation and coverage.
+    \cite{zhu2020formation}
+    \cite{zhang2023self}%Yuwei's paper, Self-reconfigurable hierarchical for formation control
+    \cite{jamshidpey2020multi}
+    \cite{jamshidpey2024centralization}
+    \cite{jamshidpey2023reducing}
+    \textcolor{red}{my paper ?}
+    \cite{zhu2024self}
+
+To achieve IF tolerance for swarms, recent work explores hybrid approaches.
+    \textcolor{red}{cite Sinan's paper?}
+    \cite{ouguz2025proactive}
