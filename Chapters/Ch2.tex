@@ -3,12 +3,12 @@
 
 \section{Introduction}
 
-Swarm intelligence often draws inspiration from the collective behaviors of social animals such as ants, birds, and fish
+The field of swarm intelligence often draws inspiration from the collective behaviors of social animals such as ants, birds, and fish
     \cite{bonabeau1999swarm}.  % the book of Swarm intelligence
-Early models like Reynolds' Boids have demonstrated that simple local behavioral rules can give rise to coherent large-scale patterns
+Early models such as the Reynolds' Boids model of flocking have demonstrated that simple local behavioral rules can give rise to coherent large-scale patterns
     \cite{reynolds1987flocks}.
 Swarm intelligence is based on self-organization: the principle that individuals interact with each other locally without centralized control, and complex global behavior emerges.
-Swarm robotics aims to leverage the principles of self-organization to construct decentralized robotic systems that are scalable, adaptive, and fault tolerant
+Swarm robotics aims to leverage the principles of self-organization to construct decentralized robot systems that are scalable, adaptive, and fault-tolerant
     \cite{dorigo2014swarm,       % scholarpedia on swarm robotics
           dorigo2020reflections, 
           dorigo2021swarm}.    %past, present and future
@@ -23,13 +23,13 @@ Self-organized systems have shown potential in many applications, including
     \cite{team2012designing, petersen2019review}.
 Owing to the absence of centralized control, such systems can scale up to vast numbers of robots without demanding increasing capabilities from each individual robot.
 
-However, despite significant progress, it remains a fundamental scientific question how to design low-level individual robot behaviors that result in desired high-level collective outcomes.
+However, despite substantial progress, it remains a fundamental scientific question how to design low-level individual robot behaviors that result in desired high-level collective outcomes.
 The micro-macro problem refers to this challenge
-    \cite{dorigo2021swarm}.
+    \cite{hamann2018swarm,dorigo2021swarm}.
 Although various theoretical frameworks have been proposed
     \cite{hamann2008framework,
           hamann2010space,
-          hamann2018swarm,
+          %hamann2018swarm,
           hamann2013towards}
 and decentralized controllers have been demonstrated for specific tasks
     \cite{dorigo2004evolving,
@@ -37,23 +37,23 @@ and decentralized controllers have been demonstrated for specific tasks
           dorigo2013swarmanoid,
           rubenstein2014programmable,
           li2019decentralized},
-yet purely decentralized swarms are often difficult to design and manage, and may take a long time to complete the desired task%, especially for tasks that require global information, such as environmental analysis and decision making.
+purely decentralized swarms are often difficult to design and manage, and might take a long time to complete the desired task%, especially for tasks that require global information, such as environmental analysis and decision making.
     \cite{dorigo2021swarm,
           kengyel2015potential}. % pure flat is not good
 
-These limitations motivate research into hybrid and hierarchical approaches that integrate selective forms of centralization into decentralized systems.
+The limitations of purely decentralized control motivate research into hybrid and hierarchical approaches that integrate selective forms of centralization into decentralized systems.
 These systems seek to bypass the micro-macro problem,
                       ease the design of swarm behaviors and coordination strategies,
-                      and improve the manageability of a decentralized system,
-while preserving scalability and fault tolerance features.
+                      and improve the manageability of the system,
+while preserving scalability and fault tolerance.
 
 This chapter reviews prior work in hybrid and hierarchical swarm control,
-compares the existing literature on decentralized and centralized approaches in different tasks,
+compares the existing literature on decentralized and centralized approaches to different tasks,
 and discusses aspects of swarm manageability, including human-swarm interaction, swarm re-programming, and swarm autonomy.
 
 \section{Heterogeneity and leadership}
 
-Flat and homogeneous swarms, often inspired by examples from nature,
+Flat and homogeneous robot swarms, often inspired by examples from nature,
     \cite{buhl2006disorder,
           detrain2008collective,
           theraulaz1998origin},
@@ -63,32 +63,29 @@ assume that all agents are identical, follow the same behavioral rules, and inte
           floreano2008bio,
           csahin2004swarm,
           beni1988concept}.
-
-
-In contrast, heterogeneous swarms consist of individuals serving different roles or having different behaviors.
+By contrast, heterogeneous swarms consist of individuals serving different roles or having different behaviors.
 These systems,
-with individuals in different physical types or with different information,
+with individuals of different physical types or with different information,
 can outperform purely homogeneous systems, depending on the task requirements
     \cite{kengyel2015potential}. % hetero is better
-For example, individuals with more information can influence the behavior of others during tasks such as flocking or collective decision-making
+For example, individuals with more information can influence the behavior of others for faster convergence or higher adaptability during tasks such as flocking or collective decision-making
     \cite{firat2020self, % use informal individual to cue the whole swarm to aggreate to a desired shelter
           prasetyo2018best,  % some stubborn individuals
           balazs2020adaptive}.
 
-In some existing approaches, a subset of individuals are assigned explicit leadership roles
+In another type of heterogeneous swarm, a subset of individuals are assigned explicit leadership roles
     \cite{gu2009leader,
           amraii2014explicit}.
-The leaders are usually pre-defined and fixed after deployment, while the rest of the coordination remains self-organized and based on local interactions. 
+In these approaches, the leaders are usually pre-defined and fixed after deployment, while the rest of the coordination remains self-organized and based on local interactions. 
 Each follower is assigned a leader and receives information from it, such as position references.
-In this way, information flows in a more structured manner among robots, thereby easing the design of the behaviors and reducing task completion times.
-Many tasks can benefit from this, for example flocking
+In this way, information flows in a direct manner from informed leaders to uninformed followers, thereby easing the design of the behaviors and reducing task completion times.
+Many tasks can benefit from this type of organization, for example flocking
     \cite{dalmao2011cucker,
           jia2019modelling,
           pignotti2018flocking}.
 %\textcolor{red}{consider drop:}
 %These leaders may be vulnerable to adversarial detection, a concern explored in    \cite{zheng2020adversarial}.
-Some of these leader--follower approaches are organized into two-level systems.
-Some other approaches impose a multi-level topological organization, in which the hierarchy is usually formed by fixed leader--follower pairs.
+
 
 %In some works of self-assembly or formation
 %    \cite{desai1999control,
@@ -99,45 +96,45 @@ Some other approaches impose a multi-level topological organization, in which th
 %and thereby improving efficiency in tasks
 %Such approaches can be regarded as highly heterogeneous systems in which each individual assumes its own role.
 
-However,
-because the topology is usually predefined, these systems suffer from low scalability and single points of failure.
-No existing approach has provided a general mechanism for self-organizing hierarchy—that is, adaptively forming and maintaining hierarchical structures without predefined topologies or fixed leadership roles.
+Existing leader--follower approaches can be organized into two-level or multi-level systems, formed by fixed leader--follower pairs.
+However, this results in a system with a predefined topology, which suffers from low scalability and the presence of single points of failure.
+No existing approach has provided a general mechanism for self-organizing hierarchy—that is, adaptively forming and maintaining multi-level structures without predefined topologies or fixed leadership roles.
 %As task complexity increases, self-organizing hierarchy becomes increasingly relevant. However, 
 Constructing hierarchy in a self-organized manner remains a major challenge
     \cite{dorigo2020reflections}. 
 
 \section{Self-organized versus centralized or predetermined control}
 
-Purely self-organized swarms are highly scalable and fault tolerant,
+Purely self-organized swarms are generally scalable and fault-tolerant,
 but their behaviors are often difficult to design,
 and they often exhibit inferior performance.
-In contrast, systems with centralized or predetermined control are easier to design and can complete tasks more quickly and with higher accuracy by exploiting global information, but they lack scalability and fault tolerance.
-This section reviews these different control approaches and their advantages and disadvantages across several key example tasks in multi-robot systems.
+By contrast, systems with centralized or predetermined control are typically easier to design and can complete tasks more quickly and with higher accuracy by exploiting global information, but they lack scalability and fault tolerance.
+This section reviews the different control approaches and their advantages and disadvantages across several key example tasks in multi-robot systems.
 
 \subsection{Multi-robot coverage}
 
-Coverage addresses a key aspect of multi-robot coordination for many applications.
-The goal is to ensure that a target region is fully observed, sensed, or explored by a group of agents.
+Coverage is a key aspect of multi-robot coordination for many applications.
+The goal of multi-robot coverage is to ensure that a target region is fully observed, sensed, or explored by a group of agents.
 Effective coverage is thus essential for applications such as environmental monitoring, search and rescue, precision agriculture, and surveillance.
-There are two types of coverage problems: area coverage (maintaining spatial distribution over a region) and sweep coverage (systematically traversing a region to ensure full visitation).
-A wide range of approaches to these coverage problems have been developed, and most can be classified into three main categories: sensor dispersion for area coverage, random exploration and predetermined sweeps for sweep coverage
+There are two types of coverage: area coverage (maintaining spatial distribution over a region) and sweep coverage (systematically traversing a region to ensure full visitation).
+A wide range of coverage approaches have been developed, and most can be classified into three main categories: sensor dispersion for area coverage, random exploration for sweep coverage, and predetermined trajectories for sweep coverage
     \cite{wang2011coverage,     % survey
           galceran2013survey}.  
 
 
 \textbf{Sensor Dispersion.~~}
-One approach is to spread sensors over the environment to cover the target area,
-typically by driving robots to well-separated positions that remain largely static once coverage is achieved,
+In the sensor dispersion approach to area coverage, sensors spread over the environment to cover the target area,
+typically by robots dispersing to well-separated positions that remain largely static once coverage is achieved,
 with a few notable exceptions in dynamic environments
     \cite{santos2019decentralized}.
-In these approaches, although sensor localization may rely on GPS or distance-based measurements, the interactions among the robots are typically decentralized.
-Robots use mechanisms such as potential fields, local repulsion, or other adaptive local policies to maintain appropriate separation and avoid sensing overlap.
-Such methods can offer scalability and robustness due to their decentralized interactions
+In these approaches, although sensor localization might rely on GPS or distance-based measurements, the interactions among the robots are typically decentralized.
+Robots use mechanisms such as potential fields, local repulsion, or other local policies to maintain appropriate separation and avoid sensing overlap.
+Such methods can offer scalability and robustness due to the robots' decentralized interactions
     \cite{santos2019decentralized,
           luo2018adaptive,
           spanogianopoulos2017fast,
           siligardi2019robust}.
-However, these methods may require a large number of robots to achieve coverage, particularly in large-scale environments.
+However, these methods require a large number of robots to achieve coverage, especially in large-scale environments.
 
 \textbf{Random Exploration.~~}
 In another type of approach, robots sweep the environment in parallel.
