@@ -1,78 +1,85 @@
 \chapter{Introduction}
 \label{ch1}
 
-\section{skeleton version 1}
-\color{blue}
+% logic:
+% swarm robotics in general
 
-\subsection{autonomous robots}
-    Autonomous robotic systems are expected to
-        perceive the environment,
-        make decisions on their own,
-        operate without continuous human control.
+%     swarm is good, 
+%     scalability, fault tolerance, ...
 
-    Humans should mainly supervise the system and intervene only when necessary.
+%     however, downsides
+%          micro macro problem
+%          global information, analyzation
+%          
+%     centralized is easy but not scalable ...
 
-\subsection{swarm robotics}
-    Why swarm robotics is attractive
+%     To combine these two, hybrid approaches ...
 
-    Swarm robotics is a decentralized paradigm inspired by natural systems.
+%     concrete problem is:
+%     
+%     self-organization hierarchy
+%     Task assignment with local information
+%     swarm behavior design and adaption
+%     human swarm interaction.
 
-    It offers key advantages:
+%     in this paper I solve those problems.
+%     1. method to arrange hierarchy local information.
+%     2. based on hierachy, I make efficitent task assignment with local information
+%     3. easy to design, DBT for learning and HSI
 
-        scalability,
 
-        fault tolerance,
+% P1. Swarm is good
+% P2. but swarm is hard to design, hard to control, not autonomous
+% P3. centralized is easy, but not scalable, not fault tolerant
 
-    adaptability.
+% P4. In this paper, we bring centralize to self-organization.
+%     but to do that, face some concrete problems
 
-    These properties make swarms promising for many real-world applications.
+% P5. self-organization hierarchy
+% P6. Task assignment in formation with local information
+% P7. swarm behavior design and autonomous
+% P8. Human swarm interaction.
 
-    However :
+% P9. In this thesis, I create SoNS, which solves:   
+%   avoid I, and avoid we in Ch1 2 6
+%   This thesis proposes .... 
+%      1. hierarchy establishment,
+%      2. Task assignment formation
+%      3. Behavior tree management, and DBT to autonomous
+%      4. Human swarm interaction
 
-    Swarm systems rely on local sensing and local communication.
+%break P9 to multiple paragraphs / subsection / bullet list
+%section 1.1
+% say what contribution of each paper
 
-    As a result:
+%--------------------------------------------------------------------
 
-    collective decision making is difficult,
+% P1 swarm is good
+%     s1. swarm intelligence inspired by ..
+%     s2. in these animals, local interaction
+%     s3. swarm robotics follow these
+%     s4. It has many applications
+%1
+\iffalse
+Swarm intelligence is inspired by the collective behaviors and collaborative strategies observed in various biological systems such as flocks of birds, schools of fish, or colonies of ants.
+%2
+These natural systems exhibit intelligent, adaptive, and self-organized patterns of cooperation without centralized control, where global behavior emerges from local interactions among individuals \textcolor{red}{[cite]}.
+%\cite{bonabeau1999swarm, swarmintelligence},
+%3
+Swarm robotics follows this principle of local interaction.
+%4
+This decentralized approach enables a group of robots to exhibit scalability, fault tolerance, and adaptability as seen in the biological systems mentioned above \textcolor{red}{[cite]},
+%\cite{dorigo2021swarm, brambilla2013swarm, rubenstein2014programmable}.
+These characteristics are highly suitable for tasks such as
+environmental monitoring \textcolor{red}{cite},
+navigation and transportation \textcolor{red}{cite},
+self-assembly \textcolor{red}{cite},
+construction \textcolor{red}{cite},
+bio-hybrid interaction \textcolor{red}{cite},
+and etc.
+\fi
 
-    convergence can be slow,
 
-    human–swarm interaction is hard to scale.
-
-    This limits swarm autonomy and manageability in complex tasks.
-
-\subsection{hierarchy}
-    Hierarchy is a potential solution
-
-    Hierarchical approaches introduce structured information flow.
-
-    They allow limited forms of global coordination while preserving local interactions.
-
-    Therefore, hierarchy is a potential candidate for
-
-    improving decision making,
-
-    enabling scalable human supervision,
-
-    maintaining swarm scalability and robustness.
-
-\subsection{This thesis}
-
-    This thesis proposes a self-organizing hierarchical framework for swarm robotics.
-
-    The goal is to unify:
-
-    autonomous decision making,
-
-    scalable coordination,
-
-    human–swarm interaction,
-    under local-information constraints.
-
-The proposed framework demonstrates how hierarchy can emerge without centralized control.
-
-\color{black}
-\section{start, previous version}
 \textcolor{blue}{what is swarm robotics -> swarm intelligence -> good thing}
 
 Swarm robotics is a multi-robot paradigm in which large numbers of relatively simple robots coordinate through local interactions rather than centralized control.
@@ -89,32 +96,57 @@ These properties make swarm robotics particularly suitable for large-scale appli
     self-assembly \cite{rubenstein2014programmable},
     collective construction \cite{team2012designing, petersen2019review}.
 
-\textcolor{blue}{but there are some problems}
+% P2 But
+%     s1. despite, it has problems
+%     s2. macro micro problem, hard to design
+%     s3. trial and error, pre-fixed, so unknow situation --> not autonomous
+%     s4. another aspect of autonmous: due to local info,  sensing, analyzing, actuation,
+%     s5. due to local info, human swarm interaction.
 
 %1
 Despite the promising capabilities of swarm robotics, several challenges hinder its broader deployment in complex, real-world scenarios.
 %2
-One of the primary difficulties lies in the so-called “micro-macro” gap: it is often nontrivial to design low-level agent behaviors that can reliably lead to the desired global swarm behavior \cite{dorigo2021swarm}.
+One of the primary difficulties lies in the so-called “macro–micro” gap: it is often nontrivial to design low-level agent behaviors that can reliably lead to the desired global swarm behavior \textcolor{red}{[cite]}.
 %3
-Designing such systems typically relies on extensive trial-and-error tuning or pre-defined behavior patterns, which may lack the flexibility to handle unforeseen environmental changes or mission objectives—thus limiting the autonomy of the swarm.
+Designing such systems typically relies on extensive trial-and-error tuning or pre-defined behavior patterns, which may lack the flexibility to handle unforeseen environmental changes or mission objectives—thus limiting the autonomy of the swarm \textcolor{red}{[cite]}.
 %4
-Moreover, the autonomy of individual robots is constrained by their reliance on local sensing and information, which complicates tasks that require global situational awareness or complex coordination strategies.
+Moreover, the autonomy of individual robots is constrained by their reliance on local sensing and information, which complicates tasks that require global situational awareness or complex coordination strategies \textcolor{red}{[cite]}.
 %5
-This reliance on local information also poses challenges for effective human–swarm interaction, as operators usually need global communication to command the whole swarm in real time.
+This reliance on local information also poses challenges for effective human–swarm interaction, as operators usually need global communication to command the whole swarm in real time \textcolor{red}{[cite]}.
 
-\textcolor{blue}{centralized is good at those}
-
+% P3, on the other hand, centralized is good at those
+%     s1. On the other hand, centralized is good at those
+%     s2. as a whole system, close loop of sensing, analyzing, actuation
+%     s3. human - interaction is there due to full connectivity
+%     s4. but it lose scalability, fault tolerance.
 %1
 On the other hand, centralized robotic systems excel in areas where swarm robotics typically struggle.
 %2
-By treating the robot team as a single integrated system, centralized approaches enable a closed-loop cycle of global sensing, centralized data analysis, and coordinated actuation.
+By treating the robot team as a single integrated system, centralized approaches enable a closed-loop cycle of global sensing, centralized data analysis, and coordinated actuation \textcolor{red}{[cite]}.
 %3
-Furthermore, centralized systems often maintain full network connectivity, allowing for more intuitive and direct human–robot interaction and supervision.
+Furthermore, centralized systems often maintain full network connectivity, allowing for more intuitive and direct human–robot interaction and supervision \textcolor{red}{[cite]}.
 %4
-However, these advantages come at the cost of scalability and fault tolerance, as the system may become a single point of failure and struggle to adapt in distributed or dynamic environments.
+However, these advantages come at the cost of scalability and fault tolerance, as the system may become a single point of failure and struggle to adapt in distributed or dynamic environments \textcolor{red}{[cite]}.
 
-\textcolor{blue}{so hybrid and hierachical}
+% P4. we try to hybrid
+%     s1. works try to hybrid these.
+%     s2. xxx did xxx
+%     s3. xxx did xxx
+%     s4. but these attempts face these problems:
+%1
+To overcome the limitations of purely centralized or decentralized systems, recent research has explored hybrid approaches that aim to combine the strengths of both paradigms.
+%2
+For instance, \textcolor{red}{Author A et al. proposed a hybrid control architecture... }
+%3
+Similarly, \textcolor{red}{Author B et al. introduced a another hierarchical system...}
+%4
+However, although these hybrid strategies to some extend solve some problem, but they still face several concrete challenges.
 
+% P5. Self-organized hierachy
+%     s1. heirachy is good, but challenge
+%     s2. some literature in leader follower..
+%     s3. existing all fixed.
+%     s4. with a local info system, it is hard to manage the hierachy.
 %1
 First, hierarchy is a primary strategy to combine centralized or decentralized methods, but establishing and maintaining such hierarchies in swarm systems presents significant challenges.
 %2
