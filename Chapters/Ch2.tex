@@ -153,10 +153,12 @@ There are also mixed approach variants:
 for example, \cite{scherer2015autonomous} uses fully predetermined motion trajectories,
 but the robots stream data using a relay network formed in a self-organized manner.
 
-To summarize, sweep coverage approaches can use a relatively small number of robots to cover a large area. While random exploration approaches are robust and scalable, they often suffer from long completion times and inefficient coverage.
+To summarize, area coverage approaches based on sensor dispersion are typically decentralized, robust, and scalable, but can require a prohibitively large number of robots to achieve satisfactory coverage.
+In contrast, sweep coverage approaches can use a relatively small number of robots to explore a large area.
+While random exploration approaches are robust and scalable, they often suffer from long completion times and inefficient coverage.
 Conversely, predetermined sweep approaches can achieve fast and uniform coverage, but usually lack adaptability and fault tolerance.
 
-\subsection{Path Planning}
+\subsection{Multi-robot Path Planning}
 
 Path planning is important for many multi-robot system applications.
 Existing path planners include centralized and/or predetermined offline approaches as well as distributed online approaches.
@@ -259,10 +261,11 @@ Distributed approaches that are specifically designed to handle faulty or interc
 %          desai2002modeling}.
 %However, these methods still typically rely on centralized commands to trigger the formation switches, rather than the system adapting autonomously.
 
-In summary, while centralized or predetermined approaches can ease the implementation of optimization algorithms,
-they lack robustness and scalability.
+In summary, formation control approaches that incorporate centralization or predetermined roles simplify optimization and achieve high-quality formations, but suffer from limited robustness and scalability.
+Existing approaches to distributed role assignment typically impose large computational or communication burdens on individual robots, which still hinders scalability and fault tolerance in large swarms.
 
-\subsection{Light Show}
+
+\subsection{Commercial drone entertainment shows}
 
 Drone light shows are becoming popular in commercial entertainment.
 So far, these drone shows have used fully centralized and predetermined approaches to robot coordination,
@@ -273,7 +276,7 @@ This can provide precise synchronization and visually coherent formations with v
 However, the resulting systems are vulnerable to a single point (ground station) of failure and to communication failures and bottlenecks,
 lacking the scalability or adaptability typically associated with decentralized systems.
 
-\section{Behavior design and manageability}
+\section{Swarm behavior design and manageability}
 
 A fully autonomous multi-robot system should be able to make decisions and adapt to a changing environment without requiring human intervention in order to accomplish its goals. 
 At the same time, these systems must remain manageable: human operators should still have the option to supervise the system and optionally intervene if they desire.
@@ -336,7 +339,6 @@ the design of human side of the HSI interfaces,
 and the mechanisms through which human commands sent to a small subset of robots can influence the collective behavior of the swarm
     \cite{siean2023opportunities,
           kolling2015human}.
-
 Existing research on HSI interfaces explores manipulating the swarm using gesture control
     \cite{alonso2015gesture,
           podevijn2013gesturing,
@@ -350,7 +352,6 @@ operators usually broadcast commands to all robots directly
     \cite{ayanian2014controlling,
           abioye2025user}
 which can lead to scalability issues due to the communication burden as the swarm size grows.
-
 For decentralized methods where humans communicate with only one or a few robots, existing research focuses on how a subset of the robots can influence the rest of the swarm
     \cite{podevijn2013gesturing,  % gesture, subset of the swarm
           zhou2016assistive,      %     joysticks
@@ -359,10 +360,9 @@ For decentralized methods where humans communicate with only one or a few robots
 While these methods improve scalability,
 they often suffer from slow convergence to the desired swarm-wide behavior
 and also make the design of swarm-wide behaviors challenging.
-
 In general, there is a lack of a framework that simultaneously addresses scalability, convergence efficiency, and ease of behavior design in human–swarm interaction.
 
-\subsection{programming / re-programming}
+\subsection{Online programming for robot swarms}
 
 When supervising a robot swarm, one important aspect of human–swarm interaction is the ability to re-program the swarm easily and online.
 However, swarm reprogramming faces two challenges.
@@ -392,10 +392,10 @@ Automatic design methods demonstrate how approaches such as optimization and evo
           francesca2016automatic,
           birattari2019automatic,
           salman2024automatic}.
-%They usually fall in this category, as they typically require long trial-and-error optimization before deployment.
 However, these methods still typically rely on extensive trial-and-error processes prior to deployment and are therefore most often applied in an offline manner.
 New behaviors can in principle be designed offline and then uploaded to robots during operation. However, delivering and updating these programs across all robots remains challenging.
 
+Most existing approaches to online reprogramming are centralized.
 Centralized online reprogramming techniques update robot behaviors after deployment through a global communication channel.
 Over-the-air programming frameworks
     \cite{zyrianoff2024over,
@@ -407,7 +407,6 @@ Large-scale drone light shows
 represent a widely deployed example of centralized online control.
 Although they can coordinate thousands of robots,
 they typically allow only predefined trajectories and very simple commands such as taking off or emergency landing.
-
 Decentralized reprogramming methods update robot controllers without relying on a central broadcaster.
 Many studies in wireless sensor networks
     \cite{xie2011design,
@@ -416,16 +415,13 @@ demonstrate the feasibility of distributed software updates.
 However, in swarm robotics studies, in which over-the-air programming is used to update only a subset of the robots, the rest of the swarm is slow to converge on the new update
     \cite{de2009energy,
           varadharajan2018over},
-%While many studies originate from wireless sensor networks, they provide foundational insights for decentralized reprogramming in robotic swarms: 
-%distributed program updating often propagates slowly 
 and it remains challenging to coordinate consistent behavior across all the robots.
-
 To summarize, a unified framework that enables a human operator to reprogram swarm behavior in a scalable and efficient manner has not yet been developed.
 
 %\textcolor{red}{Behavior tree, move later}
 \iffalse
 
-\subsubsection{behavior tree}
+\subsubsection{Behavior tree}
 
 Behavior trees (BT) have been increasingly explored as a tool for structuring robot behaviors in a modular and hierarchical manner.
 The compositional structure makes it possible to modify or update parts of a controller without redesigning the entire behavior,
@@ -475,7 +471,6 @@ Despite these advantages, fault tolerance in robot swarms remains far from a sol
 Existing approaches often struggle with limitations such as fault detection and diagnosis under partial observability, communication and sensing failures, malicious or Byzantine agents,
 and performance degradation caused by cascading or correlated failures
     \cite{hamann2018swarm}.
-    
 Among these challenges, intermittent faults are a difficult and representative example case.
 An intermittent fault (IF) is a failure that occurs sporadically: it can appear, disappear, and reappear.
 Its sporadic nature makes reliable detection difficult,
@@ -487,7 +482,6 @@ Centralized methods are highly effective for identifying IFs, since they have ac
           zhang2021intermittent,
           syed2016novel},
 but  centralized methods are vulnerable to single points of failure and are not scalable.
-
 Overall, although robot swarms benefit from some degree of inherent fault tolerance,
 addressing certain fault types still relies on centralized mechanisms,
 thereby undermining scalability and resilience.

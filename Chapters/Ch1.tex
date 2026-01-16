@@ -3,42 +3,65 @@
 
 \textcolor{blue}{autonomous robots}
 
-Autonomous robots are expected to perceive their environment, make decisions independently, and operate without continuous human control.
-In such systems, humans primarily take a supervisory role, intervening only when necessary to adjust high-level objectives or ensure safety.
+%Autonomous robots are expected to perceive their environment, make decisions independently, and operate without continuous human control.
+Autonomous robots are expected to perceive their environment, independently make decisions and adapt to a changing environment without requiring human intervention.
+%In such systems, humans primarily take a supervisory role, intervening only when necessary to adjust high-level objectives or ensure safety.
+Human operators only take a supervisory role, having the option to intervene when desire.
 
 \textcolor{blue}{swarm robotics}
 
 Swarm robotics is a decentralized robotic paradigm inspired by collective behaviors observed in natural systems such as insect colonies and animal groups
     \cite{bonabeau1999swarm}.
 In these systems, complex global behaviors emerge from simple local interactions, without relying on centralized control or global information.
-By following the same principle, swarm robotic systems naturally exhibit desirable properties including scalability, fault tolerance, and adaptability
+%By following the same principle, swarm robotic systems naturally exhibit desirable properties including scalability, fault tolerance, and adaptability
+By following the same principle, robot swarms naturally exhibit desirable properties including scalability, fault tolerance, and adaptability
     \cite{dorigo2014swarm,
           dorigo2020reflections,
           dorigo2021swarm}.
-As the swarm size increases, performance can be maintained without centralized bottlenecks, while the failure of individual robots does not critically affect the overall system behavior.
-These characteristics make swarm robotics particularly attractive for large-scale, distributed, and dynamic real-world applications, such as
-    environmental monitoring
-    \cite{talamali2021less},
-    navigation and transportation
-    \cite{dorigo2013swarmanoid},
-    self-assembly
-    \cite{rubenstein2014programmable},
-    and collective construction
-    \cite{team2012designing, petersen2019review}.
+%As the swarm size increases, performance can be maintained without centralized bottlenecks, while the failure of individual robots does not critically affect the overall system behavior.
+The absence of centralized control avoids communication and computation bottlenecks, allowing the system to scale to large populations.
+Redundancy in the number of robots provides inherent fault tolerance, such that the failure of individual agents does not critically affect overall system behavior.
+%These characteristics make swarm robotics particularly attractive for large-scale, distributed, and dynamic real-world applications, such as
+%    environmental monitoring
+%    \cite{talamali2021less},
+%    navigation and transportation
+%    \cite{dorigo2013swarmanoid},
+%    self-assembly
+%    \cite{rubenstein2014programmable},
+%    and collective construction
+%    \cite{team2012designing, petersen2019review}.
+These characteristics make robot swarms particularly attractive for applications which often require vast numbers of robots.
 
 \textcolor{blue}{However}
 
-However, swarm robotic systems typically rely on local sensing and local communication, with each robot having access to only partial information about the global state.
+%However, swarm robotic systems typically rely on local sensing and local communication, with each robot having access to only partial information about the global state.
+However, robot swarms typically rely on local sensing and local communication, with each robot having access to only partial information about the global state.
 As a result, reaching consistent swarm-level decisions can be slow or inefficient.
 The lack of centralized control mechanism also complicates human swarm interaction.
 These limitations restrict the level of autonomy and manageability that swarm systems can achieve in complex and dynamic tasks.
 
 \textcolor{blue}{hierarchy}
 
-Hierarchical organization provides a promising approach to addressing the paradox between centralized and decentralized multi-robot systems.
-By introducing structured information flow, hierarchical approaches enable limited forms of global coordination while preserving local interactions among robots.
-Such structures can improve collective decision making, support scalable human supervision, and facilitate coordinated behavior at the swarm level.
+%Hierarchical organization provides a promising approach to addressing the paradox between centralized and decentralized multi-robot systems.
+Self-organizing hierarchical organization provides a promising approach to addressing the paradox between centralized and decentralized multi-robot systems.
+%By introducing structured information flow, hierarchical approaches enable limited forms of global coordination while preserving local interactions among robots.
+On one hand, a hierarchical structure provides directed information flow to introduce a form of global coordination.
+In the meantime, the structure is constructed in a self-organized way to keep scalability and fault tolerance.
+Such organization can improve collective decision making, support scalable human supervision, and facilitate coordinated behavior at the swarm level.
 Importantly, when designed appropriately, hierarchical methods can retain the scalability and robustness that characterize swarm robotics.
+robot swarms
+
+\textcolor{blue}{SoNS research line old}
+
+%%%%%%%%%
+% - self-organizing hierarchy is interesting (cite Marco SR perspective), explain why
+% - because it is interesting, I have been involved in the development of a research line to apply self-organizing hierarchy to robot swarms
+% - this research line has been inspired by work to apply self-organizing hierarchy to physically-connected robots -- explain and introduce MNS
+% - the research line has explored how to extend the MNS starting point to robot swarms more generally and to assess the added value of using self-organizing hierarchy in robot swarms
+% - these studies (cite all the ones where you are not the first author and/or not a co-author) contributed results in simulation and theoretical analysis that demonstrate the feasibility and usefulness of applying self-organizing hierarchy to robot swarms
+% - this thesis contributes the first formalization of the full concept (check our SR for wording) and the first proof-of-concept with real robots -- called the SoNS
+% - after introducing the SoNS, this thesis also extends the SoNS in XX and XX way
+% - (make sure that you communicate to the reader why your 3 research chapters make an important contribution to the field)
 
 Existing work has already proved that hierarchical structures can be used to improve swarm robotics.
 MNS tries to form a centralized control structure in a decentralized way.
@@ -59,3 +82,29 @@ This thesis proposes a self-organizing hierarchical framework for swarm robotics
 The objective is to unify autonomous decision making, scalable coordination, and human–swarm interaction under strict local-information constraints.
 The proposed framework demonstrates how hierarchical structures can emerge and be maintained without centralized control.
 Through this approach, the thesis shows how hierarchy can be leveraged as an enabling mechanism rather than a violation of swarm principles.
+
+
+
+\textcolor{blue}{SoNS research line new}
+
+A series of studies conducted within our research group has systematically investigated how hierarchical control structures can be formed and exploited in robot swarms through purely local interactions.
+This line of research aims to reconcile the scalability and robustness of decentralized swarms with the coordination efficiency typically associated with centralized control.
+
+The concept was first introduced through the Mergeable Nervous System (MNS), which demonstrated that a group of physically connected robots can form a centralized control structure
+    \cite{mathews2017mergeable}.
+Building upon this foundation, our subsequent work extended the approach to concrete swarm tasks, including formation control and area coverage, showing that self-organizing hierarchies can significantly improve coordination efficiency while preserving scalability
+    \cite{zhang2023self,
+          jamshidpey2020multi,
+          jamshidpey2024centralization,
+          jamshidpey2023reducing,
+          oguz2025proactive,
+          zhu2020formation,
+          zhu2024self}.
+Together, these works establish the Self-organizign Nervous System, which is self-organizing hierarchy as a viable and effective mechanism for structured coordination in robot swarms.
+
+This thesis proposes a novel framework named Self-organizing Nervous Swarm (SoNS), which aims to bring the benefits of centralized coordination into a fully decentralized, self-organizing swarm system.
+In SoNS, each robot follows strictly local interaction rules based on nearby sensing and communication, maintaining the principles of swarm intelligence.
+In the meantime, through continuous coordination with neighboring agents, the swarm spontaneously forms a hierarchical communication topology, allowing information to flow across the topology of the hierarchy in a guided way.
+Harnessing this emergent structure, efficient task assignment can be demonstrated for formation control can be achieved without requiring global knowledge.
+Furthermore, the SoNS framework is shown to simplify the design of autonomous behaviors, allowing robots to transfer codes to each other and re-program themselves to adapt to dynamic tasks and environments.
+Lastly, this thesis shows that SoNS facilitates scalable human–swarm interaction, where a human operator steer and reprogram the whole swarm by communicating with only one robot.
